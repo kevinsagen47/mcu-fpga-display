@@ -1,0 +1,152 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: kevin kevinsagen47@Gmail.com, itri, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.38.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.38.0.0
+Dialog DLL:      DARMCM1.DLL V1.19.6.0
+Target DLL:      Nu_Link.dll V3.12
+Dialog DLL:      TARMCM1.DLL V1.14.6.0
+ 
+<h2>Project:</h2>
+C:\Users\kevin\Documents\nuvoton_ws\M480BSP-master\SampleCode\UART_AutoFlow\KEIL\UART_AutoFlow.uvproj
+Project File Date:  07/03/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin'
+Build target 'UART_AutoFlow'
+Clean started - Project: 'UART_AutoFlow'
+   deleting intermediate output files for target 'UART_AutoFlow'
+Clean done
+creating preprocessor file for system_M480.c...
+compiling system_M480.c...
+assembling startup_M480.s...
+creating preprocessor file for main.c...
+compiling main.c...
+..\dependencies.h(16): warning:  #1295-D: Deprecated declaration UART0_Init - give arg types
+  void UART0_Init();
+..\dependencies.h(17): warning:  #1295-D: Deprecated declaration UART1_Init - give arg types
+  void UART1_Init();
+..\dependencies.h(18): warning:  #1295-D: Deprecated declaration UART_TEST_HANDLE - give arg types
+  void UART_TEST_HANDLE();
+..\dependencies.h(20): warning:  #1295-D: Deprecated declaration AutoFlow_FunctionTest - give arg types
+  void AutoFlow_FunctionTest();
+..\dependencies.h(21): warning:  #1295-D: Deprecated declaration print_page_1 - give arg types
+  void print_page_1();
+..\main.c: 5 warnings, 0 errors
+creating preprocessor file for dependencies.c...
+compiling dependencies.c...
+..\dependencies.h(16): warning:  #1295-D: Deprecated declaration UART0_Init - give arg types
+  void UART0_Init();
+..\dependencies.h(17): warning:  #1295-D: Deprecated declaration UART1_Init - give arg types
+  void UART1_Init();
+..\dependencies.h(18): warning:  #1295-D: Deprecated declaration UART_TEST_HANDLE - give arg types
+  void UART_TEST_HANDLE();
+..\dependencies.h(20): warning:  #1295-D: Deprecated declaration AutoFlow_FunctionTest - give arg types
+  void AutoFlow_FunctionTest();
+..\dependencies.h(21): warning:  #1295-D: Deprecated declaration print_page_1 - give arg types
+  void print_page_1();
+..\dependencies.c: 5 warnings, 0 errors
+creating preprocessor file for retarget.c...
+compiling retarget.c...
+creating preprocessor file for clk.c...
+compiling clk.c...
+creating preprocessor file for sys.c...
+compiling sys.c...
+creating preprocessor file for uart.c...
+compiling uart.c...
+creating preprocessor file for timer.c...
+compiling timer.c...
+creating preprocessor file for gpio.c...
+compiling gpio.c...
+linking...
+Program Size: Code=8036 RO-data=644 RW-data=136 ZI-data=2304  
+".\obj\UART_AutoFlow.axf" - 0 Error(s), 10 Warning(s).
+
+*** Performing Cross-Module-Optimization:
+compiling system_M480.c...
+compiling main.c...
+..\dependencies.h(16): warning:  #1295-D: Deprecated declaration UART0_Init - give arg types
+  void UART0_Init();
+..\dependencies.h(17): warning:  #1295-D: Deprecated declaration UART1_Init - give arg types
+  void UART1_Init();
+..\dependencies.h(18): warning:  #1295-D: Deprecated declaration UART_TEST_HANDLE - give arg types
+  void UART_TEST_HANDLE();
+..\dependencies.h(20): warning:  #1295-D: Deprecated declaration AutoFlow_FunctionTest - give arg types
+  void AutoFlow_FunctionTest();
+..\dependencies.h(21): warning:  #1295-D: Deprecated declaration print_page_1 - give arg types
+  void print_page_1();
+..\main.c: 5 warnings, 0 errors
+compiling dependencies.c...
+..\dependencies.h(16): warning:  #1295-D: Deprecated declaration UART0_Init - give arg types
+  void UART0_Init();
+..\dependencies.h(17): warning:  #1295-D: Deprecated declaration UART1_Init - give arg types
+  void UART1_Init();
+..\dependencies.h(18): warning:  #1295-D: Deprecated declaration UART_TEST_HANDLE - give arg types
+  void UART_TEST_HANDLE();
+..\dependencies.h(20): warning:  #1295-D: Deprecated declaration AutoFlow_FunctionTest - give arg types
+  void AutoFlow_FunctionTest();
+..\dependencies.h(21): warning:  #1295-D: Deprecated declaration print_page_1 - give arg types
+  void print_page_1();
+..\dependencies.c: 5 warnings, 0 errors
+compiling retarget.c...
+compiling clk.c...
+compiling sys.c...
+compiling uart.c...
+compiling timer.c...
+compiling gpio.c...
+linking...
+Program Size: Code=4476 RO-data=612 RW-data=132 ZI-data=2308  
+compiling system_M480.c...
+compiling main.c...
+..\dependencies.h(16): warning:  #1295-D: Deprecated declaration UART0_Init - give arg types
+  void UART0_Init();
+..\dependencies.h(17): warning:  #1295-D: Deprecated declaration UART1_Init - give arg types
+  void UART1_Init();
+..\dependencies.h(18): warning:  #1295-D: Deprecated declaration UART_TEST_HANDLE - give arg types
+  void UART_TEST_HANDLE();
+..\dependencies.h(20): warning:  #1295-D: Deprecated declaration AutoFlow_FunctionTest - give arg types
+  void AutoFlow_FunctionTest();
+..\dependencies.h(21): warning:  #1295-D: Deprecated declaration print_page_1 - give arg types
+  void print_page_1();
+..\main.c: 5 warnings, 0 errors
+compiling dependencies.c...
+..\dependencies.h(16): warning:  #1295-D: Deprecated declaration UART0_Init - give arg types
+  void UART0_Init();
+..\dependencies.h(17): warning:  #1295-D: Deprecated declaration UART1_Init - give arg types
+  void UART1_Init();
+..\dependencies.h(18): warning:  #1295-D: Deprecated declaration UART_TEST_HANDLE - give arg types
+  void UART_TEST_HANDLE();
+..\dependencies.h(20): warning:  #1295-D: Deprecated declaration AutoFlow_FunctionTest - give arg types
+  void AutoFlow_FunctionTest();
+..\dependencies.h(21): warning:  #1295-D: Deprecated declaration print_page_1 - give arg types
+  void print_page_1();
+..\dependencies.c: 5 warnings, 0 errors
+compiling retarget.c...
+compiling clk.c...
+compiling sys.c...
+compiling uart.c...
+compiling timer.c...
+compiling gpio.c...
+linking...
+Program Size: Code=4476 RO-data=612 RW-data=132 ZI-data=2308  
+After Build - User command #1: fromelf --bin ".\obj\UART_AutoFlow.axf" --output ".\obj\UART_AutoFlow.bin"
+After Build - User command #2: fromelf --text -c ".\obj\UART_AutoFlow.axf" --output ".\obj\UART_AutoFlow.txt"
+".\obj\UART_AutoFlow.axf" - 0 Error(s), 10 Warning(s).
+*** Completed Cross-Module-Optimization after 3 iteration(s).
+Build Time Elapsed:  00:00:32
+</pre>
+</body>
+</html>
