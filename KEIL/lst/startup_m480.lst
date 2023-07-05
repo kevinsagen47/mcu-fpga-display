@@ -757,8 +757,8 @@ Command Line: --16 --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --
 apcs=interwork --depend=.\obj\startup_m480.d -o.\obj\startup_m480.o -IC:\Keil_v
 5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --pre
 define="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 538" --predefine
-="DEBUG_ENABLE_SEMIHOST SETA 1" --list=.\lst\startup_m480.lst ..\..\..\..\Libra
-ry\Device\Nuvoton\M480\Source\ARM\startup_M480.s
+="DEBUG_ENABLE_SEMIHOST SETA 1" --list=.\lst\startup_m480.lst C:\Users\kevin\Do
+cuments\nuvoton_ws\Library\Device\Nuvoton\M480\Source\ARM\startup_M480.s
 
 
 
@@ -769,8 +769,8 @@ STACK 00000000
 
 Symbol: STACK
    Definitions
-      At line 22 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 22 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
       None
 Comment: STACK unused
@@ -778,8 +778,8 @@ Stack_Mem 00000000
 
 Symbol: Stack_Mem
    Definitions
-      At line 23 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 23 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
       None
 Comment: Stack_Mem unused
@@ -787,13 +787,13 @@ __initial_sp 00000800
 
 Symbol: __initial_sp
    Definitions
-      At line 24 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 24 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 52 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 492 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 52 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 492 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 3 symbols
 
@@ -806,8 +806,8 @@ HEAP 00000000
 
 Symbol: HEAP
    Definitions
-      At line 35 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 35 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
       None
 Comment: HEAP unused
@@ -815,8 +815,8 @@ Heap_Mem 00000000
 
 Symbol: Heap_Mem
    Definitions
-      At line 37 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 37 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
       None
 Comment: Heap_Mem unused
@@ -824,21 +824,21 @@ __heap_base 00000000
 
 Symbol: __heap_base
    Definitions
-      At line 36 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 36 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 493 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 493 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 Comment: __heap_base used once
 __heap_limit 00000100
 
 Symbol: __heap_limit
    Definitions
-      At line 38 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 38 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 494 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 494 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 Comment: __heap_limit used once
 4 symbols
 
@@ -851,8 +851,8 @@ RESET 00000000
 
 Symbol: RESET
    Definitions
-      At line 47 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 47 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
       None
 Comment: RESET unused
@@ -860,25 +860,25 @@ __Vectors 00000000
 
 Symbol: __Vectors
    Definitions
-      At line 52 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 52 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 48 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 183 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 48 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 183 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 __Vectors_End 000001F4
 
 Symbol: __Vectors_End
    Definitions
-      At line 181 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 181 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 49 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 183 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 49 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 183 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 3 symbols
 
@@ -891,8 +891,8 @@ Relocatable symbols
 
 Symbol: .text
    Definitions
-      At line 185 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 185 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
       None
 Comment: .text unused
@@ -900,49 +900,49 @@ ACMP01_IRQHandler 00000052
 
 Symbol: ACMP01_IRQHandler
    Definitions
-      At line 426 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 426 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 114 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 329 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 114 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 329 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 BOD_IRQHandler 00000052
 
 Symbol: BOD_IRQHandler
    Definitions
-      At line 383 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 383 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 70 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 286 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 70 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 286 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 BPWM0_IRQHandler 00000052
 
 Symbol: BPWM0_IRQHandler
    Definitions
-      At line 456 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 456 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 148 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 359 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 148 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 359 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 BPWM1_IRQHandler 00000052
 
 Symbol: BPWM1_IRQHandler
    Definitions
-      At line 457 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 457 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 149 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 360 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 149 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 360 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 BRAKE0_IRQHandler 00000052
 
@@ -954,61 +954,61 @@ Relocatable symbols
 
 Symbol: BRAKE0_IRQHandler
    Definitions
-      At line 406 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 406 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 94 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 309 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 94 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 309 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 BRAKE1_IRQHandler 00000052
 
 Symbol: BRAKE1_IRQHandler
    Definitions
-      At line 410 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 410 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 98 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 313 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 98 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 313 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 BusFault_Handler 00000046
 
 Symbol: BusFault_Handler
    Definitions
-      At line 255 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 255 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 57 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 256 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 57 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 256 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 CAN0_IRQHandler 00000052
 
 Symbol: CAN0_IRQHandler
    Definitions
-      At line 437 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 437 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 126 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 340 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 126 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 340 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 CAN1_IRQHandler 00000052
 
 Symbol: CAN1_IRQHandler
    Definitions
-      At line 438 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 438 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 127 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 341 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 127 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 341 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 CAN2_IRQHandler 00000052
 
@@ -1020,61 +1020,61 @@ Relocatable symbols
 
 Symbol: CAN2_IRQHandler
    Definitions
-      At line 477 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 477 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 178 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 380 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 178 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 380 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 CCAP_IRQHandler 00000052
 
 Symbol: CCAP_IRQHandler
    Definitions
-      At line 459 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 459 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 151 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 362 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 151 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 362 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 CKFAIL_IRQHandler 00000052
 
 Symbol: CKFAIL_IRQHandler
    Definitions
-      At line 387 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 387 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 74 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 290 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 74 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 290 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 CRYPTO_IRQHandler 00000052
 
 Symbol: CRYPTO_IRQHandler
    Definitions
-      At line 449 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 449 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 141 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 352 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 141 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 352 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 DAC_IRQHandler 00000052
 
 Symbol: DAC_IRQHandler
    Definitions
-      At line 423 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 423 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 111 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 326 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 111 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 326 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 
 
@@ -1086,56 +1086,56 @@ DebugMon_Handler 0000004C
 
 Symbol: DebugMon_Handler
    Definitions
-      At line 269 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 269 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 64 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 270 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 64 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 270 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 Default_Handler 00000052
 
 Symbol: Default_Handler
    Definitions
-      At line 284 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 284 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 75 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 115 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 131 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 133 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 139 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 153 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 161 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 164 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 165 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 166 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 167 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 168 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 169 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 170 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 75 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 115 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 131 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 133 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 139 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 153 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 161 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 164 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 165 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 166 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 167 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 168 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 169 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 170 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 Default__IRQHandler 00000052
 
 Symbol: Default__IRQHandler
    Definitions
-      At line 382 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 382 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
       None
 Comment: Default__IRQHandler unused
@@ -1149,61 +1149,61 @@ Relocatable symbols
 
 Symbol: EADC00_IRQHandler
    Definitions
-      At line 424 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 424 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 112 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 327 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 112 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 327 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EADC01_IRQHandler 00000052
 
 Symbol: EADC01_IRQHandler
    Definitions
-      At line 425 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 425 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 113 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 328 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 113 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 328 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EADC02_IRQHandler 00000052
 
 Symbol: EADC02_IRQHandler
    Definitions
-      At line 427 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 427 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 116 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 330 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 116 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 330 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EADC03_IRQHandler 00000052
 
 Symbol: EADC03_IRQHandler
    Definitions
-      At line 428 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 428 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 117 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 331 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 117 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 331 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EADC10_IRQHandler 00000052
 
 Symbol: EADC10_IRQHandler
    Definitions
-      At line 473 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 473 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 174 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 376 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 174 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 376 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EADC11_IRQHandler 00000052
 
@@ -1215,61 +1215,61 @@ Relocatable symbols
 
 Symbol: EADC11_IRQHandler
    Definitions
-      At line 474 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 474 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 175 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 377 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 175 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 377 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EADC12_IRQHandler 00000052
 
 Symbol: EADC12_IRQHandler
    Definitions
-      At line 475 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 475 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 176 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 378 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 176 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 378 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EADC13_IRQHandler 00000052
 
 Symbol: EADC13_IRQHandler
    Definitions
-      At line 476 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 476 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 177 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 379 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 177 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 379 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 ECAP0_IRQHandler 00000052
 
 Symbol: ECAP0_IRQHandler
    Definitions
-      At line 463 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 463 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 156 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 366 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 156 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 366 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 ECAP1_IRQHandler 00000052
 
 Symbol: ECAP1_IRQHandler
    Definitions
-      At line 464 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 464 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 157 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 367 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 157 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 367 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 
 
@@ -1281,61 +1281,61 @@ EHCI_IRQHandler 00000052
 
 Symbol: EHCI_IRQHandler
    Definitions
-      At line 468 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 468 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 162 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 371 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 162 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 371 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EINT0_IRQHandler 00000052
 
 Symbol: EINT0_IRQHandler
    Definitions
-      At line 392 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 392 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 80 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 295 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 80 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 295 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EINT1_IRQHandler 00000052
 
 Symbol: EINT1_IRQHandler
    Definitions
-      At line 393 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 393 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 81 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 296 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 81 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 296 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EINT2_IRQHandler 00000052
 
 Symbol: EINT2_IRQHandler
    Definitions
-      At line 394 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 394 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 82 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 297 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 82 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 297 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EINT3_IRQHandler 00000052
 
 Symbol: EINT3_IRQHandler
    Definitions
-      At line 395 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 395 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 83 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 298 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 83 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 298 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 
 
@@ -1347,254 +1347,254 @@ EINT4_IRQHandler 00000052
 
 Symbol: EINT4_IRQHandler
    Definitions
-      At line 396 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 396 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 84 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 299 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 84 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 299 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EINT5_IRQHandler 00000052
 
 Symbol: EINT5_IRQHandler
    Definitions
-      At line 397 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 397 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 85 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 300 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 85 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 300 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EINT6_IRQHandler 00000052
 
 Symbol: EINT6_IRQHandler
    Definitions
-      At line 451 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 451 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 143 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 354 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 143 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 354 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EINT7_IRQHandler 00000052
 
 Symbol: EINT7_IRQHandler
    Definitions
-      At line 466 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 466 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 159 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 369 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 159 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 369 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EMAC_RX_IRQHandler 00000052
 
 Symbol: EMAC_RX_IRQHandler
    Definitions
-      At line 446 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 446 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 137 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 349 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
+      At line 137 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 349 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
 
 
 
 ARM Macro Assembler    Page 9 Alphabetic symbol ordering
 Relocatable symbols
 
-artup_M480.s
+voton\M480\Source\ARM\startup_M480.s
 
 EMAC_TX_IRQHandler 00000052
 
 Symbol: EMAC_TX_IRQHandler
    Definitions
-      At line 445 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 445 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 136 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 348 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 136 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 348 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EPWM0P0_IRQHandler 00000052
 
 Symbol: EPWM0P0_IRQHandler
    Definitions
-      At line 407 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 407 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 95 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 310 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 95 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 310 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EPWM0P1_IRQHandler 00000052
 
 Symbol: EPWM0P1_IRQHandler
    Definitions
-      At line 408 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 408 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 96 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 311 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 96 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 311 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EPWM0P2_IRQHandler 00000052
 
 Symbol: EPWM0P2_IRQHandler
    Definitions
-      At line 409 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 409 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 97 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 312 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 97 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 312 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EPWM1P0_IRQHandler 00000052
 
 Symbol: EPWM1P0_IRQHandler
    Definitions
-      At line 411 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 411 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 99 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 99 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
 
 
 
 ARM Macro Assembler    Page 10 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 314 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 314 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EPWM1P1_IRQHandler 00000052
 
 Symbol: EPWM1P1_IRQHandler
    Definitions
-      At line 412 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 412 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 100 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 315 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 100 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 315 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 EPWM1P2_IRQHandler 00000052
 
 Symbol: EPWM1P2_IRQHandler
    Definitions
-      At line 413 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 413 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 101 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 316 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 101 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 316 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 GPA_IRQHandler 00000052
 
 Symbol: GPA_IRQHandler
    Definitions
-      At line 398 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 398 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 86 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 301 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 86 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 301 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 GPB_IRQHandler 00000052
 
 Symbol: GPB_IRQHandler
    Definitions
-      At line 399 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 399 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 87 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 302 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 87 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 302 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 GPC_IRQHandler 00000052
 
 Symbol: GPC_IRQHandler
    Definitions
-      At line 400 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 400 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 88 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
+      At line 88 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
 
 
 
 ARM Macro Assembler    Page 11 Alphabetic symbol ordering
 Relocatable symbols
 
-rtup_M480.s
-      At line 303 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+oton\M480\Source\ARM\startup_M480.s
+      At line 303 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 GPD_IRQHandler 00000052
 
 Symbol: GPD_IRQHandler
    Definitions
-      At line 401 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 401 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 89 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 304 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 89 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 304 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 GPE_IRQHandler 00000052
 
 Symbol: GPE_IRQHandler
    Definitions
-      At line 402 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 402 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 90 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 305 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 90 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 305 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 GPF_IRQHandler 00000052
 
 Symbol: GPF_IRQHandler
    Definitions
-      At line 403 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 403 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 91 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 306 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 91 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 306 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 GPG_IRQHandler 00000052
 
 Symbol: GPG_IRQHandler
    Definitions
-      At line 450 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 450 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 142 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 353 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 142 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 353 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 GPH_IRQHandler 00000052
 
 Symbol: GPH_IRQHandler
    Definitions
-      At line 465 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 465 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
 
 
@@ -1602,65 +1602,65 @@ artup_M480.s
 ARM Macro Assembler    Page 12 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 158 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 368 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 158 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 368 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 HardFault_Handler 00000042
 
 Symbol: HardFault_Handler
    Definitions
-      At line 245 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 245 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 55 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 246 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 55 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 246 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 I2C0_IRQHandler 00000052
 
 Symbol: I2C0_IRQHandler
    Definitions
-      At line 420 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 420 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 108 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 323 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 108 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 323 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 I2C1_IRQHandler 00000052
 
 Symbol: I2C1_IRQHandler
    Definitions
-      At line 421 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 421 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 109 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 324 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 109 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 324 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 I2C2_IRQHandler 00000052
 
 Symbol: I2C2_IRQHandler
    Definitions
-      At line 460 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 460 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 152 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 363 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 152 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 363 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 I2S0_IRQHandler 00000052
 
 Symbol: I2S0_IRQHandler
    Definitions
-      At line 447 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 447 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 
 
@@ -1668,124 +1668,124 @@ ARM Macro Assembler    Page 13 Alphabetic symbol ordering
 Relocatable symbols
 
    Uses
-      At line 138 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 350 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 138 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 350 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 IRC_IRQHandler 00000052
 
 Symbol: IRC_IRQHandler
    Definitions
-      At line 384 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 384 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 71 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 287 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 71 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 287 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 MemManage_Handler 00000044
 
 Symbol: MemManage_Handler
    Definitions
-      At line 250 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 250 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 56 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 251 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 56 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 251 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 NMI_Handler 00000040
 
 Symbol: NMI_Handler
    Definitions
-      At line 240 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 240 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 54 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 241 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 54 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 241 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 OHCI_IRQHandler 00000052
 
 Symbol: OHCI_IRQHandler
    Definitions
-      At line 435 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 435 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 124 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 338 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 124 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 338 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 OPA0_IRQHandler 00000052
 
 Symbol: OPA0_IRQHandler
    Definitions
-      At line 448 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
+      At line 448 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
 
 
 
 ARM Macro Assembler    Page 14 Alphabetic symbol ordering
 Relocatable symbols
 
-artup_M480.s
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 140 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 351 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 140 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 351 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 PDMA_IRQHandler 00000052
 
 Symbol: PDMA_IRQHandler
    Definitions
-      At line 422 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 422 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 110 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 325 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 110 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 325 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 PWRWU_IRQHandler 00000052
 
 Symbol: PWRWU_IRQHandler
    Definitions
-      At line 385 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 385 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 72 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 288 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 72 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 288 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 PendSV_Handler 0000004E
 
 Symbol: PendSV_Handler
    Definitions
-      At line 274 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 274 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 66 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 275 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 66 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 275 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 QEI0_IRQHandler 00000052
 
 Symbol: QEI0_IRQHandler
    Definitions
-      At line 461 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 461 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 154 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 364 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 154 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 364 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 QEI1_IRQHandler 00000052
 
@@ -1797,61 +1797,61 @@ Symbol: QEI1_IRQHandler
 ARM Macro Assembler    Page 15 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 462 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 462 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 155 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 365 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 155 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 365 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 QSPI0_IRQHandler 00000052
 
 Symbol: QSPI0_IRQHandler
    Definitions
-      At line 404 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 404 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 92 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 307 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 92 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 307 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 QSPI1_IRQHandler 00000052
 
 Symbol: QSPI1_IRQHandler
    Definitions
-      At line 431 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 431 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 120 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 334 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 120 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 334 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 RAMPE_IRQHandler 00000052
 
 Symbol: RAMPE_IRQHandler
    Definitions
-      At line 386 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 386 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 73 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 289 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 73 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 289 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 RTC_IRQHandler 00000052
 
 Symbol: RTC_IRQHandler
    Definitions
-      At line 388 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 388 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 76 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 291 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 76 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 291 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 Reset_Handler 00000000
 
@@ -1863,61 +1863,61 @@ ARM Macro Assembler    Page 16 Alphabetic symbol ordering
 Relocatable symbols
 
    Definitions
-      At line 190 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 190 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 53 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 191 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 53 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 191 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SC0_IRQHandler 00000052
 
 Symbol: SC0_IRQHandler
    Definitions
-      At line 439 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 439 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 128 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 342 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 128 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 342 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SC1_IRQHandler 00000052
 
 Symbol: SC1_IRQHandler
    Definitions
-      At line 440 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 440 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 129 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 343 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 129 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 343 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SC2_IRQHandler 00000052
 
 Symbol: SC2_IRQHandler
    Definitions
-      At line 441 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 441 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 130 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 344 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 130 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 344 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SDH0_IRQHandler 00000052
 
 Symbol: SDH0_IRQHandler
    Definitions
-      At line 443 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 443 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 134 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 346 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 134 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 346 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SDH1_IRQHandler 00000052
 
@@ -1929,61 +1929,61 @@ Relocatable symbols
 
 Symbol: SDH1_IRQHandler
    Definitions
-      At line 467 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 467 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 160 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 370 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 160 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 370 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SPI0_IRQHandler 00000052
 
 Symbol: SPI0_IRQHandler
    Definitions
-      At line 405 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 405 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 93 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 308 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 93 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 308 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SPI1_IRQHandler 00000052
 
 Symbol: SPI1_IRQHandler
    Definitions
-      At line 432 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 432 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 121 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 335 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 121 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 335 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SPI2_IRQHandler 00000052
 
 Symbol: SPI2_IRQHandler
    Definitions
-      At line 433 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 433 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 122 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 336 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 122 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 336 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SPI3_IRQHandler 00000052
 
 Symbol: SPI3_IRQHandler
    Definitions
-      At line 442 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 442 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 132 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 345 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 132 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 345 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SPIM_IRQHandler 00000052
 
@@ -1995,61 +1995,61 @@ Relocatable symbols
 
 Symbol: SPIM_IRQHandler
    Definitions
-      At line 458 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 458 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 150 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 361 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 150 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 361 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SVC_Handler 0000004A
 
 Symbol: SVC_Handler
    Definitions
-      At line 264 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 264 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 63 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 265 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 63 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 265 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 SysTick_Handler 00000050
 
 Symbol: SysTick_Handler
    Definitions
-      At line 279 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 279 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 67 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 280 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 67 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 280 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 TAMPER_IRQHandler 00000052
 
 Symbol: TAMPER_IRQHandler
    Definitions
-      At line 389 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 389 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 77 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 292 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 77 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 292 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 TMR0_IRQHandler 00000052
 
 Symbol: TMR0_IRQHandler
    Definitions
-      At line 414 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 414 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 102 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 317 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 102 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 317 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 
 
@@ -2061,61 +2061,61 @@ TMR1_IRQHandler 00000052
 
 Symbol: TMR1_IRQHandler
    Definitions
-      At line 415 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 415 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 103 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 318 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 103 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 318 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 TMR2_IRQHandler 00000052
 
 Symbol: TMR2_IRQHandler
    Definitions
-      At line 416 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 416 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 104 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 319 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 104 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 319 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 TMR3_IRQHandler 00000052
 
 Symbol: TMR3_IRQHandler
    Definitions
-      At line 417 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 417 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 105 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 320 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 105 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 320 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 TRNG_IRQHandler 00000052
 
 Symbol: TRNG_IRQHandler
    Definitions
-      At line 470 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 470 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 171 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 373 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 171 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 373 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 UART0_IRQHandler 00000052
 
 Symbol: UART0_IRQHandler
    Definitions
-      At line 418 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 418 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 106 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 321 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 106 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 321 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 
 
@@ -2127,211 +2127,211 @@ UART1_IRQHandler 00000052
 
 Symbol: UART1_IRQHandler
    Definitions
-      At line 419 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 419 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 107 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 322 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 107 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 322 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 UART2_IRQHandler 00000052
 
 Symbol: UART2_IRQHandler
    Definitions
-      At line 429 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 429 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 118 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 332 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 118 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 332 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 UART3_IRQHandler 00000052
 
 Symbol: UART3_IRQHandler
    Definitions
-      At line 430 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 430 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 119 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 333 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 119 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 333 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 UART4_IRQHandler 00000052
 
 Symbol: UART4_IRQHandler
    Definitions
-      At line 452 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 452 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 144 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 355 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 144 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 355 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 UART5_IRQHandler 00000052
 
 Symbol: UART5_IRQHandler
    Definitions
-      At line 453 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 453 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 145 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 356 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
+      At line 145 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 356 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
 
 
 
 ARM Macro Assembler    Page 21 Alphabetic symbol ordering
 Relocatable symbols
 
-artup_M480.s
+voton\M480\Source\ARM\startup_M480.s
 
 UART6_IRQHandler 00000052
 
 Symbol: UART6_IRQHandler
    Definitions
-      At line 471 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 471 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 172 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 374 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 172 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 374 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 UART7_IRQHandler 00000052
 
 Symbol: UART7_IRQHandler
    Definitions
-      At line 472 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 472 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 173 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 375 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 173 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 375 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 USBD20_IRQHandler 00000052
 
 Symbol: USBD20_IRQHandler
    Definitions
-      At line 444 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 444 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 135 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 347 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 135 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 347 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 USBD_IRQHandler 00000052
 
 Symbol: USBD_IRQHandler
    Definitions
-      At line 434 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 434 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 123 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 337 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 123 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 337 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 USBOTG20_IRQHandler 00000052
 
 Symbol: USBOTG20_IRQHandler
    Definitions
-      At line 469 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 469 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 163 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 163 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 
 
 ARM Macro Assembler    Page 22 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 372 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 372 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 USBOTG_IRQHandler 00000052
 
 Symbol: USBOTG_IRQHandler
    Definitions
-      At line 436 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 436 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 125 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 339 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 125 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 339 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 USCI0_IRQHandler 00000052
 
 Symbol: USCI0_IRQHandler
    Definitions
-      At line 454 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 454 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 146 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 357 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 146 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 357 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 USCI1_IRQHandler 00000052
 
 Symbol: USCI1_IRQHandler
    Definitions
-      At line 455 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 455 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 147 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
-      At line 358 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 147 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
+      At line 358 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 UsageFault_Handler 00000048
 
 Symbol: UsageFault_Handler
    Definitions
-      At line 260 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 260 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 58 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 261 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 58 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 261 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 WDT_IRQHandler 00000052
 
 Symbol: WDT_IRQHandler
    Definitions
-      At line 390 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 390 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 78 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
+      At line 78 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
 
 
 
 ARM Macro Assembler    Page 23 Alphabetic symbol ordering
 Relocatable symbols
 
-rtup_M480.s
-      At line 293 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+oton\M480\Source\ARM\startup_M480.s
+      At line 293 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 WWDT_IRQHandler 00000052
 
 Symbol: WWDT_IRQHandler
    Definitions
-      At line 391 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 391 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 79 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
-      At line 294 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 79 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
+      At line 294 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 
 108 symbols
 
@@ -2344,31 +2344,31 @@ Heap_Size 00000100
 
 Symbol: Heap_Size
    Definitions
-      At line 32 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 32 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 37 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 37 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
 Comment: Heap_Size used once
 Stack_Size 00000800
 
 Symbol: Stack_Size
    Definitions
-      At line 19 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 19 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 23 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 23 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
 Comment: Stack_Size used once
 __Vectors_Size 000001F4
 
 Symbol: __Vectors_Size
    Definitions
-      At line 183 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 183 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 50 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\sta
-rtup_M480.s
+      At line 50 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuv
+oton\M480\Source\ARM\startup_M480.s
 Comment: __Vectors_Size used once
 3 symbols
 
@@ -2381,21 +2381,21 @@ SystemInit 00000000
 
 Symbol: SystemInit
    Definitions
-      At line 192 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 192 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 219 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 219 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 Comment: SystemInit used once
 __main 00000000
 
 Symbol: __main
    Definitions
-      At line 193 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 193 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
    Uses
-      At line 232 in file ..\..\..\..\Library\Device\Nuvoton\M480\Source\ARM\st
-artup_M480.s
+      At line 232 in file C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nu
+voton\M480\Source\ARM\startup_M480.s
 Comment: __main used once
 2 symbols
 464 symbols in table

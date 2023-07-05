@@ -1,5 +1,5 @@
--c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\..\..\..\Library\CMSIS\Include -I ..\..\..\..\Library\StdDriver\inc -I ..\..\..\..\Library\Device\Nuvoton\M480\Include
+-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\..\..\nuvoton_ws\Library\CMSIS\Include -I ..\..\..\nuvoton_ws\Library\StdDriver\inc -I ..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include
 -IC:\Keil_v5\ARM\RV31\INC
 -IC:\Keil_v5\ARM\CMSIS\Include
 -D__UVISION_VERSION="538"
--o .\obj\uart.o --omf_browse .\obj\uart.crf --depend .\obj\uart.d --feedback ".\obj\UART_AutoFlow.fed" "..\..\..\..\Library\StdDriver\src\uart.c"
+-o .\obj\uart.o --omf_browse .\obj\uart.crf --depend .\obj\uart.d --feedback ".\obj\UART_AutoFlow.fed" "C:\Users\kevin\Documents\nuvoton_ws\Library\StdDriver\src\uart.c"
