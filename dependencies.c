@@ -31,18 +31,12 @@ unsigned int power_set,freq,display_trigger,time_set,
 uint8_t display_page_1_power [7] = { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
 //uint8_t header [3]={0xFF,0xFF,0xFF};	
 int i=0;
-int bcd10;
-int bdc1;
+
 void print_page_1(){
-	//if(UART_GET_RX_EMPTY(UART1)){
-		//UART_DISABLE_INT(UART1, (UART_INTEN_RDAIEN_Msk | UART_INTEN_THREIEN_Msk | UART_INTEN_RXTOIEN_Msk));
 		UART_Write(UART1,display_page_1_power,7);
-		//bcd10=0x30+
 		UART_WRITE(UART1,0x30+power_set/10);
 		UART_WRITE(UART1,0x30+power_set%10);
 		UART_Write(UART1,header,3);
-		//UART_ENABLE_INT(UART1, (UART_INTEN_RDAIEN_Msk | UART_INTEN_RLSIEN_Msk | UART_INTEN_RXTOIEN_Msk));
-	//}
 }
 void update_variable(){
 						
@@ -92,7 +86,7 @@ void update_variable(){
 					printf ("relative %d\n",distance_relative_set);
 					printf ("energy %d\n",energy_set);*/
 }
-void UART_TEST_HANDLE()
+void UART1_TEST_HANDLE()
 {		
 	uint8_t u8InChar=0xFF;
   uint32_t u32IntSts= UART1->INTSTS;
@@ -114,65 +108,81 @@ void UART_TEST_HANDLE()
           //printf("%x ", u8InChar);
 					display_input_command[input_address] = u8InChar;
 					input_address++;
-          if(u8InChar == '0') g_bWait = FALSE;
+          //if(u8InChar == '0') g_bWait = FALSE;
           /* Check if buffer full */
+					/*
           if(g_u32comRbytes < RXBUFSIZE)
-          {/* Enqueue the character */
+          {
 						g_u8RecData[g_u32comRtail] = u8InChar;
             g_u32comRtail = (g_u32comRtail == (RXBUFSIZE-1)) ? 0 : (g_u32comRtail+1);
-            g_u32comRbytes++;}
-        }
-					i=0;
+            g_u32comRbytes++;}*/}
+				printf("UART1  ");
+				i=0;
 				 for(i = 0; i< 4; i++){
 					printf("%x ", display_input_command[i]); }
-					//UART_Write(UART1,display_input_command,4);
-					//while(!(UART1->FIFOSTS & UART_FIFOSTS_TXEMPTYF_Msk));
 					printf("\n");
-					update_variable();
-					
-					//print_page_1();
-					//UART_WRITE(UART1,0xFF);
-    }
-		/*
-    if(u32IntSts & UART_INTSTS_THREINT_Msk)
-    {
-        uint16_t tmp;
-        tmp = g_u32comRtail;
-        if(g_u32comRhead != tmp)
-        {
-            u8InChar = g_u8RecData[g_u32comRhead];
-            UART_WRITE(UART1,u8InChar);
-            g_u32comRhead = (g_u32comRhead == (RXBUFSIZE-1)) ? 0 : (g_u32comRhead+1);
-            g_u32comRbytes--;
-        }
-    }
-
-    if(UART1->FIFOSTS & (UART_FIFOSTS_BIF_Msk | UART_FIFOSTS_FEF_Msk | UART_FIFOSTS_PEF_Msk | UART_FIFOSTS_RXOVIF_Msk))
-    {
-        UART1->FIFOSTS = (UART_FIFOSTS_BIF_Msk | UART_FIFOSTS_FEF_Msk | UART_FIFOSTS_PEF_Msk | UART_FIFOSTS_RXOVIF_Msk);
-    }
-*/
+					update_variable();}
 }
 
-void UART1_interrrupt(void){/*ORIGINAL
-	UART1->MODEM |= UART_MODEM_RTSACTLV_Msk; // Set RTS high level trigger
-    UART1->MODEMSTS |= UART_MODEMSTS_CTSACTLV_Msk; // Set CTS high level trigger
-    UART1->FIFO = (UART1->FIFO &~ UART_FIFO_RTSTRGLV_Msk) | UART_FIFO_RTSTRGLV_14BYTES;
 
-     //Enable RTS and CTS auto flow control 
-    UART1->INTEN |= UART_INTEN_ATORTSEN_Msk | UART_INTEN_ATOCTSEN_Msk;
-	*/
-	
+volatile int32_t g_i32pointer_0 = 0;
+uint16_t FPGA_length=30;
+uint8_t FPGA_input[30] = {0};
+uint16_t FPGA_address=0;
+
+void UART0_TEST_HANDLE()
+{		
+	uint8_t u8InChar_0=0xFF;
+  uint32_t u32IntSts_0= UART0->INTSTS;
+	int j;
+	//TIMER_ClearIntFlag(TIMER0);
+    if(u32IntSts_0 & UART_INTSTS_RDAINT_Msk)
+    {
+				FPGA_address=0;
+				j=0;
+				for(j = 0; j < FPGA_length; j++){FPGA_input[j]=0; }
+
+        while( (!UART_GET_RX_EMPTY(UART0)) )
+        {	TIMER_Delay(TIMER1, 5);
+					u8InChar_0 = UART_READ(UART0);    /* Rx trigger level is 1 byte*/
+          g_i32pointer_0++;
+          //printf("RAW: %x ", u8InChar_0);
+					
+					FPGA_input[FPGA_address] = u8InChar_0;
+					//printf("RAW: %x ", FPGA_input[FPGA_address]);
+					FPGA_address++;
+          }
+				printf("UART0  ");
+				j=0;
+				for(j = 0; j< FPGA_length; j++){printf("%x ", FPGA_input[j]); }
+				printf("\n");
+				//update_variable();
+		}
+}
+
+void UART1_interrrupt(void){
 	UART1->MODEM |= UART_MODEM_RTSACTLV_Msk; // Set RTS high level trigger
   UART1->MODEMSTS |= UART_MODEMSTS_CTSACTLV_Msk; // Set CTS high level trigger
   UART1->FIFO = (UART1->FIFO &~ UART_FIFO_RTSTRGLV_Msk) | UART_FIFO_RTSTRGLV_14BYTES;
+	//UART1->INTEN |= UART_INTEN_ATORTSEN_Msk | UART_INTEN_ATOCTSEN_Msk;
 	UART_ENABLE_INT(UART1, (UART_INTEN_RDAIEN_Msk | UART_INTEN_RLSIEN_Msk | UART_INTEN_RXTOIEN_Msk));
 	UART_SetTimeoutCnt(UART1,0xFF);//0x3E);
 
-        NVIC_EnableIRQ(UART1_IRQn);
-	printf("Starting ");
+  NVIC_EnableIRQ(UART1_IRQn);
+	printf("Starting UART1\n");
 }
 
+void UART0_interrrupt(void){
+	UART0->MODEM |= UART_MODEM_RTSACTLV_Msk; // Set RTS high level trigger
+  UART0->MODEMSTS |= UART_MODEMSTS_CTSACTLV_Msk; // Set CTS high level trigger
+  UART0->FIFO = (UART0->FIFO &~ UART_FIFO_RTSTRGLV_Msk) | UART_FIFO_RTSTRGLV_14BYTES;
+	//UART1->INTEN |= UART_INTEN_ATORTSEN_Msk | UART_INTEN_ATOCTSEN_Msk;
+	UART_ENABLE_INT(UART0, (UART_INTEN_RDAIEN_Msk | UART_INTEN_RLSIEN_Msk | UART_INTEN_RXTOIEN_Msk));
+	UART_SetTimeoutCnt(UART0,0xFF);//0x3E);
+
+  NVIC_EnableIRQ(UART0_IRQn);
+	printf("Starting UART0\n");
+}
 
 
 
@@ -271,7 +281,12 @@ void UART1_Init()
 /*---------------------------------------------------------------------------------------------------------*/
 void UART1_IRQHandler(void)
 {
-    UART_TEST_HANDLE();
+    UART1_TEST_HANDLE();
+}
+
+void UART0_IRQHandler(void)
+{
+    UART0_TEST_HANDLE();
 }
 
 /*---------------------------------------------------------------------------------------------------------*/

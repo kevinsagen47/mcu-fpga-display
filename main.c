@@ -78,6 +78,7 @@ int main(void)
 		
     //AutoFlow_FunctionTest();
 		UART1_interrrupt();
+		UART0_interrrupt();
 
     while(1);
 }

@@ -85338,18 +85338,12 @@ unsigned int power_set,freq,display_trigger,time_set,
 uint8_t display_page_1_power [7] = { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
 
 int i=0;
-int bcd10;
-int bdc1;
+
 void print_page_1(){
-	
-		
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_1_power,7);
-		
 		((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)))->DAT = (0x30+power_set/10));
 		((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)))->DAT = (0x30+power_set%10));
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
-		
-	
 }
 void update_variable(){
 						
@@ -85399,7 +85393,7 @@ void update_variable(){
 
  
 }
-void UART_TEST_HANDLE()
+void UART1_TEST_HANDLE()
 {		
 	uint8_t u8InChar=0xFF;
   uint32_t u32IntSts= ((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL))->INTSTS;
@@ -85421,65 +85415,81 @@ void UART_TEST_HANDLE()
           
 					display_input_command[input_address] = u8InChar;
 					input_address++;
-          if(u8InChar == '0') g_bWait = (0UL);
+          
            
-          if(g_u32comRbytes < 256)
-          { 
-						g_u8RecData[g_u32comRtail] = u8InChar;
-            g_u32comRtail = (g_u32comRtail == (256-1)) ? 0 : (g_u32comRtail+1);
-            g_u32comRbytes++;}
-        }
-					i=0;
+					
+
+
+
+
+ }
+				printf("UART1  ");
+				i=0;
 				 for(i = 0; i< 4; i++){
 					printf("%x ", display_input_command[i]); }
-					
-					
 					printf("\n");
-					update_variable();
+					update_variable();}
+}
+
+
+volatile int32_t g_i32pointer_0 = 0;
+uint16_t FPGA_length=30;
+uint8_t FPGA_input[30] = {0};
+uint16_t FPGA_address=0;
+
+void UART0_TEST_HANDLE()
+{		
+	uint8_t u8InChar_0=0xFF;
+  uint32_t u32IntSts_0= ((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL))->INTSTS;
+	int j;
+	
+    if(u32IntSts_0 & (0x1ul << (8)))
+    {
+				FPGA_address=0;
+				j=0;
+				for(j = 0; j < FPGA_length; j++){FPGA_input[j]=0; }
+
+        while( (!((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->FIFOSTS & (0x1ul << (14)))) )
+        {	TIMER_Delay(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10100UL)), 5);
+					u8InChar_0 = ((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT);     
+          g_i32pointer_0++;
+          
 					
+					FPGA_input[FPGA_address] = u8InChar_0;
 					
-					
-    }
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+					FPGA_address++;
+          }
+				printf("UART0  ");
+				j=0;
+				for(j = 0; j< FPGA_length; j++){printf("%x ", FPGA_input[j]); }
+				printf("\n");
+				
+		}
 }
 
 void UART1_interrrupt(void){
-
-
-
-
-
-
- 
-	
 	((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL))->MODEM |= (0x1ul << (9)); 
   ((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL))->MODEMSTS |= (0x1ul << (8)); 
   ((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL))->FIFO = (((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL))->FIFO &~ (0xful << (16))) | (0x3ul << (16));
+	
 	((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)))->INTEN |= (((0x1ul << (0)) | (0x1ul << (2)) | (0x1ul << (4)))));
 	UART_SetTimeoutCnt(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),0xFF);
 
-        NVIC_EnableIRQ(UART1_IRQn);
-	printf("Starting ");
+  NVIC_EnableIRQ(UART1_IRQn);
+	printf("Starting UART1\n");
 }
 
+void UART0_interrrupt(void){
+	((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL))->MODEM |= (0x1ul << (9)); 
+  ((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL))->MODEMSTS |= (0x1ul << (8)); 
+  ((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL))->FIFO = (((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL))->FIFO &~ (0xful << (16))) | (0x3ul << (16));
+	
+	((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->INTEN |= (((0x1ul << (0)) | (0x1ul << (2)) | (0x1ul << (4)))));
+	UART_SetTimeoutCnt(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)),0xFF);
+
+  NVIC_EnableIRQ(UART0_IRQn);
+	printf("Starting UART0\n");
+}
 
 
 
@@ -85578,7 +85588,12 @@ void UART1_Init()
  
 void UART1_IRQHandler(void)
 {
-    UART_TEST_HANDLE();
+    UART1_TEST_HANDLE();
+}
+
+void UART0_IRQHandler(void)
+{
+    UART0_TEST_HANDLE();
 }
 
  

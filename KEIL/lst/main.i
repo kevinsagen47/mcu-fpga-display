@@ -85385,6 +85385,7 @@ int main(void)
 		
     
 		UART1_interrrupt();
+		UART0_interrrupt();
 
     while(1);
 }
