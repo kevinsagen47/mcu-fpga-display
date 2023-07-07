@@ -13,7 +13,7 @@
 
 
 #define RXBUFSIZE 256
-uint8_t display_page_0_frequency [12] = { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D,0x33,0x35,0x33,0x30,0x33};
+//uint8_t display_page_0_frequency [12] = { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D,0x33,0x35,0x33,0x30,0x33};
 //uint8_t display_page_1_power [7] = { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
 
 uint8_t header [3]={0xFF,0xFF,0xFF};
@@ -24,9 +24,12 @@ char led_test = 0;
 void TMR0_IRQHandler(void)
 {
     //curTime++;
-	print_page_1();
-    TIMER_ClearIntFlag(TIMER0);
+	if (display_page==1)print_page_1();
+	else print_page_0();
+	
+  TIMER_ClearIntFlag(TIMER0);
 	//printf("+--------------------------+\n");
+	/*
 	if (led_test == 0)
 	{
 		PC6 = 1;
@@ -37,6 +40,7 @@ void TMR0_IRQHandler(void)
 		PC6 = 0;
 		led_test = 0;
 	}
+	*/
 	//print_page_1();
 	
 }
@@ -66,16 +70,17 @@ int main(void)
 		//TIMER_Delay(TIMER0, 1000000);
 		
 
-		UART_Write(UART1,display_page_0_frequency,12);
-		UART_Write(UART1,header,3);
+		//UART_Write(UART1,display_page_0_frequency,12);
+		//UART_Write(UART1,header,3);
 		//UART_WRITE(UART1,0xFF);
 		//}
+		/*
     printf("\n\nCPU @ %dHz\n", SystemCoreClock);
 		
     printf("+--------------------------+\n");
     printf("|  Auto-Flow function test  |\n");
     printf("+--------------------------+\n");
-		
+		*/
     //AutoFlow_FunctionTest();
 		UART1_interrrupt();
 		UART0_interrrupt();

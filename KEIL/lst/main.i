@@ -1180,11 +1180,15 @@ void AutoFlow_FunctionTest(void);
 void SYS_Init(void);
 void UART0_Init();
 void UART1_Init();
-void UART_TEST_HANDLE();
+void UART0_TEST_HANDLE();
+void UART1_TEST_HANDLE();
 void UART1_interrrupt(void);
+void UART0_interrrupt(void);
 void AutoFlow_FunctionTest();
 void print_page_1();
+void print_page_0();
 extern uint8_t header[3];
+extern uint8_t display_page;
 #line 12 "..\\main.c"
 #line 1 "..\\..\\..\\nuvoton_ws\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
  
@@ -85320,7 +85324,7 @@ void HSUSBD_SetVendorRequest(HSUSBD_VENDOR_REQ pfnVendorReq);
 
 
 
-uint8_t display_page_0_frequency [12] = { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D,0x33,0x35,0x33,0x30,0x33};
+
 
 
 uint8_t header [3]={0xFF,0xFF,0xFF};
@@ -85331,19 +85335,23 @@ char led_test = 0;
 void TMR0_IRQHandler(void)
 {
     
-	print_page_1();
-    TIMER_ClearIntFlag(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10000UL)));
+	if (display_page==1)print_page_1();
+	else print_page_0();
 	
-	if (led_test == 0)
-	{
-		(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
-		led_test = 1;
-	}
-	else
-	{
-		(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 0;
-		led_test = 0;
-	}
+  TIMER_ClearIntFlag(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10000UL)));
+	
+	
+
+
+
+
+
+
+
+
+
+
+ 
 	
 	
 }
@@ -85373,16 +85381,17 @@ int main(void)
 		
 		
 
-		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_0_frequency,12);
-		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		
 		
-    printf("\n\nCPU @ %dHz\n", SystemCoreClock);
 		
-    printf("+--------------------------+\n");
-    printf("|  Auto-Flow function test  |\n");
-    printf("+--------------------------+\n");
 		
+		
+
+
+
+
+
+ 
     
 		UART1_interrrupt();
 		UART0_interrrupt();

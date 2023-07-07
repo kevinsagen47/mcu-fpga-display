@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Wed Jul 05 15:27:54 2023
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Fri Jul 07 14:06:36 2023
 ;VERSION 0.2
 ;FILE clk.o
 CLK_DisableCKO <= USED 0
@@ -38,9 +38,9 @@ __asm___6_gpio_c_f8f858a7____REV16 <= USED 0
 __asm___6_gpio_c_f8f858a7____REVSH <= USED 0
 __asm___6_gpio_c_f8f858a7____RRX <= USED 0
 ;FILE main.o
-__asm___6_main_c_b99acaee____REV16 <= USED 0
-__asm___6_main_c_b99acaee____REVSH <= USED 0
-__asm___6_main_c_b99acaee____RRX <= USED 0
+__asm___6_main_c_header____REV16 <= USED 0
+__asm___6_main_c_header____REVSH <= USED 0
+__asm___6_main_c_header____RRX <= USED 0
 ;FILE retarget.o
 IsDebugFifoEmpty <= USED 0
 __asm___10_retarget_c_d5a1b03f____REV16 <= USED 0
