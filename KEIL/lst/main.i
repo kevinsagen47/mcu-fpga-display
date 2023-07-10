@@ -1185,6 +1185,7 @@ void UART1_TEST_HANDLE();
 void UART1_interrrupt(void);
 void UART0_interrrupt(void);
 void AutoFlow_FunctionTest();
+void print_page_2();
 void print_page_1();
 void print_page_0();
 extern uint8_t header[3];
@@ -85336,6 +85337,7 @@ void TMR0_IRQHandler(void)
 {
     
 	if (display_page==1)print_page_1();
+	else if (display_page==2)print_page_2();
 	else print_page_0();
 	
   TIMER_ClearIntFlag(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10000UL)));

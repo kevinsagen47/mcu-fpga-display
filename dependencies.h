@@ -20,6 +20,7 @@ void UART1_TEST_HANDLE();
 void UART1_interrrupt(void);
 void UART0_interrrupt(void);
 void AutoFlow_FunctionTest();
+void print_page_2();
 void print_page_1();
 void print_page_0();
 extern uint8_t header[3];

@@ -276,6 +276,7 @@ void UART1_TEST_HANDLE();
 void UART1_interrrupt(void);
 void UART0_interrrupt(void);
 void AutoFlow_FunctionTest();
+void print_page_2();
 void print_page_1();
 void print_page_0();
 extern uint8_t header[3];
@@ -85362,6 +85363,8 @@ unsigned int power_set=20,freq,display_trigger,time_set,
 unsigned int power_set_display,freq_display,time_set_display, 
 		distance_absolute_set_display,distance_relative_set_display, energy_set_display, force_set_display,
 		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display;
+
+unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on;
 int i=0;
 uint8_t bcd_array[5]={0};
 void binary_to_bcd_array(int variable){
@@ -85465,8 +85468,70 @@ void print_page_0(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 }
+unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on;
+uint8_t display_page_2_freq_start [7] 				= { 0x6E, 0x30,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_freq_end [7] 					= { 0x6E, 0x31,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_freq_max[7] 						= { 0x6E, 0x32,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_freq_min [7] 					= { 0x6E, 0x33,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_P_max [7] 							= { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_energy [7] 						= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_time_on [7] 						= { 0x6E, 0x36,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_distance_travelled[7]	= { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_F_start [7] 						= { 0x6E, 0x38,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_F_max [7] 							= { 0x6E, 0x39,0x2E,0x76,0x61,0x6C,0x3D};
 
 
+void print_page_2(){
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_freq_start,7);
+		binary_to_bcd_array(freq_start);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+	
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_freq_end,7);
+		binary_to_bcd_array(freq_end);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+	
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_freq_max,7);
+		binary_to_bcd_array(freq_max);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+	
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_freq_min,7);
+		binary_to_bcd_array(freq_min);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+	
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_P_max,7);
+		binary_to_bcd_array(P_max);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+	
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_energy,7);
+		binary_to_bcd_array(energy_display);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+		
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_time_on,7);
+		binary_to_bcd_array(time_on);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+		
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_distance_travelled,7);
+		binary_to_bcd_array(distance_travelled);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+		
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_F_start,7);
+		binary_to_bcd_array(F_start);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+		
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_F_max,7);
+		binary_to_bcd_array(F_max);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+}
 
 int test;
 void update_variable(){
@@ -85524,8 +85589,8 @@ void update_variable(){
 
 
 volatile int32_t g_i32pointer_0 = 0;
-uint16_t FPGA_length=30;
-uint8_t FPGA_input[30] = {0};
+uint16_t FPGA_length=48;
+uint8_t FPGA_input[48] = {0};
 uint16_t FPGA_address=0;
 
 
@@ -85546,6 +85611,16 @@ void update_display_variable(){
 		energy_display								=(FPGA_input[25]<<8)|(FPGA_input[26]);
 		pressure_display							=FPGA_input[27];
 		overload_display							=FPGA_input[28];
+		
+		freq_min											=(FPGA_input[29]<<8)|(FPGA_input[30]);
+		freq_max											=(FPGA_input[31]<<8)|(FPGA_input[32]);
+		freq_start										=(FPGA_input[33]<<8)|(FPGA_input[34]);
+		freq_end											=(FPGA_input[35]<<8)|(FPGA_input[36]);
+		F_start												=(FPGA_input[37]<<8)|(FPGA_input[38]);
+		F_max													=(FPGA_input[39]<<8)|(FPGA_input[40]);
+		P_max													=(FPGA_input[41]<<8)|(FPGA_input[42]);
+		time_on												=(FPGA_input[43]<<8)|(FPGA_input[44]);
+		distance_travelled						=(FPGA_input[45]<<8)|(FPGA_input[46]);
 	}
 }
 

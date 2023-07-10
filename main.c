@@ -25,6 +25,7 @@ void TMR0_IRQHandler(void)
 {
     //curTime++;
 	if (display_page==1)print_page_1();
+	else if (display_page==2)print_page_2();
 	else print_page_0();
 	
   TIMER_ClearIntFlag(TIMER0);
