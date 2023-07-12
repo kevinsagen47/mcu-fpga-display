@@ -85620,7 +85620,7 @@ void update_display_variable(){
 		F_max													=(FPGA_input[39]<<8)|(FPGA_input[40]);
 		P_max													=(FPGA_input[41]<<8)|(FPGA_input[42]);
 		time_on												=(FPGA_input[43]<<8)|(FPGA_input[44]);
-		distance_travelled						=(FPGA_input[45]<<8)|(FPGA_input[46]);
+		distance_travelled						= (FPGA_input[45]<<8)|(FPGA_input[46]);
 	}
 }
 
