@@ -24,9 +24,11 @@ char led_test = 0;
 void TMR0_IRQHandler(void)
 {
     //curTime++;
-	if (display_page==1)print_page_1();
-	else if (display_page==2)print_page_2();
-	else print_page_0();
+	if (display_page==2)print_page_setting_1();
+	else if (display_page==3)print_page_setting_2();
+	else if (display_page==8)print_page_weld_record();
+	else if (display_page==9)print_page_head_down();
+	else TIMER_Delay(TIMER1, 5);//print_page_0();
 	
   TIMER_ClearIntFlag(TIMER0);
 	//printf("+--------------------------+\n");

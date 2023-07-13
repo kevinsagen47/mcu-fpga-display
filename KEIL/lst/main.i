@@ -1185,9 +1185,13 @@ void UART1_TEST_HANDLE();
 void UART1_interrrupt(void);
 void UART0_interrrupt(void);
 void AutoFlow_FunctionTest();
-void print_page_2();
-void print_page_1();
-void print_page_0();
+
+
+
+void print_page_setting_1();
+void print_page_setting_2();
+void print_page_weld_record();
+void print_page_head_down();
 extern uint8_t header[3];
 extern uint8_t display_page;
 #line 12 "..\\main.c"
@@ -85336,9 +85340,11 @@ char led_test = 0;
 void TMR0_IRQHandler(void)
 {
     
-	if (display_page==1)print_page_1();
-	else if (display_page==2)print_page_2();
-	else print_page_0();
+	if (display_page==2)print_page_setting_1();
+	else if (display_page==3)print_page_setting_2();
+	else if (display_page==8)print_page_weld_record();
+	else if (display_page==9)print_page_head_down();
+	else TIMER_Delay(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10100UL)), 5);
 	
   TIMER_ClearIntFlag(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10000UL)));
 	

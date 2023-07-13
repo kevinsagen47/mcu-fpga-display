@@ -34,25 +34,18 @@ uint8_t display_page_1_time [7] 		= { 0x6E, 0x33,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_1_trigger [7] 	= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
 
 
-uint8_t display_page_0_power [7] 			= { 0x6E, 0x30,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_0_freq [7] 			= { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_0_current [7] 		= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_0_force_read [7] = { 0x6E, 0x36,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_0_pressure [7] 	= { 0x6E, 0x31,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_0_dist [7] 			= { 0x6E, 0x38,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_0_time [7] 			= { 0x6E, 0x32,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_0_force_set [7] 	= { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_0_power_read [7] = { 0x6E, 0x33,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_0_energy [7] 		= { 0x6E, 0x39,0x2E,0x76,0x61,0x6C,0x3D};
+
 
 //uint8_t header [3]={0xFF,0xFF,0xFF};	
-unsigned int power_set=20,freq,display_trigger,time_set, 
-		distance_absolute_set,distance_relative_set, energy_set, force_set=200;
+unsigned int power_set=20,freq,display_trigger=1,time_set, 
+		distance_absolute_set,distance_relative_set, energy_set, force_set=200,timeout_set;
 unsigned int power_set_display,freq_display,time_set_display, 
 		distance_absolute_set_display,distance_relative_set_display, energy_set_display, force_set_display,
 		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display;
 //history
 unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on;
+
+unsigned int temp_time_picker;
 int i=0;
 uint8_t bcd_array[5]={0};
 void binary_to_bcd_array(int variable){
@@ -62,114 +55,128 @@ void binary_to_bcd_array(int variable){
 	bcd_array[3]=0x30+((variable/10)%10);
 	bcd_array[4]=0x30+((variable/1)%10);
 }
-void print_page_1(){
-		UART_Write(UART1,display_page_1_power,7);
-		UART_WRITE(UART1,0x30+power_set_display/100%10);
-		UART_WRITE(UART1,0x30+power_set_display/10);
-		UART_WRITE(UART1,0x30+power_set_display%10);
-		UART_Write(UART1,header,3);
-		
-		UART_Write(UART1,display_page_1_freq,7);
-		binary_to_bcd_array(freq_display);
-		UART_Write(UART1,bcd_array,5);
-		UART_Write(UART1,header,3);
-	
-		UART_Write(UART1,display_page_1_time,7);
-		binary_to_bcd_array(time_set_display);
-		UART_Write(UART1,bcd_array,5);
-		UART_Write(UART1,header,3);
-	
-		UART_Write(UART1,display_page_1_force_set,7);
-		binary_to_bcd_array(force_set_display);
-		UART_Write(UART1,bcd_array,5);
-		UART_Write(UART1,header,3);
-	
+//62 5B 33 5D 2E 74 78 74 3D 22 B5 4A A6 D5 22 ff ff ff b[3] joule text
+//62 5B 33 5D 2E 74 78 74 3D 22 AE C9 B6 A1 22 ff ff ff b[3] time
+//62 5B 33 5D 2E 74 78 74 3D 22 B6 5A C2 F7 22 ff ff ff b[3] distance 
+//62 5B 34 5D 2E 74 78 74 3D 22 4A 22 ff ff ff b[4].txt="J"
+//62 5B 34 5D 2E 74 78 74 3D 22 53 22 ff ff ff b[4].txt="S"
+//62 5B 34 5D 2E 74 78 74 3D 22 6D 6D 22 ff ff ff b[4].txt="mm"
+//62 5B 33 35 5D 2E 76 61 6C 3D 32 ff ff ff b[35].val=2
+//62 5B 32 38 5D 2E 76 61 6C 3D b[28].val=
+uint8_t display_page_setting_1_time [53] 			= {0x62,0x5B,0x33,0x35,0x5D,0x2E,0x76,0x61,0x6C,0x3D,0x30,0xff,0xff,0xff//set drop down to time
+																								,0x74,0x4D,0x6F,0x64,0x65,0x2E,0x74,0x78,0x74,0x3D,0x22,0xAE,0xC9,0xB6,0xA1,0x22,0xff,0xff,0xff//print shijian
+																								,0x74,0x4D,0x6F,0x64,0x65,0x55,0x6E,0x69,0x74,0x2E,0x74,0x78,0x74,0x3D,0x22,0x53,0x22,0xff,0xff,0xff};//print "S"
+
+uint8_t display_page_setting_1_dist_rel [54] = {0x62,0x5B,0x33,0x35,0x5D,0x2E,0x76,0x61,0x6C,0x3D,0x31,0xff,0xff,0xff//set drop down to relative
+																										,0x74,0x4D,0x6F,0x64,0x65,0x2E,0x74,0x78,0x74,0x3D,0x22,0xB6,0x5A,0xC2,0xF7,0x22,0xff,0xff,0xff//print jvli
+																										,0x74,0x4D,0x6F,0x64,0x65,0x55,0x6E,0x69,0x74,0x2E,0x74,0x78,0x74,0x3D,0x22,0x6D,0x6D,0x22,0xff,0xff,0xff};//print "mm"																								
+
+uint8_t display_page_setting_1_dist_abs [54] = {0x62,0x5B,0x33,0x35,0x5D,0x2E,0x76,0x61,0x6C,0x3D,0x32,0xff,0xff,0xff//set drop down to absolute
+																										,0x74,0x4D,0x6F,0x64,0x65,0x2E,0x74,0x78,0x74,0x3D,0x22,0xB6,0x5A,0xC2,0xF7,0x22,0xff,0xff,0xff//print jvli
+																										,0x74,0x4D,0x6F,0x64,0x65,0x55,0x6E,0x69,0x74,0x2E,0x74,0x78,0x74,0x3D,0x22,0x6D,0x6D,0x22,0xff,0xff,0xff};//print "mm"
+
+uint8_t display_page_setting_1_dist_energy[53] = {0x62,0x5B,0x33,0x35,0x5D,0x2E,0x76,0x61,0x6C,0x3D,0x34,0xff,0xff,0xff//set drop down to energy
+																										,0x74,0x4D,0x6F,0x64,0x65,0x2E,0x74,0x78,0x74,0x3D,0x22,0xB5,0x4A,0xA6,0xD5,0x22,0xff,0xff,0xff//print jiaoer
+																										,0x74,0x4D,0x6F,0x64,0x65,0x55,0x6E,0x69,0x74,0x2E,0x74,0x78,0x74,0x3D,0x22,0x4A,0x22,0xff,0xff,0xff};//print "J"
+uint8_t display_page_setting_1_trigger_val [10] ={0x62,0x5B,0x32,0x38,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[28].val=
+
+uint8_t display_page_setting_1_force_set [10] ={0x62,0x5B,0x31,0x31,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[11].val=
+
+uint8_t display_page_setting_1_power_set [10] ={0x62,0x5B,0x33,0x38,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[38].val=
+																										
+void print_page_setting_1(){
 		if (display_trigger==2 ){
-			UART_Write(UART1,display_page_1_trigger ,7);
+			UART_Write(UART1,display_page_setting_1_dist_rel ,54);
+			UART_Write(UART1,display_page_setting_1_trigger_val ,10);
 			binary_to_bcd_array(distance_relative_set_display);
 			UART_Write(UART1,bcd_array,5);
 			UART_Write(UART1,header,3);
 		}
-		if (display_trigger==3){
-			UART_Write(UART1,display_page_1_trigger ,7);
+		else if (display_trigger==3){
+			UART_Write(UART1,display_page_setting_1_dist_abs ,54);
+			UART_Write(UART1,display_page_setting_1_trigger_val ,10);
 			binary_to_bcd_array(distance_absolute_set_display);
-			
 			UART_Write(UART1,bcd_array,5);
 			UART_Write(UART1,header,3);
 		}
-		if (display_trigger==5){
-			UART_Write(UART1,display_page_1_trigger,7);
-			binary_to_bcd_array(energy_set_display);
+		else if (display_trigger==5){
+			UART_Write(UART1,display_page_setting_1_dist_energy,53);
+			UART_Write(UART1,display_page_setting_1_trigger_val ,10);
+			binary_to_bcd_array(energy_set_display*100);
 			UART_Write(UART1,bcd_array,5);
 			UART_Write(UART1,header,3);
 		}
-}
-
-void print_page_0(){
-		UART_Write(UART1,display_page_0_power,7);
-		binary_to_bcd_array(power_set_display);
-		UART_Write(UART1,bcd_array,5);
-		UART_Write(UART1,header,3);
-	
-		UART_Write(UART1,display_page_0_force_set,7);
+		else {
+			UART_Write(UART1,display_page_setting_1_time,53);
+			UART_Write(UART1,display_page_setting_1_trigger_val ,10);
+			binary_to_bcd_array(time_set_display/10);
+			UART_Write(UART1,bcd_array,5);
+			UART_Write(UART1,header,3);
+		}
+		
+		UART_Write(UART1,display_page_setting_1_force_set,10);
 		binary_to_bcd_array(force_set_display);
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
-	
-		UART_Write(UART1,display_page_0_freq,7);
-		binary_to_bcd_array(freq_display);
+		
+		UART_Write(UART1,display_page_setting_1_power_set,10);
+		binary_to_bcd_array(power_set_display);
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
-	
-		UART_Write(UART1,display_page_0_time,7);
-		binary_to_bcd_array(time_set_display);
-		UART_Write(UART1,bcd_array,5);
-		UART_Write(UART1,header,3);
-	
-		UART_Write(UART1,display_page_0_current,7);
-		binary_to_bcd_array(current_display);
-		UART_Write(UART1,bcd_array,5);
+}
+uint8_t display_page_setting_2_timeout [9] ={0x62,0x5B,0x36,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[6].val=
+void print_page_setting_2(){
+		UART_Write(UART1,display_page_setting_2_timeout,9);
+		if(display_trigger!=1)binary_to_bcd_array(time_set_display);
+		else binary_to_bcd_array(timeout_set);
+		UART_Write(UART1,bcd_array,2);
 		UART_Write(UART1,header,3);
 		
-		UART_Write(UART1,display_page_0_force_read,7);
-		binary_to_bcd_array(force_display);
-		UART_Write(UART1,bcd_array,5);
-		UART_Write(UART1,header,3);
-		
-		UART_Write(UART1,display_page_0_pressure,7);
+}
+
+uint8_t display_page_head_down_pressure [9] ={0x62,0x5B,0x38,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[8].val=
+uint8_t display_page_head_down_force_read [9] ={0x62,0x5B,0x39,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[9].val=
+uint8_t display_page_head_down_distance_read [11] ={0x62,0x5B,0x31,0x33,0x5D,0x2E,0x74,0x78,0x74,0x3D,0x22};//b[13].txt="
+uint8_t one_array_temp[1]={0};
+void print_page_head_down(){
+		UART_Write(UART1,display_page_head_down_pressure,9);
 		binary_to_bcd_array(pressure_display);
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 		
-		UART_Write(UART1,display_page_0_dist,7);
-		binary_to_bcd_array(distance_display);
+		UART_Write(UART1,display_page_head_down_force_read,9);
+		binary_to_bcd_array(force_display);
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
-		
-		UART_Write(UART1,display_page_0_power_read,7);
-		binary_to_bcd_array(power_read_display);
-		UART_Write(UART1,bcd_array,5);
-		UART_Write(UART1,header,3);
-		
-		UART_Write(UART1,display_page_0_energy,7);
-		binary_to_bcd_array(energy_display);
-		UART_Write(UART1,bcd_array,5);
+	
+		UART_Write(UART1,display_page_head_down_distance_read,11);
+		binary_to_bcd_array(distance_travelled);
+		UART_Write(UART1,bcd_array,3);
+		one_array_temp[0] = 0x2E;
+		UART_Write(UART1,one_array_temp,1);//decimal point
+		one_array_temp[0] = bcd_array[3];
+		UART_Write(UART1,one_array_temp,1);//first decimal place
+		one_array_temp[0] = bcd_array[4];
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		one_array_temp[0] = 0x22;
+		UART_Write(UART1,one_array_temp,1);//second decimal place
 		UART_Write(UART1,header,3);
 }
+
 unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on;
-uint8_t display_page_2_freq_start [7] 				= { 0x6E, 0x30,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_freq_end [7] 					= { 0x6E, 0x31,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_freq_max[7] 						= { 0x6E, 0x32,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_freq_min [7] 					= { 0x6E, 0x33,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_P_max [7] 							= { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_energy [7] 						= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_time_on [7] 						= { 0x6E, 0x36,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_distance_travelled[7]	= { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_F_start [7] 						= { 0x6E, 0x38,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_F_max [7] 							= { 0x6E, 0x39,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_freq_start [7] 				= { 0x6E, 0x31,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_freq_end [7] 					= { 0x6E, 0x32,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_freq_max[7] 						= { 0x6E, 0x33,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_freq_min [7] 					= { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_P_max [7] 							= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_energy [7] 						= { 0x6E, 0x36,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_time_on [7] 						= { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_distance_travelled[7]	= { 0x6E, 0x38,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_F_start [7] 						= { 0x6E, 0x39,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_F_max [8] 							= { 0x6E, 0x31,0x30,0x2E,0x76,0x61,0x6C,0x3D};
 
 
-void print_page_2(){
+void print_page_weld_record(){
 		UART_Write(UART1,display_page_2_freq_start,7);
 		binary_to_bcd_array(freq_start);
 		UART_Write(UART1,bcd_array,5);
@@ -215,14 +222,14 @@ void print_page_2(){
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 		
-		UART_Write(UART1,display_page_2_F_max,7);
+		UART_Write(UART1,display_page_2_F_max,8);
 		binary_to_bcd_array(F_max);
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 }
 
-int test;
-void update_variable(){
+int test,energy_set_temp,timer_mode_set;
+void update_variable(){//display HMI => MCU
 				if(display_input_command[2]==0xFF || display_input_command[3]==0xFF){
 					switch(display_input_command[0]) {
 					case 0xAA:
@@ -233,9 +240,14 @@ void update_variable(){
 						break;
 					case 0xc2:
 						display_trigger= display_input_command[1];
+						if(display_trigger==1){
+								distance_relative_set= 0;
+								distance_absolute_set= 0;
+								energy_set 				=0;}
+						
 						break;
 					case 0xc3:
-						time_set= (display_input_command[2]<<8)|(display_input_command[1]);
+						timer_mode_set= ((display_input_command[2]<<8)|(display_input_command[1]))*10;
 						if(display_trigger==1){
 								distance_relative_set= 0;
 								distance_absolute_set= 0;
@@ -251,18 +263,29 @@ void update_variable(){
 						distance_absolute_set=(display_input_command[2]<<8)|(display_input_command[1]);
 						energy_set=0;
 						break;
-					case 0xc6:
+					case 0xca:
 						force_set=(display_input_command[2]<<8)|(display_input_command[1]);
 						break;
 					case 0xc7:
 						distance_relative_set= 0;
 						distance_absolute_set=0;
-						energy_set=(display_input_command[2]<<8)|(display_input_command[1]);;
+						energy_set_temp=(display_input_command[2]<<8)|(display_input_command[1]);
+						energy_set=energy_set_temp/100;
+						break;
+					case 0xcd://timeout
+						timeout_set=((display_input_command[2]<<8)|(display_input_command[1]))*1000;
+						//time_set=((display_input_command[2]<<8)|(display_input_command[1]))*1000;
+						//timeout_set=time_set;
 						break;
 					default:
 						test=0;
 						break;
-				}}
+				}
+					if((distance_absolute_set!=0 || distance_relative_set!=0 || energy_set!=0)&& time_set==0) time_set=2000;
+					///*
+					if(display_trigger==1) time_set=timer_mode_set;
+					else time_set=timeout_set;
+				}
 				
 				/*
 					printf ("page %d\n",display_page);
@@ -282,7 +305,7 @@ uint8_t FPGA_input[48] = {0};
 uint16_t FPGA_address=0;
 
 
-void update_display_variable(){
+void update_display_variable(){//FPGA => MCU
 
 	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF){
 		power_set_display							=FPGA_input[4];
@@ -312,7 +335,7 @@ void update_display_variable(){
 	}
 }
 
-void update_different_variables(){
+void update_different_variables(){//MCU => FPGA
 	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF){
 		if(power_set_display!=power_set){
 			UART_WRITE(UART0,0xC0);
@@ -320,8 +343,12 @@ void update_different_variables(){
 			UART_WRITE(UART0,0xFF);
 			PC6 = 1;
 		}
+		//display input temp time*10
+		//else if (temp_time_picker!=time_set_display){
 		else if (time_set!=time_set_display){
 			UART_WRITE(UART0,0xC3);
+			//UART_WRITE(UART0,temp_time_picker& ~(~0U << 8));
+			//UART_WRITE(UART0,temp_time_picker>>8);
 			UART_WRITE(UART0,time_set& ~(~0U << 8));
 			UART_WRITE(UART0,time_set>>8);
 			UART_WRITE(UART0,0xFF);
@@ -404,7 +431,7 @@ void UART0_TEST_HANDLE()
 		}
 }
 
-
+int time_wait;
 
 void UART1_TEST_HANDLE()
 {		
@@ -418,12 +445,18 @@ void UART1_TEST_HANDLE()
 				for(i = 0; i < 4; i++){display_input_command[i]=0; }
         while( (!UART_GET_RX_EMPTY(UART1)) )
         {
-					TIMER_Delay(TIMER1, 5);
+					//TIMER_Delay(TIMER1, 80);
 					u8InChar = UART_READ(UART1);    /* Rx trigger level is 1 byte*/
           //g_i32pointer++;
           //printf("%x ", u8InChar);
 					if(input_address<4)display_input_command[input_address] = u8InChar;
-					input_address++;}
+					input_address++;
+					while(UART_GET_RX_EMPTY(UART1) && time_wait<5){
+						TIMER_Delay(TIMER1, 30);
+						time_wait++;
+					}
+					time_wait=0;
+				}
 				/*
 				printf("UART1  ");
 				i=0;
