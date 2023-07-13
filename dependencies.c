@@ -150,7 +150,8 @@ void print_page_head_down(){
 		UART_Write(UART1,header,3);
 	
 		UART_Write(UART1,display_page_head_down_distance_read,11);
-		binary_to_bcd_array(distance_travelled);
+		binary_to_bcd_array(distance_display);
+	
 		UART_Write(UART1,bcd_array,3);
 		one_array_temp[0] = 0x2E;
 		UART_Write(UART1,one_array_temp,1);//decimal point
@@ -285,6 +286,7 @@ void update_variable(){//display HMI => MCU
 					///*
 					if(display_trigger==1) time_set=timer_mode_set;
 					else time_set=timeout_set;
+					if (display_page==9)time_set=0;
 				}
 				
 				/*
@@ -334,7 +336,7 @@ void update_display_variable(){//FPGA => MCU
 		distance_travelled						= (FPGA_input[45]<<8)|(FPGA_input[46]);//(FPGA_input[45]<<8)|(FPGA_input[46]);
 	}
 }
-
+int time_set_zero=0;
 void update_different_variables(){//MCU => FPGA
 	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF){
 		if(power_set_display!=power_set){
@@ -345,6 +347,7 @@ void update_different_variables(){//MCU => FPGA
 		}
 		//display input temp time*10
 		//else if (temp_time_picker!=time_set_display){
+		
 		else if (time_set!=time_set_display){
 			UART_WRITE(UART0,0xC3);
 			//UART_WRITE(UART0,temp_time_picker& ~(~0U << 8));

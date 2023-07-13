@@ -85466,7 +85466,8 @@ void print_page_head_down(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 	
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_down_distance_read,11);
-		binary_to_bcd_array(distance_travelled);
+		binary_to_bcd_array(distance_display);
+	
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,3);
 		one_array_temp[0] = 0x2E;
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),one_array_temp,1);
@@ -85601,6 +85602,7 @@ void update_variable(){
 					
 					if(display_trigger==1) time_set=timer_mode_set;
 					else time_set=timeout_set;
+					if (display_page==9)time_set=0;
 				}
 				
 				
@@ -85650,7 +85652,7 @@ void update_display_variable(){
 		distance_travelled						= (FPGA_input[45]<<8)|(FPGA_input[46]);
 	}
 }
-
+int time_set_zero=0;
 void update_different_variables(){
 	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF){
 		if(power_set_display!=power_set){
@@ -85659,6 +85661,7 @@ void update_different_variables(){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
 			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
 		}
+		
 		
 		
 		else if (time_set!=time_set_display){
