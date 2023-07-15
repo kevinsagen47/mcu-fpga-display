@@ -85354,10 +85354,11 @@ uint8_t display_page_1_trigger [7] 	= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
 
 
 unsigned int power_set=20,freq,display_trigger=1,time_set, 
-		distance_absolute_set,distance_relative_set, energy_set, force_set=200,timeout_set;
-unsigned int power_set_display,freq_display,time_set_display, 
+		distance_absolute_set,distance_relative_set, energy_set, force_set=200,timeout_set,time_set_stage_one_set;
+unsigned int power_set_display,freq_display,timeout_set_display, 
 		distance_absolute_set_display,distance_relative_set_display, energy_set_display, force_set_display,
-		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display;
+		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,
+		time_set_stage_one_display;
 
 unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on;
 
@@ -85425,7 +85426,7 @@ void print_page_setting_1(){
 		else {
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_time,53);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_trigger_val ,10);
-			binary_to_bcd_array(time_set_display/10);
+			binary_to_bcd_array(time_set_stage_one_display/10);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		}
@@ -85443,8 +85444,9 @@ void print_page_setting_1(){
 uint8_t display_page_setting_2_timeout [9] ={0x62,0x5B,0x36,0x5D,0x2E,0x76,0x61,0x6C,0x3D};
 void print_page_setting_2(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_2_timeout,9);
-		if(display_trigger!=1)binary_to_bcd_array(time_set_display);
-		else binary_to_bcd_array(timeout_set);
+		
+		
+		binary_to_bcd_array(timeout_set);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,2);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		
@@ -85557,28 +85559,36 @@ void update_variable(){
 						break;
 					case 0xc2:
 						display_trigger= display_input_command[1];
-						if(display_trigger==1){
-								distance_relative_set= 0;
-								distance_absolute_set= 0;
-								energy_set 				=0;}
+					
+
+
+
+
+ 
 						
 						break;
 					case 0xc3:
-						timer_mode_set= ((display_input_command[2]<<8)|(display_input_command[1]))*10;
-						if(display_trigger==1){
-								distance_relative_set= 0;
-								distance_absolute_set= 0;
-								energy_set 				=0;}
+						time_set_stage_one_set = ((display_input_command[2]<<8)|(display_input_command[1]))*10;
+						distance_relative_set= 0;
+						distance_absolute_set= 0;
+						energy_set 				=0;
+					
+
+
+
+ 
 						break;
 					case 0xc4:
 						distance_relative_set= (display_input_command[2]<<8)|(display_input_command[1]);
 						distance_absolute_set=0;
 						energy_set=0;
+						time_set_stage_one_set = 0;
 						break;
 					case 0xc5:
 						distance_relative_set= 0;
 						distance_absolute_set=(display_input_command[2]<<8)|(display_input_command[1]);
 						energy_set=0;
+						time_set_stage_one_set =0;
 						break;
 					case 0xca:
 						force_set=(display_input_command[2]<<8)|(display_input_command[1]);
@@ -85588,6 +85598,7 @@ void update_variable(){
 						distance_absolute_set=0;
 						energy_set_temp=(display_input_command[2]<<8)|(display_input_command[1]);
 						energy_set=energy_set_temp/100;
+						time_set_stage_one_set = 0;
 						break;
 					case 0xcd:
 						timeout_set=((display_input_command[2]<<8)|(display_input_command[1]))*1000;
@@ -85598,11 +85609,11 @@ void update_variable(){
 						test=0;
 						break;
 				}
-					if((distance_absolute_set!=0 || distance_relative_set!=0 || energy_set!=0)&& time_set==0) time_set=2000;
 					
-					if(display_trigger==1) time_set=timer_mode_set;
-					else time_set=timeout_set;
-					if (display_page==9)time_set=0;
+					
+					
+					
+					if (display_page==9)timeout_set=0;
 				}
 				
 				
@@ -85618,8 +85629,8 @@ void update_variable(){
 
 
 volatile int32_t g_i32pointer_0 = 0;
-uint16_t FPGA_length=48;
-uint8_t FPGA_input[48] = {0};
+uint16_t FPGA_length=50;
+uint8_t FPGA_input[50] = {0};
 uint16_t FPGA_address=0;
 
 
@@ -85627,7 +85638,7 @@ void update_display_variable(){
 
 	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF){
 		power_set_display							=FPGA_input[4];
-		time_set_display 							=(FPGA_input[5]<<8)|(FPGA_input[6]);
+		timeout_set_display 							=(FPGA_input[5]<<8)|(FPGA_input[6]);
 		distance_relative_set_display	=(FPGA_input[7]<<8)|(FPGA_input[8]);
 		distance_absolute_set_display	=(FPGA_input[9]<<8)|(FPGA_input[10]);
 		force_set_display							=(FPGA_input[11]<<8)|(FPGA_input[12]);
@@ -85650,11 +85661,13 @@ void update_display_variable(){
 		P_max													=(FPGA_input[41]<<8)|(FPGA_input[42]);
 		time_on												=(FPGA_input[43]<<8)|(FPGA_input[44]);
 		distance_travelled						= (FPGA_input[45]<<8)|(FPGA_input[46]);
+		
+		time_set_stage_one_display		= (FPGA_input[47]<<8)|(FPGA_input[48]);
 	}
 }
 int time_set_zero=0;
 void update_different_variables(){
-	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF){
+	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[49]==0x68){
 		if(power_set_display!=power_set){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xC0));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (power_set));
@@ -85663,13 +85676,22 @@ void update_different_variables(){
 		}
 		
 		
+		else if (timeout_set!=timeout_set_display){
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xCD));
+			
+			
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (timeout_set& ~(~0U << 8)));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (timeout_set>>8));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
+			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
+	}
 		
-		else if (time_set!=time_set_display){
+		else if (time_set_stage_one_set!=time_set_stage_one_display){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xC3));
 			
 			
-			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (time_set& ~(~0U << 8)));
-			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (time_set>>8));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (time_set_stage_one_set& ~(~0U << 8)));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (time_set_stage_one_set>>8));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
 			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
 	}
@@ -85721,6 +85743,7 @@ void update_different_variables(){
 
 
 
+int time_wait_uart0;
 void UART0_TEST_HANDLE()
 {		
 	uint8_t u8InChar_0=0xFF;
@@ -85739,13 +85762,22 @@ void UART0_TEST_HANDLE()
 					FPGA_input[FPGA_address] = u8InChar_0;
 					
 					FPGA_address++;
+					
+
+
+
+
+ 
           }
 				update_display_variable();
 					
 				update_different_variables();
 				
-				
-				
+
+
+
+
+ 	
 				
 		}
 }
