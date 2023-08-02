@@ -29,4 +29,6 @@ void print_page_weld_record();
 void print_page_head_down();
 extern uint8_t header[3];
 extern uint8_t display_page;
+void print_page_lock_freq();
+extern uint8_t Freq_init;
 #endif

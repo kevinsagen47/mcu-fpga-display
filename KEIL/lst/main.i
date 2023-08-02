@@ -1194,6 +1194,8 @@ void print_page_weld_record();
 void print_page_head_down();
 extern uint8_t header[3];
 extern uint8_t display_page;
+void print_page_lock_freq();
+extern uint8_t Freq_init;
 #line 12 "..\\main.c"
 #line 1 "..\\..\\..\\nuvoton_ws\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
  
@@ -85340,7 +85342,10 @@ char led_test = 0;
 void TMR0_IRQHandler(void)
 {
     
-	if (display_page==2)print_page_setting_1();
+	if (display_page==2){
+		if (Freq_init==1)print_page_setting_1();
+		else print_page_lock_freq();
+	}
 	else if (display_page==3)print_page_setting_2();
 	else if (display_page==8)print_page_weld_record();
 	else if (display_page==9)print_page_head_down();

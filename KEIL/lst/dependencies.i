@@ -285,6 +285,8 @@ void print_page_weld_record();
 void print_page_head_down();
 extern uint8_t header[3];
 extern uint8_t display_page;
+void print_page_lock_freq();
+extern uint8_t Freq_init;
 #line 2 "..\\dependencies.c"
 #line 1 "C:\\Keil_v5\\ARM\\ARM_Compiler_5.06u7\\Bin\\..\\include\\stdio.h"
  
@@ -85342,6 +85344,7 @@ void AutoFlow_FunctionTest(void);
 uint8_t display_input_command[4] = {0};
 uint8_t input_address=0;
 uint8_t display_page=0;
+uint8_t Freq_init=0;
 
 uint8_t display_page_1_power [7] 		= { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_1_freq [7] 		= { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D};
@@ -85354,11 +85357,11 @@ uint8_t display_page_1_trigger [7] 	= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
 
 
 unsigned int power_set=20,freq,display_trigger=1,time_set, 
-		distance_absolute_set,distance_relative_set, energy_set, force_set=200,timeout_set,time_set_stage_one_set;
+		distance_absolute_set,distance_relative_set, energy_set, force_set=22,timeout_set,time_set_stage_one_set;
 unsigned int power_set_display,freq_display,timeout_set_display, 
 		distance_absolute_set_display,distance_relative_set_display, energy_set_display, force_set_display,
 		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,
-		time_set_stage_one_display;
+		time_set_stage_one_display,standby;
 
 unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on;
 
@@ -85400,7 +85403,13 @@ uint8_t display_page_setting_1_trigger_val [10] ={0x62,0x5B,0x32,0x38,0x5D,0x2E,
 uint8_t display_page_setting_1_force_set [10] ={0x62,0x5B,0x31,0x31,0x5D,0x2E,0x76,0x61,0x6C,0x3D};
 
 uint8_t display_page_setting_1_power_set [10] ={0x62,0x5B,0x33,0x38,0x5D,0x2E,0x76,0x61,0x6C,0x3D};
-																										
+
+uint8_t display_page_lock_freq [17] = {0x70,0x61,0x67,0x65,0x20,0x6C,0x6F,0x63,0x6B,0x5F,0x66,0x72,0x65,0x71,0xff,0xff,0xff};
+
+void print_page_lock_freq(){
+	UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_lock_freq ,17);
+}
+
 void print_page_setting_1(){
 		if (display_trigger==2 ){
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_dist_rel ,54);
@@ -85547,8 +85556,9 @@ void print_page_weld_record(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 }
 
-int test,energy_set_temp,timer_mode_set;
-void update_variable(){
+int test,energy_set_temp,timer_mode_set,timeout_set_temp=2000;
+int temp_distance_relative,temp_distance_absolute, temp_energy, temp_time_stage_one;
+void display_to_mcu(){
 				if(display_input_command[2]==0xFF || display_input_command[3]==0xFF){
 					switch(display_input_command[0]) {
 					case 0xAA:
@@ -85568,6 +85578,7 @@ void update_variable(){
 						
 						break;
 					case 0xc3:
+						temp_time_stage_one = ((display_input_command[2]<<8)|(display_input_command[1]))*10;
 						time_set_stage_one_set = ((display_input_command[2]<<8)|(display_input_command[1]))*10;
 						distance_relative_set= 0;
 						distance_absolute_set= 0;
@@ -85579,6 +85590,7 @@ void update_variable(){
  
 						break;
 					case 0xc4:
+						temp_distance_relative=(display_input_command[2]<<8)|(display_input_command[1]);
 						distance_relative_set= (display_input_command[2]<<8)|(display_input_command[1]);
 						distance_absolute_set=0;
 						energy_set=0;
@@ -85586,6 +85598,7 @@ void update_variable(){
 						break;
 					case 0xc5:
 						distance_relative_set= 0;
+						temp_distance_absolute=(display_input_command[2]<<8)|(display_input_command[1]);
 						distance_absolute_set=(display_input_command[2]<<8)|(display_input_command[1]);
 						energy_set=0;
 						time_set_stage_one_set =0;
@@ -85598,10 +85611,11 @@ void update_variable(){
 						distance_absolute_set=0;
 						energy_set_temp=(display_input_command[2]<<8)|(display_input_command[1]);
 						energy_set=energy_set_temp/100;
+						temp_energy=energy_set;
 						time_set_stage_one_set = 0;
 						break;
 					case 0xcd:
-						timeout_set=((display_input_command[2]<<8)|(display_input_command[1]))*1000;
+						timeout_set_temp=((display_input_command[2]<<8)|(display_input_command[1]))*1000;
 						
 						
 						break;
@@ -85614,6 +85628,7 @@ void update_variable(){
 					
 					
 					if (display_page==9)timeout_set=0;
+					else timeout_set=timeout_set_temp;
 				}
 				
 				
@@ -85634,7 +85649,7 @@ uint8_t FPGA_input[50] = {0};
 uint16_t FPGA_address=0;
 
 
-void update_display_variable(){
+void fpga_to_mcu(){
 
 	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF){
 		power_set_display							=FPGA_input[4];
@@ -85650,7 +85665,10 @@ void update_display_variable(){
 		distance_display							=(FPGA_input[23]<<8)|(FPGA_input[24]);
 		energy_display								=(FPGA_input[25]<<8)|(FPGA_input[26]);
 		pressure_display							=FPGA_input[27];
-		overload_display							=FPGA_input[28];
+		
+		overload_display							=(FPGA_input[28]>>5)& 1;
+		standby												=(FPGA_input[28]>>6)& 1;
+		Freq_init											=(FPGA_input[28]>>7)& 1;
 		
 		freq_min											=(FPGA_input[29]<<8)|(FPGA_input[30]);
 		freq_max											=(FPGA_input[31]<<8)|(FPGA_input[32]);
@@ -85666,8 +85684,8 @@ void update_display_variable(){
 	}
 }
 int time_set_zero=0;
-void update_different_variables(){
-	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[49]==0x68){
+void mcu_to_fpga(){
+	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[49]==0x68){
 		if(power_set_display!=power_set){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xC0));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (power_set));
@@ -85769,9 +85787,9 @@ void UART0_TEST_HANDLE()
 
  
           }
-				update_display_variable();
+				fpga_to_mcu();
 					
-				update_different_variables();
+				mcu_to_fpga();
 				
 
 
@@ -85813,7 +85831,7 @@ void UART1_TEST_HANDLE()
 
 
  
-				update_variable();}
+				display_to_mcu();}
 }
 
 void UART1_interrrupt(void){
