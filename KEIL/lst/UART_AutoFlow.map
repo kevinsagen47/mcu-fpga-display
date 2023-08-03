@@ -19,10 +19,41 @@ Section Cross References
     startup_m480.o(RESET) refers to dependencies.o(.text) for UART0_IRQHandler
     startup_m480.o(.text) refers to system_m480.o(.text) for SystemInit
     startup_m480.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
-    main.o(.text) refers to dependencies.o(.text) for print_page_0
+    main.o(.text) refers to timer.o(.text) for TIMER_Delay
+    main.o(.text) refers to dependencies.o(.text) for print_page_lock_freq
     main.o(.text) refers to gpio.o(.text) for GPIO_SetMode
-    main.o(.text) refers to timer.o(.text) for TIMER_Open
     main.o(.text) refers to dependencies.o(.data) for display_page
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
+    dependencies.o(.text) refers to dependencies.o(.data) for .data
     dependencies.o(.text) refers to uart.o(.text) for UART_Write
     dependencies.o(.text) refers to dependencies.o(.data) for .data
     dependencies.o(.text) refers to main.o(.data) for header
@@ -345,8 +376,49 @@ Removing Unused input sections from the image.
     Removing dependencies.o(.rev16_text), (4 bytes).
     Removing dependencies.o(.revsh_text), (4 bytes).
     Removing dependencies.o(.rrx_text), (6 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
+    Removing dependencies.o(.text), (12 bytes).
     Removing dependencies.o(.text), (1504 bytes).
     Removing dependencies.o(.bss), (12 bytes).
+    Removing dependencies.o(.data), (4 bytes).
+    Removing dependencies.o(.data), (4 bytes).
+    Removing dependencies.o(.data), (4 bytes).
+    Removing dependencies.o(.data), (4 bytes).
+    Removing dependencies.o(.data), (7 bytes).
+    Removing dependencies.o(.data), (7 bytes).
+    Removing dependencies.o(.data), (7 bytes).
+    Removing dependencies.o(.data), (7 bytes).
+    Removing dependencies.o(.data), (7 bytes).
+    Removing dependencies.o(.data), (4 bytes).
     Removing dependencies.o(.data), (4 bytes).
     Removing dependencies.o(.data), (4 bytes).
     Removing dependencies.o(.data), (4 bytes).
@@ -441,7 +513,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (48 bytes).
     Removing depilogue.o(.text), (186 bytes).
 
-106 unused section(s) (total 5417 bytes) removed from the image.
+147 unused section(s) (total 5844 bytes) removed from the image.
 
 ==============================================================================
 
@@ -533,8 +605,8 @@ Image Symbol Table
     $v0                                      0x000002e8   Number         0  startup_m480.o(.text)
     Default_Handler                          0x0000033b   Thumb Code     2  startup_m480.o(.text)
     .text                                    0x00000350   Section        0  main.o(.text)
-    .text                                    0x000003e4   Section        0  dependencies.o(.text)
-    NVIC_EnableIRQ                           0x00000c83   Thumb Code    22  dependencies.o(.text)
+    .text                                    0x00000410   Section        0  dependencies.o(.text)
+    NVIC_EnableIRQ                           0x00000c91   Thumb Code    22  dependencies.o(.text)
     .text                                    0x00000ca8   Section        0  retarget.o(.text)
     __tagsym$$used                           0x00000ca9   Number         0  retarget.o(.text)
     stackDump                                0x00000cc5   Thumb Code    72  retarget.o(.text)
@@ -558,11 +630,11 @@ Image Symbol Table
     .constdata                               0x00001930   Section       32  timer.o(.constdata)
     .data                                    0x20000000   Section       44  system_m480.o(.data)
     .data                                    0x2000002c   Section        3  main.o(.data)
-    .data                                    0x20000030   Section      328  dependencies.o(.data)
-    .data                                    0x20000178   Section        4  retarget.o(.data)
-    .data                                    0x2000017c   Section        4  clk.o(.data)
-    .bss                                     0x20000180   Section      304  dependencies.o(.bss)
-    STACK                                    0x200002b0   Section     2048  startup_m480.o(STACK)
+    .data                                    0x20000030   Section      563  dependencies.o(.data)
+    .data                                    0x20000264   Section        4  retarget.o(.data)
+    .data                                    0x20000268   Section        4  clk.o(.data)
+    .bss                                     0x2000026c   Section      306  dependencies.o(.bss)
+    STACK                                    0x200003a0   Section     2048  startup_m480.o(STACK)
 
     Global Symbols
 
@@ -734,24 +806,26 @@ Image Symbol Table
     USCI1_IRQHandler                         0x0000033b   Thumb Code     0  startup_m480.o(.text)
     WDT_IRQHandler                           0x0000033b   Thumb Code     0  startup_m480.o(.text)
     WWDT_IRQHandler                          0x0000033b   Thumb Code     0  startup_m480.o(.text)
-    TMR0_IRQHandler                          0x00000351   Thumb Code    38  main.o(.text)
-    main                                     0x00000377   Thumb Code    88  main.o(.text)
-    binary_to_bcd_array                      0x000003e5   Thumb Code    94  dependencies.o(.text)
-    print_page_1                             0x00000443   Thumb Code   324  dependencies.o(.text)
-    print_page_0                             0x00000587   Thumb Code   392  dependencies.o(.text)
-    print_page_2                             0x0000070f   Thumb Code   420  dependencies.o(.text)
-    update_variable                          0x000008b3   Thumb Code   130  dependencies.o(.text)
-    update_display_variable                  0x00000935   Thumb Code   170  dependencies.o(.text)
-    update_different_variables               0x000009df   Thumb Code   136  dependencies.o(.text)
-    UART0_TEST_HANDLE                        0x00000a67   Thumb Code    84  dependencies.o(.text)
-    UART1_TEST_HANDLE                        0x00000abb   Thumb Code    78  dependencies.o(.text)
-    UART1_interrrupt                         0x00000b09   Thumb Code    56  dependencies.o(.text)
-    UART0_interrrupt                         0x00000b41   Thumb Code    56  dependencies.o(.text)
-    SYS_Init                                 0x00000b79   Thumb Code   242  dependencies.o(.text)
-    UART0_Init                               0x00000c6b   Thumb Code    10  dependencies.o(.text)
-    UART1_Init                               0x00000c75   Thumb Code    10  dependencies.o(.text)
-    UART1_IRQHandler                         0x00000c7f   Thumb Code     2  dependencies.o(.text)
-    UART0_IRQHandler                         0x00000c81   Thumb Code     2  dependencies.o(.text)
+    TMR0_IRQHandler                          0x00000351   Thumb Code    76  main.o(.text)
+    main                                     0x0000039d   Thumb Code    88  main.o(.text)
+    binary_to_bcd_array                      0x00000411   Thumb Code    94  dependencies.o(.text)
+    print_page_lock_freq                     0x0000046f   Thumb Code    10  dependencies.o(.text)
+    print_page_setting_1                     0x00000479   Thumb Code   246  dependencies.o(.text)
+    print_page_setting_2                     0x0000056f   Thumb Code    50  dependencies.o(.text)
+    print_page_head_down                     0x000005a1   Thumb Code   186  dependencies.o(.text)
+    print_page_weld_record                   0x0000065b   Thumb Code   396  dependencies.o(.text)
+    display_to_mcu                           0x000007e7   Thumb Code   164  dependencies.o(.text)
+    fpga_to_mcu                              0x0000088b   Thumb Code   188  dependencies.o(.text)
+    mcu_to_fpga                              0x00000947   Thumb Code   264  dependencies.o(.text)
+    UART0_TEST_HANDLE                        0x00000a4f   Thumb Code    82  dependencies.o(.text)
+    UART1_TEST_HANDLE                        0x00000aa1   Thumb Code   114  dependencies.o(.text)
+    UART1_interrrupt                         0x00000b13   Thumb Code    56  dependencies.o(.text)
+    UART0_interrrupt                         0x00000b4b   Thumb Code    56  dependencies.o(.text)
+    SYS_Init                                 0x00000b83   Thumb Code   208  dependencies.o(.text)
+    UART0_Init                               0x00000c53   Thumb Code    10  dependencies.o(.text)
+    UART1_Init                               0x00000c5d   Thumb Code    48  dependencies.o(.text)
+    UART1_IRQHandler                         0x00000c8d   Thumb Code     2  dependencies.o(.text)
+    UART0_IRQHandler                         0x00000c8f   Thumb Code     2  dependencies.o(.text)
     Hard_Fault_Handler                       0x00000ca9   Thumb Code    16  retarget.o(.text)
     fputc                                    0x00000cb9   Thumb Code    12  retarget.o(.text)
     CLK_SetModuleClock                       0x00000da5   Thumb Code   140  clk.o(.text)
@@ -796,74 +870,83 @@ Image Symbol Table
     header                                   0x2000002c   Data           3  main.o(.data)
     input_address                            0x20000030   Data           1  dependencies.o(.data)
     display_page                             0x20000031   Data           1  dependencies.o(.data)
-    FPGA_length                              0x20000032   Data           2  dependencies.o(.data)
-    FPGA_address                             0x20000034   Data           2  dependencies.o(.data)
+    Freq_init                                0x20000032   Data           1  dependencies.o(.data)
+    one_array_temp                           0x20000033   Data           1  dependencies.o(.data)
+    FPGA_length                              0x20000034   Data           2  dependencies.o(.data)
+    FPGA_address                             0x20000036   Data           2  dependencies.o(.data)
     g_i32pointer                             0x20000038   Data           4  dependencies.o(.data)
     display_input_command                    0x2000003c   Data           4  dependencies.o(.data)
-    power_set                                0x20000040   Data           4  dependencies.o(.data)
-    force_set                                0x20000044   Data           4  dependencies.o(.data)
-    i                                        0x20000048   Data           4  dependencies.o(.data)
-    g_i32pointer_0                           0x2000004c   Data           4  dependencies.o(.data)
-    display_trigger                          0x20000050   Data           4  dependencies.o(.data)
-    time_set                                 0x20000054   Data           4  dependencies.o(.data)
+    amplitude_set                            0x20000040   Data           4  dependencies.o(.data)
+    mode_set                                 0x20000044   Data           4  dependencies.o(.data)
+    force_set                                0x20000048   Data           4  dependencies.o(.data)
+    timeout_set                              0x2000004c   Data           4  dependencies.o(.data)
+    i                                        0x20000050   Data           4  dependencies.o(.data)
+    g_i32pointer_0                           0x20000054   Data           4  dependencies.o(.data)
     distance_absolute_set                    0x20000058   Data           4  dependencies.o(.data)
     distance_relative_set                    0x2000005c   Data           4  dependencies.o(.data)
     energy_set                               0x20000060   Data           4  dependencies.o(.data)
-    power_set_display                        0x20000064   Data           4  dependencies.o(.data)
-    freq_display                             0x20000068   Data           4  dependencies.o(.data)
-    time_set_display                         0x2000006c   Data           4  dependencies.o(.data)
-    distance_absolute_set_display            0x20000070   Data           4  dependencies.o(.data)
-    distance_relative_set_display            0x20000074   Data           4  dependencies.o(.data)
-    energy_set_display                       0x20000078   Data           4  dependencies.o(.data)
-    force_set_display                        0x2000007c   Data           4  dependencies.o(.data)
-    current_display                          0x20000080   Data           4  dependencies.o(.data)
-    power_read_display                       0x20000084   Data           4  dependencies.o(.data)
-    force_display                            0x20000088   Data           4  dependencies.o(.data)
-    distance_display                         0x2000008c   Data           4  dependencies.o(.data)
-    energy_display                           0x20000090   Data           4  dependencies.o(.data)
-    pressure_display                         0x20000094   Data           4  dependencies.o(.data)
-    overload_display                         0x20000098   Data           4  dependencies.o(.data)
-    freq_min                                 0x2000009c   Data           4  dependencies.o(.data)
-    freq_max                                 0x200000a0   Data           4  dependencies.o(.data)
-    freq_start                               0x200000a4   Data           4  dependencies.o(.data)
-    freq_end                                 0x200000a8   Data           4  dependencies.o(.data)
-    F_start                                  0x200000ac   Data           4  dependencies.o(.data)
-    F_max                                    0x200000b0   Data           4  dependencies.o(.data)
-    P_max                                    0x200000b4   Data           4  dependencies.o(.data)
-    distance_travelled                       0x200000b8   Data           4  dependencies.o(.data)
-    time_on                                  0x200000bc   Data           4  dependencies.o(.data)
-    test                                     0x200000c0   Data           4  dependencies.o(.data)
-    bcd_array                                0x200000c4   Data           5  dependencies.o(.data)
-    display_page_1_power                     0x200000c9   Data           7  dependencies.o(.data)
-    display_page_1_freq                      0x200000d0   Data           7  dependencies.o(.data)
-    display_page_1_force_set                 0x200000d7   Data           7  dependencies.o(.data)
-    display_page_1_time                      0x200000de   Data           7  dependencies.o(.data)
-    display_page_1_trigger                   0x200000e5   Data           7  dependencies.o(.data)
-    display_page_0_power                     0x200000ec   Data           7  dependencies.o(.data)
-    display_page_0_freq                      0x200000f3   Data           7  dependencies.o(.data)
-    display_page_0_current                   0x200000fa   Data           7  dependencies.o(.data)
-    display_page_0_force_read                0x20000101   Data           7  dependencies.o(.data)
-    display_page_0_pressure                  0x20000108   Data           7  dependencies.o(.data)
-    display_page_0_dist                      0x2000010f   Data           7  dependencies.o(.data)
-    display_page_0_time                      0x20000116   Data           7  dependencies.o(.data)
-    display_page_0_force_set                 0x2000011d   Data           7  dependencies.o(.data)
-    display_page_0_power_read                0x20000124   Data           7  dependencies.o(.data)
-    display_page_0_energy                    0x2000012b   Data           7  dependencies.o(.data)
-    display_page_2_freq_start                0x20000132   Data           7  dependencies.o(.data)
-    display_page_2_freq_end                  0x20000139   Data           7  dependencies.o(.data)
-    display_page_2_freq_max                  0x20000140   Data           7  dependencies.o(.data)
-    display_page_2_freq_min                  0x20000147   Data           7  dependencies.o(.data)
-    display_page_2_P_max                     0x2000014e   Data           7  dependencies.o(.data)
-    display_page_2_energy                    0x20000155   Data           7  dependencies.o(.data)
-    display_page_2_time_on                   0x2000015c   Data           7  dependencies.o(.data)
-    display_page_2_distance_travelled        0x20000163   Data           7  dependencies.o(.data)
-    display_page_2_F_start                   0x2000016a   Data           7  dependencies.o(.data)
-    display_page_2_F_max                     0x20000171   Data           7  dependencies.o(.data)
-    __stdout                                 0x20000178   Data           4  retarget.o(.data)
-    g_CLK_i32ErrCode                         0x2000017c   Data           4  clk.o(.data)
-    g_u8RecData                              0x20000180   Data         256  dependencies.o(.bss)
-    FPGA_input                               0x20000280   Data          48  dependencies.o(.bss)
-    __initial_sp                             0x20000ab0   Data           0  startup_m480.o(STACK)
+    time_set_stage_one_set                   0x20000064   Data           4  dependencies.o(.data)
+    amplitude_set_display                    0x20000068   Data           4  dependencies.o(.data)
+    freq_display                             0x2000006c   Data           4  dependencies.o(.data)
+    timeout_set_display                      0x20000070   Data           4  dependencies.o(.data)
+    distance_absolute_set_display            0x20000074   Data           4  dependencies.o(.data)
+    distance_relative_set_display            0x20000078   Data           4  dependencies.o(.data)
+    energy_set_display                       0x2000007c   Data           4  dependencies.o(.data)
+    force_set_display                        0x20000080   Data           4  dependencies.o(.data)
+    current_display                          0x20000084   Data           4  dependencies.o(.data)
+    power_read_display                       0x20000088   Data           4  dependencies.o(.data)
+    force_display                            0x2000008c   Data           4  dependencies.o(.data)
+    distance_display                         0x20000090   Data           4  dependencies.o(.data)
+    energy_display                           0x20000094   Data           4  dependencies.o(.data)
+    pressure_display                         0x20000098   Data           4  dependencies.o(.data)
+    overload_display                         0x2000009c   Data           4  dependencies.o(.data)
+    time_set_stage_one_display               0x200000a0   Data           4  dependencies.o(.data)
+    standby                                  0x200000a4   Data           4  dependencies.o(.data)
+    freq_min                                 0x200000a8   Data           4  dependencies.o(.data)
+    freq_max                                 0x200000ac   Data           4  dependencies.o(.data)
+    freq_start                               0x200000b0   Data           4  dependencies.o(.data)
+    freq_end                                 0x200000b4   Data           4  dependencies.o(.data)
+    F_start                                  0x200000b8   Data           4  dependencies.o(.data)
+    F_max                                    0x200000bc   Data           4  dependencies.o(.data)
+    P_max                                    0x200000c0   Data           4  dependencies.o(.data)
+    distance_travelled                       0x200000c4   Data           4  dependencies.o(.data)
+    time_on                                  0x200000c8   Data           4  dependencies.o(.data)
+    test                                     0x200000cc   Data           4  dependencies.o(.data)
+    energy_set_temp                          0x200000d0   Data           4  dependencies.o(.data)
+    temp_distance_relative_set               0x200000d4   Data           4  dependencies.o(.data)
+    temp_distance_absolute_set               0x200000d8   Data           4  dependencies.o(.data)
+    temp_energy_set                          0x200000dc   Data           4  dependencies.o(.data)
+    temp_time_set_stage_one_set              0x200000e0   Data           4  dependencies.o(.data)
+    temp_timeout_set                         0x200000e4   Data           4  dependencies.o(.data)
+    time_wait                                0x200000e8   Data           4  dependencies.o(.data)
+    bcd_array                                0x200000ec   Data           5  dependencies.o(.data)
+    display_page_2_freq_start                0x200000f1   Data           7  dependencies.o(.data)
+    display_page_2_freq_end                  0x200000f8   Data           7  dependencies.o(.data)
+    display_page_2_freq_max                  0x200000ff   Data           7  dependencies.o(.data)
+    display_page_2_freq_min                  0x20000106   Data           7  dependencies.o(.data)
+    display_page_2_P_max                     0x2000010d   Data           7  dependencies.o(.data)
+    display_page_2_energy                    0x20000114   Data           7  dependencies.o(.data)
+    display_page_2_time_on                   0x2000011b   Data           7  dependencies.o(.data)
+    display_page_2_distance_travelled        0x20000122   Data           7  dependencies.o(.data)
+    display_page_2_F_start                   0x20000129   Data           7  dependencies.o(.data)
+    display_page_2_F_max                     0x20000130   Data           8  dependencies.o(.data)
+    display_page_setting_1_time              0x20000138   Data          53  dependencies.o(.data)
+    display_page_setting_1_dist_rel          0x2000016d   Data          54  dependencies.o(.data)
+    display_page_setting_1_dist_abs          0x200001a3   Data          54  dependencies.o(.data)
+    display_page_setting_1_dist_energy       0x200001d9   Data          53  dependencies.o(.data)
+    display_page_setting_1_trigger_val       0x2000020e   Data          10  dependencies.o(.data)
+    display_page_setting_1_force_set         0x20000218   Data          10  dependencies.o(.data)
+    display_page_setting_1_power_set         0x20000222   Data          10  dependencies.o(.data)
+    display_page_lock_freq                   0x2000022c   Data          17  dependencies.o(.data)
+    display_page_setting_2_timeout           0x2000023d   Data           9  dependencies.o(.data)
+    display_page_head_down_pressure          0x20000246   Data           9  dependencies.o(.data)
+    display_page_head_down_force_read        0x2000024f   Data           9  dependencies.o(.data)
+    display_page_head_down_distance_read     0x20000258   Data          11  dependencies.o(.data)
+    __stdout                                 0x20000264   Data           4  retarget.o(.data)
+    g_CLK_i32ErrCode                         0x20000268   Data           4  clk.o(.data)
+    g_u8RecData                              0x2000026c   Data         256  dependencies.o(.bss)
+    FPGA_input                               0x2000036c   Data          50  dependencies.o(.bss)
+    __initial_sp                             0x20000ba0   Data           0  startup_m480.o(STACK)
 
 
 
@@ -873,69 +956,72 @@ Memory Map of the image
 
   Image Entry point : 0x000002e9
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00001af0, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001bdc, Max: 0xffffffff, ABSOLUTE)
 
     Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00001970, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000000   0x000001f4   Data   RO          321    RESET               startup_m480.o
-    0x000001f4   0x000001f4   0x00000000   Code   RO          958  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x000001f4   0x000001f4   0x00000004   Code   RO         1226    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x000001f8   0x000001f8   0x00000004   Code   RO         1229    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x000001fc   0x000001fc   0x00000000   Code   RO         1231    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x000001fc   0x000001fc   0x00000000   Code   RO         1233    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x000001fc   0x000001fc   0x00000008   Code   RO         1234    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x00000204   0x00000204   0x00000004   Code   RO         1241    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
-    0x00000208   0x00000208   0x00000000   Code   RO         1236    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
-    0x00000208   0x00000208   0x00000000   Code   RO         1238    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
-    0x00000208   0x00000208   0x00000004   Code   RO         1227    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x0000020c   0x0000020c   0x0000001c   Code   RO          426    .emb_text           retarget.o
+    0x000001f4   0x000001f4   0x00000000   Code   RO         1127  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x000001f4   0x000001f4   0x00000004   Code   RO         1395    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x000001f8   0x000001f8   0x00000004   Code   RO         1398    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x000001fc   0x000001fc   0x00000000   Code   RO         1400    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x000001fc   0x000001fc   0x00000000   Code   RO         1402    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x000001fc   0x000001fc   0x00000008   Code   RO         1403    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00000204   0x00000204   0x00000004   Code   RO         1410    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x00000208   0x00000208   0x00000000   Code   RO         1405    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x00000208   0x00000208   0x00000000   Code   RO         1407    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x00000208   0x00000208   0x00000004   Code   RO         1396    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x0000020c   0x0000020c   0x0000001c   Code   RO          595    .emb_text           retarget.o
     0x00000228   0x00000228   0x000000c0   Code   RO            4    .text               system_m480.o
     0x000002e8   0x000002e8   0x00000068   Code   RO          322  * .text               startup_m480.o
-    0x00000350   0x00000350   0x00000094   Code   RO          329    .text               main.o
-    0x000003e4   0x000003e4   0x000008c4   Code   RO          375    .text               dependencies.o
-    0x00000ca8   0x00000ca8   0x000000fc   Code   RO          427    .text               retarget.o
-    0x00000da4   0x00000da4   0x00000438   Code   RO          498    .text               clk.o
-    0x000011dc   0x000011dc   0x000001a8   Code   RO          743    .text               uart.o
-    0x00001384   0x00001384   0x00000164   Code   RO          828    .text               timer.o
-    0x000014e8   0x000014e8   0x0000002c   Code   RO          913    .text               gpio.o
-    0x00001514   0x00001514   0x00000024   Code   RO          961    .text               mc_w.l(memcpya.o)
-    0x00001538   0x00001538   0x00000062   Code   RO         1244    .text               mc_w.l(uldiv.o)
+    0x00000350   0x00000350   0x000000c0   Code   RO          329    .text               main.o
+    0x00000410   0x00000410   0x00000896   Code   RO          406    .text               dependencies.o
+    0x00000ca6   0x00000ca6   0x00000002   PAD
+    0x00000ca8   0x00000ca8   0x000000fc   Code   RO          596    .text               retarget.o
+    0x00000da4   0x00000da4   0x00000438   Code   RO          667    .text               clk.o
+    0x000011dc   0x000011dc   0x000001a8   Code   RO          912    .text               uart.o
+    0x00001384   0x00001384   0x00000164   Code   RO          997    .text               timer.o
+    0x000014e8   0x000014e8   0x0000002c   Code   RO         1082    .text               gpio.o
+    0x00001514   0x00001514   0x00000024   Code   RO         1130    .text               mc_w.l(memcpya.o)
+    0x00001538   0x00001538   0x00000062   Code   RO         1413    .text               mc_w.l(uldiv.o)
     0x0000159a   0x0000159a   0x00000002   PAD
-    0x0000159c   0x0000159c   0x00000024   Code   RO         1257    .text               mc_w.l(init.o)
-    0x000015c0   0x000015c0   0x0000001e   Code   RO         1259    .text               mc_w.l(llshl.o)
-    0x000015de   0x000015de   0x00000020   Code   RO         1261    .text               mc_w.l(llushr.o)
+    0x0000159c   0x0000159c   0x00000024   Code   RO         1426    .text               mc_w.l(init.o)
+    0x000015c0   0x000015c0   0x0000001e   Code   RO         1428    .text               mc_w.l(llshl.o)
+    0x000015de   0x000015de   0x00000020   Code   RO         1430    .text               mc_w.l(llushr.o)
     0x000015fe   0x000015fe   0x00000002   PAD
-    0x00001600   0x00001600   0x00000020   Code   RO         1098    i.__0printf$5       mc_w.l(printf5.o)
-    0x00001620   0x00001620   0x0000000e   Code   RO         1269    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0000162e   0x0000162e   0x00000002   Code   RO         1270    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00001630   0x00001630   0x0000000e   Code   RO         1271    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00001600   0x00001600   0x00000020   Code   RO         1267    i.__0printf$5       mc_w.l(printf5.o)
+    0x00001620   0x00001620   0x0000000e   Code   RO         1438    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0000162e   0x0000162e   0x00000002   Code   RO         1439    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00001630   0x00001630   0x0000000e   Code   RO         1440    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x0000163e   0x0000163e   0x00000002   PAD
-    0x00001640   0x00001640   0x000002c0   Code   RO         1105    i._printf_core      mc_w.l(printf5.o)
-    0x00001900   0x00001900   0x00000030   Data   RO          749    .constdata          uart.o
-    0x00001930   0x00001930   0x00000020   Data   RO          839    .constdata          timer.o
-    0x00001950   0x00001950   0x00000020   Data   RO         1267    Region$$Table       anon$$obj.o
+    0x00001640   0x00001640   0x000002c0   Code   RO         1274    i._printf_core      mc_w.l(printf5.o)
+    0x00001900   0x00001900   0x00000030   Data   RO          918    .constdata          uart.o
+    0x00001930   0x00001930   0x00000020   Data   RO         1008    .constdata          timer.o
+    0x00001950   0x00001950   0x00000020   Data   RO         1436    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00001970, Size: 0x00000180, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00001970, Size: 0x0000026c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   0x00001970   0x0000002c   Data   RW            5    .data               system_m480.o
     0x2000002c   0x0000199c   0x00000003   Data   RW          330    .data               main.o
     0x2000002f   0x0000199f   0x00000001   PAD
-    0x20000030   0x000019a0   0x00000148   Data   RW          383    .data               dependencies.o
-    0x20000178   0x00001ae8   0x00000004   Data   RW          433    .data               retarget.o
-    0x2000017c   0x00001aec   0x00000004   Data   RW          518    .data               clk.o
+    0x20000030   0x000019a0   0x00000233   Data   RW          414    .data               dependencies.o
+    0x20000263   0x00001bd3   0x00000001   PAD
+    0x20000264   0x00001bd4   0x00000004   Data   RW          602    .data               retarget.o
+    0x20000268   0x00001bd8   0x00000004   Data   RW          687    .data               clk.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000180, Load base: 0x00001af0, Size: 0x00000930, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x2000026c, Load base: 0x00001bdc, Size: 0x00000934, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000180        -       0x00000130   Zero   RW          378    .bss                dependencies.o
-    0x200002b0        -       0x00000800   Zero   RW          319    STACK               startup_m480.o
+    0x2000026c        -       0x00000132   Zero   RW          409    .bss                dependencies.o
+    0x2000039e   0x00001bdc   0x00000002   PAD
+    0x200003a0        -       0x00000800   Zero   RW          319    STACK               startup_m480.o
 
 
 ==============================================================================
@@ -946,9 +1032,9 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
       1080         60          0          4          0       5670   clk.o
-      2244         62          0        328        304     119366   dependencies.o
+      2198         54          0        563        306     123789   dependencies.o
         44          0          0          0          0       1043   gpio.o
-       148         22          0          3          0      43328   main.o
+       192         28          0          3          0      43360   main.o
        280        130          0          4          0       3725   retarget.o
        104         20        500          0       2048        972   startup_m480.o
        192         20          0         44          0      50049   system_m480.o
@@ -956,9 +1042,9 @@ Image component sizes
        424         42         48          0          0       2370   uart.o
 
     ----------------------------------------------------------------------
-      4872        386        612        384       2352     228933   Object Totals
+      4872        384        612        620       2356     233388   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         0          0          0          1          0          0   (incl. Padding)
+         2          0          0          2          2          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1001,15 +1087,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      5900        456        612        384       2352     228177   Grand Totals
-      5900        456        612        384       2352     228177   ELF Image Totals
-      5900        456        612        384          0          0   ROM Totals
+      5900        454        612        620       2356     232632   Grand Totals
+      5900        454        612        620       2356     232632   ELF Image Totals
+      5900        454        612        620          0          0   ROM Totals
 
 ==============================================================================
 
     Total RO  Size (Code + RO Data)                 6512 (   6.36kB)
-    Total RW  Size (RW Data + ZI Data)              2736 (   2.67kB)
-    Total ROM Size (Code + RO Data + RW Data)       6896 (   6.73kB)
+    Total RW  Size (RW Data + ZI Data)              2976 (   2.91kB)
+    Total ROM Size (Code + RO Data + RW Data)       7132 (   6.96kB)
 
 ==============================================================================
 
