@@ -96,7 +96,7 @@ I (..\..\..\nuvoton_ws\Library\StdDriver\inc\hsotg.h)(0x64586831)
 F (C:\Users\kevin\Documents\nuvoton_ws\Library\Device\Nuvoton\M480\Source\ARM\startup_M480.s)(0x64586831)(--cpu Cortex-M4.fp.sp --pd "__EVAL SETA 1" -g --16 --apcs=interwork --pd "__MICROLIB SETA 1"-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 538" --pd "DEBUG_ENABLE_SEMIHOST SETA 1"--list .\lst\startup_m480.lst --xref -o .\obj\startup_m480.o --depend .\obj\startup_m480.d)
 F (..\main.c)(0x64C0DBDD)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\..\..\nuvoton_ws\Library\CMSIS\Include -I ..\..\..\nuvoton_ws\Library\StdDriver\inc -I ..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
-I (..\dependencies.h)(0x64C0DB49)
+I (..\dependencies.h)(0x64CB3F55)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include\NuMicro.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include\M480.h)(0x64586831)
@@ -188,8 +188,8 @@ I (..\..\..\nuvoton_ws\Library\StdDriver\inc\usbd.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\hsusbd.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\otg.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\hsotg.h)(0x64586831)
-F (..\dependencies.c)(0x64C23DBE)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\..\..\nuvoton_ws\Library\CMSIS\Include -I ..\..\..\nuvoton_ws\Library\StdDriver\inc -I ..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\obj\dependencies.o --omf_browse .\obj\dependencies.crf --depend .\obj\dependencies.d)
-I (..\dependencies.h)(0x64C0DB49)
+F (..\dependencies.c)(0x64CB3D8D)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\..\..\nuvoton_ws\Library\CMSIS\Include -I ..\..\..\nuvoton_ws\Library\StdDriver\inc -I ..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\obj\dependencies.o --omf_browse .\obj\dependencies.crf --depend .\obj\dependencies.d)
+I (..\dependencies.h)(0x64CB3F55)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
 I (..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include\NuMicro.h)(0x64586831)
@@ -282,7 +282,7 @@ I (..\..\..\nuvoton_ws\Library\StdDriver\inc\usbd.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\hsusbd.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\otg.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\hsotg.h)(0x64586831)
-F (..\dependencies.h)(0x64C0DB49)()
+F (..\dependencies.h)(0x64CB3F55)()
 F (C:\Users\kevin\Documents\nuvoton_ws\Library\StdDriver\src\retarget.c)(0x64586831)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\..\..\nuvoton_ws\Library\CMSIS\Include -I ..\..\..\nuvoton_ws\Library\StdDriver\inc -I ..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\obj\retarget.o --omf_browse .\obj\retarget.crf --depend .\obj\retarget.d)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
 I (..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include\NuMicro.h)(0x64586831)
