@@ -3,6 +3,7 @@
 ".\obj\startup_m480.o"
 ".\obj\main.o"
 ".\obj\dependencies.o"
+".\obj\mcu_display_control.o"
 ".\obj\retarget.o"
 ".\obj\clk.o"
 ".\obj\sys.o"

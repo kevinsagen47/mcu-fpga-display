@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Thu Aug 03 13:47:14 2023
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Thu Aug 03 14:41:12 2023
 ;VERSION 0.2
 ;FILE clk.o
 CLK_DisableCKO <= USED 0
@@ -26,40 +26,11 @@ __asm___5_clk_c_9a445bc2____REVSH <= USED 0
 __asm___5_clk_c_9a445bc2____RRX <= USED 0
 ;FILE dependencies.o
 AutoFlow_FunctionTest <= USED 0
-__asm___14_dependencies_c_393eed9d____REV16 <= USED 0
-__asm___14_dependencies_c_393eed9d____REVSH <= USED 0
-__asm___14_dependencies_c_393eed9d____RRX <= USED 0
-read_F_max <= USED 0
-read_F_start <= USED 0
-read_P_max <= USED 0
-read_amplitude_set_display <= USED 0
+__asm___14_dependencies_c_i____REV16 <= USED 0
+__asm___14_dependencies_c_i____REVSH <= USED 0
+__asm___14_dependencies_c_i____RRX <= USED 0
 read_current_display <= USED 0
-read_distance_absolute_set_display <= USED 0
-read_distance_display <= USED 0
-read_distance_relative_set_display <= USED 0
-read_distance_travelled <= USED 0
-read_energy_display <= USED 0
-read_energy_set_display <= USED 0
-read_force_display <= USED 0
-read_force_set_display <= USED 0
 read_freq_display <= USED 0
-read_freq_end <= USED 0
-read_freq_max <= USED 0
-read_freq_min <= USED 0
-read_freq_start <= USED 0
-read_mode_set <= USED 0
-read_pressure_display <= USED 0
-read_time_on <= USED 0
-read_time_set_stage_one_display <= USED 0
-read_timeout_set_display <= USED 0
-write_amplitude_set <= USED 0
-write_distance_absolute_set <= USED 0
-write_distance_relative_set <= USED 0
-write_energy_set <= USED 0
-write_force_set <= USED 0
-write_mode_set <= USED 0
-write_time_set_stage_one_set <= USED 0
-write_timeout_set <= USED 0
 ;FILE gpio.o
 GPIO_DisableInt <= USED 0
 GPIO_EnableInt <= USED 0
@@ -72,6 +43,10 @@ __asm___6_gpio_c_f8f858a7____RRX <= USED 0
 __asm___6_main_c_header____REV16 <= USED 0
 __asm___6_main_c_header____REVSH <= USED 0
 __asm___6_main_c_header____RRX <= USED 0
+;FILE mcu_display_control.o
+__asm___21_mcu_display_control_c_2ff7d1aa____REV16 <= USED 0
+__asm___21_mcu_display_control_c_2ff7d1aa____REVSH <= USED 0
+__asm___21_mcu_display_control_c_2ff7d1aa____RRX <= USED 0
 ;FILE retarget.o
 IsDebugFifoEmpty <= USED 0
 __asm___10_retarget_c_d5a1b03f____REV16 <= USED 0
