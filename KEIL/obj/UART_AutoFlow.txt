@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 270284 (0x00041fcc)
-    Section header offset: 270316 (0x00041fec)
+    Program header offset: 270280 (0x00041fc8)
+    Section header offset: 270312 (0x00041fe8)
 
     Section header string table index: 15
 
@@ -522,11 +522,11 @@
         0x0000041a:    4770        pG      BX       lr
     write_timeout_set
         0x0000041c:    49fb        .I      LDR      r1,[pc,#1004] ; [0x80c] = 0x20000030
-        0x0000041e:    6288        .b      STR      r0,[r1,#0x28]
+        0x0000041e:    62c8        .b      STR      r0,[r1,#0x2c]
         0x00000420:    4770        pG      BX       lr
     write_distance_absolute_set
         0x00000422:    49fa        .I      LDR      r1,[pc,#1000] ; [0x80c] = 0x20000030
-        0x00000424:    6308        .c      STR      r0,[r1,#0x30]
+        0x00000424:    6348        Hc      STR      r0,[r1,#0x34]
         0x00000426:    4770        pG      BX       lr
     write_distance_relative_set
         0x00000428:    49f8        .I      LDR      r1,[pc,#992] ; [0x80c] = 0x20000030
@@ -542,7 +542,7 @@
         0x00000438:    4770        pG      BX       lr
     write_time_set_stage_one_set
         0x0000043a:    49f4        .I      LDR      r1,[pc,#976] ; [0x80c] = 0x20000030
-        0x0000043c:    6348        Hc      STR      r0,[r1,#0x34]
+        0x0000043c:    6288        .b      STR      r0,[r1,#0x28]
         0x0000043e:    4770        pG      BX       lr
     read_amplitude_set_display
         0x00000440:    48f2        .H      LDR      r0,[pc,#968] ; [0x80c] = 0x20000030
@@ -734,7 +734,7 @@
         0x00000592:    7878        xx      LDRB     r0,[r7,#1]
         0x00000594:    2809        .(      CMP      r0,#9
         0x00000596:    d031        1.      BEQ      0x5fc ; mcu_to_fpga + 116
-        0x00000598:    6ab8        .j      LDR      r0,[r7,#0x28]
+        0x00000598:    6af8        .j      LDR      r0,[r7,#0x2c]
         0x0000059a:    62d0        .b      STR      r0,[r2,#0x2c]
         0x0000059c:    69b8        .i      LDR      r0,[r7,#0x18]
         0x0000059e:    2802        .(      CMP      r0,#2
@@ -743,7 +743,7 @@
         0x000005a4:    d031        1.      BEQ      0x60a ; mcu_to_fpga + 130
         0x000005a6:    2805        .(      CMP      r0,#5
         0x000005a8:    d035        5.      BEQ      0x616 ; mcu_to_fpga + 142
-        0x000005aa:    6b78        xk      LDR      r0,[r7,#0x34]
+        0x000005aa:    6ab8        .j      LDR      r0,[r7,#0x28]
         0x000005ac:    61d5        .a      STR      r5,[r2,#0x1c]
         0x000005ae:    6215        .b      STR      r5,[r2,#0x20]
         0x000005b0:    e9c25009    ...P    STRD     r5,r0,[r2,#0x24]
@@ -788,7 +788,7 @@
         0x00000606:    6255        Ub      STR      r5,[r2,#0x24]
         0x00000608:    e003        ..      B        0x612 ; mcu_to_fpga + 138
         0x0000060a:    61d5        .a      STR      r5,[r2,#0x1c]
-        0x0000060c:    6b38        8k      LDR      r0,[r7,#0x30]
+        0x0000060c:    6b78        xk      LDR      r0,[r7,#0x34]
         0x0000060e:    e9c20508    ....    STRD     r0,r5,[r2,#0x20]
         0x00000612:    6295        .b      STR      r5,[r2,#0x28]
         0x00000614:    e7ce        ..      B        0x5b4 ; mcu_to_fpga + 44
@@ -872,9 +872,9 @@
         0x000006bc:    4638        8F      MOV      r0,r7
         0x000006be:    f000ff23    ..#.    BL       TIMER_Delay ; 0x1508
         0x000006c2:    6829        )h      LDR      r1,[r5,#0]
-        0x000006c4:    6ae0        .j      LDR      r0,[r4,#0x2c]
+        0x000006c4:    6b20         k      LDR      r0,[r4,#0x30]
         0x000006c6:    1c40        @.      ADDS     r0,r0,#1
-        0x000006c8:    62e0        .b      STR      r0,[r4,#0x2c]
+        0x000006c8:    6320         c      STR      r0,[r4,#0x30]
         0x000006ca:    88e0        ..      LDRH     r0,[r4,#6]
         0x000006cc:    5431        1T      STRB     r1,[r6,r0]
         0x000006ce:    1c40        @.      ADDS     r0,r0,#1
@@ -2887,7 +2887,7 @@
 
 
 ** Section #14 '.comment' (SHT_PROGBITS)
-    Size   : 12520 bytes
+    Size   : 12516 bytes
 
 
 ** Section #15 '.shstrtab' (SHT_STRTAB)
