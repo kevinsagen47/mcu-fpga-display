@@ -98,6 +98,58 @@ void print_page_setting_2(){
 		
 }
 
+uint8_t display_page_SectionVib_time_stage2 [10] ={0x78,0x54,0x69,0x6D,0x65,0x2E,0x76,0x61,0x6C,0x3D};//xTime.val=
+uint8_t display_page_SectionVib_dist_stage2 [18] ={0x78,0x43,0x6F,0x6C,0x6C,0x61,0x70,0x73,0x65,0x44,0x69,0x73,0x74,0x2E,0x76,0x61,0x6C,0x3D};//xCollapseDist.val=
+uint8_t display_page_SectionVib_power_stage2 [11] ={0x6E,0x50,0x6F,0x77,0x65,0x72,0x2E,0x76,0x61,0x6C,0x3D};//nPower.val=
+uint8_t display_page_SectionVib_energy_stage2 [12] ={0x6E,0x45,0x6E,0x65,0x72,0x67,0x79,0x2E,0x76,0x61,0x6C,0x3D};//nEnergy.val=
+uint8_t display_page_SectionVib_amplitudeA_stage2 [13] ={0x6E,0x56,0x69,0x62,0x41,0x6D,0x70,0x41,0x2E,0x76,0x61,0x6C,0x3D};//nVibAmpA.val=
+uint8_t display_page_SectionVib_amplitudeB_stage2 [13] ={0x6E,0x56,0x69,0x62,0x41,0x6D,0x70,0x42,0x2E,0x76,0x61,0x6C,0x3D};//nVibAmpB.val=
+void print_page_SectionVib(){
+	  
+			UART_Write(UART1,display_page_SectionVib_amplitudeA_stage2 ,13);
+			binary_to_bcd_array(read_amplitudeA_set_stage2_display());
+			UART_Write(UART1,bcd_array,5);
+			UART_Write(UART1,header,3);
+			UART_Write(UART1,display_page_SectionVib_amplitudeB_stage2 ,13);
+			binary_to_bcd_array(read_amplitudeB_set_stage2_display());
+			UART_Write(UART1,bcd_array,5);
+			UART_Write(UART1,header,3);
+		
+//		else if (stage_mode!=0 ){  
+//			UART_Write(UART1,display_page_SectionVib_amplitudeB_stage2 ,10);
+//			binary_to_bcd_array(read_amplitudeB_set_stage2_display());
+//			UART_Write(UART1,bcd_array,5);
+//			UART_Write(UART1,header,3);
+//		}
+	  if (read_stage2_mode_address_display()==3 ){  // stage_mode==1
+			UART_Write(UART1,display_page_SectionVib_time_stage2 ,10);
+			binary_to_bcd_array(read_time_set_stage2_display()/10);
+			UART_Write(UART1,bcd_array,5);
+			UART_Write(UART1,header,3);
+		}
+		else if (read_stage2_mode_address_display()==4){  // stage_mode==2
+			UART_Write(UART1,display_page_SectionVib_dist_stage2 ,18);
+			binary_to_bcd_array(read_distance_set_stage2_display());
+			UART_Write(UART1,bcd_array,5);
+			UART_Write(UART1,header,3);
+		}
+		/*
+		else if (stage_mode!=0||stage_mode==3 ){  // stage_mode==3
+			UART_Write(UART1,display_page_SectionVib_power_stage2 ,10);
+			binary_to_bcd_array(read_power_set_stage2_display());
+			UART_Write(UART1,bcd_array,5);
+			UART_Write(UART1,header,3);
+		}
+		*/
+		
+		else if (read_stage2_mode_address_display()==6 ){  // stage_mode==4)
+			UART_Write(UART1,display_page_SectionVib_energy_stage2 ,12);
+			binary_to_bcd_array(read_energy_set_stage2_display()*100);
+			UART_Write(UART1,bcd_array,5);
+			UART_Write(UART1,header,3);
+		}
+	}
+
 uint8_t display_page_head_down_pressure [9] ={0x62,0x5B,0x38,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[8].val=
 uint8_t display_page_head_down_force_read [9] ={0x62,0x5B,0x39,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[9].val=
 uint8_t display_page_head_down_distance_read [11] ={0x62,0x5B,0x31,0x33,0x5D,0x2E,0x74,0x78,0x74,0x3D,0x22};//b[13].txt="
@@ -136,10 +188,13 @@ uint8_t display_page_2_freq_min [7] 					= { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D
 uint8_t display_page_2_P_max [7] 							= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_energy [7] 						= { 0x6E, 0x36,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_time_on [7] 						= { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_distance_travelled[7]	= { 0x6E, 0x38,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_distance_travelled[11]	= {0x62,0x5B,0x34,0x34,0x5D,0x2E,0x74,0x78,0x74,0x3D,0x22};//b[13].txt="
 uint8_t display_page_2_F_start [7] 						= { 0x6E, 0x39,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_F_max [8] 							= { 0x6E, 0x31,0x30,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_F_set [7] 						= { 0x6E, 0x38,0x2E,0x76,0x61,0x6C,0x3D};
 
+
+uint8_t display_page_2_distance_absolute [11] ={0x62,0x5B,0x34,0x35,0x5D,0x2E,0x74,0x78,0x74,0x3D,0x22};//b[13].txt="
 
 void print_page_weld_record(){
 		UART_Write(UART1,display_page_2_freq_start,7);
@@ -177,13 +232,44 @@ void print_page_weld_record(){
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 		
-		UART_Write(UART1,display_page_2_distance_travelled,7);
+		UART_Write(UART1,display_page_2_distance_travelled,11);
 		binary_to_bcd_array(read_distance_travelled());
-		UART_Write(UART1,bcd_array,5);
+		
+		UART_Write(UART1,bcd_array,3);
+		one_array_temp[0] = 0x2E;
+		UART_Write(UART1,one_array_temp,1);//decimal point
+		one_array_temp[0] = bcd_array[3];
+		UART_Write(UART1,one_array_temp,1);//first decimal place
+		one_array_temp[0] = bcd_array[4];
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		one_array_temp[0] = 0x22;
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		
+		UART_Write(UART1,header,3);
+		
+		
+		UART_Write(UART1,display_page_2_distance_absolute,11);
+		binary_to_bcd_array(read_distance_reached());
+		
+		UART_Write(UART1,bcd_array,3);
+		one_array_temp[0] = 0x2E;
+		UART_Write(UART1,one_array_temp,1);//decimal point
+		one_array_temp[0] = bcd_array[3];
+		UART_Write(UART1,one_array_temp,1);//first decimal place
+		one_array_temp[0] = bcd_array[4];
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		one_array_temp[0] = 0x22;
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		
 		UART_Write(UART1,header,3);
 		
 		UART_Write(UART1,display_page_2_F_start,7);
 		binary_to_bcd_array(read_F_start());
+		UART_Write(UART1,bcd_array,5);
+		UART_Write(UART1,header,3);
+		
+		UART_Write(UART1,display_page_2_F_set,7);
+		binary_to_bcd_array(read_force_set_display());
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 		
@@ -193,7 +279,7 @@ void print_page_weld_record(){
 		UART_Write(UART1,header,3);
 }
 //display_to_mcu()
-int test,energy_set_temp,timer_mode_set;
+int test,energy_set_temp,timer_mode_set,energy_set_stage2_temp;
 //int temp_distance_relative,temp_distance_absolute, temp_energy;
 void display_to_mcu(){//display HMI => MCU
 				if(display_input_command[2]==0xFF || display_input_command[3]==0xFF){
@@ -259,6 +345,34 @@ void display_to_mcu(){//display HMI => MCU
 						//time_set=((display_input_command[2]<<8)|(display_input_command[1]))*1000;
 						//timeout_set=time_set;
 						break;
+					case 0xd0:
+						if (display_input_command[1]==0)write_stage2_mode_address_set(0);
+						//write_stage_mode(display_input_command[1]);
+						break;
+					case 0xd1:
+						write_amplitudeA_set_stage2(display_input_command[1]);
+					  break;
+					case 0xd2:
+						write_amplitudeB_set_stage2(display_input_command[1]);
+						break;
+					case 0xd3:
+						write_time_set_stage2(((display_input_command[2]<<8)|(display_input_command[1]))*10);
+						write_stage2_mode_address_set(3);
+						break;
+					case 0xd4:
+						write_distance_set_stage2((display_input_command[2]<<8)|(display_input_command[1]));
+						write_stage2_mode_address_set(4);
+						break;
+					/*
+					case 0xd5:
+						write_power_set_stage2((display_input_command[2]<<8)|(display_input_command[1]));
+						break;*/
+					case 0xd6:
+						//energy_set_stage2_temp = (display_input_command[2]<<8)|(display_input_command[1]);
+						write_energy_set_stage2((display_input_command[2]<<8)|(display_input_command[1]));
+						write_stage2_mode_address_set(6);
+						break;
+					
 					default:
 						test=0;
 						break;

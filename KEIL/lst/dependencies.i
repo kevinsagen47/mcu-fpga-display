@@ -284,6 +284,7 @@ void print_page_setting_1(void);
 void print_page_setting_2(void);
 void print_page_weld_record(void);
 void print_page_head_down(void);
+void print_page_SectionVib(void);
 extern uint8_t header[3];
 extern uint8_t display_input_command[4];
 extern uint8_t display_page;
@@ -302,6 +303,18 @@ void write_force_set (unsigned int arg);
 void write_time_set_stage_one_set (unsigned int arg);
 
 
+void write_amplitudeA_set_stage2 (unsigned int arg);
+void write_amplitudeB_set_stage2 (unsigned int arg);
+void write_stage_mode (unsigned int arg);
+void write_distance_set_stage2 (unsigned int arg);
+void write_power_set_stage2 (unsigned int arg);
+void write_energy_set_stage2 (unsigned int arg);
+void write_time_set_stage2 (unsigned int arg);
+void write_stage2_mode_address_set (unsigned int arg);
+
+
+
+
 
 unsigned int read_amplitude_set_display(void);
 unsigned int read_mode_set(void) ;
@@ -317,6 +330,7 @@ unsigned int read_distance_relative_set_display(void);
 unsigned int read_energy_set_display(void);
 unsigned int read_force_set_display(void);
 unsigned int read_time_set_stage_one_display(void);
+unsigned int read_distance_reached(void);
 
 
 
@@ -339,6 +353,16 @@ unsigned int read_F_max(void);
 unsigned int read_P_max(void);
 unsigned int read_distance_travelled(void);
 unsigned int read_time_on(void);
+
+
+
+unsigned int read_amplitudeA_set_stage2_display(void);
+unsigned int read_amplitudeB_set_stage2_display(void);
+unsigned int read_stage2_mode_address_display(void);
+unsigned int read_time_set_stage2_display(void);
+unsigned int read_distance_set_stage2_display(void);
+
+unsigned int read_energy_set_stage2_display(void);
 
 
 
@@ -85418,7 +85442,7 @@ unsigned int amplitude_set_display,freq_display,timeout_set_display,
 		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,
 		time_set_stage_one_display,standby;
 
-unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on;
+unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached;
 
 void write_amplitude_set (unsigned int arg){amplitude_set=arg;}
 void write_mode_set (unsigned int arg){mode_set=arg;}
@@ -85430,6 +85454,19 @@ void write_force_set (unsigned int arg){force_set=arg;}
 void write_time_set_stage_one_set (unsigned int arg){time_set_stage_one_set=arg;}
 
 
+unsigned int stage_mode_on_off=0, time_set_stage2, distance_set_stage2, energy_set_stage2, power_set_stage2, amplitudeA_set_stage2, amplitudeB_set_stage2;
+unsigned int time_set_stage2_display, distance_set_stage2_display, energy_set_stage2_display, power_set_stage2_display,
+	  amplitudeA_set_stage2_display, amplitudeB_set_stage2_display;
+unsigned int stage2_mode_address_set,stage2_mode_value_display,stage2_mode_address_display;
+void write_amplitudeA_set_stage2 (unsigned int arg){amplitude_set=arg;}
+void write_amplitudeB_set_stage2 (unsigned int arg){amplitudeB_set_stage2=arg;}
+
+void write_distance_set_stage2 (unsigned int arg){distance_set_stage2=arg;}
+void write_power_set_stage2 (unsigned int arg){power_set_stage2=arg;}
+void write_energy_set_stage2 (unsigned int arg){energy_set_stage2=arg;}
+void write_time_set_stage2 (unsigned int arg){time_set_stage2=arg;}
+void write_stage2_mode_address_set (unsigned int arg){stage2_mode_address_set=arg;}
+	
 
 
 unsigned int read_amplitude_set_display(void){return amplitude_set_display;}
@@ -85455,7 +85492,17 @@ unsigned int read_F_start(){return F_start;}
 unsigned int read_F_max(){return F_max;}
 unsigned int read_P_max(){return P_max;}
 unsigned int read_distance_travelled(){return distance_travelled;}
+unsigned int read_distance_reached(){return distance_reached;}
 unsigned int read_time_on(){return time_on;}
+
+
+unsigned int read_amplitudeA_set_stage2_display(){return amplitude_set_display;}
+unsigned int read_amplitudeB_set_stage2_display(){return amplitudeB_set_stage2_display;}
+unsigned int read_stage2_mode_address_display() {return stage2_mode_address_display;}
+unsigned int read_time_set_stage2_display(){if(stage2_mode_address_display==3)return stage2_mode_value_display;else return 0;}
+unsigned int read_distance_set_stage2_display(){if(stage2_mode_address_display==4)return stage2_mode_value_display;else return 0;}
+
+unsigned int read_energy_set_stage2_display(){if(stage2_mode_address_display==6)return stage2_mode_value_display;else return 0;}
 
 
 
@@ -85465,8 +85512,8 @@ unsigned int temp_time_picker;
 
 
 volatile int32_t g_i32pointer_0 = 0;
-uint16_t FPGA_length=50;
-uint8_t FPGA_input[50] = {0};
+uint16_t FPGA_length=56;
+uint8_t FPGA_input[56] = {0};
 uint16_t FPGA_address=0;
 
 
@@ -85500,13 +85547,19 @@ void fpga_to_mcu(void){
 		P_max													=(FPGA_input[41]<<8)|(FPGA_input[42]);
 		time_on												=(FPGA_input[43]<<8)|(FPGA_input[44]);
 		distance_travelled						= (FPGA_input[45]<<8)|(FPGA_input[46]);
+		distance_reached						= (FPGA_input[47]<<8)|(FPGA_input[48]);
 		
-		time_set_stage_one_display		= (FPGA_input[47]<<8)|(FPGA_input[48]);
+		time_set_stage_one_display		= (FPGA_input[49]<<8)|(FPGA_input[50]);
+		
+		amplitudeB_set_stage2_display	= FPGA_input[51];
+		stage2_mode_address_display	= FPGA_input[52];
+		stage2_mode_value_display = (FPGA_input[53]<<8)|(FPGA_input[54]);
 	}
 }
 int time_set_zero=0;
 unsigned int temp_distance_relative_set,temp_distance_absolute_set, temp_energy_set, temp_time_set_stage_one_set,temp_timeout_set;
-
+unsigned int temp_value_mode_stage2;
+unsigned int temp_stage2_address;
 void mcu_to_fpga(void){
 	
 	if (display_page==9)temp_timeout_set=0;
@@ -85537,8 +85590,21 @@ void mcu_to_fpga(void){
 		temp_energy_set=0;
 	}
 		
+	if(stage2_mode_address_set==3){
+		temp_value_mode_stage2=time_set_stage2;
+		temp_stage2_address=0xD3;
+	}
+	else if (stage2_mode_address_set==4){
+		temp_value_mode_stage2=distance_set_stage2;
+		temp_stage2_address=0xD4;
+	}
+	else if (stage2_mode_address_set==6){
+		temp_value_mode_stage2=energy_set_stage2;	
+		temp_stage2_address=0xD6;
+	}
+	else temp_value_mode_stage2=0;	
 	
-	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[49]==0x68){
+	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[55]==0x68){
 		if(amplitude_set_display!=amplitude_set){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xC0));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (amplitude_set));
@@ -85572,6 +85638,7 @@ void mcu_to_fpga(void){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (temp_distance_relative_set& ~(~0U << 8)));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (temp_distance_relative_set>>8));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
+			
 			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
 	}	
 		else if (distance_absolute_set_display!=temp_distance_absolute_set){
@@ -85595,6 +85662,27 @@ void mcu_to_fpga(void){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
 			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
 	}
+		
+		else if (stage2_mode_address_set==0 && amplitudeB_set_stage2_display!=0){
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xD0));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0x00));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
+			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
+	}	
+		else if (stage2_mode_address_set!=0 && amplitudeB_set_stage2!=amplitudeB_set_stage2_display){
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xD2));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (amplitudeB_set_stage2));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
+			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
+	}
+		else if (stage2_mode_address_set!=0 && (stage2_mode_address_set!=stage2_mode_address_display || temp_value_mode_stage2!=stage2_mode_value_display)){
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (temp_stage2_address));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (temp_value_mode_stage2& ~(~0U << 8)));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (temp_value_mode_stage2>>8));
+			
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
+			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
+	}		
 		else (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 0;
 		
 }}

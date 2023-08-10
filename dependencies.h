@@ -28,6 +28,7 @@ void print_page_setting_1(void);
 void print_page_setting_2(void);
 void print_page_weld_record(void);
 void print_page_head_down(void);
+void print_page_SectionVib(void);
 extern uint8_t header[3];
 extern uint8_t display_input_command[4];
 extern uint8_t display_page;
@@ -44,6 +45,18 @@ void write_distance_relative_set (unsigned int arg);
 void write_energy_set (unsigned int arg);
 void write_force_set (unsigned int arg);
 void write_time_set_stage_one_set (unsigned int arg);
+
+
+void write_amplitudeA_set_stage2 (unsigned int arg);
+void write_amplitudeB_set_stage2 (unsigned int arg);
+void write_stage_mode (unsigned int arg);
+void write_distance_set_stage2 (unsigned int arg);
+void write_power_set_stage2 (unsigned int arg);
+void write_energy_set_stage2 (unsigned int arg);
+void write_time_set_stage2 (unsigned int arg);
+void write_stage2_mode_address_set (unsigned int arg);
+
+
 //////////////////////////////////////////////////////////////////
 
 /////////////////////READ SETTING///////////////////////////////////
@@ -61,6 +74,7 @@ unsigned int read_distance_relative_set_display(void);
 unsigned int read_energy_set_display(void);
 unsigned int read_force_set_display(void);
 unsigned int read_time_set_stage_one_display(void);
+unsigned int read_distance_reached(void);
 ////////////////////////////////////////////////////////////////////
 
 ////////////////////HEAD DOWN//////////////////////////////////////
@@ -84,6 +98,16 @@ unsigned int read_P_max(void);
 unsigned int read_distance_travelled(void);
 unsigned int read_time_on(void);
 ///////////////////////////////////////////////////////////////////////
+
+//////////////////////////stages////////////////////////////
+unsigned int read_amplitudeA_set_stage2_display(void);
+unsigned int read_amplitudeB_set_stage2_display(void);
+unsigned int read_stage2_mode_address_display(void);
+unsigned int read_time_set_stage2_display(void);
+unsigned int read_distance_set_stage2_display(void);
+//unsigned int read_power_set_stage2_display(){return power_set_stage2_display;}
+unsigned int read_energy_set_stage2_display(void);
+//////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #endif

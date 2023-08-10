@@ -1193,6 +1193,7 @@ void print_page_setting_1(void);
 void print_page_setting_2(void);
 void print_page_weld_record(void);
 void print_page_head_down(void);
+void print_page_SectionVib(void);
 extern uint8_t header[3];
 extern uint8_t display_input_command[4];
 extern uint8_t display_page;
@@ -1211,6 +1212,18 @@ void write_force_set (unsigned int arg);
 void write_time_set_stage_one_set (unsigned int arg);
 
 
+void write_amplitudeA_set_stage2 (unsigned int arg);
+void write_amplitudeB_set_stage2 (unsigned int arg);
+void write_stage_mode (unsigned int arg);
+void write_distance_set_stage2 (unsigned int arg);
+void write_power_set_stage2 (unsigned int arg);
+void write_energy_set_stage2 (unsigned int arg);
+void write_time_set_stage2 (unsigned int arg);
+void write_stage2_mode_address_set (unsigned int arg);
+
+
+
+
 
 unsigned int read_amplitude_set_display(void);
 unsigned int read_mode_set(void) ;
@@ -1226,6 +1239,7 @@ unsigned int read_distance_relative_set_display(void);
 unsigned int read_energy_set_display(void);
 unsigned int read_force_set_display(void);
 unsigned int read_time_set_stage_one_display(void);
+unsigned int read_distance_reached(void);
 
 
 
@@ -1248,6 +1262,16 @@ unsigned int read_F_max(void);
 unsigned int read_P_max(void);
 unsigned int read_distance_travelled(void);
 unsigned int read_time_on(void);
+
+
+
+unsigned int read_amplitudeA_set_stage2_display(void);
+unsigned int read_amplitudeB_set_stage2_display(void);
+unsigned int read_stage2_mode_address_display(void);
+unsigned int read_time_set_stage2_display(void);
+unsigned int read_distance_set_stage2_display(void);
+
+unsigned int read_energy_set_stage2_display(void);
 
 
 
@@ -85402,6 +85426,7 @@ void TMR0_IRQHandler(void)
 		else print_page_lock_freq();
 	}
 	else if (display_page==3)print_page_setting_2();
+	else if (display_page==4)print_page_SectionVib();
 	else if (display_page==8)print_page_weld_record();
 	else if (display_page==9)print_page_head_down();
 	else TIMER_Delay(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10100UL)), 5);
