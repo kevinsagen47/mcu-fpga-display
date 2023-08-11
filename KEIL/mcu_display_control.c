@@ -144,7 +144,7 @@ void print_page_SectionVib(){
 		
 		else if (read_stage2_mode_address_display()==6 ){  // stage_mode==4)
 			UART_Write(UART1,display_page_SectionVib_energy_stage2 ,12);
-			binary_to_bcd_array(read_energy_set_stage2_display()*100);
+			binary_to_bcd_array(read_energy_set_stage2_display());
 			UART_Write(UART1,bcd_array,5);
 			UART_Write(UART1,header,3);
 		}

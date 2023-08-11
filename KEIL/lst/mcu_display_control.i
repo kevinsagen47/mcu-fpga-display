@@ -85541,7 +85541,7 @@ void print_page_SectionVib(){
 		
 		else if (read_stage2_mode_address_display()==6 ){  
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_SectionVib_energy_stage2 ,12);
-			binary_to_bcd_array(read_energy_set_stage2_display()*100);
+			binary_to_bcd_array(read_energy_set_stage2_display());
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		}

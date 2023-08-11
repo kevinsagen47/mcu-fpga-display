@@ -57,7 +57,7 @@ void write_force_set (unsigned int arg){force_set=arg;}
 void write_time_set_stage_one_set (unsigned int arg){time_set_stage_one_set=arg;}
 
 //stage 2
-unsigned int stage_mode_on_off=0, time_set_stage2, distance_set_stage2, energy_set_stage2, power_set_stage2, amplitudeA_set_stage2, amplitudeB_set_stage2;
+unsigned int stage_mode_on_off=0, time_set_stage2, distance_set_stage2, energy_set_stage2, power_set_stage2, amplitudeA_set_stage2, amplitudeB_set_stage2=30;
 unsigned int time_set_stage2_display, distance_set_stage2_display, energy_set_stage2_display, power_set_stage2_display,
 	  amplitudeA_set_stage2_display, amplitudeB_set_stage2_display;
 unsigned int stage2_mode_address_set,stage2_mode_value_display,stage2_mode_address_display;
@@ -266,7 +266,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 			PC6 = 1;
 	}
 		//stage 2/////////////////////////////////////////////////////////////////////////
-		else if (stage2_mode_address_set==0 && amplitudeB_set_stage2_display!=0){
+		else if (stage2_mode_address_set==0 && (amplitudeB_set_stage2_display!=0 || stage2_mode_address_display!=0)){
 			UART_WRITE(UART0,0xD0);
 			UART_WRITE(UART0,0x00);
 			UART_WRITE(UART0,0xFF);
