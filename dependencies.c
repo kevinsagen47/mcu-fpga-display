@@ -43,7 +43,7 @@ unsigned int amplitude_set=20,freq,mode_set=1,time_set,
 unsigned int amplitude_set_display,freq_display,timeout_set_display, 
 		distance_absolute_set_display,distance_relative_set_display, energy_set_display, force_set_display,
 		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,
-		time_set_stage_one_display,standby;
+		time_set_stage_one_display,standby,hold_time_display,hold_time_set;
 //history
 unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached;
 
@@ -55,6 +55,7 @@ void write_distance_relative_set (unsigned int arg){distance_relative_set=arg;}
 void write_energy_set (unsigned int arg){energy_set=arg;}
 void write_force_set (unsigned int arg){force_set=arg;}
 void write_time_set_stage_one_set (unsigned int arg){time_set_stage_one_set=arg;}
+void write_hold_time_set(unsigned int arg){hold_time_set=arg;}
 
 //stage 2
 unsigned int stage_mode_on_off=0, time_set_stage2, distance_set_stage2, energy_set_stage2, power_set_stage2, amplitudeA_set_stage2, amplitudeB_set_stage2=30;
@@ -106,6 +107,8 @@ unsigned int read_time_set_stage2_display(){if(stage2_mode_address_display==3)re
 unsigned int read_distance_set_stage2_display(){if(stage2_mode_address_display==4)return stage2_mode_value_display;else return 0;}
 //unsigned int read_power_set_stage2_display(){return power_set_stage2_display;}
 unsigned int read_energy_set_stage2_display(){if(stage2_mode_address_display==6)return stage2_mode_value_display;else return 0;}
+unsigned int read_stage2_mode_address_set() {return stage2_mode_address_set;}
+unsigned int read_hold_time_display() {return hold_time_display;}
 //unsigned int read_(){return ;}
 
 
@@ -115,8 +118,8 @@ unsigned int temp_time_picker;
 
 
 volatile int32_t g_i32pointer_0 = 0;
-uint16_t FPGA_length=56;
-uint8_t FPGA_input[56] = {0};
+uint16_t FPGA_length=58;
+uint8_t FPGA_input[58] = {0};
 uint16_t FPGA_address=0;
 
 //fpga_to_mcu
@@ -157,6 +160,7 @@ void fpga_to_mcu(void){//FPGA => MCU
 		amplitudeB_set_stage2_display	= FPGA_input[51];
 		stage2_mode_address_display	= FPGA_input[52];
 		stage2_mode_value_display = (FPGA_input[53]<<8)|(FPGA_input[54]);
+		hold_time_display = (FPGA_input[55]<<8)|(FPGA_input[56]);
 	}
 }
 int time_set_zero=0;
@@ -207,7 +211,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 	}
 	else temp_value_mode_stage2=0;	
 	
-	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[55]==0x68){
+	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[57]==0x68){
 		if(amplitude_set_display!=amplitude_set){
 			UART_WRITE(UART0,0xC0);
 			UART_WRITE(UART0,amplitude_set);
@@ -265,19 +269,27 @@ void mcu_to_fpga(void){//MCU => FPGA
 			UART_WRITE(UART0,0xFF);
 			PC6 = 1;
 	}
-		//stage 2/////////////////////////////////////////////////////////////////////////
-		else if (stage2_mode_address_set==0 && (amplitudeB_set_stage2_display!=0 || stage2_mode_address_display!=0)){
-			UART_WRITE(UART0,0xD0);
-			UART_WRITE(UART0,0x00);
+		else if (hold_time_set!=hold_time_display){
+			UART_WRITE(UART0,0xC8);
+			UART_WRITE(UART0,hold_time_set& ~(~0U << 8));
+			UART_WRITE(UART0,hold_time_set>>8);
 			UART_WRITE(UART0,0xFF);
 			PC6 = 1;
-	}	
-		else if (stage2_mode_address_set!=0 && amplitudeB_set_stage2!=amplitudeB_set_stage2_display){
+	}
+		else if (amplitudeB_set_stage2!=amplitudeB_set_stage2_display){
 			UART_WRITE(UART0,0xD2);
 			UART_WRITE(UART0,amplitudeB_set_stage2);
 			UART_WRITE(UART0,0xFF);
 			PC6 = 1;
 	}
+		//stage 2/////////////////////////////////////////////////////////////////////////
+		else if (stage2_mode_address_set==0 && stage2_mode_address_display!=0){
+			UART_WRITE(UART0,0xD0);
+			UART_WRITE(UART0,0x00);
+			UART_WRITE(UART0,0xFF);
+			PC6 = 1;
+	}	
+		
 		else if (stage2_mode_address_set!=0 && (stage2_mode_address_set!=stage2_mode_address_display || temp_value_mode_stage2!=stage2_mode_value_display)){
 			UART_WRITE(UART0,temp_stage2_address);
 			UART_WRITE(UART0,temp_value_mode_stage2& ~(~0U << 8));

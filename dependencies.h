@@ -55,7 +55,7 @@ void write_power_set_stage2 (unsigned int arg);
 void write_energy_set_stage2 (unsigned int arg);
 void write_time_set_stage2 (unsigned int arg);
 void write_stage2_mode_address_set (unsigned int arg);
-
+void write_hold_time_set(unsigned int arg);
 
 //////////////////////////////////////////////////////////////////
 
@@ -75,6 +75,7 @@ unsigned int read_energy_set_display(void);
 unsigned int read_force_set_display(void);
 unsigned int read_time_set_stage_one_display(void);
 unsigned int read_distance_reached(void);
+unsigned int read_hold_time_display(void);
 ////////////////////////////////////////////////////////////////////
 
 ////////////////////HEAD DOWN//////////////////////////////////////
@@ -107,6 +108,7 @@ unsigned int read_time_set_stage2_display(void);
 unsigned int read_distance_set_stage2_display(void);
 //unsigned int read_power_set_stage2_display(){return power_set_stage2_display;}
 unsigned int read_energy_set_stage2_display(void);
+unsigned int read_stage2_mode_address_set(void);
 //////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
