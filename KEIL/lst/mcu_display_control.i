@@ -85504,7 +85504,8 @@ void print_page_setting_1(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_hold_time_set,14);
-		binary_to_bcd_array(read_hold_time_display());
+		binary_to_bcd_array(read_hold_time_display()/10
+		);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 }
@@ -85762,7 +85763,8 @@ void display_to_mcu(){
 						
 						break;
 					case 0xc8:
-						write_hold_time_set((display_input_command[2]<<8)|(display_input_command[1]));
+						write_hold_time_set((display_input_command[2]<<8)|(display_input_command[1])*10);
+						break;
 					case 0xcd:
 						write_timeout_set(((display_input_command[2]<<8)|(display_input_command[1]))*1000);
 						
@@ -85806,7 +85808,10 @@ void display_to_mcu(){
 					
 					
 				}
-				
+				display_input_command[0]=0;
+				display_input_command[1]=0;
+				display_input_command[2]=0;
+				display_input_command[3]=0;
 				
 
 

@@ -105,7 +105,8 @@ void print_page_setting_1(){
 		UART_Write(UART1,header,3);
 		
 		UART_Write(UART1,display_page_setting_1_hold_time_set,14);
-		binary_to_bcd_array(read_hold_time_display());
+		binary_to_bcd_array(read_hold_time_display()/10
+		);
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 }
@@ -363,7 +364,8 @@ void display_to_mcu(){//display HMI => MCU
 						//time_set_stage_one_set = 0;
 						break;
 					case 0xc8:
-						write_hold_time_set((display_input_command[2]<<8)|(display_input_command[1]));
+						write_hold_time_set((display_input_command[2]<<8)|(display_input_command[1])*10);
+						break;
 					case 0xcd://timeout
 						write_timeout_set(((display_input_command[2]<<8)|(display_input_command[1]))*1000);
 						//time_set=((display_input_command[2]<<8)|(display_input_command[1]))*1000;
@@ -407,7 +409,10 @@ void display_to_mcu(){//display HMI => MCU
 					//else time_set=timeout_set;
 					
 				}
-				
+				display_input_command[0]=0;
+				display_input_command[1]=0;
+				display_input_command[2]=0;
+				display_input_command[3]=0;
 				/*
 					printf ("page %d\n",display_page);
 					printf ("power setting %d\n",amplitude_set);

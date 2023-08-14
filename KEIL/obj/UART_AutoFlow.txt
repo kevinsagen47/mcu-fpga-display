@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 279356 (0x0004433c)
-    Section header offset: 279388 (0x0004435c)
+    Program header offset: 278988 (0x000441cc)
+    Section header offset: 279020 (0x000441ec)
 
     Section header string table index: 15
 
@@ -466,13 +466,13 @@
         0x00000386:    e7f4        ..      B        0x372 ; TMR0_IRQHandler + 34
         0x00000388:    f000fbb0    ....    BL       print_page_setting_1 ; 0xaec
         0x0000038c:    e7f1        ..      B        0x372 ; TMR0_IRQHandler + 34
-        0x0000038e:    f000fc53    ..S.    BL       print_page_setting_2 ; 0xc38
+        0x0000038e:    f000fc55    ..U.    BL       print_page_setting_2 ; 0xc3c
         0x00000392:    e7ee        ..      B        0x372 ; TMR0_IRQHandler + 34
-        0x00000394:    f000fc68    ..h.    BL       print_page_SectionVib ; 0xc68
+        0x00000394:    f000fc6a    ..j.    BL       print_page_SectionVib ; 0xc6c
         0x00000398:    e7eb        ..      B        0x372 ; TMR0_IRQHandler + 34
-        0x0000039a:    f000fd26    ..&.    BL       print_page_weld_record ; 0xdea
+        0x0000039a:    f000fd28    ..(.    BL       print_page_weld_record ; 0xdee
         0x0000039e:    e7e8        ..      B        0x372 ; TMR0_IRQHandler + 34
-        0x000003a0:    f000fcc4    ....    BL       print_page_head_down ; 0xd2c
+        0x000003a0:    f000fcc6    ....    BL       print_page_head_down ; 0xd30
         0x000003a4:    e7e5        ..      B        0x372 ; TMR0_IRQHandler + 34
     main
         0x000003a6:    f000fadd    ....    BL       SYS_Init ; 0x964
@@ -1104,7 +1104,7 @@
         0x000008e2:    f8c48068    ..h.    STR      r8,[r4,#0x68]
         0x000008e6:    e7e2        ..      B        0x8ae ; UART1_TEST_HANDLE + 46
         0x000008e8:    e8bd47f0    ...G    POP      {r4-r10,lr}
-        0x000008ec:    f000bbb8    ....    B.W      display_to_mcu ; 0x1060
+        0x000008ec:    f000bbba    ....    B.W      display_to_mcu ; 0x1064
         0x000008f0:    e8bd87f0    ....    POP      {r4-r10,pc}
     UART1_interrrupt
         0x000008f4:    485f        _H      LDR      r0,[pc,#380] ; [0xa74] = 0x40071000
@@ -1287,30 +1287,30 @@
         0x00000ae6:    48ed        .H      LDR      r0,[pc,#948] ; [0xe9c] = 0x40071000
         0x00000ae8:    f000be8a    ....    B.W      UART_Write ; 0x1800
     print_page_setting_1
-        0x00000aec:    b510        ..      PUSH     {r4,lr}
+        0x00000aec:    b570        p.      PUSH     {r4-r6,lr}
         0x00000aee:    f7fffcca    ....    BL       read_mode_set ; 0x486
-        0x00000af2:    4cea        .L      LDR      r4,[pc,#936] ; [0xe9c] = 0x40071000
-        0x00000af4:    2802        .(      CMP      r0,#2
-        0x00000af6:    d02d        -.      BEQ      0xb54 ; print_page_setting_1 + 104
-        0x00000af8:    f7fffcc5    ....    BL       read_mode_set ; 0x486
-        0x00000afc:    2803        .(      CMP      r0,#3
-        0x00000afe:    d038        8.      BEQ      0xb72 ; print_page_setting_1 + 134
-        0x00000b00:    f7fffcc1    ....    BL       read_mode_set ; 0x486
-        0x00000b04:    2805        .(      CMP      r0,#5
-        0x00000b06:    f04f023c    O.<.    MOV      r2,#0x3c
-        0x00000b0a:    d041        A.      BEQ      0xb90 ; print_page_setting_1 + 164
-        0x00000b0c:    49e1        .I      LDR      r1,[pc,#900] ; [0xe94] = 0x20000128
-        0x00000b0e:    4620         F      MOV      r0,r4
-        0x00000b10:    314c        L1      ADDS     r1,r1,#0x4c
-        0x00000b12:    f000fe75    ..u.    BL       UART_Write ; 0x1800
-        0x00000b16:    49e0        .I      LDR      r1,[pc,#896] ; [0xe98] = 0x2000029c
-        0x00000b18:    220a        ."      MOVS     r2,#0xa
-        0x00000b1a:    3936        69      SUBS     r1,r1,#0x36
-        0x00000b1c:    4620         F      MOV      r0,r4
-        0x00000b1e:    f000fe6f    ..o.    BL       UART_Write ; 0x1800
-        0x00000b22:    f7fffcce    ....    BL       read_time_set_stage_one_display ; 0x4c2
-        0x00000b26:    210a        .!      MOVS     r1,#0xa
-        0x00000b28:    fbb0f0f1    ....    UDIV     r0,r0,r1
+        0x00000af2:    250a        .%      MOVS     r5,#0xa
+        0x00000af4:    4ce9        .L      LDR      r4,[pc,#932] ; [0xe9c] = 0x40071000
+        0x00000af6:    2802        .(      CMP      r0,#2
+        0x00000af8:    d02c        ,.      BEQ      0xb54 ; print_page_setting_1 + 104
+        0x00000afa:    f7fffcc4    ....    BL       read_mode_set ; 0x486
+        0x00000afe:    2803        .(      CMP      r0,#3
+        0x00000b00:    d037        7.      BEQ      0xb72 ; print_page_setting_1 + 134
+        0x00000b02:    f7fffcc0    ....    BL       read_mode_set ; 0x486
+        0x00000b06:    2805        .(      CMP      r0,#5
+        0x00000b08:    f04f023c    O.<.    MOV      r2,#0x3c
+        0x00000b0c:    d040        @.      BEQ      0xb90 ; print_page_setting_1 + 164
+        0x00000b0e:    49e1        .I      LDR      r1,[pc,#900] ; [0xe94] = 0x20000128
+        0x00000b10:    4620         F      MOV      r0,r4
+        0x00000b12:    314c        L1      ADDS     r1,r1,#0x4c
+        0x00000b14:    f000fe74    ..t.    BL       UART_Write ; 0x1800
+        0x00000b18:    49df        .I      LDR      r1,[pc,#892] ; [0xe98] = 0x2000029c
+        0x00000b1a:    220a        ."      MOVS     r2,#0xa
+        0x00000b1c:    3936        69      SUBS     r1,r1,#0x36
+        0x00000b1e:    4620         F      MOV      r0,r4
+        0x00000b20:    f000fe6e    ..n.    BL       UART_Write ; 0x1800
+        0x00000b24:    f7fffccd    ....    BL       read_time_set_stage_one_display ; 0x4c2
+        0x00000b28:    fbb0f0f5    ....    UDIV     r0,r0,r5
         0x00000b2c:    f7ffffaa    ....    BL       binary_to_bcd_array ; 0xa84
         0x00000b30:    2205        ."      MOVS     r2,#5
         0x00000b32:    49d8        .I      LDR      r1,[pc,#864] ; [0xe94] = 0x20000128
@@ -1404,525 +1404,532 @@
         0x00000c12:    4620         F      MOV      r0,r4
         0x00000c14:    f000fdf4    ....    BL       UART_Write ; 0x1800
         0x00000c18:    f7fffca8    ....    BL       read_hold_time_display ; 0x56c
-        0x00000c1c:    f7ffff32    ..2.    BL       binary_to_bcd_array ; 0xa84
-        0x00000c20:    2205        ."      MOVS     r2,#5
-        0x00000c22:    499c        .I      LDR      r1,[pc,#624] ; [0xe94] = 0x20000128
-        0x00000c24:    4620         F      MOV      r0,r4
-        0x00000c26:    f000fdeb    ....    BL       UART_Write ; 0x1800
-        0x00000c2a:    4620         F      MOV      r0,r4
-        0x00000c2c:    e8bd4010    ...@    POP      {r4,lr}
-        0x00000c30:    2203        ."      MOVS     r2,#3
-        0x00000c32:    499b        .I      LDR      r1,[pc,#620] ; [0xea0] = 0x2000002c
-        0x00000c34:    f000bde4    ....    B.W      UART_Write ; 0x1800
+        0x00000c1c:    fbb0f0f5    ....    UDIV     r0,r0,r5
+        0x00000c20:    f7ffff30    ..0.    BL       binary_to_bcd_array ; 0xa84
+        0x00000c24:    2205        ."      MOVS     r2,#5
+        0x00000c26:    499b        .I      LDR      r1,[pc,#620] ; [0xe94] = 0x20000128
+        0x00000c28:    4620         F      MOV      r0,r4
+        0x00000c2a:    f000fde9    ....    BL       UART_Write ; 0x1800
+        0x00000c2e:    4620         F      MOV      r0,r4
+        0x00000c30:    e8bd4070    ..p@    POP      {r4-r6,lr}
+        0x00000c34:    2203        ."      MOVS     r2,#3
+        0x00000c36:    499a        .I      LDR      r1,[pc,#616] ; [0xea0] = 0x2000002c
+        0x00000c38:    f000bde2    ....    B.W      UART_Write ; 0x1800
     print_page_setting_2
-        0x00000c38:    b510        ..      PUSH     {r4,lr}
-        0x00000c3a:    4997        .I      LDR      r1,[pc,#604] ; [0xe98] = 0x2000029c
-        0x00000c3c:    4c97        .L      LDR      r4,[pc,#604] ; [0xe9c] = 0x40071000
-        0x00000c3e:    220f        ."      MOVS     r2,#0xf
-        0x00000c40:    3183        .1      ADDS     r1,r1,#0x83
-        0x00000c42:    4620         F      MOV      r0,r4
-        0x00000c44:    f000fddc    ....    BL       UART_Write ; 0x1800
-        0x00000c48:    f7fffc20    .. .    BL       read_timeout_set_display ; 0x48c
-        0x00000c4c:    f7ffff1a    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000c50:    2202        ."      MOVS     r2,#2
-        0x00000c52:    4990        .I      LDR      r1,[pc,#576] ; [0xe94] = 0x20000128
-        0x00000c54:    4620         F      MOV      r0,r4
-        0x00000c56:    f000fdd3    ....    BL       UART_Write ; 0x1800
-        0x00000c5a:    4620         F      MOV      r0,r4
-        0x00000c5c:    e8bd4010    ...@    POP      {r4,lr}
-        0x00000c60:    2203        ."      MOVS     r2,#3
-        0x00000c62:    498f        .I      LDR      r1,[pc,#572] ; [0xea0] = 0x2000002c
-        0x00000c64:    f000bdcc    ....    B.W      UART_Write ; 0x1800
+        0x00000c3c:    b510        ..      PUSH     {r4,lr}
+        0x00000c3e:    4996        .I      LDR      r1,[pc,#600] ; [0xe98] = 0x2000029c
+        0x00000c40:    4c96        .L      LDR      r4,[pc,#600] ; [0xe9c] = 0x40071000
+        0x00000c42:    220f        ."      MOVS     r2,#0xf
+        0x00000c44:    3183        .1      ADDS     r1,r1,#0x83
+        0x00000c46:    4620         F      MOV      r0,r4
+        0x00000c48:    f000fdda    ....    BL       UART_Write ; 0x1800
+        0x00000c4c:    f7fffc1e    ....    BL       read_timeout_set_display ; 0x48c
+        0x00000c50:    f7ffff18    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000c54:    2202        ."      MOVS     r2,#2
+        0x00000c56:    498f        .I      LDR      r1,[pc,#572] ; [0xe94] = 0x20000128
+        0x00000c58:    4620         F      MOV      r0,r4
+        0x00000c5a:    f000fdd1    ....    BL       UART_Write ; 0x1800
+        0x00000c5e:    4620         F      MOV      r0,r4
+        0x00000c60:    e8bd4010    ...@    POP      {r4,lr}
+        0x00000c64:    2203        ."      MOVS     r2,#3
+        0x00000c66:    498e        .I      LDR      r1,[pc,#568] ; [0xea0] = 0x2000002c
+        0x00000c68:    f000bdca    ....    B.W      UART_Write ; 0x1800
     print_page_SectionVib
-        0x00000c68:    b510        ..      PUSH     {r4,lr}
-        0x00000c6a:    498b        .I      LDR      r1,[pc,#556] ; [0xe98] = 0x2000029c
-        0x00000c6c:    4c8b        .L      LDR      r4,[pc,#556] ; [0xe9c] = 0x40071000
-        0x00000c6e:    220d        ."      MOVS     r2,#0xd
-        0x00000c70:    31ba        .1      ADDS     r1,r1,#0xba
-        0x00000c72:    4620         F      MOV      r0,r4
-        0x00000c74:    f000fdc4    ....    BL       UART_Write ; 0x1800
-        0x00000c78:    f7fffc4e    ..N.    BL       read_amplitudeA_set_stage2_display ; 0x518
-        0x00000c7c:    f7ffff02    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000c80:    2205        ."      MOVS     r2,#5
-        0x00000c82:    4984        .I      LDR      r1,[pc,#528] ; [0xe94] = 0x20000128
-        0x00000c84:    4620         F      MOV      r0,r4
-        0x00000c86:    f000fdbb    ....    BL       UART_Write ; 0x1800
-        0x00000c8a:    2203        ."      MOVS     r2,#3
-        0x00000c8c:    4984        .I      LDR      r1,[pc,#528] ; [0xea0] = 0x2000002c
-        0x00000c8e:    4620         F      MOV      r0,r4
-        0x00000c90:    f000fdb6    ....    BL       UART_Write ; 0x1800
-        0x00000c94:    4980        .I      LDR      r1,[pc,#512] ; [0xe98] = 0x2000029c
-        0x00000c96:    220d        ."      MOVS     r2,#0xd
-        0x00000c98:    31c7        .1      ADDS     r1,r1,#0xc7
-        0x00000c9a:    4620         F      MOV      r0,r4
-        0x00000c9c:    f000fdb0    ....    BL       UART_Write ; 0x1800
-        0x00000ca0:    f7fffc3d    ..=.    BL       read_amplitudeB_set_stage2_display ; 0x51e
-        0x00000ca4:    f7fffeee    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000ca8:    2205        ."      MOVS     r2,#5
-        0x00000caa:    497a        zI      LDR      r1,[pc,#488] ; [0xe94] = 0x20000128
-        0x00000cac:    4620         F      MOV      r0,r4
-        0x00000cae:    f000fda7    ....    BL       UART_Write ; 0x1800
-        0x00000cb2:    2203        ."      MOVS     r2,#3
-        0x00000cb4:    497a        zI      LDR      r1,[pc,#488] ; [0xea0] = 0x2000002c
-        0x00000cb6:    4620         F      MOV      r0,r4
-        0x00000cb8:    f000fda2    ....    BL       UART_Write ; 0x1800
-        0x00000cbc:    f7fffc33    ..3.    BL       read_stage2_mode_address_display ; 0x526
-        0x00000cc0:    2803        .(      CMP      r0,#3
-        0x00000cc2:    d01d        ..      BEQ      0xd00 ; print_page_SectionVib + 152
-        0x00000cc4:    f7fffc2f    ../.    BL       read_stage2_mode_address_display ; 0x526
-        0x00000cc8:    2804        .(      CMP      r0,#4
-        0x00000cca:    d025        %.      BEQ      0xd18 ; print_page_SectionVib + 176
-        0x00000ccc:    f7fffc2b    ..+.    BL       read_stage2_mode_address_display ; 0x526
-        0x00000cd0:    2806        .(      CMP      r0,#6
-        0x00000cd2:    d12a        *.      BNE      0xd2a ; print_page_SectionVib + 194
-        0x00000cd4:    4970        pI      LDR      r1,[pc,#448] ; [0xe98] = 0x2000029c
-        0x00000cd6:    220c        ."      MOVS     r2,#0xc
-        0x00000cd8:    31ae        .1      ADDS     r1,r1,#0xae
-        0x00000cda:    4620         F      MOV      r0,r4
-        0x00000cdc:    f000fd90    ....    BL       UART_Write ; 0x1800
-        0x00000ce0:    f7fffc37    ..7.    BL       read_energy_set_stage2_display ; 0x552
-        0x00000ce4:    f7fffece    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000ce8:    2205        ."      MOVS     r2,#5
-        0x00000cea:    496a        jI      LDR      r1,[pc,#424] ; [0xe94] = 0x20000128
-        0x00000cec:    4620         F      MOV      r0,r4
-        0x00000cee:    f000fd87    ....    BL       UART_Write ; 0x1800
-        0x00000cf2:    4620         F      MOV      r0,r4
-        0x00000cf4:    e8bd4010    ...@    POP      {r4,lr}
-        0x00000cf8:    2203        ."      MOVS     r2,#3
-        0x00000cfa:    4969        iI      LDR      r1,[pc,#420] ; [0xea0] = 0x2000002c
-        0x00000cfc:    f000bd80    ....    B.W      UART_Write ; 0x1800
-        0x00000d00:    4965        eI      LDR      r1,[pc,#404] ; [0xe98] = 0x2000029c
-        0x00000d02:    220a        ."      MOVS     r2,#0xa
-        0x00000d04:    3192        .1      ADDS     r1,r1,#0x92
-        0x00000d06:    4620         F      MOV      r0,r4
-        0x00000d08:    f000fd7a    ..z.    BL       UART_Write ; 0x1800
-        0x00000d0c:    f7fffc0f    ....    BL       read_time_set_stage2_display ; 0x52e
-        0x00000d10:    210a        .!      MOVS     r1,#0xa
-        0x00000d12:    fbb0f0f1    ....    UDIV     r0,r0,r1
-        0x00000d16:    e7e5        ..      B        0xce4 ; print_page_SectionVib + 124
-        0x00000d18:    495f        _I      LDR      r1,[pc,#380] ; [0xe98] = 0x2000029c
-        0x00000d1a:    2212        ."      MOVS     r2,#0x12
-        0x00000d1c:    319c        .1      ADDS     r1,r1,#0x9c
-        0x00000d1e:    4620         F      MOV      r0,r4
-        0x00000d20:    f000fd6e    ..n.    BL       UART_Write ; 0x1800
-        0x00000d24:    f7fffc0c    ....    BL       read_distance_set_stage2_display ; 0x540
-        0x00000d28:    e7dc        ..      B        0xce4 ; print_page_SectionVib + 124
-        0x00000d2a:    bd10        ..      POP      {r4,pc}
+        0x00000c6c:    b510        ..      PUSH     {r4,lr}
+        0x00000c6e:    498a        .I      LDR      r1,[pc,#552] ; [0xe98] = 0x2000029c
+        0x00000c70:    4c8a        .L      LDR      r4,[pc,#552] ; [0xe9c] = 0x40071000
+        0x00000c72:    220d        ."      MOVS     r2,#0xd
+        0x00000c74:    31ba        .1      ADDS     r1,r1,#0xba
+        0x00000c76:    4620         F      MOV      r0,r4
+        0x00000c78:    f000fdc2    ....    BL       UART_Write ; 0x1800
+        0x00000c7c:    f7fffc4c    ..L.    BL       read_amplitudeA_set_stage2_display ; 0x518
+        0x00000c80:    f7ffff00    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000c84:    2205        ."      MOVS     r2,#5
+        0x00000c86:    4983        .I      LDR      r1,[pc,#524] ; [0xe94] = 0x20000128
+        0x00000c88:    4620         F      MOV      r0,r4
+        0x00000c8a:    f000fdb9    ....    BL       UART_Write ; 0x1800
+        0x00000c8e:    2203        ."      MOVS     r2,#3
+        0x00000c90:    4983        .I      LDR      r1,[pc,#524] ; [0xea0] = 0x2000002c
+        0x00000c92:    4620         F      MOV      r0,r4
+        0x00000c94:    f000fdb4    ....    BL       UART_Write ; 0x1800
+        0x00000c98:    497f        .I      LDR      r1,[pc,#508] ; [0xe98] = 0x2000029c
+        0x00000c9a:    220d        ."      MOVS     r2,#0xd
+        0x00000c9c:    31c7        .1      ADDS     r1,r1,#0xc7
+        0x00000c9e:    4620         F      MOV      r0,r4
+        0x00000ca0:    f000fdae    ....    BL       UART_Write ; 0x1800
+        0x00000ca4:    f7fffc3b    ..;.    BL       read_amplitudeB_set_stage2_display ; 0x51e
+        0x00000ca8:    f7fffeec    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000cac:    2205        ."      MOVS     r2,#5
+        0x00000cae:    4979        yI      LDR      r1,[pc,#484] ; [0xe94] = 0x20000128
+        0x00000cb0:    4620         F      MOV      r0,r4
+        0x00000cb2:    f000fda5    ....    BL       UART_Write ; 0x1800
+        0x00000cb6:    2203        ."      MOVS     r2,#3
+        0x00000cb8:    4979        yI      LDR      r1,[pc,#484] ; [0xea0] = 0x2000002c
+        0x00000cba:    4620         F      MOV      r0,r4
+        0x00000cbc:    f000fda0    ....    BL       UART_Write ; 0x1800
+        0x00000cc0:    f7fffc31    ..1.    BL       read_stage2_mode_address_display ; 0x526
+        0x00000cc4:    2803        .(      CMP      r0,#3
+        0x00000cc6:    d01d        ..      BEQ      0xd04 ; print_page_SectionVib + 152
+        0x00000cc8:    f7fffc2d    ..-.    BL       read_stage2_mode_address_display ; 0x526
+        0x00000ccc:    2804        .(      CMP      r0,#4
+        0x00000cce:    d025        %.      BEQ      0xd1c ; print_page_SectionVib + 176
+        0x00000cd0:    f7fffc29    ..).    BL       read_stage2_mode_address_display ; 0x526
+        0x00000cd4:    2806        .(      CMP      r0,#6
+        0x00000cd6:    d12a        *.      BNE      0xd2e ; print_page_SectionVib + 194
+        0x00000cd8:    496f        oI      LDR      r1,[pc,#444] ; [0xe98] = 0x2000029c
+        0x00000cda:    220c        ."      MOVS     r2,#0xc
+        0x00000cdc:    31ae        .1      ADDS     r1,r1,#0xae
+        0x00000cde:    4620         F      MOV      r0,r4
+        0x00000ce0:    f000fd8e    ....    BL       UART_Write ; 0x1800
+        0x00000ce4:    f7fffc35    ..5.    BL       read_energy_set_stage2_display ; 0x552
+        0x00000ce8:    f7fffecc    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000cec:    2205        ."      MOVS     r2,#5
+        0x00000cee:    4969        iI      LDR      r1,[pc,#420] ; [0xe94] = 0x20000128
+        0x00000cf0:    4620         F      MOV      r0,r4
+        0x00000cf2:    f000fd85    ....    BL       UART_Write ; 0x1800
+        0x00000cf6:    4620         F      MOV      r0,r4
+        0x00000cf8:    e8bd4010    ...@    POP      {r4,lr}
+        0x00000cfc:    2203        ."      MOVS     r2,#3
+        0x00000cfe:    4968        hI      LDR      r1,[pc,#416] ; [0xea0] = 0x2000002c
+        0x00000d00:    f000bd7e    ..~.    B.W      UART_Write ; 0x1800
+        0x00000d04:    4964        dI      LDR      r1,[pc,#400] ; [0xe98] = 0x2000029c
+        0x00000d06:    220a        ."      MOVS     r2,#0xa
+        0x00000d08:    3192        .1      ADDS     r1,r1,#0x92
+        0x00000d0a:    4620         F      MOV      r0,r4
+        0x00000d0c:    f000fd78    ..x.    BL       UART_Write ; 0x1800
+        0x00000d10:    f7fffc0d    ....    BL       read_time_set_stage2_display ; 0x52e
+        0x00000d14:    210a        .!      MOVS     r1,#0xa
+        0x00000d16:    fbb0f0f1    ....    UDIV     r0,r0,r1
+        0x00000d1a:    e7e5        ..      B        0xce8 ; print_page_SectionVib + 124
+        0x00000d1c:    495e        ^I      LDR      r1,[pc,#376] ; [0xe98] = 0x2000029c
+        0x00000d1e:    2212        ."      MOVS     r2,#0x12
+        0x00000d20:    319c        .1      ADDS     r1,r1,#0x9c
+        0x00000d22:    4620         F      MOV      r0,r4
+        0x00000d24:    f000fd6c    ..l.    BL       UART_Write ; 0x1800
+        0x00000d28:    f7fffc0a    ....    BL       read_distance_set_stage2_display ; 0x540
+        0x00000d2c:    e7dc        ..      B        0xce8 ; print_page_SectionVib + 124
+        0x00000d2e:    bd10        ..      POP      {r4,pc}
     print_page_head_down
-        0x00000d2c:    b570        p.      PUSH     {r4-r6,lr}
-        0x00000d2e:    495a        ZI      LDR      r1,[pc,#360] ; [0xe98] = 0x2000029c
-        0x00000d30:    4d5a        ZM      LDR      r5,[pc,#360] ; [0xe9c] = 0x40071000
-        0x00000d32:    2209        ."      MOVS     r2,#9
-        0x00000d34:    31d4        .1      ADDS     r1,r1,#0xd4
-        0x00000d36:    4628        (F      MOV      r0,r5
-        0x00000d38:    f000fd62    ..b.    BL       UART_Write ; 0x1800
-        0x00000d3c:    f7fffbbe    ....    BL       read_pressure_display ; 0x4bc
-        0x00000d40:    f7fffea0    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000d44:    2205        ."      MOVS     r2,#5
-        0x00000d46:    4953        SI      LDR      r1,[pc,#332] ; [0xe94] = 0x20000128
-        0x00000d48:    4628        (F      MOV      r0,r5
-        0x00000d4a:    f000fd59    ..Y.    BL       UART_Write ; 0x1800
-        0x00000d4e:    2203        ."      MOVS     r2,#3
-        0x00000d50:    4953        SI      LDR      r1,[pc,#332] ; [0xea0] = 0x2000002c
-        0x00000d52:    4628        (F      MOV      r0,r5
-        0x00000d54:    f000fd54    ..T.    BL       UART_Write ; 0x1800
-        0x00000d58:    494f        OI      LDR      r1,[pc,#316] ; [0xe98] = 0x2000029c
-        0x00000d5a:    2209        ."      MOVS     r2,#9
-        0x00000d5c:    31dd        .1      ADDS     r1,r1,#0xdd
-        0x00000d5e:    4628        (F      MOV      r0,r5
-        0x00000d60:    f000fd4e    ..N.    BL       UART_Write ; 0x1800
-        0x00000d64:    f7fffba1    ....    BL       read_force_display ; 0x4aa
-        0x00000d68:    f7fffe8c    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000d6c:    2205        ."      MOVS     r2,#5
-        0x00000d6e:    4949        II      LDR      r1,[pc,#292] ; [0xe94] = 0x20000128
-        0x00000d70:    4628        (F      MOV      r0,r5
-        0x00000d72:    f000fd45    ..E.    BL       UART_Write ; 0x1800
-        0x00000d76:    2203        ."      MOVS     r2,#3
-        0x00000d78:    4949        II      LDR      r1,[pc,#292] ; [0xea0] = 0x2000002c
-        0x00000d7a:    4628        (F      MOV      r0,r5
-        0x00000d7c:    f000fd40    ..@.    BL       UART_Write ; 0x1800
-        0x00000d80:    4945        EI      LDR      r1,[pc,#276] ; [0xe98] = 0x2000029c
-        0x00000d82:    220a        ."      MOVS     r2,#0xa
-        0x00000d84:    31e6        .1      ADDS     r1,r1,#0xe6
-        0x00000d86:    4628        (F      MOV      r0,r5
-        0x00000d88:    f000fd3a    ..:.    BL       UART_Write ; 0x1800
-        0x00000d8c:    f7fffb90    ....    BL       read_distance_display ; 0x4b0
-        0x00000d90:    f7fffe78    ..x.    BL       binary_to_bcd_array ; 0xa84
-        0x00000d94:    2203        ."      MOVS     r2,#3
-        0x00000d96:    493f        ?I      LDR      r1,[pc,#252] ; [0xe94] = 0x20000128
-        0x00000d98:    4628        (F      MOV      r0,r5
-        0x00000d9a:    f000fd31    ..1.    BL       UART_Write ; 0x1800
-        0x00000d9e:    4c3d        =L      LDR      r4,[pc,#244] ; [0xe94] = 0x20000128
-        0x00000da0:    202e        .       MOVS     r0,#0x2e
-        0x00000da2:    3c0c        .<      SUBS     r4,r4,#0xc
-        0x00000da4:    2201        ."      MOVS     r2,#1
-        0x00000da6:    7020         p      STRB     r0,[r4,#0]
-        0x00000da8:    4621        !F      MOV      r1,r4
-        0x00000daa:    4628        (F      MOV      r0,r5
-        0x00000dac:    f000fd28    ..(.    BL       UART_Write ; 0x1800
-        0x00000db0:    4e38        8N      LDR      r6,[pc,#224] ; [0xe94] = 0x20000128
-        0x00000db2:    2201        ."      MOVS     r2,#1
-        0x00000db4:    4621        !F      MOV      r1,r4
-        0x00000db6:    78f0        .x      LDRB     r0,[r6,#3]
-        0x00000db8:    7020         p      STRB     r0,[r4,#0]
-        0x00000dba:    4628        (F      MOV      r0,r5
-        0x00000dbc:    f000fd20    .. .    BL       UART_Write ; 0x1800
-        0x00000dc0:    7930        0y      LDRB     r0,[r6,#4]
-        0x00000dc2:    7020         p      STRB     r0,[r4,#0]
-        0x00000dc4:    2201        ."      MOVS     r2,#1
-        0x00000dc6:    4621        !F      MOV      r1,r4
-        0x00000dc8:    4628        (F      MOV      r0,r5
-        0x00000dca:    f000fd19    ....    BL       UART_Write ; 0x1800
-        0x00000dce:    2022        "       MOVS     r0,#0x22
-        0x00000dd0:    7020         p      STRB     r0,[r4,#0]
-        0x00000dd2:    2201        ."      MOVS     r2,#1
-        0x00000dd4:    4621        !F      MOV      r1,r4
-        0x00000dd6:    4628        (F      MOV      r0,r5
-        0x00000dd8:    f000fd12    ....    BL       UART_Write ; 0x1800
-        0x00000ddc:    4628        (F      MOV      r0,r5
-        0x00000dde:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x00000de2:    2203        ."      MOVS     r2,#3
-        0x00000de4:    492e        .I      LDR      r1,[pc,#184] ; [0xea0] = 0x2000002c
-        0x00000de6:    f000bd0b    ....    B.W      UART_Write ; 0x1800
+        0x00000d30:    b570        p.      PUSH     {r4-r6,lr}
+        0x00000d32:    4959        YI      LDR      r1,[pc,#356] ; [0xe98] = 0x2000029c
+        0x00000d34:    4d59        YM      LDR      r5,[pc,#356] ; [0xe9c] = 0x40071000
+        0x00000d36:    2209        ."      MOVS     r2,#9
+        0x00000d38:    31d4        .1      ADDS     r1,r1,#0xd4
+        0x00000d3a:    4628        (F      MOV      r0,r5
+        0x00000d3c:    f000fd60    ..`.    BL       UART_Write ; 0x1800
+        0x00000d40:    f7fffbbc    ....    BL       read_pressure_display ; 0x4bc
+        0x00000d44:    f7fffe9e    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000d48:    2205        ."      MOVS     r2,#5
+        0x00000d4a:    4952        RI      LDR      r1,[pc,#328] ; [0xe94] = 0x20000128
+        0x00000d4c:    4628        (F      MOV      r0,r5
+        0x00000d4e:    f000fd57    ..W.    BL       UART_Write ; 0x1800
+        0x00000d52:    2203        ."      MOVS     r2,#3
+        0x00000d54:    4952        RI      LDR      r1,[pc,#328] ; [0xea0] = 0x2000002c
+        0x00000d56:    4628        (F      MOV      r0,r5
+        0x00000d58:    f000fd52    ..R.    BL       UART_Write ; 0x1800
+        0x00000d5c:    494e        NI      LDR      r1,[pc,#312] ; [0xe98] = 0x2000029c
+        0x00000d5e:    2209        ."      MOVS     r2,#9
+        0x00000d60:    31dd        .1      ADDS     r1,r1,#0xdd
+        0x00000d62:    4628        (F      MOV      r0,r5
+        0x00000d64:    f000fd4c    ..L.    BL       UART_Write ; 0x1800
+        0x00000d68:    f7fffb9f    ....    BL       read_force_display ; 0x4aa
+        0x00000d6c:    f7fffe8a    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000d70:    2205        ."      MOVS     r2,#5
+        0x00000d72:    4948        HI      LDR      r1,[pc,#288] ; [0xe94] = 0x20000128
+        0x00000d74:    4628        (F      MOV      r0,r5
+        0x00000d76:    f000fd43    ..C.    BL       UART_Write ; 0x1800
+        0x00000d7a:    2203        ."      MOVS     r2,#3
+        0x00000d7c:    4948        HI      LDR      r1,[pc,#288] ; [0xea0] = 0x2000002c
+        0x00000d7e:    4628        (F      MOV      r0,r5
+        0x00000d80:    f000fd3e    ..>.    BL       UART_Write ; 0x1800
+        0x00000d84:    4944        DI      LDR      r1,[pc,#272] ; [0xe98] = 0x2000029c
+        0x00000d86:    220a        ."      MOVS     r2,#0xa
+        0x00000d88:    31e6        .1      ADDS     r1,r1,#0xe6
+        0x00000d8a:    4628        (F      MOV      r0,r5
+        0x00000d8c:    f000fd38    ..8.    BL       UART_Write ; 0x1800
+        0x00000d90:    f7fffb8e    ....    BL       read_distance_display ; 0x4b0
+        0x00000d94:    f7fffe76    ..v.    BL       binary_to_bcd_array ; 0xa84
+        0x00000d98:    2203        ."      MOVS     r2,#3
+        0x00000d9a:    493e        >I      LDR      r1,[pc,#248] ; [0xe94] = 0x20000128
+        0x00000d9c:    4628        (F      MOV      r0,r5
+        0x00000d9e:    f000fd2f    ../.    BL       UART_Write ; 0x1800
+        0x00000da2:    4c3c        <L      LDR      r4,[pc,#240] ; [0xe94] = 0x20000128
+        0x00000da4:    202e        .       MOVS     r0,#0x2e
+        0x00000da6:    3c0c        .<      SUBS     r4,r4,#0xc
+        0x00000da8:    2201        ."      MOVS     r2,#1
+        0x00000daa:    7020         p      STRB     r0,[r4,#0]
+        0x00000dac:    4621        !F      MOV      r1,r4
+        0x00000dae:    4628        (F      MOV      r0,r5
+        0x00000db0:    f000fd26    ..&.    BL       UART_Write ; 0x1800
+        0x00000db4:    4e37        7N      LDR      r6,[pc,#220] ; [0xe94] = 0x20000128
+        0x00000db6:    2201        ."      MOVS     r2,#1
+        0x00000db8:    4621        !F      MOV      r1,r4
+        0x00000dba:    78f0        .x      LDRB     r0,[r6,#3]
+        0x00000dbc:    7020         p      STRB     r0,[r4,#0]
+        0x00000dbe:    4628        (F      MOV      r0,r5
+        0x00000dc0:    f000fd1e    ....    BL       UART_Write ; 0x1800
+        0x00000dc4:    7930        0y      LDRB     r0,[r6,#4]
+        0x00000dc6:    7020         p      STRB     r0,[r4,#0]
+        0x00000dc8:    2201        ."      MOVS     r2,#1
+        0x00000dca:    4621        !F      MOV      r1,r4
+        0x00000dcc:    4628        (F      MOV      r0,r5
+        0x00000dce:    f000fd17    ....    BL       UART_Write ; 0x1800
+        0x00000dd2:    2022        "       MOVS     r0,#0x22
+        0x00000dd4:    7020         p      STRB     r0,[r4,#0]
+        0x00000dd6:    2201        ."      MOVS     r2,#1
+        0x00000dd8:    4621        !F      MOV      r1,r4
+        0x00000dda:    4628        (F      MOV      r0,r5
+        0x00000ddc:    f000fd10    ....    BL       UART_Write ; 0x1800
+        0x00000de0:    4628        (F      MOV      r0,r5
+        0x00000de2:    e8bd4070    ..p@    POP      {r4-r6,lr}
+        0x00000de6:    2203        ."      MOVS     r2,#3
+        0x00000de8:    492d        -I      LDR      r1,[pc,#180] ; [0xea0] = 0x2000002c
+        0x00000dea:    f000bd09    ....    B.W      UART_Write ; 0x1800
     print_page_weld_record
-        0x00000dea:    e92d41f0    -..A    PUSH     {r4-r8,lr}
-        0x00000dee:    4929        )I      LDR      r1,[pc,#164] ; [0xe94] = 0x20000128
-        0x00000df0:    f8df80a8    ....    LDR      r8,[pc,#168] ; [0xe9c] = 0x40071000
-        0x00000df4:    2207        ."      MOVS     r2,#7
-        0x00000df6:    1d49        I.      ADDS     r1,r1,#5
-        0x00000df8:    4640        @F      MOV      r0,r8
-        0x00000dfa:    f000fd01    ....    BL       UART_Write ; 0x1800
-        0x00000dfe:    f7fffb6b    ..k.    BL       read_freq_start ; 0x4d8
-        0x00000e02:    f7fffe3f    ..?.    BL       binary_to_bcd_array ; 0xa84
-        0x00000e06:    2205        ."      MOVS     r2,#5
-        0x00000e08:    4922        "I      LDR      r1,[pc,#136] ; [0xe94] = 0x20000128
-        0x00000e0a:    4640        @F      MOV      r0,r8
-        0x00000e0c:    f000fcf8    ....    BL       UART_Write ; 0x1800
-        0x00000e10:    2203        ."      MOVS     r2,#3
-        0x00000e12:    4923        #I      LDR      r1,[pc,#140] ; [0xea0] = 0x2000002c
-        0x00000e14:    4640        @F      MOV      r0,r8
-        0x00000e16:    f000fcf3    ....    BL       UART_Write ; 0x1800
-        0x00000e1a:    491e        .I      LDR      r1,[pc,#120] ; [0xe94] = 0x20000128
-        0x00000e1c:    2207        ."      MOVS     r2,#7
-        0x00000e1e:    310c        .1      ADDS     r1,r1,#0xc
-        0x00000e20:    4640        @F      MOV      r0,r8
-        0x00000e22:    f000fced    ....    BL       UART_Write ; 0x1800
-        0x00000e26:    f7fffb5b    ..[.    BL       read_freq_end ; 0x4e0
-        0x00000e2a:    f7fffe2b    ..+.    BL       binary_to_bcd_array ; 0xa84
-        0x00000e2e:    2205        ."      MOVS     r2,#5
-        0x00000e30:    4918        .I      LDR      r1,[pc,#96] ; [0xe94] = 0x20000128
-        0x00000e32:    4640        @F      MOV      r0,r8
-        0x00000e34:    f000fce4    ....    BL       UART_Write ; 0x1800
-        0x00000e38:    2203        ."      MOVS     r2,#3
-        0x00000e3a:    4919        .I      LDR      r1,[pc,#100] ; [0xea0] = 0x2000002c
-        0x00000e3c:    4640        @F      MOV      r0,r8
-        0x00000e3e:    f000fcdf    ....    BL       UART_Write ; 0x1800
-        0x00000e42:    4914        .I      LDR      r1,[pc,#80] ; [0xe94] = 0x20000128
-        0x00000e44:    2207        ."      MOVS     r2,#7
-        0x00000e46:    3113        .1      ADDS     r1,r1,#0x13
-        0x00000e48:    4640        @F      MOV      r0,r8
-        0x00000e4a:    f000fcd9    ....    BL       UART_Write ; 0x1800
-        0x00000e4e:    f7fffb3f    ..?.    BL       read_freq_max ; 0x4d0
-        0x00000e52:    f7fffe17    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000e56:    2205        ."      MOVS     r2,#5
-        0x00000e58:    490e        .I      LDR      r1,[pc,#56] ; [0xe94] = 0x20000128
-        0x00000e5a:    4640        @F      MOV      r0,r8
-        0x00000e5c:    f000fcd0    ....    BL       UART_Write ; 0x1800
-        0x00000e60:    2203        ."      MOVS     r2,#3
-        0x00000e62:    490f        .I      LDR      r1,[pc,#60] ; [0xea0] = 0x2000002c
-        0x00000e64:    4640        @F      MOV      r0,r8
-        0x00000e66:    f000fccb    ....    BL       UART_Write ; 0x1800
-        0x00000e6a:    490a        .I      LDR      r1,[pc,#40] ; [0xe94] = 0x20000128
-        0x00000e6c:    2207        ."      MOVS     r2,#7
-        0x00000e6e:    311a        .1      ADDS     r1,r1,#0x1a
-        0x00000e70:    4640        @F      MOV      r0,r8
-        0x00000e72:    f000fcc5    ....    BL       UART_Write ; 0x1800
-        0x00000e76:    f7fffb27    ..'.    BL       read_freq_min ; 0x4c8
-        0x00000e7a:    f7fffe03    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000e7e:    2205        ."      MOVS     r2,#5
-        0x00000e80:    4904        .I      LDR      r1,[pc,#16] ; [0xe94] = 0x20000128
-        0x00000e82:    4640        @F      MOV      r0,r8
-        0x00000e84:    f000fcbc    ....    BL       UART_Write ; 0x1800
-        0x00000e88:    2203        ."      MOVS     r2,#3
-        0x00000e8a:    4905        .I      LDR      r1,[pc,#20] ; [0xea0] = 0x2000002c
-        0x00000e8c:    4640        @F      MOV      r0,r8
-        0x00000e8e:    f000fcb7    ....    BL       UART_Write ; 0x1800
-        0x00000e92:    e007        ..      B        0xea4 ; print_page_weld_record + 186
+        0x00000dee:    e92d41f0    -..A    PUSH     {r4-r8,lr}
+        0x00000df2:    4928        (I      LDR      r1,[pc,#160] ; [0xe94] = 0x20000128
+        0x00000df4:    f8df80a4    ....    LDR      r8,[pc,#164] ; [0xe9c] = 0x40071000
+        0x00000df8:    2207        ."      MOVS     r2,#7
+        0x00000dfa:    1d49        I.      ADDS     r1,r1,#5
+        0x00000dfc:    4640        @F      MOV      r0,r8
+        0x00000dfe:    f000fcff    ....    BL       UART_Write ; 0x1800
+        0x00000e02:    f7fffb69    ..i.    BL       read_freq_start ; 0x4d8
+        0x00000e06:    f7fffe3d    ..=.    BL       binary_to_bcd_array ; 0xa84
+        0x00000e0a:    2205        ."      MOVS     r2,#5
+        0x00000e0c:    4921        !I      LDR      r1,[pc,#132] ; [0xe94] = 0x20000128
+        0x00000e0e:    4640        @F      MOV      r0,r8
+        0x00000e10:    f000fcf6    ....    BL       UART_Write ; 0x1800
+        0x00000e14:    2203        ."      MOVS     r2,#3
+        0x00000e16:    4922        "I      LDR      r1,[pc,#136] ; [0xea0] = 0x2000002c
+        0x00000e18:    4640        @F      MOV      r0,r8
+        0x00000e1a:    f000fcf1    ....    BL       UART_Write ; 0x1800
+        0x00000e1e:    491d        .I      LDR      r1,[pc,#116] ; [0xe94] = 0x20000128
+        0x00000e20:    2207        ."      MOVS     r2,#7
+        0x00000e22:    310c        .1      ADDS     r1,r1,#0xc
+        0x00000e24:    4640        @F      MOV      r0,r8
+        0x00000e26:    f000fceb    ....    BL       UART_Write ; 0x1800
+        0x00000e2a:    f7fffb59    ..Y.    BL       read_freq_end ; 0x4e0
+        0x00000e2e:    f7fffe29    ..).    BL       binary_to_bcd_array ; 0xa84
+        0x00000e32:    2205        ."      MOVS     r2,#5
+        0x00000e34:    4917        .I      LDR      r1,[pc,#92] ; [0xe94] = 0x20000128
+        0x00000e36:    4640        @F      MOV      r0,r8
+        0x00000e38:    f000fce2    ....    BL       UART_Write ; 0x1800
+        0x00000e3c:    2203        ."      MOVS     r2,#3
+        0x00000e3e:    4918        .I      LDR      r1,[pc,#96] ; [0xea0] = 0x2000002c
+        0x00000e40:    4640        @F      MOV      r0,r8
+        0x00000e42:    f000fcdd    ....    BL       UART_Write ; 0x1800
+        0x00000e46:    4913        .I      LDR      r1,[pc,#76] ; [0xe94] = 0x20000128
+        0x00000e48:    2207        ."      MOVS     r2,#7
+        0x00000e4a:    3113        .1      ADDS     r1,r1,#0x13
+        0x00000e4c:    4640        @F      MOV      r0,r8
+        0x00000e4e:    f000fcd7    ....    BL       UART_Write ; 0x1800
+        0x00000e52:    f7fffb3d    ..=.    BL       read_freq_max ; 0x4d0
+        0x00000e56:    f7fffe15    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000e5a:    2205        ."      MOVS     r2,#5
+        0x00000e5c:    490d        .I      LDR      r1,[pc,#52] ; [0xe94] = 0x20000128
+        0x00000e5e:    4640        @F      MOV      r0,r8
+        0x00000e60:    f000fcce    ....    BL       UART_Write ; 0x1800
+        0x00000e64:    2203        ."      MOVS     r2,#3
+        0x00000e66:    490e        .I      LDR      r1,[pc,#56] ; [0xea0] = 0x2000002c
+        0x00000e68:    4640        @F      MOV      r0,r8
+        0x00000e6a:    f000fcc9    ....    BL       UART_Write ; 0x1800
+        0x00000e6e:    4909        .I      LDR      r1,[pc,#36] ; [0xe94] = 0x20000128
+        0x00000e70:    2207        ."      MOVS     r2,#7
+        0x00000e72:    311a        .1      ADDS     r1,r1,#0x1a
+        0x00000e74:    4640        @F      MOV      r0,r8
+        0x00000e76:    f000fcc3    ....    BL       UART_Write ; 0x1800
+        0x00000e7a:    f7fffb25    ..%.    BL       read_freq_min ; 0x4c8
+        0x00000e7e:    f7fffe01    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000e82:    2205        ."      MOVS     r2,#5
+        0x00000e84:    4903        .I      LDR      r1,[pc,#12] ; [0xe94] = 0x20000128
+        0x00000e86:    4640        @F      MOV      r0,r8
+        0x00000e88:    f000fcba    ....    BL       UART_Write ; 0x1800
+        0x00000e8c:    2203        ."      MOVS     r2,#3
+        0x00000e8e:    4904        .I      LDR      r1,[pc,#16] ; [0xea0] = 0x2000002c
+        0x00000e90:    4640        @F      MOV      r0,r8
+        0x00000e92:    e007        ..      B        0xea4 ; print_page_weld_record + 182
     $d
         0x00000e94:    20000128    (..     DCD    536871208
         0x00000e98:    2000029c    ...     DCD    536871580
         0x00000e9c:    40071000    ...@    DCD    1074204672
         0x00000ea0:    2000002c    ,..     DCD    536870956
     $t
-        0x00000ea4:    2207        ."      MOVS     r2,#7
-        0x00000ea6:    49b0        .I      LDR      r1,[pc,#704] ; [0x1168] = 0x20000149
-        0x00000ea8:    4640        @F      MOV      r0,r8
-        0x00000eaa:    f000fca9    ....    BL       UART_Write ; 0x1800
-        0x00000eae:    f7fffb23    ..#.    BL       read_P_max ; 0x4f8
-        0x00000eb2:    f7fffde7    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000eb6:    49ac        .I      LDR      r1,[pc,#688] ; [0x1168] = 0x20000149
-        0x00000eb8:    2205        ."      MOVS     r2,#5
-        0x00000eba:    3921        !9      SUBS     r1,r1,#0x21
-        0x00000ebc:    4640        @F      MOV      r0,r8
-        0x00000ebe:    f000fc9f    ....    BL       UART_Write ; 0x1800
-        0x00000ec2:    2203        ."      MOVS     r2,#3
-        0x00000ec4:    49a9        .I      LDR      r1,[pc,#676] ; [0x116c] = 0x2000002c
-        0x00000ec6:    4640        @F      MOV      r0,r8
-        0x00000ec8:    f000fc9a    ....    BL       UART_Write ; 0x1800
-        0x00000ecc:    49a6        .I      LDR      r1,[pc,#664] ; [0x1168] = 0x20000149
-        0x00000ece:    2207        ."      MOVS     r2,#7
-        0x00000ed0:    1dc9        ..      ADDS     r1,r1,#7
-        0x00000ed2:    4640        @F      MOV      r0,r8
-        0x00000ed4:    f000fc94    ....    BL       UART_Write ; 0x1800
-        0x00000ed8:    f7fffaed    ....    BL       read_energy_display ; 0x4b6
-        0x00000edc:    f7fffdd2    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000ee0:    49a1        .I      LDR      r1,[pc,#644] ; [0x1168] = 0x20000149
-        0x00000ee2:    2205        ."      MOVS     r2,#5
-        0x00000ee4:    3921        !9      SUBS     r1,r1,#0x21
-        0x00000ee6:    4640        @F      MOV      r0,r8
-        0x00000ee8:    f000fc8a    ....    BL       UART_Write ; 0x1800
-        0x00000eec:    2203        ."      MOVS     r2,#3
-        0x00000eee:    499f        .I      LDR      r1,[pc,#636] ; [0x116c] = 0x2000002c
-        0x00000ef0:    4640        @F      MOV      r0,r8
-        0x00000ef2:    f000fc85    ....    BL       UART_Write ; 0x1800
-        0x00000ef6:    499c        .I      LDR      r1,[pc,#624] ; [0x1168] = 0x20000149
-        0x00000ef8:    2207        ."      MOVS     r2,#7
-        0x00000efa:    310e        .1      ADDS     r1,r1,#0xe
-        0x00000efc:    4640        @F      MOV      r0,r8
-        0x00000efe:    f000fc7f    ....    BL       UART_Write ; 0x1800
-        0x00000f02:    f7fffb05    ....    BL       read_time_on ; 0x510
-        0x00000f06:    f7fffdbd    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000f0a:    4997        .I      LDR      r1,[pc,#604] ; [0x1168] = 0x20000149
-        0x00000f0c:    2205        ."      MOVS     r2,#5
-        0x00000f0e:    3921        !9      SUBS     r1,r1,#0x21
-        0x00000f10:    4640        @F      MOV      r0,r8
-        0x00000f12:    f000fc75    ..u.    BL       UART_Write ; 0x1800
-        0x00000f16:    2203        ."      MOVS     r2,#3
-        0x00000f18:    4994        .I      LDR      r1,[pc,#592] ; [0x116c] = 0x2000002c
-        0x00000f1a:    4640        @F      MOV      r0,r8
-        0x00000f1c:    f000fc70    ..p.    BL       UART_Write ; 0x1800
-        0x00000f20:    2209        ."      MOVS     r2,#9
-        0x00000f22:    4993        .I      LDR      r1,[pc,#588] ; [0x1170] = 0x2000038c
-        0x00000f24:    4640        @F      MOV      r0,r8
-        0x00000f26:    f000fc6b    ..k.    BL       UART_Write ; 0x1800
-        0x00000f2a:    f7fffae9    ....    BL       read_distance_travelled ; 0x500
-        0x00000f2e:    f7fffda9    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00000f32:    498d        .I      LDR      r1,[pc,#564] ; [0x1168] = 0x20000149
-        0x00000f34:    2203        ."      MOVS     r2,#3
-        0x00000f36:    3921        !9      SUBS     r1,r1,#0x21
-        0x00000f38:    4640        @F      MOV      r0,r8
-        0x00000f3a:    f000fc61    ..a.    BL       UART_Write ; 0x1800
-        0x00000f3e:    4c8a        .L      LDR      r4,[pc,#552] ; [0x1168] = 0x20000149
-        0x00000f40:    262e        .&      MOVS     r6,#0x2e
-        0x00000f42:    3c2d        -<      SUBS     r4,r4,#0x2d
-        0x00000f44:    2201        ."      MOVS     r2,#1
-        0x00000f46:    7026        &p      STRB     r6,[r4,#0]
-        0x00000f48:    4621        !F      MOV      r1,r4
-        0x00000f4a:    4640        @F      MOV      r0,r8
-        0x00000f4c:    f000fc58    ..X.    BL       UART_Write ; 0x1800
-        0x00000f50:    f104050c    ....    ADD      r5,r4,#0xc
-        0x00000f54:    2201        ."      MOVS     r2,#1
-        0x00000f56:    78e8        .x      LDRB     r0,[r5,#3]
-        0x00000f58:    7020         p      STRB     r0,[r4,#0]
-        0x00000f5a:    4621        !F      MOV      r1,r4
-        0x00000f5c:    4640        @F      MOV      r0,r8
-        0x00000f5e:    f000fc4f    ..O.    BL       UART_Write ; 0x1800
-        0x00000f62:    7928        (y      LDRB     r0,[r5,#4]
-        0x00000f64:    7020         p      STRB     r0,[r4,#0]
-        0x00000f66:    2201        ."      MOVS     r2,#1
-        0x00000f68:    4621        !F      MOV      r1,r4
-        0x00000f6a:    4640        @F      MOV      r0,r8
-        0x00000f6c:    f000fc48    ..H.    BL       UART_Write ; 0x1800
-        0x00000f70:    2722        "'      MOVS     r7,#0x22
-        0x00000f72:    7027        'p      STRB     r7,[r4,#0]
-        0x00000f74:    2201        ."      MOVS     r2,#1
-        0x00000f76:    4621        !F      MOV      r1,r4
-        0x00000f78:    4640        @F      MOV      r0,r8
-        0x00000f7a:    f000fc41    ..A.    BL       UART_Write ; 0x1800
-        0x00000f7e:    2203        ."      MOVS     r2,#3
-        0x00000f80:    497a        zI      LDR      r1,[pc,#488] ; [0x116c] = 0x2000002c
-        0x00000f82:    4640        @F      MOV      r0,r8
-        0x00000f84:    f000fc3c    ..<.    BL       UART_Write ; 0x1800
-        0x00000f88:    2209        ."      MOVS     r2,#9
-        0x00000f8a:    f2042179    ..y!    ADD      r1,r4,#0x279
-        0x00000f8e:    4640        @F      MOV      r0,r8
-        0x00000f90:    f000fc36    ..6.    BL       UART_Write ; 0x1800
-        0x00000f94:    f7fffab8    ....    BL       read_distance_reached ; 0x508
-        0x00000f98:    f7fffd74    ..t.    BL       binary_to_bcd_array ; 0xa84
-        0x00000f9c:    2203        ."      MOVS     r2,#3
-        0x00000f9e:    4629        )F      MOV      r1,r5
-        0x00000fa0:    4640        @F      MOV      r0,r8
-        0x00000fa2:    f000fc2d    ..-.    BL       UART_Write ; 0x1800
-        0x00000fa6:    7026        &p      STRB     r6,[r4,#0]
-        0x00000fa8:    2201        ."      MOVS     r2,#1
-        0x00000faa:    4621        !F      MOV      r1,r4
-        0x00000fac:    4640        @F      MOV      r0,r8
-        0x00000fae:    f000fc27    ..'.    BL       UART_Write ; 0x1800
-        0x00000fb2:    78e8        .x      LDRB     r0,[r5,#3]
-        0x00000fb4:    7020         p      STRB     r0,[r4,#0]
-        0x00000fb6:    2201        ."      MOVS     r2,#1
-        0x00000fb8:    4621        !F      MOV      r1,r4
-        0x00000fba:    4640        @F      MOV      r0,r8
-        0x00000fbc:    f000fc20    .. .    BL       UART_Write ; 0x1800
-        0x00000fc0:    7928        (y      LDRB     r0,[r5,#4]
-        0x00000fc2:    7020         p      STRB     r0,[r4,#0]
-        0x00000fc4:    2201        ."      MOVS     r2,#1
-        0x00000fc6:    4621        !F      MOV      r1,r4
-        0x00000fc8:    4640        @F      MOV      r0,r8
-        0x00000fca:    f000fc19    ....    BL       UART_Write ; 0x1800
-        0x00000fce:    7027        'p      STRB     r7,[r4,#0]
-        0x00000fd0:    2201        ."      MOVS     r2,#1
-        0x00000fd2:    4621        !F      MOV      r1,r4
-        0x00000fd4:    4640        @F      MOV      r0,r8
-        0x00000fd6:    f000fc13    ....    BL       UART_Write ; 0x1800
-        0x00000fda:    2203        ."      MOVS     r2,#3
-        0x00000fdc:    4963        cI      LDR      r1,[pc,#396] ; [0x116c] = 0x2000002c
-        0x00000fde:    4640        @F      MOV      r0,r8
-        0x00000fe0:    f000fc0e    ....    BL       UART_Write ; 0x1800
-        0x00000fe4:    2207        ."      MOVS     r2,#7
-        0x00000fe6:    f1040142    ..B.    ADD      r1,r4,#0x42
-        0x00000fea:    4640        @F      MOV      r0,r8
-        0x00000fec:    f000fc08    ....    BL       UART_Write ; 0x1800
-        0x00000ff0:    f7fffa7a    ..z.    BL       read_F_start ; 0x4e8
-        0x00000ff4:    f7fffd46    ..F.    BL       binary_to_bcd_array ; 0xa84
-        0x00000ff8:    2205        ."      MOVS     r2,#5
-        0x00000ffa:    4629        )F      MOV      r1,r5
-        0x00000ffc:    4640        @F      MOV      r0,r8
-        0x00000ffe:    f000fbff    ....    BL       UART_Write ; 0x1800
-        0x00001002:    2203        ."      MOVS     r2,#3
-        0x00001004:    4959        YI      LDR      r1,[pc,#356] ; [0x116c] = 0x2000002c
-        0x00001006:    4640        @F      MOV      r0,r8
-        0x00001008:    f000fbfa    ....    BL       UART_Write ; 0x1800
-        0x0000100c:    2207        ."      MOVS     r2,#7
-        0x0000100e:    f1040149    ..I.    ADD      r1,r4,#0x49
-        0x00001012:    4640        @F      MOV      r0,r8
-        0x00001014:    f000fbf4    ....    BL       UART_Write ; 0x1800
-        0x00001018:    f7fffa44    ..D.    BL       read_force_set_display ; 0x4a4
-        0x0000101c:    f7fffd32    ..2.    BL       binary_to_bcd_array ; 0xa84
-        0x00001020:    2205        ."      MOVS     r2,#5
-        0x00001022:    4629        )F      MOV      r1,r5
-        0x00001024:    4640        @F      MOV      r0,r8
-        0x00001026:    f000fbeb    ....    BL       UART_Write ; 0x1800
-        0x0000102a:    2203        ."      MOVS     r2,#3
-        0x0000102c:    494f        OI      LDR      r1,[pc,#316] ; [0x116c] = 0x2000002c
-        0x0000102e:    4640        @F      MOV      r0,r8
-        0x00001030:    f000fbe6    ....    BL       UART_Write ; 0x1800
-        0x00001034:    2208        ."      MOVS     r2,#8
-        0x00001036:    f1040150    ..P.    ADD      r1,r4,#0x50
-        0x0000103a:    4640        @F      MOV      r0,r8
-        0x0000103c:    f000fbe0    ....    BL       UART_Write ; 0x1800
-        0x00001040:    f7fffa56    ..V.    BL       read_F_max ; 0x4f0
-        0x00001044:    f7fffd1e    ....    BL       binary_to_bcd_array ; 0xa84
-        0x00001048:    2205        ."      MOVS     r2,#5
-        0x0000104a:    4629        )F      MOV      r1,r5
-        0x0000104c:    4640        @F      MOV      r0,r8
-        0x0000104e:    f000fbd7    ....    BL       UART_Write ; 0x1800
-        0x00001052:    4640        @F      MOV      r0,r8
-        0x00001054:    e8bd41f0    ...A    POP      {r4-r8,lr}
-        0x00001058:    2203        ."      MOVS     r2,#3
-        0x0000105a:    4944        DI      LDR      r1,[pc,#272] ; [0x116c] = 0x2000002c
-        0x0000105c:    f000bbd0    ....    B.W      UART_Write ; 0x1800
+        0x00000ea4:    f000fcac    ....    BL       UART_Write ; 0x1800
+        0x00000ea8:    2207        ."      MOVS     r2,#7
+        0x00000eaa:    49af        .I      LDR      r1,[pc,#700] ; [0x1168] = 0x20000149
+        0x00000eac:    4640        @F      MOV      r0,r8
+        0x00000eae:    f000fca7    ....    BL       UART_Write ; 0x1800
+        0x00000eb2:    f7fffb21    ..!.    BL       read_P_max ; 0x4f8
+        0x00000eb6:    f7fffde5    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000eba:    49ab        .I      LDR      r1,[pc,#684] ; [0x1168] = 0x20000149
+        0x00000ebc:    2205        ."      MOVS     r2,#5
+        0x00000ebe:    3921        !9      SUBS     r1,r1,#0x21
+        0x00000ec0:    4640        @F      MOV      r0,r8
+        0x00000ec2:    f000fc9d    ....    BL       UART_Write ; 0x1800
+        0x00000ec6:    2203        ."      MOVS     r2,#3
+        0x00000ec8:    49a8        .I      LDR      r1,[pc,#672] ; [0x116c] = 0x2000002c
+        0x00000eca:    4640        @F      MOV      r0,r8
+        0x00000ecc:    f000fc98    ....    BL       UART_Write ; 0x1800
+        0x00000ed0:    49a5        .I      LDR      r1,[pc,#660] ; [0x1168] = 0x20000149
+        0x00000ed2:    2207        ."      MOVS     r2,#7
+        0x00000ed4:    1dc9        ..      ADDS     r1,r1,#7
+        0x00000ed6:    4640        @F      MOV      r0,r8
+        0x00000ed8:    f000fc92    ....    BL       UART_Write ; 0x1800
+        0x00000edc:    f7fffaeb    ....    BL       read_energy_display ; 0x4b6
+        0x00000ee0:    f7fffdd0    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000ee4:    49a0        .I      LDR      r1,[pc,#640] ; [0x1168] = 0x20000149
+        0x00000ee6:    2205        ."      MOVS     r2,#5
+        0x00000ee8:    3921        !9      SUBS     r1,r1,#0x21
+        0x00000eea:    4640        @F      MOV      r0,r8
+        0x00000eec:    f000fc88    ....    BL       UART_Write ; 0x1800
+        0x00000ef0:    2203        ."      MOVS     r2,#3
+        0x00000ef2:    499e        .I      LDR      r1,[pc,#632] ; [0x116c] = 0x2000002c
+        0x00000ef4:    4640        @F      MOV      r0,r8
+        0x00000ef6:    f000fc83    ....    BL       UART_Write ; 0x1800
+        0x00000efa:    499b        .I      LDR      r1,[pc,#620] ; [0x1168] = 0x20000149
+        0x00000efc:    2207        ."      MOVS     r2,#7
+        0x00000efe:    310e        .1      ADDS     r1,r1,#0xe
+        0x00000f00:    4640        @F      MOV      r0,r8
+        0x00000f02:    f000fc7d    ..}.    BL       UART_Write ; 0x1800
+        0x00000f06:    f7fffb03    ....    BL       read_time_on ; 0x510
+        0x00000f0a:    f7fffdbb    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000f0e:    4996        .I      LDR      r1,[pc,#600] ; [0x1168] = 0x20000149
+        0x00000f10:    2205        ."      MOVS     r2,#5
+        0x00000f12:    3921        !9      SUBS     r1,r1,#0x21
+        0x00000f14:    4640        @F      MOV      r0,r8
+        0x00000f16:    f000fc73    ..s.    BL       UART_Write ; 0x1800
+        0x00000f1a:    2203        ."      MOVS     r2,#3
+        0x00000f1c:    4993        .I      LDR      r1,[pc,#588] ; [0x116c] = 0x2000002c
+        0x00000f1e:    4640        @F      MOV      r0,r8
+        0x00000f20:    f000fc6e    ..n.    BL       UART_Write ; 0x1800
+        0x00000f24:    2209        ."      MOVS     r2,#9
+        0x00000f26:    4992        .I      LDR      r1,[pc,#584] ; [0x1170] = 0x2000038c
+        0x00000f28:    4640        @F      MOV      r0,r8
+        0x00000f2a:    f000fc69    ..i.    BL       UART_Write ; 0x1800
+        0x00000f2e:    f7fffae7    ....    BL       read_distance_travelled ; 0x500
+        0x00000f32:    f7fffda7    ....    BL       binary_to_bcd_array ; 0xa84
+        0x00000f36:    498c        .I      LDR      r1,[pc,#560] ; [0x1168] = 0x20000149
+        0x00000f38:    2203        ."      MOVS     r2,#3
+        0x00000f3a:    3921        !9      SUBS     r1,r1,#0x21
+        0x00000f3c:    4640        @F      MOV      r0,r8
+        0x00000f3e:    f000fc5f    .._.    BL       UART_Write ; 0x1800
+        0x00000f42:    4c89        .L      LDR      r4,[pc,#548] ; [0x1168] = 0x20000149
+        0x00000f44:    262e        .&      MOVS     r6,#0x2e
+        0x00000f46:    3c2d        -<      SUBS     r4,r4,#0x2d
+        0x00000f48:    2201        ."      MOVS     r2,#1
+        0x00000f4a:    7026        &p      STRB     r6,[r4,#0]
+        0x00000f4c:    4621        !F      MOV      r1,r4
+        0x00000f4e:    4640        @F      MOV      r0,r8
+        0x00000f50:    f000fc56    ..V.    BL       UART_Write ; 0x1800
+        0x00000f54:    f104050c    ....    ADD      r5,r4,#0xc
+        0x00000f58:    2201        ."      MOVS     r2,#1
+        0x00000f5a:    78e8        .x      LDRB     r0,[r5,#3]
+        0x00000f5c:    7020         p      STRB     r0,[r4,#0]
+        0x00000f5e:    4621        !F      MOV      r1,r4
+        0x00000f60:    4640        @F      MOV      r0,r8
+        0x00000f62:    f000fc4d    ..M.    BL       UART_Write ; 0x1800
+        0x00000f66:    7928        (y      LDRB     r0,[r5,#4]
+        0x00000f68:    7020         p      STRB     r0,[r4,#0]
+        0x00000f6a:    2201        ."      MOVS     r2,#1
+        0x00000f6c:    4621        !F      MOV      r1,r4
+        0x00000f6e:    4640        @F      MOV      r0,r8
+        0x00000f70:    f000fc46    ..F.    BL       UART_Write ; 0x1800
+        0x00000f74:    2722        "'      MOVS     r7,#0x22
+        0x00000f76:    7027        'p      STRB     r7,[r4,#0]
+        0x00000f78:    2201        ."      MOVS     r2,#1
+        0x00000f7a:    4621        !F      MOV      r1,r4
+        0x00000f7c:    4640        @F      MOV      r0,r8
+        0x00000f7e:    f000fc3f    ..?.    BL       UART_Write ; 0x1800
+        0x00000f82:    2203        ."      MOVS     r2,#3
+        0x00000f84:    4979        yI      LDR      r1,[pc,#484] ; [0x116c] = 0x2000002c
+        0x00000f86:    4640        @F      MOV      r0,r8
+        0x00000f88:    f000fc3a    ..:.    BL       UART_Write ; 0x1800
+        0x00000f8c:    2209        ."      MOVS     r2,#9
+        0x00000f8e:    f2042179    ..y!    ADD      r1,r4,#0x279
+        0x00000f92:    4640        @F      MOV      r0,r8
+        0x00000f94:    f000fc34    ..4.    BL       UART_Write ; 0x1800
+        0x00000f98:    f7fffab6    ....    BL       read_distance_reached ; 0x508
+        0x00000f9c:    f7fffd72    ..r.    BL       binary_to_bcd_array ; 0xa84
+        0x00000fa0:    2203        ."      MOVS     r2,#3
+        0x00000fa2:    4629        )F      MOV      r1,r5
+        0x00000fa4:    4640        @F      MOV      r0,r8
+        0x00000fa6:    f000fc2b    ..+.    BL       UART_Write ; 0x1800
+        0x00000faa:    7026        &p      STRB     r6,[r4,#0]
+        0x00000fac:    2201        ."      MOVS     r2,#1
+        0x00000fae:    4621        !F      MOV      r1,r4
+        0x00000fb0:    4640        @F      MOV      r0,r8
+        0x00000fb2:    f000fc25    ..%.    BL       UART_Write ; 0x1800
+        0x00000fb6:    78e8        .x      LDRB     r0,[r5,#3]
+        0x00000fb8:    7020         p      STRB     r0,[r4,#0]
+        0x00000fba:    2201        ."      MOVS     r2,#1
+        0x00000fbc:    4621        !F      MOV      r1,r4
+        0x00000fbe:    4640        @F      MOV      r0,r8
+        0x00000fc0:    f000fc1e    ....    BL       UART_Write ; 0x1800
+        0x00000fc4:    7928        (y      LDRB     r0,[r5,#4]
+        0x00000fc6:    7020         p      STRB     r0,[r4,#0]
+        0x00000fc8:    2201        ."      MOVS     r2,#1
+        0x00000fca:    4621        !F      MOV      r1,r4
+        0x00000fcc:    4640        @F      MOV      r0,r8
+        0x00000fce:    f000fc17    ....    BL       UART_Write ; 0x1800
+        0x00000fd2:    7027        'p      STRB     r7,[r4,#0]
+        0x00000fd4:    2201        ."      MOVS     r2,#1
+        0x00000fd6:    4621        !F      MOV      r1,r4
+        0x00000fd8:    4640        @F      MOV      r0,r8
+        0x00000fda:    f000fc11    ....    BL       UART_Write ; 0x1800
+        0x00000fde:    2203        ."      MOVS     r2,#3
+        0x00000fe0:    4962        bI      LDR      r1,[pc,#392] ; [0x116c] = 0x2000002c
+        0x00000fe2:    4640        @F      MOV      r0,r8
+        0x00000fe4:    f000fc0c    ....    BL       UART_Write ; 0x1800
+        0x00000fe8:    2207        ."      MOVS     r2,#7
+        0x00000fea:    f1040142    ..B.    ADD      r1,r4,#0x42
+        0x00000fee:    4640        @F      MOV      r0,r8
+        0x00000ff0:    f000fc06    ....    BL       UART_Write ; 0x1800
+        0x00000ff4:    f7fffa78    ..x.    BL       read_F_start ; 0x4e8
+        0x00000ff8:    f7fffd44    ..D.    BL       binary_to_bcd_array ; 0xa84
+        0x00000ffc:    2205        ."      MOVS     r2,#5
+        0x00000ffe:    4629        )F      MOV      r1,r5
+        0x00001000:    4640        @F      MOV      r0,r8
+        0x00001002:    f000fbfd    ....    BL       UART_Write ; 0x1800
+        0x00001006:    2203        ."      MOVS     r2,#3
+        0x00001008:    4958        XI      LDR      r1,[pc,#352] ; [0x116c] = 0x2000002c
+        0x0000100a:    4640        @F      MOV      r0,r8
+        0x0000100c:    f000fbf8    ....    BL       UART_Write ; 0x1800
+        0x00001010:    2207        ."      MOVS     r2,#7
+        0x00001012:    f1040149    ..I.    ADD      r1,r4,#0x49
+        0x00001016:    4640        @F      MOV      r0,r8
+        0x00001018:    f000fbf2    ....    BL       UART_Write ; 0x1800
+        0x0000101c:    f7fffa42    ..B.    BL       read_force_set_display ; 0x4a4
+        0x00001020:    f7fffd30    ..0.    BL       binary_to_bcd_array ; 0xa84
+        0x00001024:    2205        ."      MOVS     r2,#5
+        0x00001026:    4629        )F      MOV      r1,r5
+        0x00001028:    4640        @F      MOV      r0,r8
+        0x0000102a:    f000fbe9    ....    BL       UART_Write ; 0x1800
+        0x0000102e:    2203        ."      MOVS     r2,#3
+        0x00001030:    494e        NI      LDR      r1,[pc,#312] ; [0x116c] = 0x2000002c
+        0x00001032:    4640        @F      MOV      r0,r8
+        0x00001034:    f000fbe4    ....    BL       UART_Write ; 0x1800
+        0x00001038:    2208        ."      MOVS     r2,#8
+        0x0000103a:    f1040150    ..P.    ADD      r1,r4,#0x50
+        0x0000103e:    4640        @F      MOV      r0,r8
+        0x00001040:    f000fbde    ....    BL       UART_Write ; 0x1800
+        0x00001044:    f7fffa54    ..T.    BL       read_F_max ; 0x4f0
+        0x00001048:    f7fffd1c    ....    BL       binary_to_bcd_array ; 0xa84
+        0x0000104c:    2205        ."      MOVS     r2,#5
+        0x0000104e:    4629        )F      MOV      r1,r5
+        0x00001050:    4640        @F      MOV      r0,r8
+        0x00001052:    f000fbd5    ....    BL       UART_Write ; 0x1800
+        0x00001056:    4640        @F      MOV      r0,r8
+        0x00001058:    e8bd41f0    ...A    POP      {r4-r8,lr}
+        0x0000105c:    2203        ."      MOVS     r2,#3
+        0x0000105e:    4943        CI      LDR      r1,[pc,#268] ; [0x116c] = 0x2000002c
+        0x00001060:    f000bbce    ....    B.W      UART_Write ; 0x1800
     display_to_mcu
-        0x00001060:    b570        p.      PUSH     {r4-r6,lr}
-        0x00001062:    4c44        DL      LDR      r4,[pc,#272] ; [0x1174] = 0x20000040
-        0x00001064:    78a0        .x      LDRB     r0,[r4,#2]
-        0x00001066:    28ff        .(      CMP      r0,#0xff
-        0x00001068:    d002        ..      BEQ      0x1070 ; display_to_mcu + 16
-        0x0000106a:    78e0        .x      LDRB     r0,[r4,#3]
-        0x0000106c:    28ff        .(      CMP      r0,#0xff
-        0x0000106e:    d12b        +.      BNE      0x10c8 ; display_to_mcu + 104
-        0x00001070:    4a40        @J      LDR      r2,[pc,#256] ; [0x1174] = 0x20000040
-        0x00001072:    4d3d        =M      LDR      r5,[pc,#244] ; [0x1168] = 0x20000149
-        0x00001074:    7821        !x      LDRB     r1,[r4,#0]
-        0x00001076:    f8b20001    ....    LDRH     r0,[r2,#1]
-        0x0000107a:    3d2d        -=      SUBS     r5,r5,#0x2d
-        0x0000107c:    eb000380    ....    ADD      r3,r0,r0,LSL #2
-        0x00001080:    005b        [.      LSLS     r3,r3,#1
-        0x00001082:    7852        Rx      LDRB     r2,[r2,#1]
-        0x00001084:    29ca        .)      CMP      r1,#0xca
-        0x00001086:    d037        7.      BEQ      0x10f8 ; display_to_mcu + 152
-        0x00001088:    dc12        ..      BGT      0x10b0 ; display_to_mcu + 80
-        0x0000108a:    29c4        .)      CMP      r1,#0xc4
-        0x0000108c:    d02c        ,.      BEQ      0x10e8 ; display_to_mcu + 136
-        0x0000108e:    dc08        ..      BGT      0x10a2 ; display_to_mcu + 66
-        0x00001090:    29aa        .)      CMP      r1,#0xaa
-        0x00001092:    d017        ..      BEQ      0x10c4 ; display_to_mcu + 100
-        0x00001094:    29c0        .)      CMP      r1,#0xc0
-        0x00001096:    d018        ..      BEQ      0x10ca ; display_to_mcu + 106
-        0x00001098:    29c2        .)      CMP      r1,#0xc2
-        0x0000109a:    d01b        ..      BEQ      0x10d4 ; display_to_mcu + 116
-        0x0000109c:    29c3        .)      CMP      r1,#0xc3
-        0x0000109e:    d160        `.      BNE      0x1162 ; display_to_mcu + 258
-        0x000010a0:    e01d        ..      B        0x10de ; display_to_mcu + 126
-        0x000010a2:    29c5        .)      CMP      r1,#0xc5
-        0x000010a4:    d024        $.      BEQ      0x10f0 ; display_to_mcu + 144
-        0x000010a6:    29c7        .)      CMP      r1,#0xc7
-        0x000010a8:    d02a        *.      BEQ      0x1100 ; display_to_mcu + 160
-        0x000010aa:    29c8        .)      CMP      r1,#0xc8
-        0x000010ac:    d159        Y.      BNE      0x1162 ; display_to_mcu + 258
-        0x000010ae:    e02f        /.      B        0x1110 ; display_to_mcu + 176
-        0x000010b0:    39cd        .9      SUBS     r1,r1,#0xcd
-        0x000010b2:    290a        .)      CMP      r1,#0xa
-        0x000010b4:    d255        U.      BCS      0x1162 ; display_to_mcu + 258
-        0x000010b6:    e8dff001    ....    TBB      [pc,r1]
+        0x00001064:    e92d41f0    -..A    PUSH     {r4-r8,lr}
+        0x00001068:    4c42        BL      LDR      r4,[pc,#264] ; [0x1174] = 0x20000040
+        0x0000106a:    2500        .%      MOVS     r5,#0
+        0x0000106c:    78a6        .x      LDRB     r6,[r4,#2]
+        0x0000106e:    2eff        ..      CMP      r6,#0xff
+        0x00001070:    d002        ..      BEQ      0x1078 ; display_to_mcu + 20
+        0x00001072:    78e0        .x      LDRB     r0,[r4,#3]
+        0x00001074:    28ff        .(      CMP      r0,#0xff
+        0x00001076:    d171        q.      BNE      0x115c ; display_to_mcu + 248
+        0x00001078:    4a3e        >J      LDR      r2,[pc,#248] ; [0x1174] = 0x20000040
+        0x0000107a:    4f3b        ;O      LDR      r7,[pc,#236] ; [0x1168] = 0x20000149
+        0x0000107c:    7821        !x      LDRB     r1,[r4,#0]
+        0x0000107e:    f8b20001    ....    LDRH     r0,[r2,#1]
+        0x00001082:    3f2d        -?      SUBS     r7,r7,#0x2d
+        0x00001084:    eb000380    ....    ADD      r3,r0,r0,LSL #2
+        0x00001088:    005b        [.      LSLS     r3,r3,#1
+        0x0000108a:    7852        Rx      LDRB     r2,[r2,#1]
+        0x0000108c:    29ca        .)      CMP      r1,#0xca
+        0x0000108e:    d032        2.      BEQ      0x10f6 ; display_to_mcu + 146
+        0x00001090:    dc12        ..      BGT      0x10b8 ; display_to_mcu + 84
+        0x00001092:    29c4        .)      CMP      r1,#0xc4
+        0x00001094:    d029        ).      BEQ      0x10ea ; display_to_mcu + 134
+        0x00001096:    dc08        ..      BGT      0x10aa ; display_to_mcu + 70
+        0x00001098:    29aa        .)      CMP      r1,#0xaa
+        0x0000109a:    d017        ..      BEQ      0x10cc ; display_to_mcu + 104
+        0x0000109c:    29c0        .)      CMP      r1,#0xc0
+        0x0000109e:    d018        ..      BEQ      0x10d2 ; display_to_mcu + 110
+        0x000010a0:    29c2        .)      CMP      r1,#0xc2
+        0x000010a2:    d01a        ..      BEQ      0x10da ; display_to_mcu + 118
+        0x000010a4:    29c3        .)      CMP      r1,#0xc3
+        0x000010a6:    d158        X.      BNE      0x115a ; display_to_mcu + 246
+        0x000010a8:    e01b        ..      B        0x10e2 ; display_to_mcu + 126
+        0x000010aa:    29c5        .)      CMP      r1,#0xc5
+        0x000010ac:    d020         .      BEQ      0x10f0 ; display_to_mcu + 140
+        0x000010ae:    29c7        .)      CMP      r1,#0xc7
+        0x000010b0:    d024        $.      BEQ      0x10fc ; display_to_mcu + 152
+        0x000010b2:    29c8        .)      CMP      r1,#0xc8
+        0x000010b4:    d151        Q.      BNE      0x115a ; display_to_mcu + 246
+        0x000010b6:    e028        (.      B        0x110a ; display_to_mcu + 166
+        0x000010b8:    39cd        .9      SUBS     r1,r1,#0xcd
+        0x000010ba:    290a        .)      CMP      r1,#0xa
+        0x000010bc:    d24d        M.      BCS      0x115a ; display_to_mcu + 246
+        0x000010be:    e8dff001    ....    TBB      [pc,r1]
     $d
-        0x000010ba:    542d        -T      DCW    21549
-        0x000010bc:    3f3a3654    T6:?    DCD    1060779604
-        0x000010c0:    4d544944    DITM    DCD    1297369412
+        0x000010c2:    4c2c        ,L      DCW    19500
+        0x000010c4:    3935324c    L259    DCD    959787596
+        0x000010c8:    464c423d    =BLF    DCD    1179402813
     $t
-        0x000010c4:    482c        ,H      LDR      r0,[pc,#176] ; [0x1178] = 0x20000031
-        0x000010c6:    7002        .p      STRB     r2,[r0,#0]
-        0x000010c8:    bd70        p.      POP      {r4-r6,pc}
-        0x000010ca:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x000010ce:    4610        .F      MOV      r0,r2
-        0x000010d0:    f7ffb9a4    ....    B        write_amplitude_set ; 0x41c
-        0x000010d4:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x000010d8:    4610        .F      MOV      r0,r2
-        0x000010da:    f7ffb9a2    ....    B        write_mode_set ; 0x422
-        0x000010de:    e8bd4070    ..p@    POP      {r4-r6,lr}
+        0x000010cc:    482a        *H      LDR      r0,[pc,#168] ; [0x1178] = 0x20000031
+        0x000010ce:    7002        .p      STRB     r2,[r0,#0]
+        0x000010d0:    e044        D.      B        0x115c ; display_to_mcu + 248
+        0x000010d2:    4610        .F      MOV      r0,r2
+        0x000010d4:    f7fff9a2    ....    BL       write_amplitude_set ; 0x41c
+        0x000010d8:    e040        @.      B        0x115c ; display_to_mcu + 248
+        0x000010da:    4610        .F      MOV      r0,r2
+        0x000010dc:    f7fff9a1    ....    BL       write_mode_set ; 0x422
+        0x000010e0:    e03c        <.      B        0x115c ; display_to_mcu + 248
         0x000010e2:    4618        .F      MOV      r0,r3
-        0x000010e4:    f7ffb9af    ....    B        write_time_set_stage_one_set ; 0x446
-        0x000010e8:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x000010ec:    f7ffb9a2    ....    B        write_distance_relative_set ; 0x434
-        0x000010f0:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x000010f4:    f7ffb99b    ....    B        write_distance_absolute_set ; 0x42e
-        0x000010f8:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x000010fc:    f7ffb9a0    ....    B        write_force_set ; 0x440
-        0x00001100:    60a8        .`      STR      r0,[r5,#8]
-        0x00001102:    2164        d!      MOVS     r1,#0x64
-        0x00001104:    fb90f0f1    ....    SDIV     r0,r0,r1
-        0x00001108:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x0000110c:    f7ffb995    ....    B        write_energy_set ; 0x43a
-        0x00001110:    f7fff99c    ....    BL       write_hold_time_set ; 0x44c
-        0x00001114:    f8b40001    ....    LDRH     r0,[r4,#1]
-        0x00001118:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x0000111c:    f44f717a    O.zq    MOV      r1,#0x3e8
-        0x00001120:    4348        HC      MULS     r0,r1,r0
-        0x00001122:    f7ffb981    ....    B        write_timeout_set ; 0x428
-        0x00001126:    2a00        .*      CMP      r2,#0
-        0x00001128:    d1ce        ..      BNE      0x10c8 ; display_to_mcu + 104
-        0x0000112a:    2000        .       MOVS     r0,#0
-        0x0000112c:    e015        ..      B        0x115a ; display_to_mcu + 250
-        0x0000112e:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x00001132:    4610        .F      MOV      r0,r2
-        0x00001134:    f7ffb98e    ....    B        write_amplitudeA_set_stage2 ; 0x454
-        0x00001138:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x0000113c:    4610        .F      MOV      r0,r2
-        0x0000113e:    f7ffb98c    ....    B        write_amplitudeB_set_stage2 ; 0x45a
-        0x00001142:    4618        .F      MOV      r0,r3
-        0x00001144:    f7fff994    ....    BL       write_time_set_stage2 ; 0x470
-        0x00001148:    2003        .       MOVS     r0,#3
-        0x0000114a:    e006        ..      B        0x115a ; display_to_mcu + 250
-        0x0000114c:    f7fff988    ....    BL       write_distance_set_stage2 ; 0x460
-        0x00001150:    2004        .       MOVS     r0,#4
-        0x00001152:    e002        ..      B        0x115a ; display_to_mcu + 250
-        0x00001154:    f7fff988    ....    BL       write_energy_set_stage2 ; 0x468
-        0x00001158:    2006        .       MOVS     r0,#6
-        0x0000115a:    e8bd4070    ..p@    POP      {r4-r6,lr}
-        0x0000115e:    f7ffb98b    ....    B        write_stage2_mode_address_set ; 0x478
-        0x00001162:    2000        .       MOVS     r0,#0
-        0x00001164:    6068        h`      STR      r0,[r5,#4]
-        0x00001166:    bd70        p.      POP      {r4-r6,pc}
+        0x000010e4:    f7fff9af    ....    BL       write_time_set_stage_one_set ; 0x446
+        0x000010e8:    e038        8.      B        0x115c ; display_to_mcu + 248
+        0x000010ea:    f7fff9a3    ....    BL       write_distance_relative_set ; 0x434
+        0x000010ee:    e035        5.      B        0x115c ; display_to_mcu + 248
+        0x000010f0:    f7fff99d    ....    BL       write_distance_absolute_set ; 0x42e
+        0x000010f4:    e032        2.      B        0x115c ; display_to_mcu + 248
+        0x000010f6:    f7fff9a3    ....    BL       write_force_set ; 0x440
+        0x000010fa:    e02f        /.      B        0x115c ; display_to_mcu + 248
+        0x000010fc:    2164        d!      MOVS     r1,#0x64
+        0x000010fe:    60b8        .`      STR      r0,[r7,#8]
+        0x00001100:    fb90f0f1    ....    SDIV     r0,r0,r1
+        0x00001104:    f7fff999    ....    BL       write_energy_set ; 0x43a
+        0x00001108:    e028        (.      B        0x115c ; display_to_mcu + 248
+        0x0000110a:    0230        0.      LSLS     r0,r6,#8
+        0x0000110c:    eb020182    ....    ADD      r1,r2,r2,LSL #2
+        0x00001110:    ea400041    @.A.    ORR      r0,r0,r1,LSL #1
+        0x00001114:    f7fff99a    ....    BL       write_hold_time_set ; 0x44c
+        0x00001118:    e020         .      B        0x115c ; display_to_mcu + 248
+        0x0000111a:    f44f717a    O.zq    MOV      r1,#0x3e8
+        0x0000111e:    4348        HC      MULS     r0,r1,r0
+        0x00001120:    f7fff982    ....    BL       write_timeout_set ; 0x428
+        0x00001124:    e01a        ..      B        0x115c ; display_to_mcu + 248
+        0x00001126:    b9ca        ..      CBNZ     r2,0x115c ; display_to_mcu + 248
+        0x00001128:    2000        .       MOVS     r0,#0
+        0x0000112a:    e013        ..      B        0x1154 ; display_to_mcu + 240
+        0x0000112c:    4610        .F      MOV      r0,r2
+        0x0000112e:    f7fff991    ....    BL       write_amplitudeA_set_stage2 ; 0x454
+        0x00001132:    e013        ..      B        0x115c ; display_to_mcu + 248
+        0x00001134:    4610        .F      MOV      r0,r2
+        0x00001136:    f7fff990    ....    BL       write_amplitudeB_set_stage2 ; 0x45a
+        0x0000113a:    e00f        ..      B        0x115c ; display_to_mcu + 248
+        0x0000113c:    4618        .F      MOV      r0,r3
+        0x0000113e:    f7fff997    ....    BL       write_time_set_stage2 ; 0x470
+        0x00001142:    2003        .       MOVS     r0,#3
+        0x00001144:    e006        ..      B        0x1154 ; display_to_mcu + 240
+        0x00001146:    f7fff98b    ....    BL       write_distance_set_stage2 ; 0x460
+        0x0000114a:    2004        .       MOVS     r0,#4
+        0x0000114c:    e002        ..      B        0x1154 ; display_to_mcu + 240
+        0x0000114e:    f7fff98b    ....    BL       write_energy_set_stage2 ; 0x468
+        0x00001152:    2006        .       MOVS     r0,#6
+        0x00001154:    f7fff990    ....    BL       write_stage2_mode_address_set ; 0x478
+        0x00001158:    e000        ..      B        0x115c ; display_to_mcu + 248
+        0x0000115a:    607d        }`      STR      r5,[r7,#4]
+        0x0000115c:    7025        %p      STRB     r5,[r4,#0]
+        0x0000115e:    7065        ep      STRB     r5,[r4,#1]
+        0x00001160:    70a5        .p      STRB     r5,[r4,#2]
+        0x00001162:    70e5        .p      STRB     r5,[r4,#3]
+        0x00001164:    e8bd81f0    ....    POP      {r4-r8,pc}
     $d
         0x00001168:    20000149    I..     DCD    536871241
         0x0000116c:    2000002c    ,..     DCD    536870956
@@ -3239,7 +3246,7 @@
 
 
 ** Section #5 '.debug_frame' (SHT_PROGBITS)
-    Size   : 3484 bytes
+    Size   : 3380 bytes
 
 
 ** Section #6 '.debug_info' (SHT_PROGBITS)
@@ -3251,7 +3258,7 @@
 
 
 ** Section #8 '.debug_loc' (SHT_PROGBITS)
-    Size   : 5204 bytes
+    Size   : 4940 bytes
 
 
 ** Section #9 '.debug_macinfo' (SHT_PROGBITS)
