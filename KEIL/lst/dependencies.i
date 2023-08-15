@@ -354,6 +354,9 @@ unsigned int read_F_max(void);
 unsigned int read_P_max(void);
 unsigned int read_distance_travelled(void);
 unsigned int read_time_on(void);
+unsigned int read_distance_hold(void);
+unsigned int read_absolute_hold(void);
+unsigned int read_collapse_hold(void);
 
 
 
@@ -85444,7 +85447,7 @@ unsigned int amplitude_set_display,freq_display,timeout_set_display,
 		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,
 		time_set_stage_one_display,standby,hold_time_display,hold_time_set;
 
-unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached;
+unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold;
 
 void write_amplitude_set (unsigned int arg){amplitude_set=arg;}
 void write_mode_set (unsigned int arg){mode_set=arg;}
@@ -85498,6 +85501,10 @@ unsigned int read_distance_travelled(){return distance_travelled;}
 unsigned int read_distance_reached(){return distance_reached;}
 unsigned int read_time_on(){return time_on;}
 
+unsigned int read_distance_hold() {return distance_hold;}
+unsigned int read_collapse_hold() {return (distance_travelled+distance_hold);}
+unsigned int read_absolute_hold() {return (distance_reached+distance_hold);}
+
 
 unsigned int read_amplitudeA_set_stage2_display(){return amplitude_set_display;}
 unsigned int read_amplitudeB_set_stage2_display(){return amplitudeB_set_stage2_display;}
@@ -85512,13 +85519,15 @@ unsigned int read_hold_time_display() {return hold_time_display;}
 
 
 
+
+
 unsigned int temp_time_picker;
 
 
 
 volatile int32_t g_i32pointer_0 = 0;
-uint16_t FPGA_length=58;
-uint8_t FPGA_input[58] = {0};
+uint16_t FPGA_length=59;
+uint8_t FPGA_input[59] = {0};
 uint16_t FPGA_address=0;
 
 
@@ -85560,6 +85569,8 @@ void fpga_to_mcu(void){
 		stage2_mode_address_display	= FPGA_input[52];
 		stage2_mode_value_display = (FPGA_input[53]<<8)|(FPGA_input[54]);
 		hold_time_display = (FPGA_input[55]<<8)|(FPGA_input[56]);
+		
+		distance_hold= FPGA_input[57];
 	}
 }
 int time_set_zero=0;
@@ -85610,7 +85621,7 @@ void mcu_to_fpga(void){
 	}
 	else temp_value_mode_stage2=0;	
 	
-	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[57]==0x68){
+	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[58]==0x68){
 		if(amplitude_set_display!=amplitude_set){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xC0));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (amplitude_set));

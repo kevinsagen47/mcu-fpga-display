@@ -210,7 +210,7 @@ uint8_t display_page_2_freq_max[7] 						= { 0x6E, 0x33,0x2E,0x76,0x61,0x6C,0x3D
 uint8_t display_page_2_freq_min [7] 					= { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_P_max [7] 							= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_energy [7] 						= { 0x6E, 0x36,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_2_time_on [7] 						= { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_time_on [9] 						= {0x74,0X33,0X34,0x2E,0x74,0x78,0x74,0x3D,0x22};
 uint8_t display_page_2_distance_travelled[9]	= {0x74,0X32,0X34,0x2E,0x74,0x78,0x74,0x3D,0x22};//b[13].txt="
 uint8_t display_page_2_F_start [7] 						= { 0x6E, 0x39,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_F_max [8] 							= { 0x6E, 0x31,0x30,0x2E,0x76,0x61,0x6C,0x3D};
@@ -218,6 +218,8 @@ uint8_t display_page_2_F_set [7] 						= { 0x6E, 0x38,0x2E,0x76,0x61,0x6C,0x3D};
 
 
 uint8_t display_page_2_distance_absolute [9] ={0x74,0X32,0X35,0x2E,0x74,0x78,0x74,0x3D,0x22};//b[13].txt="
+uint8_t display_page_2_absolute_hold [9] ={0x74,0X33,0X33,0x2E,0x74,0x78,0x74,0x3D,0x22};//b[13].txt="
+uint8_t display_page_2_collapse_hold [9] ={0x74,0X33,0X30,0x2E,0x74,0x78,0x74,0x3D,0x22};//b[13].txt="
 
 void print_page_weld_record(){
 		UART_Write(UART1,display_page_2_freq_start,7);
@@ -250,9 +252,21 @@ void print_page_weld_record(){
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 		
-		UART_Write(UART1,display_page_2_time_on,7);
+		UART_Write(UART1,display_page_2_time_on,9);
 		binary_to_bcd_array(read_time_on());
-		UART_Write(UART1,bcd_array,5);
+		
+		UART_Write(UART1,bcd_array,2);
+		one_array_temp[0] = 0x2E;
+		UART_Write(UART1,one_array_temp,1);//decimal point
+		one_array_temp[0] = bcd_array[2];
+		UART_Write(UART1,one_array_temp,1);//first decimal place
+		one_array_temp[0] = bcd_array[3];
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		one_array_temp[0] = bcd_array[4];
+		UART_Write(UART1,one_array_temp,1);//third decimal place
+		one_array_temp[0] = 0x22;
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		
 		UART_Write(UART1,header,3);
 		
 		UART_Write(UART1,display_page_2_distance_travelled,9);
@@ -299,6 +313,37 @@ void print_page_weld_record(){
 		UART_Write(UART1,display_page_2_F_max,8);
 		binary_to_bcd_array(read_F_max());
 		UART_Write(UART1,bcd_array,5);
+		UART_Write(UART1,header,3);
+		
+		
+		UART_Write(UART1,display_page_2_collapse_hold,9);
+		binary_to_bcd_array(read_collapse_hold());
+		
+		UART_Write(UART1,bcd_array,3);
+		one_array_temp[0] = 0x2E;
+		UART_Write(UART1,one_array_temp,1);//decimal point
+		one_array_temp[0] = bcd_array[3];
+		UART_Write(UART1,one_array_temp,1);//first decimal place
+		one_array_temp[0] = bcd_array[4];
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		one_array_temp[0] = 0x22;
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		
+		UART_Write(UART1,header,3);
+		
+		UART_Write(UART1,display_page_2_absolute_hold,9);
+		binary_to_bcd_array(read_absolute_hold());
+		
+		UART_Write(UART1,bcd_array,3);
+		one_array_temp[0] = 0x2E;
+		UART_Write(UART1,one_array_temp,1);//decimal point
+		one_array_temp[0] = bcd_array[3];
+		UART_Write(UART1,one_array_temp,1);//first decimal place
+		one_array_temp[0] = bcd_array[4];
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		one_array_temp[0] = 0x22;
+		UART_Write(UART1,one_array_temp,1);//second decimal place
+		
 		UART_Write(UART1,header,3);
 }
 //display_to_mcu()

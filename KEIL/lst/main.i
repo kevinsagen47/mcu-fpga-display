@@ -1263,6 +1263,9 @@ unsigned int read_F_max(void);
 unsigned int read_P_max(void);
 unsigned int read_distance_travelled(void);
 unsigned int read_time_on(void);
+unsigned int read_distance_hold(void);
+unsigned int read_absolute_hold(void);
+unsigned int read_collapse_hold(void);
 
 
 
