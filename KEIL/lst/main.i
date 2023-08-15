@@ -1194,6 +1194,7 @@ void print_page_setting_2(void);
 void print_page_weld_record(void);
 void print_page_head_down(void);
 void print_page_SectionVib(void);
+void print_page_head_test(void);
 extern uint8_t header[3];
 extern uint8_t display_input_command[4];
 extern uint8_t display_page;
@@ -1251,9 +1252,9 @@ unsigned int read_pressure_display(void);
 
 
 
+unsigned int read_power_read_display(void);
+
 unsigned int read_energy_display(void);
-
-
 unsigned int read_freq_min(void);
 unsigned int read_freq_max(void);
 unsigned int read_freq_start(void);
@@ -1266,6 +1267,7 @@ unsigned int read_time_on(void);
 unsigned int read_distance_hold(void);
 unsigned int read_absolute_hold(void);
 unsigned int read_collapse_hold(void);
+unsigned int read_timeout_occured(void);
 
 
 
@@ -85434,6 +85436,7 @@ void TMR0_IRQHandler(void)
 	else if (display_page==4)print_page_SectionVib();
 	else if (display_page==8)print_page_weld_record();
 	else if (display_page==9)print_page_head_down();
+	else if (display_page==10)print_page_head_test();
 	else TIMER_Delay(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10100UL)), 5);
 	
   TIMER_ClearIntFlag(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10000UL)));

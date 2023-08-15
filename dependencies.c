@@ -45,7 +45,7 @@ unsigned int amplitude_set_display,freq_display,timeout_set_display,
 		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,
 		time_set_stage_one_display,standby,hold_time_display,hold_time_set;
 //history
-unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold;
+unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold,timeout_occured;
 
 void write_amplitude_set (unsigned int arg){amplitude_set=arg;}
 void write_mode_set (unsigned int arg){mode_set=arg;}
@@ -88,6 +88,7 @@ unsigned int read_energy_display(void){return energy_display;}
 unsigned int read_pressure_display(void){return pressure_display;}
 unsigned int read_time_set_stage_one_display(void){return time_set_stage_one_display;}
 
+unsigned int read_power_read_display() {return power_read_display;}
 unsigned int read_freq_min(){return freq_min;}
 unsigned int read_freq_max(){return freq_max;}
 unsigned int read_freq_start(){return freq_start;}
@@ -98,6 +99,7 @@ unsigned int read_P_max(){return P_max;}
 unsigned int read_distance_travelled(){return distance_travelled;}
 unsigned int read_distance_reached(){return distance_reached;}
 unsigned int read_time_on(){return time_on;}
+unsigned int read_timeout_occured() {return timeout_occured;}
 
 unsigned int read_distance_hold() {return distance_hold;}
 unsigned int read_collapse_hold() {return (distance_travelled+distance_hold);}
@@ -146,6 +148,7 @@ void fpga_to_mcu(void){//FPGA => MCU
 		energy_display								=(FPGA_input[25]<<8)|(FPGA_input[26]);
 		pressure_display							=FPGA_input[27];
 		
+		timeout_occured								=(FPGA_input[28]>>4)& 1;
 		overload_display							=(FPGA_input[28]>>5)& 1;
 		standby												=(FPGA_input[28]>>6)& 1;
 		Freq_init											=(FPGA_input[28]>>7)& 1;

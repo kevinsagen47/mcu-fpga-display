@@ -29,6 +29,7 @@ void print_page_setting_2(void);
 void print_page_weld_record(void);
 void print_page_head_down(void);
 void print_page_SectionVib(void);
+void print_page_head_test(void);
 extern uint8_t header[3];
 extern uint8_t display_input_command[4];
 extern uint8_t display_page;
@@ -86,9 +87,9 @@ unsigned int read_pressure_display(void);
 ////////////////////////////////////////////////////////////////////
 
 //////////////////////HISTORY/////////////////////////////////////
+unsigned int read_power_read_display(void);
+
 unsigned int read_energy_display(void);
-
-
 unsigned int read_freq_min(void);
 unsigned int read_freq_max(void);
 unsigned int read_freq_start(void);
@@ -101,6 +102,7 @@ unsigned int read_time_on(void);
 unsigned int read_distance_hold(void);
 unsigned int read_absolute_hold(void);
 unsigned int read_collapse_hold(void);
+unsigned int read_timeout_occured(void);
 ///////////////////////////////////////////////////////////////////////
 
 //////////////////////////stages////////////////////////////

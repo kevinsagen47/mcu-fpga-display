@@ -32,6 +32,7 @@ void TMR0_IRQHandler(void)
 	else if (display_page==4)print_page_SectionVib();
 	else if (display_page==8)print_page_weld_record();
 	else if (display_page==9)print_page_head_down();
+	else if (display_page==10)print_page_head_test();
 	else TIMER_Delay(TIMER1, 5);//print_page_0();
 	
   TIMER_ClearIntFlag(TIMER0);
