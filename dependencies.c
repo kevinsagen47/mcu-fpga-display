@@ -181,6 +181,7 @@ unsigned int temp_stage2_address;
 void mcu_to_fpga(void){//MCU => FPGA
 	
 	if (display_page==9)temp_timeout_set=0;
+	else if (display_page==10)temp_timeout_set=2;
 	else temp_timeout_set=timeout_set;
 	
 	if (mode_set==2){

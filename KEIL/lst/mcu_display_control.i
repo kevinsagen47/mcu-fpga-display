@@ -85481,7 +85481,7 @@ void print_page_setting_1(){
 		else if (read_mode_set()==5){
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_dist_energy,60);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_trigger_val ,10);
-			binary_to_bcd_array(read_energy_set_display()*100);
+			binary_to_bcd_array(read_energy_set_display());
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		}
@@ -85579,7 +85579,7 @@ void print_page_SectionVib(){
 
 uint8_t display_page_head_down_pressure [9] ={0x62,0x5B,0x33,0x5D,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_head_down_force_read [9] ={0x62,0x5B,0x34,0x5D,0x2E,0x76,0x61,0x6C,0x3D};
-uint8_t display_page_head_down_distance_read [10] ={0x62,0x5B,0x38,0x5D,0x2E,0x74,0x78,0x74,0x3D,0x22};
+uint8_t display_page_head_down_distance_read [14] ={0x6E,0X41,0X42,0X53,0X50,0X6F,0X73,0X69,0x2E,0x74,0x78,0x74,0x3D,0x22};
 uint8_t one_array_temp[1]={0};
 void print_page_head_down(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_down_pressure,9);
@@ -85592,7 +85592,7 @@ void print_page_head_down(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 	
-		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_down_distance_read,10);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_down_distance_read,14);
 		binary_to_bcd_array(read_distance_display());
 	
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,3);
@@ -85875,7 +85875,7 @@ void display_to_mcu(){
 						
 						
 						energy_set_temp=(display_input_command[2]<<8)|(display_input_command[1]);
-						write_energy_set(energy_set_temp/100);
+						write_energy_set(energy_set_temp);
 						
 						break;
 					case 0xc8:
