@@ -85443,7 +85443,7 @@ uint8_t display_page_1_trigger [7] 	= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
 
 
 unsigned int amplitude_set=20,freq,mode_set=1,time_set, 
-		distance_absolute_set,distance_relative_set=15, energy_set=300, force_set=22,time_set_stage_one_set=500,timeout_set=2000;
+		distance_absolute_set,distance_relative_set=15, energy_set=300, force_set=22,time_set_stage_one_set=500,timeout_set=5000;
 unsigned int amplitude_set_display,freq_display,timeout_set_display, 
 		distance_absolute_set_display,distance_relative_set_display, energy_set_display, force_set_display,
 		current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,
@@ -85585,7 +85585,7 @@ unsigned int temp_stage2_address;
 void mcu_to_fpga(void){
 	
 	if (display_page==9)temp_timeout_set=0;
-	else if (display_page==10)temp_timeout_set=2;
+	else if (display_page==10)temp_timeout_set=2000;
 	else temp_timeout_set=timeout_set;
 	
 	if (mode_set==2){

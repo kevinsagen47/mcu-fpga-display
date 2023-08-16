@@ -885,45 +885,45 @@
         0x000006aa:    f8cc0064    ..d.    STR      r0,[r12,#0x64]
         0x000006ae:    f8de0018    ....    LDR      r0,[lr,#0x18]
         0x000006b2:    2802        .(      CMP      r0,#2
-        0x000006b4:    d03f        ?.      BEQ      0x736 ; mcu_to_fpga + 168
+        0x000006b4:    d040        @.      BEQ      0x738 ; mcu_to_fpga + 170
         0x000006b6:    2803        .(      CMP      r0,#3
-        0x000006b8:    d044        D.      BEQ      0x744 ; mcu_to_fpga + 182
+        0x000006b8:    d045        E.      BEQ      0x746 ; mcu_to_fpga + 184
         0x000006ba:    2805        .(      CMP      r0,#5
-        0x000006bc:    d04b        K.      BEQ      0x756 ; mcu_to_fpga + 200
+        0x000006bc:    d04c        L.      BEQ      0x758 ; mcu_to_fpga + 202
         0x000006be:    f8de0028    ..(.    LDR      r0,[lr,#0x28]
         0x000006c2:    f8cc5054    ..TP    STR      r5,[r12,#0x54]
         0x000006c6:    f8cc5058    ..XP    STR      r5,[r12,#0x58]
         0x000006ca:    e9cc5017    ...P    STRD     r5,r0,[r12,#0x5c]
         0x000006ce:    f8dc4048    ..H@    LDR      r4,[r12,#0x48]
         0x000006d2:    2c03        .,      CMP      r4,#3
-        0x000006d4:    d048        H.      BEQ      0x768 ; mcu_to_fpga + 218
+        0x000006d4:    d049        I.      BEQ      0x76a ; mcu_to_fpga + 220
         0x000006d6:    2c04        .,      CMP      r4,#4
-        0x000006d8:    d04c        L.      BEQ      0x774 ; mcu_to_fpga + 230
+        0x000006d8:    d04d        M.      BEQ      0x776 ; mcu_to_fpga + 232
         0x000006da:    2c06        .,      CMP      r4,#6
-        0x000006dc:    d050        P.      BEQ      0x780 ; mcu_to_fpga + 242
+        0x000006dc:    d051        Q.      BEQ      0x782 ; mcu_to_fpga + 244
         0x000006de:    f8cc5068    ..hP    STR      r5,[r12,#0x68]
         0x000006e2:    f89e0002    ....    LDRB     r0,[lr,#2]
         0x000006e6:    2801        .(      CMP      r0,#1
-        0x000006e8:    d15c        \.      BNE      0x7a4 ; mcu_to_fpga + 278
+        0x000006e8:    d15d        ].      BNE      0x7a6 ; mcu_to_fpga + 280
         0x000006ea:    f8de0078    ..x.    LDR      r0,[lr,#0x78]
         0x000006ee:    2801        .(      CMP      r0,#1
-        0x000006f0:    d158        X.      BNE      0x7a4 ; mcu_to_fpga + 278
+        0x000006f0:    d159        Y.      BNE      0x7a6 ; mcu_to_fpga + 280
         0x000006f2:    4846        FH      LDR      r0,[pc,#280] ; [0x80c] = 0x200004f8
         0x000006f4:    7801        .x      LDRB     r1,[r0,#0]
         0x000006f6:    29ff        .)      CMP      r1,#0xff
-        0x000006f8:    d154        T.      BNE      0x7a4 ; mcu_to_fpga + 278
+        0x000006f8:    d155        U.      BNE      0x7a6 ; mcu_to_fpga + 280
         0x000006fa:    7841        Ax      LDRB     r1,[r0,#1]
         0x000006fc:    29ff        .)      CMP      r1,#0xff
-        0x000006fe:    d151        Q.      BNE      0x7a4 ; mcu_to_fpga + 278
+        0x000006fe:    d152        R.      BNE      0x7a6 ; mcu_to_fpga + 280
         0x00000700:    7881        .x      LDRB     r1,[r0,#2]
         0x00000702:    29ff        .)      CMP      r1,#0xff
-        0x00000704:    d14e        N.      BNE      0x7a4 ; mcu_to_fpga + 278
+        0x00000704:    d14f        O.      BNE      0x7a6 ; mcu_to_fpga + 280
         0x00000706:    78c1        .x      LDRB     r1,[r0,#3]
         0x00000708:    29ff        .)      CMP      r1,#0xff
-        0x0000070a:    d14b        K.      BNE      0x7a4 ; mcu_to_fpga + 278
+        0x0000070a:    d14c        L.      BNE      0x7a6 ; mcu_to_fpga + 280
         0x0000070c:    f890003a    ..:.    LDRB     r0,[r0,#0x3a]
         0x00000710:    2868        h(      CMP      r0,#0x68
-        0x00000712:    d147        G.      BNE      0x7a4 ; mcu_to_fpga + 278
+        0x00000712:    d148        H.      BNE      0x7a6 ; mcu_to_fpga + 280
         0x00000714:    f8de703c    ..<p    LDR      r7,[lr,#0x3c]
         0x00000718:    f8de6014    ...`    LDR      r6,[lr,#0x14]
         0x0000071c:    2201        ."      MOVS     r2,#1
@@ -931,89 +931,88 @@
         0x00000720:    493b        ;I      LDR      r1,[pc,#236] ; [0x810] = 0x40070000
         0x00000722:    483c        <H      LDR      r0,[pc,#240] ; [0x814] = 0x40004898
         0x00000724:    42b7        .B      CMP      r7,r6
-        0x00000726:    d033        3.      BEQ      0x790 ; mcu_to_fpga + 258
+        0x00000726:    d034        4.      BEQ      0x792 ; mcu_to_fpga + 260
         0x00000728:    24c0        .$      MOVS     r4,#0xc0
         0x0000072a:    e084        ..      B        0x836 ; mcu_to_fpga + 424
         0x0000072c:    f8cc5064    ..dP    STR      r5,[r12,#0x64]
         0x00000730:    e7bd        ..      B        0x6ae ; mcu_to_fpga + 32
-        0x00000732:    2002        .       MOVS     r0,#2
-        0x00000734:    e7b9        ..      B        0x6aa ; mcu_to_fpga + 28
-        0x00000736:    f8de001c    ....    LDR      r0,[lr,#0x1c]
-        0x0000073a:    e9cc0515    ....    STRD     r0,r5,[r12,#0x54]
-        0x0000073e:    f8cc505c    ..\P    STR      r5,[r12,#0x5c]
-        0x00000742:    e005        ..      B        0x750 ; mcu_to_fpga + 194
-        0x00000744:    f8cc5054    ..TP    STR      r5,[r12,#0x54]
-        0x00000748:    f8de0038    ..8.    LDR      r0,[lr,#0x38]
-        0x0000074c:    e9cc0516    ....    STRD     r0,r5,[r12,#0x58]
-        0x00000750:    f8cc5060    ..`P    STR      r5,[r12,#0x60]
-        0x00000754:    e7bb        ..      B        0x6ce ; mcu_to_fpga + 64
-        0x00000756:    f8cc5054    ..TP    STR      r5,[r12,#0x54]
-        0x0000075a:    f8cc5058    ..XP    STR      r5,[r12,#0x58]
-        0x0000075e:    f8de0020    .. .    LDR      r0,[lr,#0x20]
-        0x00000762:    e9cc0517    ....    STRD     r0,r5,[r12,#0x5c]
-        0x00000766:    e7b2        ..      B        0x6ce ; mcu_to_fpga + 64
-        0x00000768:    f8dc0034    ..4.    LDR      r0,[r12,#0x34]
-        0x0000076c:    f8cc0068    ..h.    STR      r0,[r12,#0x68]
-        0x00000770:    20d3        .       MOVS     r0,#0xd3
-        0x00000772:    e00a        ..      B        0x78a ; mcu_to_fpga + 252
-        0x00000774:    f8dc0038    ..8.    LDR      r0,[r12,#0x38]
-        0x00000778:    f8cc0068    ..h.    STR      r0,[r12,#0x68]
-        0x0000077c:    20d4        .       MOVS     r0,#0xd4
-        0x0000077e:    e004        ..      B        0x78a ; mcu_to_fpga + 252
-        0x00000780:    f8dc003c    ..<.    LDR      r0,[r12,#0x3c]
-        0x00000784:    f8cc0068    ..h.    STR      r0,[r12,#0x68]
-        0x00000788:    20d6        .       MOVS     r0,#0xd6
-        0x0000078a:    f8cc006c    ..l.    STR      r0,[r12,#0x6c]
-        0x0000078e:    e7a8        ..      B        0x6e2 ; mcu_to_fpga + 84
-        0x00000790:    f8dc6064    ..d`    LDR      r6,[r12,#0x64]
-        0x00000794:    f8de7044    ..Dp    LDR      r7,[lr,#0x44]
-        0x00000798:    42be        .B      CMP      r6,r7
-        0x0000079a:    d004        ..      BEQ      0x7a6 ; mcu_to_fpga + 280
-        0x0000079c:    24cd        .$      MOVS     r4,#0xcd
-        0x0000079e:    e009        ..      B        0x7b4 ; mcu_to_fpga + 294
-        0x000007a0:    600b        .`      STR      r3,[r1,#0]
-        0x000007a2:    6002        .`      STR      r2,[r0,#0]
-        0x000007a4:    bdf0        ..      POP      {r4-r7,pc}
-        0x000007a6:    f8dc6060    ..``    LDR      r6,[r12,#0x60]
-        0x000007aa:    f8de7074    ..tp    LDR      r7,[lr,#0x74]
-        0x000007ae:    42be        .B      CMP      r6,r7
-        0x000007b0:    d005        ..      BEQ      0x7be ; mcu_to_fpga + 304
-        0x000007b2:    24c3        .$      MOVS     r4,#0xc3
-        0x000007b4:    600c        .`      STR      r4,[r1,#0]
-        0x000007b6:    b2f4        ..      UXTB     r4,r6
-        0x000007b8:    600c        .`      STR      r4,[r1,#0]
-        0x000007ba:    0a34        4.      LSRS     r4,r6,#8
-        0x000007bc:    e051        Q.      B        0x862 ; mcu_to_fpga + 468
-        0x000007be:    f8dc6054    ..T`    LDR      r6,[r12,#0x54]
-        0x000007c2:    f8de704c    ..Lp    LDR      r7,[lr,#0x4c]
-        0x000007c6:    42be        .B      CMP      r6,r7
-        0x000007c8:    d001        ..      BEQ      0x7ce ; mcu_to_fpga + 320
-        0x000007ca:    24c4        .$      MOVS     r4,#0xc4
-        0x000007cc:    e7f2        ..      B        0x7b4 ; mcu_to_fpga + 294
-        0x000007ce:    f8de6048    ..H`    LDR      r6,[lr,#0x48]
-        0x000007d2:    f8dc7058    ..Xp    LDR      r7,[r12,#0x58]
-        0x000007d6:    42be        .B      CMP      r6,r7
-        0x000007d8:    d005        ..      BEQ      0x7e6 ; mcu_to_fpga + 344
-        0x000007da:    24c5        .$      MOVS     r4,#0xc5
-        0x000007dc:    600c        .`      STR      r4,[r1,#0]
-        0x000007de:    b2fc        ..      UXTB     r4,r7
-        0x000007e0:    600c        .`      STR      r4,[r1,#0]
-        0x000007e2:    0a3c        <.      LSRS     r4,r7,#8
-        0x000007e4:    e03d        =.      B        0x862 ; mcu_to_fpga + 468
-        0x000007e6:    f8de7054    ..Tp    LDR      r7,[lr,#0x54]
-        0x000007ea:    f8de6024    ..$`    LDR      r6,[lr,#0x24]
-        0x000007ee:    42be        .B      CMP      r6,r7
-        0x000007f0:    d001        ..      BEQ      0x7f6 ; mcu_to_fpga + 360
-        0x000007f2:    24c6        .$      MOVS     r4,#0xc6
-        0x000007f4:    e7de        ..      B        0x7b4 ; mcu_to_fpga + 294
-        0x000007f6:    f8dc605c    ..\`    LDR      r6,[r12,#0x5c]
-        0x000007fa:    f8de7050    ..Pp    LDR      r7,[lr,#0x50]
-        0x000007fe:    42be        .B      CMP      r6,r7
-        0x00000800:    d00a        ..      BEQ      0x818 ; mcu_to_fpga + 394
-        0x00000802:    24c7        .$      MOVS     r4,#0xc7
-        0x00000804:    e7d6        ..      B        0x7b4 ; mcu_to_fpga + 294
+        0x00000732:    f44f60fa    O..`    MOV      r0,#0x7d0
+        0x00000736:    e7b8        ..      B        0x6aa ; mcu_to_fpga + 28
+        0x00000738:    f8de001c    ....    LDR      r0,[lr,#0x1c]
+        0x0000073c:    e9cc0515    ....    STRD     r0,r5,[r12,#0x54]
+        0x00000740:    f8cc505c    ..\P    STR      r5,[r12,#0x5c]
+        0x00000744:    e005        ..      B        0x752 ; mcu_to_fpga + 196
+        0x00000746:    f8cc5054    ..TP    STR      r5,[r12,#0x54]
+        0x0000074a:    f8de0038    ..8.    LDR      r0,[lr,#0x38]
+        0x0000074e:    e9cc0516    ....    STRD     r0,r5,[r12,#0x58]
+        0x00000752:    f8cc5060    ..`P    STR      r5,[r12,#0x60]
+        0x00000756:    e7ba        ..      B        0x6ce ; mcu_to_fpga + 64
+        0x00000758:    f8cc5054    ..TP    STR      r5,[r12,#0x54]
+        0x0000075c:    f8cc5058    ..XP    STR      r5,[r12,#0x58]
+        0x00000760:    f8de0020    .. .    LDR      r0,[lr,#0x20]
+        0x00000764:    e9cc0517    ....    STRD     r0,r5,[r12,#0x5c]
+        0x00000768:    e7b1        ..      B        0x6ce ; mcu_to_fpga + 64
+        0x0000076a:    f8dc0034    ..4.    LDR      r0,[r12,#0x34]
+        0x0000076e:    f8cc0068    ..h.    STR      r0,[r12,#0x68]
+        0x00000772:    20d3        .       MOVS     r0,#0xd3
+        0x00000774:    e00a        ..      B        0x78c ; mcu_to_fpga + 254
+        0x00000776:    f8dc0038    ..8.    LDR      r0,[r12,#0x38]
+        0x0000077a:    f8cc0068    ..h.    STR      r0,[r12,#0x68]
+        0x0000077e:    20d4        .       MOVS     r0,#0xd4
+        0x00000780:    e004        ..      B        0x78c ; mcu_to_fpga + 254
+        0x00000782:    f8dc003c    ..<.    LDR      r0,[r12,#0x3c]
+        0x00000786:    f8cc0068    ..h.    STR      r0,[r12,#0x68]
+        0x0000078a:    20d6        .       MOVS     r0,#0xd6
+        0x0000078c:    f8cc006c    ..l.    STR      r0,[r12,#0x6c]
+        0x00000790:    e7a7        ..      B        0x6e2 ; mcu_to_fpga + 84
+        0x00000792:    f8dc6064    ..d`    LDR      r6,[r12,#0x64]
+        0x00000796:    f8de7044    ..Dp    LDR      r7,[lr,#0x44]
+        0x0000079a:    42be        .B      CMP      r6,r7
+        0x0000079c:    d004        ..      BEQ      0x7a8 ; mcu_to_fpga + 282
+        0x0000079e:    24cd        .$      MOVS     r4,#0xcd
+        0x000007a0:    e009        ..      B        0x7b6 ; mcu_to_fpga + 296
+        0x000007a2:    600b        .`      STR      r3,[r1,#0]
+        0x000007a4:    6002        .`      STR      r2,[r0,#0]
+        0x000007a6:    bdf0        ..      POP      {r4-r7,pc}
+        0x000007a8:    f8dc6060    ..``    LDR      r6,[r12,#0x60]
+        0x000007ac:    f8de7074    ..tp    LDR      r7,[lr,#0x74]
+        0x000007b0:    42be        .B      CMP      r6,r7
+        0x000007b2:    d005        ..      BEQ      0x7c0 ; mcu_to_fpga + 306
+        0x000007b4:    24c3        .$      MOVS     r4,#0xc3
+        0x000007b6:    600c        .`      STR      r4,[r1,#0]
+        0x000007b8:    b2f4        ..      UXTB     r4,r6
+        0x000007ba:    600c        .`      STR      r4,[r1,#0]
+        0x000007bc:    0a34        4.      LSRS     r4,r6,#8
+        0x000007be:    e050        P.      B        0x862 ; mcu_to_fpga + 468
+        0x000007c0:    f8dc6054    ..T`    LDR      r6,[r12,#0x54]
+        0x000007c4:    f8de704c    ..Lp    LDR      r7,[lr,#0x4c]
+        0x000007c8:    42be        .B      CMP      r6,r7
+        0x000007ca:    d001        ..      BEQ      0x7d0 ; mcu_to_fpga + 322
+        0x000007cc:    24c4        .$      MOVS     r4,#0xc4
+        0x000007ce:    e7f2        ..      B        0x7b6 ; mcu_to_fpga + 296
+        0x000007d0:    f8de6048    ..H`    LDR      r6,[lr,#0x48]
+        0x000007d4:    f8dc7058    ..Xp    LDR      r7,[r12,#0x58]
+        0x000007d8:    42be        .B      CMP      r6,r7
+        0x000007da:    d005        ..      BEQ      0x7e8 ; mcu_to_fpga + 346
+        0x000007dc:    24c5        .$      MOVS     r4,#0xc5
+        0x000007de:    600c        .`      STR      r4,[r1,#0]
+        0x000007e0:    b2fc        ..      UXTB     r4,r7
+        0x000007e2:    600c        .`      STR      r4,[r1,#0]
+        0x000007e4:    0a3c        <.      LSRS     r4,r7,#8
+        0x000007e6:    e03c        <.      B        0x862 ; mcu_to_fpga + 468
+        0x000007e8:    f8de7054    ..Tp    LDR      r7,[lr,#0x54]
+        0x000007ec:    f8de6024    ..$`    LDR      r6,[lr,#0x24]
+        0x000007f0:    42be        .B      CMP      r6,r7
+        0x000007f2:    d001        ..      BEQ      0x7f8 ; mcu_to_fpga + 362
+        0x000007f4:    24c6        .$      MOVS     r4,#0xc6
+        0x000007f6:    e7de        ..      B        0x7b6 ; mcu_to_fpga + 296
+        0x000007f8:    f8dc605c    ..\`    LDR      r6,[r12,#0x5c]
+        0x000007fc:    f8de7050    ..Pp    LDR      r7,[lr,#0x50]
+        0x00000800:    42be        .B      CMP      r6,r7
+        0x00000802:    d009        ..      BEQ      0x818 ; mcu_to_fpga + 394
+        0x00000804:    24c7        .$      MOVS     r4,#0xc7
+        0x00000806:    e7d6        ..      B        0x7b6 ; mcu_to_fpga + 296
     $d
-        0x00000806:    0000        ..      DCW    0
         0x00000808:    20000030    0..     DCD    536870960
         0x0000080c:    200004f8    ...     DCD    536872184
         0x00000810:    40070000    ...@    DCD    1074200576
@@ -1024,7 +1023,7 @@
         0x00000820:    42be        .B      CMP      r6,r7
         0x00000822:    d001        ..      BEQ      0x828 ; mcu_to_fpga + 410
         0x00000824:    24c8        .$      MOVS     r4,#0xc8
-        0x00000826:    e7c5        ..      B        0x7b4 ; mcu_to_fpga + 294
+        0x00000826:    e7c6        ..      B        0x7b6 ; mcu_to_fpga + 296
         0x00000828:    f8de6030    ..0`    LDR      r6,[lr,#0x30]
         0x0000082c:    f8dc7044    ..Dp    LDR      r7,[r12,#0x44]
         0x00000830:    42be        .B      CMP      r6,r7
@@ -1032,7 +1031,7 @@
         0x00000834:    24d2        .$      MOVS     r4,#0xd2
         0x00000836:    600c        .`      STR      r4,[r1,#0]
         0x00000838:    600e        .`      STR      r6,[r1,#0]
-        0x0000083a:    e7b1        ..      B        0x7a0 ; mcu_to_fpga + 274
+        0x0000083a:    e7b2        ..      B        0x7a2 ; mcu_to_fpga + 276
         0x0000083c:    b19c        ..      CBZ      r4,0x866 ; mcu_to_fpga + 472
         0x0000083e:    f8dc6050    ..P`    LDR      r6,[r12,#0x50]
         0x00000842:    42b4        .B      CMP      r4,r6
@@ -1048,13 +1047,13 @@
         0x0000085e:    600d        .`      STR      r5,[r1,#0]
         0x00000860:    0a24        $.      LSRS     r4,r4,#8
         0x00000862:    600c        .`      STR      r4,[r1,#0]
-        0x00000864:    e79c        ..      B        0x7a0 ; mcu_to_fpga + 274
+        0x00000864:    e79d        ..      B        0x7a2 ; mcu_to_fpga + 276
         0x00000866:    f8dc4050    ..P@    LDR      r4,[r12,#0x50]
         0x0000086a:    b11c        ..      CBZ      r4,0x874 ; mcu_to_fpga + 486
         0x0000086c:    24d0        .$      MOVS     r4,#0xd0
         0x0000086e:    600c        .`      STR      r4,[r1,#0]
         0x00000870:    600d        .`      STR      r5,[r1,#0]
-        0x00000872:    e795        ..      B        0x7a0 ; mcu_to_fpga + 274
+        0x00000872:    e796        ..      B        0x7a2 ; mcu_to_fpga + 276
         0x00000874:    6005        .`      STR      r5,[r0,#0]
         0x00000876:    bdf0        ..      POP      {r4-r7,pc}
     UART0_TEST_HANDLE

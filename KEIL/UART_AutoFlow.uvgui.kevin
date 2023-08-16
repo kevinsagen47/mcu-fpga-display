@@ -3624,9 +3624,9 @@
       </Doc>
       <Doc>
         <Name>..\dependencies.c</Name>
-        <ColumnNumber>46</ColumnNumber>
-        <TopLine>170</TopLine>
-        <CurrentLine>184</CurrentLine>
+        <ColumnNumber>80</ColumnNumber>
+        <TopLine>26</TopLine>
+        <CurrentLine>42</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
