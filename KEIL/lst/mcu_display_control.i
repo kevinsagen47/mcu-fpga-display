@@ -85624,7 +85624,10 @@ uint8_t display_page_2_timeout_occured [7] 						= { 0x6E, 0x30,0x2E,0x76,0x61,0
 uint8_t display_page_2_distance_absolute [9] ={0x74,0X32,0X35,0x2E,0x74,0x78,0x74,0x3D,0x22};
 uint8_t display_page_2_absolute_hold [9] ={0x74,0X33,0X33,0x2E,0x74,0x78,0x74,0x3D,0x22};
 uint8_t display_page_2_collapse_hold [9] ={0x74,0X33,0X30,0x2E,0x74,0x78,0x74,0x3D,0x22};
+uint8_t display_page_2_freq_delta [9] ={0x74,0X33,0X38,0x2E,0x74,0x78,0x74,0x3D,0x22};
 
+
+int freq_delta,freq_delta_abs;
 void print_page_weld_record(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_freq_start,7);
 		binary_to_bcd_array(read_freq_start());
@@ -85635,7 +85638,43 @@ void print_page_weld_record(){
 		binary_to_bcd_array(read_freq_end());
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+		
+		freq_delta=read_freq_end()-read_freq_start();
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_freq_delta,9);
+		if(freq_delta<0){
+			one_array_temp[0] = 0x2D;
+			freq_delta_abs=-1*freq_delta;}
+		else {
+			one_array_temp[0] = 0x2B;
+			freq_delta_abs=freq_delta;}
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),one_array_temp,1);
+		
+		if(freq_delta_abs<1000){
+		binary_to_bcd_array(freq_delta_abs);
+		if(freq_delta_abs>99){
+			one_array_temp[0] = bcd_array[2];
+			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),one_array_temp,1);}
+		
+		if(freq_delta_abs>9){
+			one_array_temp[0] = bcd_array[3];
+			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),one_array_temp,1);}
+		
+		one_array_temp[0] = bcd_array[4];
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),one_array_temp,1);
+		}
+		else {
+			one_array_temp[0] = 0x30;
+			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),one_array_temp,1);
+		}
+		
+		one_array_temp[0] = 0x22;
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),one_array_temp,1);
+		
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 	
+		
+		
+		
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_freq_max,7);
 		binary_to_bcd_array(read_freq_max());
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
