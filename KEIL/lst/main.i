@@ -1189,12 +1189,17 @@ void display_to_mcu(void);
 
 
 
+
+
 void print_page_setting_1(void);
 void print_page_setting_2(void);
 void print_page_weld_record(void);
 void print_page_head_down(void);
 void print_page_SectionVib(void);
 void print_page_head_test(void);
+void print_page_early_after_trigger(void);
+
+
 extern uint8_t header[3];
 extern uint8_t display_input_command[4];
 extern uint8_t display_page;
@@ -1203,45 +1208,98 @@ extern uint8_t Freq_init;
 
 
 
+
 void write_amplitude_set (unsigned int arg);
-void write_mode_set (unsigned int arg);
 void write_timeout_set (unsigned int arg);
+void write_force_set (unsigned int arg);
+void write_hold_time_set(unsigned int arg);
+
+unsigned int read_amplitude_set_display(void);
+unsigned int read_hold_time_display(void);
+unsigned int read_force_set_display(void);
+
+
+
+void write_mode_set (unsigned int arg);
+
+
+
+
+
 void write_distance_absolute_set (unsigned int arg);
 void write_distance_relative_set (unsigned int arg);
 void write_energy_set (unsigned int arg);
-void write_force_set (unsigned int arg);
 void write_time_set_stage_one_set (unsigned int arg);
-
-
-void write_amplitudeA_set_stage2 (unsigned int arg);
-void write_amplitudeB_set_stage2 (unsigned int arg);
-void write_stage_mode (unsigned int arg);
-void write_distance_set_stage2 (unsigned int arg);
-void write_power_set_stage2 (unsigned int arg);
-void write_energy_set_stage2 (unsigned int arg);
-void write_time_set_stage2 (unsigned int arg);
-void write_stage2_mode_address_set (unsigned int arg);
-void write_hold_time_set(unsigned int arg);
-
-
-
-
-unsigned int read_amplitude_set_display(void);
+void write_power_stage_one_set (unsigned int arg);
 unsigned int read_mode_set(void) ;
 
 
 
 
 
-unsigned int read_freq_display(void);
 unsigned int read_timeout_set_display(void);
 unsigned int read_distance_absolute_set_display(void);
 unsigned int read_distance_relative_set_display(void);
 unsigned int read_energy_set_display(void);
-unsigned int read_force_set_display(void);
 unsigned int read_time_set_stage_one_display(void);
-unsigned int read_distance_reached(void);
-unsigned int read_hold_time_display(void);
+unsigned int read_power_stage_one_display(void);
+
+
+
+void write_amplitudeA_set_stage2 (unsigned int arg);
+void write_amplitudeB_set_stage2 (unsigned int arg);
+void write_stage_mode (unsigned int arg);
+
+
+
+
+void write_distance_set_stage2 (unsigned int arg);
+void write_power_set_stage2 (unsigned int arg);
+void write_energy_set_stage2 (unsigned int arg);
+void write_time_set_stage2 (unsigned int arg);
+void write_stage2_mode_address_set (unsigned int arg);
+
+unsigned int read_amplitudeA_set_stage2_display(void);
+unsigned int read_amplitudeB_set_stage2_display(void);
+unsigned int read_stage2_mode_address_display(void);
+unsigned int read_time_set_stage2_display(void);
+unsigned int read_distance_set_stage2_display(void);
+unsigned int read_power_set_stage2_display(void);
+unsigned int read_energy_set_stage2_display(void);
+unsigned int read_stage2_mode_address_set(void);
+
+
+
+
+void write_power_early_stage_set(unsigned int arg);
+void write_mode_early_stage_set(unsigned int arg);
+
+
+
+void write_time_early_trigger_set(unsigned int arg);
+void write_distance_early_trigger_set(unsigned int arg);
+
+unsigned int read_power_early_stage_display(void);
+unsigned int read_mode_early_stage_display(void);
+unsigned int read_time_early_trigger_display(void);
+unsigned int read_distance_early_trigger_display(void);
+
+
+
+void write_power_after_stage_set(unsigned int arg);
+void write_mode_after_stage_set(unsigned int arg);
+
+
+
+void write_time_after_trigger_set(unsigned int arg);
+void write_distance_after_trigger_set(unsigned int arg);
+void write_time_on_after_stage_set(unsigned int arg);
+
+unsigned int read_power_after_stage_display(void);
+unsigned int read_mode_after_stage_display(void);
+unsigned int read_time_after_trigger_display(void);
+unsigned int read_distance_after_trigger_display(void);
+unsigned int read_time_on_after_stage_display(void);
 
 
 
@@ -1253,6 +1311,9 @@ unsigned int read_pressure_display(void);
 
 
 unsigned int read_power_read_display(void);
+
+unsigned int read_freq_display(void);
+unsigned int read_distance_reached(void);
 
 unsigned int read_energy_display(void);
 unsigned int read_freq_min(void);
@@ -1268,18 +1329,6 @@ unsigned int read_distance_hold(void);
 unsigned int read_absolute_hold(void);
 unsigned int read_collapse_hold(void);
 unsigned int read_timeout_occured(void);
-
-
-
-unsigned int read_amplitudeA_set_stage2_display(void);
-unsigned int read_amplitudeB_set_stage2_display(void);
-unsigned int read_stage2_mode_address_display(void);
-unsigned int read_time_set_stage2_display(void);
-unsigned int read_distance_set_stage2_display(void);
-
-unsigned int read_energy_set_stage2_display(void);
-unsigned int read_stage2_mode_address_set(void);
-
 
 
 #line 12 "..\\main.c"
@@ -85434,6 +85483,7 @@ void TMR0_IRQHandler(void)
 	}
 	else if (display_page==3)print_page_setting_2();
 	else if (display_page==4)print_page_SectionVib();
+	else if (display_page==5 || display_page==6)print_page_early_after_trigger();
 	else if (display_page==8)print_page_weld_record();
 	else if (display_page==9)print_page_head_down();
 	else if (display_page==10)print_page_head_test();

@@ -30,6 +30,7 @@ void TMR0_IRQHandler(void)
 	}
 	else if (display_page==3)print_page_setting_2();
 	else if (display_page==4)print_page_SectionVib();
+	else if (display_page==5 || display_page==6)print_page_early_after_trigger();
 	else if (display_page==8)print_page_weld_record();
 	else if (display_page==9)print_page_head_down();
 	else if (display_page==10)print_page_head_test();

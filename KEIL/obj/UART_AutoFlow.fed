@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Wed Aug 16 15:24:01 2023
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Thu Aug 24 17:24:30 2023
 ;VERSION 0.2
 ;FILE clk.o
 CLK_DisableCKO <= USED 0
@@ -31,7 +31,6 @@ __asm___14_dependencies_c_i____REVSH <= USED 0
 __asm___14_dependencies_c_i____RRX <= USED 0
 read_current_display <= USED 0
 read_distance_hold <= USED 0
-write_power_set_stage2 <= USED 0
 ;FILE gpio.o
 GPIO_DisableInt <= USED 0
 GPIO_EnableInt <= USED 0
