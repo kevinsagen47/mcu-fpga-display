@@ -48,7 +48,7 @@ void write_amplitude_set (unsigned int arg);
 void write_timeout_set (unsigned int arg);
 void write_force_set (unsigned int arg);
 void write_hold_time_set(unsigned int arg);
-
+void write_amplitude_head_test_set (unsigned int arg);
 unsigned int read_amplitude_set_display(void);
 unsigned int read_hold_time_display(void);
 unsigned int read_force_set_display(void);

@@ -304,7 +304,7 @@ void write_amplitude_set (unsigned int arg);
 void write_timeout_set (unsigned int arg);
 void write_force_set (unsigned int arg);
 void write_hold_time_set(unsigned int arg);
-
+void write_amplitude_head_test_set (unsigned int arg);
 unsigned int read_amplitude_set_display(void);
 unsigned int read_hold_time_display(void);
 unsigned int read_force_set_display(void);
@@ -85494,9 +85494,9 @@ uint8_t Freq_init=0;
 
 
 unsigned int amplitude_set=20,freq,time_set, force_set=22,timeout_set=5000;
-unsigned int amplitude_set_display,freq_display,timeout_set_display, force_set_display,standby,hold_time_display,hold_time_set;
+unsigned int amplitude_set_display,freq_display,timeout_set_display, force_set_display,standby,hold_time_display,hold_time_set,amplitude_head_test_set=10;
 
-
+void write_amplitude_head_test_set (unsigned int arg){amplitude_head_test_set=arg;}
 void write_amplitude_set (unsigned int arg){amplitude_set=arg;}
 void write_timeout_set (unsigned int arg){timeout_set=arg;}
 void write_force_set (unsigned int arg){force_set=arg;}
@@ -85510,7 +85510,7 @@ unsigned int read_hold_time_display() {return hold_time_display;}
 
 
 unsigned int distance_absolute_set_display,distance_relative_set_display, energy_set_display,time_set_stage_one_display,power_stage_one_display;
-unsigned int distance_absolute_set,distance_relative_set=15,time_set_stage_one_set=500, energy_set=300,mode_set=1,power_stage_one_set=10;
+unsigned int distance_absolute_set,distance_relative_set=15,time_set_stage_one_set=500, energy_set=300,mode_set=1,power_stage_one_set=400;
 void write_mode_set (unsigned int arg){mode_set=arg;}
 void write_distance_absolute_set (unsigned int arg){distance_absolute_set=arg;}
 void write_distance_relative_set (unsigned int arg){distance_relative_set=arg;}
@@ -85555,7 +85555,7 @@ unsigned int read_stage2_mode_address_set() {return stage2_mode_address_set;}
 
 
 unsigned int power_early_stage_display,mode_early_stage_display,value_early_stage_display;
-unsigned int power_early_stage_set,mode_early_stage_set,time_early_trigger_set,distance_early_trigger_set;
+unsigned int power_early_stage_set=10,mode_early_stage_set,time_early_trigger_set,distance_early_trigger_set;
 
 void write_power_early_stage_set(unsigned int arg) {power_early_stage_set=arg;}
 void write_mode_early_stage_set(unsigned int arg) {mode_early_stage_set=arg;}
@@ -85571,7 +85571,7 @@ unsigned int read_distance_early_trigger_display(void) {if (mode_early_stage_dis
 
 
 unsigned int power_after_stage_display,mode_after_stage_display,value_after_stage_display,time_on_after_stage_display;
-unsigned int power_after_stage_set,mode_after_stage_set,time_after_trigger_set,distance_after_trigger_set,time_on_after_stage_set;
+unsigned int power_after_stage_set=10,mode_after_stage_set,time_after_trigger_set,distance_after_trigger_set,time_on_after_stage_set;
 void write_power_after_stage_set(unsigned int arg) {power_after_stage_set=arg;}
 void write_mode_after_stage_set(unsigned int arg) {mode_after_stage_set=arg;}
 void write_time_after_trigger_set(unsigned int arg){time_after_trigger_set=arg;}
@@ -85715,12 +85715,18 @@ void fpga_to_mcu(void){
 int time_set_zero=0;
 unsigned int temp_power_stage_one_set,temp_distance_relative_set,temp_distance_absolute_set, temp_energy_set, temp_time_set_stage_one_set,temp_timeout_set;
 unsigned int temp_value_mode_stage2,temp_value_early_stage_set,temp_value_after_stage_set;
-unsigned int temp_stage2_address,temp_early_stage_address,temp_after_stage_address;
+unsigned int temp_stage2_address,temp_early_stage_address,temp_after_stage_address,temp_amplitude_set;
 void mcu_to_fpga(void){
 	
 	if (display_page==9)temp_timeout_set=0;
-	else if (display_page==10)temp_timeout_set=2000;
-	else temp_timeout_set=timeout_set;
+	else if (display_page==10){
+		temp_timeout_set=2000;
+		temp_amplitude_set=amplitude_head_test_set;
+	}
+	else {
+		temp_timeout_set=timeout_set;
+		temp_amplitude_set=amplitude_set;
+	}
 	
 	if (mode_set==2){
 		temp_distance_relative_set=distance_relative_set;
@@ -85793,9 +85799,9 @@ void mcu_to_fpga(void){
 	else temp_value_after_stage_set=0;
 	
 	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[70]==0x68){
-		if(amplitude_set_display!=amplitude_set){
+		if(amplitude_set_display!=temp_amplitude_set){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xC0));
-			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (amplitude_set));
+			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (temp_amplitude_set));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
 			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
 		}
