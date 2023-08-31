@@ -33,6 +33,8 @@ void print_page_head_down(void);
 void print_page_SectionVib(void);
 void print_page_head_test(void);
 void print_page_early_after_trigger(void);
+void print_page_overload(void);
+void print_page_timeout(void);
 //////////////////////////////////////////////////////////////////////////
 
 extern uint8_t header[3];
@@ -164,6 +166,8 @@ unsigned int read_distance_hold(void);
 unsigned int read_absolute_hold(void);
 unsigned int read_collapse_hold(void);
 unsigned int read_timeout_occured(void);
+unsigned int read_total_time_display(void);
+unsigned int read_overload_display(void);
 ///////////////////////////////////////////////////////////////////////
 
 #endif
