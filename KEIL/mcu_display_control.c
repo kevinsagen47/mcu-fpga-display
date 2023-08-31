@@ -141,13 +141,13 @@ void print_page_setting_1(){
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 }
-uint8_t display_page_setting_2_timeout [15] ={0x6E,0X41,0X62,0X6F,0X72,0X74,0X54,0X69,0X6D,0X65,0x2E,0x76,0x61,0x6C,0x3D};//b[6].val=
+uint8_t display_page_setting_2_timeout [15] ={0x78,0X41,0X62,0X6F,0X72,0X74,0X54,0X69,0X6D,0X65,0x2E,0x76,0x61,0x6C,0x3D};//b[6].val=
 void print_page_setting_2(){
 		UART_Write(UART1,display_page_setting_2_timeout,15);
 		//if(mode_set!=1)binary_to_bcd_array(time_set_display);
 		//else 
-		binary_to_bcd_array(read_timeout_set_display());
-		UART_Write(UART1,bcd_array,2);
+		binary_to_bcd_array(read_timeout_set_display()/10);
+		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 		
 }
@@ -485,7 +485,7 @@ void print_page_early_after_trigger(){
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 		
-		UART_Write(UART1,display_page_early_after_ampli,12);
+		UART_Write(UART1,display_page_early_after_ampli,15);
 		binary_to_bcd_array(read_power_after_stage_display());
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
@@ -535,7 +535,7 @@ void display_to_mcu(){//display HMI => MCU
 					//main setting
 					case 0xca:write_force_set									((display_input_command[2]<<8)|(display_input_command[1]));break;
 					case 0xc8:write_hold_time_set							((display_input_command[2]<<8)|(display_input_command[1])*10);break;
-					case 0xcd:write_timeout_set								(((display_input_command[2]<<8)|(display_input_command[1]))*1000);break;
+					case 0xcd:write_timeout_set								(((display_input_command[2]<<8)|(display_input_command[1]))*10);break;
 					
 					//second stage
 					case 0xd0:if (display_input_command[1]==0)	write_stage2_mode_address_set(0);break;

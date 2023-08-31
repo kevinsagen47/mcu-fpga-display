@@ -41,7 +41,7 @@ uint8_t display_page_1_trigger [7] 	= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
 
 ///////////////////////////////MAIN SETTINGS//////////////////////////////////////////////////////////////
 unsigned int amplitude_set=20,freq,time_set, force_set=22,timeout_set=5000;
-unsigned int amplitude_set_display,freq_display,timeout_set_display, force_set_display,standby,hold_time_display,hold_time_set,amplitude_head_test_set=10;
+unsigned int amplitude_set_display,freq_display,timeout_set_display, force_set_display,standby,hold_time_display,hold_time_set=10,amplitude_head_test_set=10;
 
 void write_amplitude_head_test_set (unsigned int arg){amplitude_head_test_set=arg;}
 void write_amplitude_set (unsigned int arg){amplitude_set=arg;}
