@@ -446,6 +446,8 @@ void print_page_head_test(){
 	
 		UART_Write(UART1,display_page_head_test_power_read,7);
 		binary_to_bcd_array(read_power_read_display());
+		//if (read_theta_display()<0)binary_to_bcd_array(read_theta_display()*-1+1000);
+		//else binary_to_bcd_array(read_theta_display());
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 }
@@ -496,8 +498,24 @@ void print_page_early_after_trigger(){
 		UART_Write(UART1,header,3);
 	}
 }
-
-
+uint8_t display_page_head_diagnosis_on[21]={0x62,0x50,0x72,0x65,0x56,0x69,0x62,0x2E,0x74,0x78,0x74,0x3D,0x22,0xB6,0x7D,0xB1,0xD2,0x22,0xff,0xff,0xff};//bPreVib.txt="kai qi"
+uint8_t display_page_head_diagnosis_off[21]={0x62,0x50,0x72,0x65,0x56,0x69,0x62,0x2E,0x74,0x78,0x74,0x3D,0x22,0xC3,0xF6,0xB3,0xAC,0x22,0xff,0xff,0xff};//bPreVib.txt="guan bi"
+uint8_t display_page_head_diagnosis_anti [7] = { 0x6E, 0x30,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_head_diagnosis_res [7] = { 0x6E, 0x31,0x2E,0x76,0x61,0x6C,0x3D};
+void print_page_head_diagnosis(){
+	if(read_head_sweep_display()==1)UART_Write(UART1,display_page_head_diagnosis_off,21);
+	else UART_Write(UART1,display_page_head_diagnosis_on,21);
+	
+	UART_Write(UART1,display_page_head_diagnosis_res,7);
+	binary_to_bcd_array(read_resonance_frequency());
+	UART_Write(UART1,bcd_array,5);
+	UART_Write(UART1,header,3);
+	
+	UART_Write(UART1,display_page_head_diagnosis_anti,7);
+	binary_to_bcd_array(read_anti_resonance_frequency());
+	UART_Write(UART1,bcd_array,5);
+	UART_Write(UART1,header,3);
+}
 
 //display_to_mcu()
 int test,energy_set_temp,timer_mode_set,energy_set_stage2_temp;
@@ -531,7 +549,9 @@ void display_to_mcu(){//display HMI => MCU
 					case 0xc7:write_energy_set								((display_input_command[2]<<8)|(display_input_command[1]));
 										if(read_stage2_mode_address_display()!=6)write_stage2_mode_address_set(0);break;
 					case 0xc9:write_amplitude_head_test_set		(display_input_command[1]);break;
-						
+					
+					case 0xcf:write_head_sweep_set						(display_input_command[1]);break;
+										
 					//main setting
 					case 0xca:write_force_set									((display_input_command[2]<<8)|(display_input_command[1]));break;
 					case 0xc8:write_hold_time_set							((display_input_command[2]<<8)|(display_input_command[1])*10);break;

@@ -35,6 +35,7 @@ void print_page_head_test(void);
 void print_page_early_after_trigger(void);
 void print_page_overload(void);
 void print_page_timeout(void);
+void print_page_head_diagnosis(void);
 //////////////////////////////////////////////////////////////////////////
 
 extern uint8_t header[3];
@@ -148,7 +149,7 @@ unsigned int read_pressure_display(void);
 
 //////////////////////HISTORY/////////////////////////////////////
 unsigned int read_power_read_display(void);
-
+int8_t read_theta_display(void);
 unsigned int read_freq_display(void);
 unsigned int read_distance_reached(void);
 
@@ -170,4 +171,11 @@ unsigned int read_total_time_display(void);
 unsigned int read_overload_display(void);
 ///////////////////////////////////////////////////////////////////////
 
+//////////////////////////////DIAGNOSIS////////////////////////////////
+
+void write_head_sweep_set(unsigned int arg);
+unsigned int read_head_sweep_display(void);
+unsigned int read_resonance_frequency(void);
+unsigned int read_anti_resonance_frequency(void);
+///////////////////////////////////////////////////////////////////////
 #endif

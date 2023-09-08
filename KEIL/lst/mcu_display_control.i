@@ -1191,6 +1191,7 @@ void print_page_head_test(void);
 void print_page_early_after_trigger(void);
 void print_page_overload(void);
 void print_page_timeout(void);
+void print_page_head_diagnosis(void);
 
 
 extern uint8_t header[3];
@@ -1304,7 +1305,7 @@ unsigned int read_pressure_display(void);
 
 
 unsigned int read_power_read_display(void);
-
+int8_t read_theta_display(void);
 unsigned int read_freq_display(void);
 unsigned int read_distance_reached(void);
 
@@ -1325,6 +1326,13 @@ unsigned int read_timeout_occured(void);
 unsigned int read_total_time_display(void);
 unsigned int read_overload_display(void);
 
+
+
+
+void write_head_sweep_set(unsigned int arg);
+unsigned int read_head_sweep_display(void);
+unsigned int read_resonance_frequency(void);
+unsigned int read_anti_resonance_frequency(void);
 
 #line 3 "mcu_display_control.c"
 #line 1 "..\\..\\..\\nuvoton_ws\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
@@ -85903,6 +85911,8 @@ void print_page_head_test(){
 	
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_test_power_read,7);
 		binary_to_bcd_array(read_power_read_display());
+		
+		
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 }
@@ -85953,8 +85963,24 @@ void print_page_early_after_trigger(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 	}
 }
-
-
+uint8_t display_page_head_diagnosis_on[21]={0x62,0x50,0x72,0x65,0x56,0x69,0x62,0x2E,0x74,0x78,0x74,0x3D,0x22,0xB6,0x7D,0xB1,0xD2,0x22,0xff,0xff,0xff};
+uint8_t display_page_head_diagnosis_off[21]={0x62,0x50,0x72,0x65,0x56,0x69,0x62,0x2E,0x74,0x78,0x74,0x3D,0x22,0xC3,0xF6,0xB3,0xAC,0x22,0xff,0xff,0xff};
+uint8_t display_page_head_diagnosis_anti [7] = { 0x6E, 0x30,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_head_diagnosis_res [7] = { 0x6E, 0x31,0x2E,0x76,0x61,0x6C,0x3D};
+void print_page_head_diagnosis(){
+	if(read_head_sweep_display()==1)UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_diagnosis_off,21);
+	else UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_diagnosis_on,21);
+	
+	UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_diagnosis_res,7);
+	binary_to_bcd_array(read_resonance_frequency());
+	UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+	UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+	
+	UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_diagnosis_anti,7);
+	binary_to_bcd_array(read_anti_resonance_frequency());
+	UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+	UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+}
 
 
 int test,energy_set_temp,timer_mode_set,energy_set_stage2_temp;
@@ -85988,7 +86014,9 @@ void display_to_mcu(){
 					case 0xc7:write_energy_set								((display_input_command[2]<<8)|(display_input_command[1]));
 										if(read_stage2_mode_address_display()!=6)write_stage2_mode_address_set(0);break;
 					case 0xc9:write_amplitude_head_test_set		(display_input_command[1]);break;
-						
+					
+					case 0xcf:write_head_sweep_set						(display_input_command[1]);break;
+										
 					
 					case 0xca:write_force_set									((display_input_command[2]<<8)|(display_input_command[1]));break;
 					case 0xc8:write_hold_time_set							((display_input_command[2]<<8)|(display_input_command[1])*10);break;

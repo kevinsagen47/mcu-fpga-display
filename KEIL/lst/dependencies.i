@@ -291,6 +291,7 @@ void print_page_head_test(void);
 void print_page_early_after_trigger(void);
 void print_page_overload(void);
 void print_page_timeout(void);
+void print_page_head_diagnosis(void);
 
 
 extern uint8_t header[3];
@@ -404,7 +405,7 @@ unsigned int read_pressure_display(void);
 
 
 unsigned int read_power_read_display(void);
-
+int8_t read_theta_display(void);
 unsigned int read_freq_display(void);
 unsigned int read_distance_reached(void);
 
@@ -425,6 +426,13 @@ unsigned int read_timeout_occured(void);
 unsigned int read_total_time_display(void);
 unsigned int read_overload_display(void);
 
+
+
+
+void write_head_sweep_set(unsigned int arg);
+unsigned int read_head_sweep_display(void);
+unsigned int read_resonance_frequency(void);
+unsigned int read_anti_resonance_frequency(void);
 
 #line 2 "..\\dependencies.c"
 #line 1 "C:\\Keil_v5\\ARM\\ARM_Compiler_5.06u7\\Bin\\..\\include\\stdio.h"
@@ -85597,7 +85605,7 @@ unsigned int read_time_on_after_stage_display(void){return time_on_after_stage_d
 
 unsigned int current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,total_time_display;
 unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold,timeout_occured;
-
+int8_t theta;
 unsigned int read_overload_display() {return overload_display;}
 unsigned int read_power_read_display() {return power_read_display;}
 unsigned int read_freq_min(){return freq_min;}
@@ -85623,25 +85631,31 @@ unsigned int read_distance_display(void){return distance_display;}
 unsigned int read_energy_display(void){return energy_display;}
 unsigned int read_pressure_display(void){return pressure_display;}
 unsigned int read_total_time_display(void){return total_time_display;}
+int8_t read_theta_display(void) {return theta;}
 
 
 
 
+unsigned int head_sweep_display,head_sweep_set,anti_resonance_frequency,resonance_frequency;
 
+void write_head_sweep_set(unsigned int arg){head_sweep_set=arg;}
+unsigned int read_head_sweep_display(){return head_sweep_display;}
+unsigned int read_anti_resonance_frequency(){return anti_resonance_frequency;}
+unsigned int read_resonance_frequency(){return resonance_frequency;}
 
 unsigned int temp_time_picker;
 
 
 
 volatile int32_t g_i32pointer_0 = 0;
-uint16_t FPGA_length=73;
-uint8_t FPGA_input[73] = {0};
+uint16_t FPGA_length=77;
+uint8_t FPGA_input[77] = {0};
 uint16_t FPGA_address=0;
-
+uint8_t sweep_on_rx;
 
 void fpga_to_mcu(void){
 
-	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[72]==0x68){
+	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[76]==0x68){
 		amplitude_set_display							=FPGA_input[4];
 		timeout_set_display 							=(FPGA_input[5]<<8)|(FPGA_input[6]);
 		distance_relative_set_display	=(FPGA_input[7]<<8)|(FPGA_input[8]);
@@ -85651,15 +85665,19 @@ void fpga_to_mcu(void){
 		freq_display									=(FPGA_input[15]<<8)|(FPGA_input[16]);
 		current_display								=(FPGA_input[17]<<8)|(FPGA_input[18]);
 		power_read_display						=(FPGA_input[19]<<8)|(FPGA_input[20]);
+		theta 												= FPGA_input[20];
 		force_display									=(FPGA_input[21]<<8)|(FPGA_input[22]);
 		distance_display							=(FPGA_input[23]<<8)|(FPGA_input[24]);
 		energy_display								=(FPGA_input[25]<<8)|(FPGA_input[26]);
 		pressure_display							=FPGA_input[27];
 		
+		sweep_on_rx										=(FPGA_input[28]>>2)& 1;
+		head_sweep_display						=(FPGA_input[28]>>3)& 1;
 		timeout_occured								=(FPGA_input[28]>>4)& 1;
 		overload_display							=(FPGA_input[28]>>5)& 1;
 		standby												=(FPGA_input[28]>>6)& 1;
 		Freq_init											=(FPGA_input[28]>>7)& 1;
+		
 		
 		freq_min											=(FPGA_input[29]<<8)|(FPGA_input[30]);
 		freq_max											=(FPGA_input[31]<<8)|(FPGA_input[32]);
@@ -85692,8 +85710,13 @@ void fpga_to_mcu(void){
 		value_after_stage_display			= (FPGA_input[65]<<8)|(FPGA_input[66]);
 		time_on_after_stage_display		= (FPGA_input[67]<<8)|(FPGA_input[68]);
 		
-		total_time_display		= (FPGA_input[69]<<8)|(FPGA_input[70]);
-		distance_hold= FPGA_input[71];
+		total_time_display						= (FPGA_input[69]<<8)|(FPGA_input[70]);
+		
+		
+		resonance_frequency						= (FPGA_input[71]<<8)|(FPGA_input[72]);
+		anti_resonance_frequency			= (FPGA_input[73]<<8)|(FPGA_input[74]);
+		
+		distance_hold= FPGA_input[75];
 	}
 }
 
@@ -85724,11 +85747,12 @@ int time_set_zero=0;
 unsigned int temp_power_stage_one_set,temp_distance_relative_set,temp_distance_absolute_set, temp_energy_set, temp_time_set_stage_one_set,temp_timeout_set;
 unsigned int temp_value_mode_stage2,temp_value_early_stage_set,temp_value_after_stage_set;
 unsigned int temp_stage2_address,temp_early_stage_address,temp_after_stage_address,temp_amplitude_set;
+unsigned int sweep_status;
 void mcu_to_fpga(void){
 	
 	if (display_page==9)temp_timeout_set=0;
 	else if (display_page==10){
-		temp_timeout_set=2000;
+		temp_timeout_set=0;
 		temp_amplitude_set=amplitude_head_test_set;
 	}
 	else {
@@ -85806,7 +85830,7 @@ void mcu_to_fpga(void){
 		temp_after_stage_address=0xE5;}
 	else temp_value_after_stage_set=0;
 	
-	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[72]==0x68){
+	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[76]==0x68){
 		if(amplitude_set_display!=temp_amplitude_set){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xC0));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (temp_amplitude_set));
@@ -85951,9 +85975,32 @@ void mcu_to_fpga(void){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
 			(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
 	}
-		
+		else if (head_sweep_display!=head_sweep_set || sweep_on_rx!=head_sweep_set){
+			
+			if(head_sweep_display==0 && sweep_on_rx==0 && head_sweep_set==1){
+				((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xCF));
+				((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0x01));
+				((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
+				(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
+			}
+			else if(head_sweep_display==0 && sweep_on_rx==1 &&sweep_status==1){
+				((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xCF));
+				((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0x00));
+				((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
+				head_sweep_set=0;
+				sweep_status=0;
+				(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;
+			}
+			else if(head_sweep_display==1 && head_sweep_set==0){
+				((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xCF));
+				((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0x00));
+				((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xFF));
+				sweep_status=0;
+				(*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 1;}
+			}
+
 		else (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(2))) + ((6)<<2)))) = 0;
-		
+		if (head_sweep_display==1)sweep_status=1;
 }}
 
 

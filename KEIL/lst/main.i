@@ -1200,6 +1200,7 @@ void print_page_head_test(void);
 void print_page_early_after_trigger(void);
 void print_page_overload(void);
 void print_page_timeout(void);
+void print_page_head_diagnosis(void);
 
 
 extern uint8_t header[3];
@@ -1313,7 +1314,7 @@ unsigned int read_pressure_display(void);
 
 
 unsigned int read_power_read_display(void);
-
+int8_t read_theta_display(void);
 unsigned int read_freq_display(void);
 unsigned int read_distance_reached(void);
 
@@ -1334,6 +1335,13 @@ unsigned int read_timeout_occured(void);
 unsigned int read_total_time_display(void);
 unsigned int read_overload_display(void);
 
+
+
+
+void write_head_sweep_set(unsigned int arg);
+unsigned int read_head_sweep_display(void);
+unsigned int read_resonance_frequency(void);
+unsigned int read_anti_resonance_frequency(void);
 
 #line 12 "..\\main.c"
 #line 1 "..\\..\\..\\nuvoton_ws\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
@@ -85481,10 +85489,10 @@ char led_test = 0;
 void TMR0_IRQHandler(void)
 {
     
-	if (read_overload_display()==1) print_page_overload();
+	if (read_overload_display()==1&&display_page!=7) print_page_overload();
 	else if (timeout_sent==0 && read_timeout_occured()){
-		print_page_timeout();
 		timeout_sent=1;
+		if (display_page!=10 && display_page!=7)print_page_timeout();
 	}
 	else if (display_page==2){
 		if (Freq_init==1)print_page_setting_1();
@@ -85493,6 +85501,7 @@ void TMR0_IRQHandler(void)
 	else if (display_page==3)print_page_setting_2();
 	else if (display_page==4)print_page_SectionVib();
 	else if (display_page==5 || display_page==6)print_page_early_after_trigger();
+	else if (display_page==7)print_page_head_diagnosis();
 	else if (display_page==8)print_page_weld_record();
 	else if (display_page==9)print_page_head_down();
 	else if (display_page==10)print_page_head_test();
