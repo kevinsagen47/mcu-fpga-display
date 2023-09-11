@@ -139,7 +139,7 @@ unsigned int read_time_on_after_stage_display(void){return time_on_after_stage_d
 ////////////////////////////////HISTORY////////////////////////////////////////////////////
 //history
 unsigned int current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,total_time_display;
-unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold,timeout_occured;
+unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold,timeout_occured=0;
 int8_t theta;
 unsigned int read_overload_display() {return overload_display;}
 unsigned int read_power_read_display() {return power_read_display;}
@@ -171,12 +171,13 @@ int8_t read_theta_display(void) {return theta;}
 
 //unsigned int read_(){return ;}
 
-unsigned int head_sweep_display,head_sweep_set,anti_resonance_frequency,resonance_frequency;
+unsigned int head_sweep_display,head_sweep_set,anti_resonance_frequency,resonance_frequency,broken_transducer=0;
 //////////////////////////////////////////HEAD DIAGNOSIS/////////////////////////////////////////
 void write_head_sweep_set(unsigned int arg){head_sweep_set=arg;}
 unsigned int read_head_sweep_display(){return head_sweep_display;}
 unsigned int read_anti_resonance_frequency(){return anti_resonance_frequency;}
 unsigned int read_resonance_frequency(){return resonance_frequency;}
+unsigned int read_broken_transducer(){return broken_transducer;}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 unsigned int temp_time_picker;
 
@@ -206,6 +207,7 @@ void fpga_to_mcu(void){//FPGA => MCU
 		energy_display								=(FPGA_input[25]<<8)|(FPGA_input[26]);
 		pressure_display							=FPGA_input[27];
 		
+		broken_transducer							=(FPGA_input[28]>>1)& 1;
 		sweep_on_rx										=(FPGA_input[28]>>2)& 1;
 		head_sweep_display						=(FPGA_input[28]>>3)& 1;
 		timeout_occured								=(FPGA_input[28]>>4)& 1;

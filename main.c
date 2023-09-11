@@ -18,13 +18,17 @@
 
 uint8_t header [3]={0xFF,0xFF,0xFF};
 
-int timeout_sent=0;
+int timeout_sent=0,broken_sent=0;
 char led_test = 0;
 ///*
 void TMR0_IRQHandler(void)
 {
     //curTime++;
-	if (read_overload_display()==1&&display_page!=7) print_page_overload();
+	if (read_broken_transducer()==1 && broken_sent==0){
+		broken_sent=1;
+		print_page_broken_transducer();
+	}
+	else if (read_overload_display()==1&&display_page!=7) print_page_overload();
 	else if (timeout_sent==0 && read_timeout_occured()){
 		timeout_sent=1;
 		if (display_page!=10 && display_page!=7)print_page_timeout();
@@ -43,7 +47,7 @@ void TMR0_IRQHandler(void)
 	else TIMER_Delay(TIMER1, 5);//print_page_0();
 	
 	if(read_timeout_occured()==0)timeout_sent=0;
-	
+	if(read_broken_transducer()==0)broken_sent=0;
   TIMER_ClearIntFlag(TIMER0);
 	//printf("+--------------------------+\n");
 	/*

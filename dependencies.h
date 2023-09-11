@@ -36,6 +36,7 @@ void print_page_early_after_trigger(void);
 void print_page_overload(void);
 void print_page_timeout(void);
 void print_page_head_diagnosis(void);
+void print_page_broken_transducer(void);
 //////////////////////////////////////////////////////////////////////////
 
 extern uint8_t header[3];
@@ -172,10 +173,10 @@ unsigned int read_overload_display(void);
 ///////////////////////////////////////////////////////////////////////
 
 //////////////////////////////DIAGNOSIS////////////////////////////////
-
 void write_head_sweep_set(unsigned int arg);
 unsigned int read_head_sweep_display(void);
 unsigned int read_resonance_frequency(void);
 unsigned int read_anti_resonance_frequency(void);
+unsigned int read_broken_transducer(void);
 ///////////////////////////////////////////////////////////////////////
 #endif

@@ -1192,6 +1192,7 @@ void print_page_early_after_trigger(void);
 void print_page_overload(void);
 void print_page_timeout(void);
 void print_page_head_diagnosis(void);
+void print_page_broken_transducer(void);
 
 
 extern uint8_t header[3];
@@ -1328,11 +1329,11 @@ unsigned int read_overload_display(void);
 
 
 
-
 void write_head_sweep_set(unsigned int arg);
 unsigned int read_head_sweep_display(void);
 unsigned int read_resonance_frequency(void);
 unsigned int read_anti_resonance_frequency(void);
+unsigned int read_broken_transducer(void);
 
 #line 3 "mcu_display_control.c"
 #line 1 "..\\..\\..\\nuvoton_ws\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
@@ -85543,6 +85544,13 @@ uint8_t page_timeout[15]={0x70,0x61,0x67,0x65,0x20,0x74,0x69,0x6D,0x65,0x6F,0x75
 void print_page_timeout(){
 	UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),page_timeout ,15);
 }
+
+uint8_t page_broken[14]={0x70,0x61,0x67,0x65,0x20,0x62,0x72,0x6F,0x6B,0x65,0x6E,0xff,0xff,0xff};
+void print_page_broken_transducer(){
+	UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),page_broken ,14);
+}
+
+
 void print_page_setting_1(){
 		if (read_mode_set()==2 ){
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_dist_rel ,61);

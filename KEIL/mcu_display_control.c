@@ -78,6 +78,13 @@ uint8_t page_timeout[15]={0x70,0x61,0x67,0x65,0x20,0x74,0x69,0x6D,0x65,0x6F,0x75
 void print_page_timeout(){
 	UART_Write(UART1,page_timeout ,15);
 }
+//70 61 67 65 20 62 72 6F 6B 65 6E ff ff ff
+uint8_t page_broken[14]={0x70,0x61,0x67,0x65,0x20,0x62,0x72,0x6F,0x6B,0x65,0x6E,0xff,0xff,0xff};
+void print_page_broken_transducer(){
+	UART_Write(UART1,page_broken ,14);
+}
+
+
 void print_page_setting_1(){
 		if (read_mode_set()==2 ){
 			UART_Write(UART1,display_page_setting_1_dist_rel ,61);
