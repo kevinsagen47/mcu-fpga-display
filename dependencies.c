@@ -291,6 +291,9 @@ void mcu_to_fpga(void){//MCU => FPGA
 	else if (display_page==10){
 		temp_timeout_set=0;//2000;
 		temp_amplitude_set=amplitude_head_test_set;
+	}else if (display_page==7){
+		temp_timeout_set=2000;
+		temp_amplitude_set=20;
 	}
 	else {
 		temp_timeout_set=timeout_set;

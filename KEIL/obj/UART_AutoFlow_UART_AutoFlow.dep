@@ -188,7 +188,7 @@ I (..\..\..\nuvoton_ws\Library\StdDriver\inc\usbd.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\hsusbd.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\otg.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\hsotg.h)(0x64586831)
-F (..\dependencies.c)(0x64FED45D)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\..\..\nuvoton_ws\Library\CMSIS\Include -I ..\..\..\nuvoton_ws\Library\StdDriver\inc -I ..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include -I "C:\Users\kevin\Documents\Github\mcu-fpga-display\dependencies.h"-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\obj\dependencies.o --omf_browse .\obj\dependencies.crf --depend .\obj\dependencies.d)
+F (..\dependencies.c)(0x65002EF4)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\..\..\nuvoton_ws\Library\CMSIS\Include -I ..\..\..\nuvoton_ws\Library\StdDriver\inc -I ..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include -I "C:\Users\kevin\Documents\Github\mcu-fpga-display\dependencies.h"-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\obj\dependencies.o --omf_browse .\obj\dependencies.crf --depend .\obj\dependencies.d)
 I (..\dependencies.h)(0x64FECF70)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
@@ -283,7 +283,7 @@ I (..\..\..\nuvoton_ws\Library\StdDriver\inc\hsusbd.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\otg.h)(0x64586831)
 I (..\..\..\nuvoton_ws\Library\StdDriver\inc\hsotg.h)(0x64586831)
 F (..\dependencies.h)(0x64FECF70)()
-F (.\mcu_display_control.c)(0x64FED06F)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\KEIL -I ..\..\mcu-fpga-display -I ..\..\..\nuvoton_ws\Library\CMSIS\Include -I ..\..\..\nuvoton_ws\Library\StdDriver\inc -I ..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include -I "C:\Users\kevin\Documents\Github\mcu-fpga-display\dependencies.h"-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\obj\mcu_display_control.o --omf_browse .\obj\mcu_display_control.crf --depend .\obj\mcu_display_control.d)
+F (.\mcu_display_control.c)(0x6500234B)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O2 --apcs=interwork -I ..\KEIL -I ..\..\mcu-fpga-display -I ..\..\..\nuvoton_ws\Library\CMSIS\Include -I ..\..\..\nuvoton_ws\Library\StdDriver\inc -I ..\..\..\nuvoton_ws\Library\Device\Nuvoton\M480\Include -I "C:\Users\kevin\Documents\Github\mcu-fpga-display\dependencies.h"-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\obj\mcu_display_control.o --omf_browse .\obj\mcu_display_control.crf --depend .\obj\mcu_display_control.d)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
 I (..\..\mcu-fpga-display\dependencies.h)(0x64FECF70)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)

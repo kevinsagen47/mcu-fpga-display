@@ -569,37 +569,37 @@ Image Symbol Table
     Default_Handler                          0x0000033b   Thumb Code     2  startup_m480.o(.text)
     .text                                    0x00000350   Section        0  main.o(.text)
     .text                                    0x0000049c   Section        0  dependencies.o(.text)
-    NVIC_EnableIRQ                           0x00000df1   Thumb Code    22  dependencies.o(.text)
-    .text                                    0x00000e1c   Section        0  mcu_display_control.o(.text)
-    .text                                    0x00001b58   Section        0  retarget.o(.text)
-    __tagsym$$used                           0x00001b59   Number         0  retarget.o(.text)
-    stackDump                                0x00001b75   Thumb Code    72  retarget.o(.text)
-    SendChar                                 0x00001bbd   Thumb Code    26  retarget.o(.text)
-    .text                                    0x00001c54   Section        0  clk.o(.text)
-    .text                                    0x0000208c   Section        0  uart.o(.text)
-    .text                                    0x00002234   Section        0  timer.o(.text)
-    .text                                    0x00002398   Section        0  gpio.o(.text)
-    .text                                    0x000023c4   Section        0  memcpya.o(.text)
-    .text                                    0x000023e8   Section        0  uldiv.o(.text)
-    .text                                    0x0000244c   Section       36  init.o(.text)
-    .text                                    0x00002470   Section        0  llshl.o(.text)
-    .text                                    0x0000248e   Section        0  llushr.o(.text)
-    i.__0printf$5                            0x000024b0   Section        0  printf5.o(i.__0printf$5)
-    i.__scatterload_copy                     0x000024d0   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x000024de   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x000024e0   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._printf_core                           0x000024f0   Section        0  printf5.o(i._printf_core)
-    _printf_core                             0x000024f1   Thumb Code   660  printf5.o(i._printf_core)
-    .constdata                               0x000027b0   Section       48  uart.o(.constdata)
-    .constdata                               0x000027e0   Section       32  timer.o(.constdata)
+    NVIC_EnableIRQ                           0x00000e01   Thumb Code    22  dependencies.o(.text)
+    .text                                    0x00000e2c   Section        0  mcu_display_control.o(.text)
+    .text                                    0x00001b68   Section        0  retarget.o(.text)
+    __tagsym$$used                           0x00001b69   Number         0  retarget.o(.text)
+    stackDump                                0x00001b85   Thumb Code    72  retarget.o(.text)
+    SendChar                                 0x00001bcd   Thumb Code    26  retarget.o(.text)
+    .text                                    0x00001c64   Section        0  clk.o(.text)
+    .text                                    0x0000209c   Section        0  uart.o(.text)
+    .text                                    0x00002244   Section        0  timer.o(.text)
+    .text                                    0x000023a8   Section        0  gpio.o(.text)
+    .text                                    0x000023d4   Section        0  memcpya.o(.text)
+    .text                                    0x000023f8   Section        0  uldiv.o(.text)
+    .text                                    0x0000245c   Section       36  init.o(.text)
+    .text                                    0x00002480   Section        0  llshl.o(.text)
+    .text                                    0x0000249e   Section        0  llushr.o(.text)
+    i.__0printf$5                            0x000024c0   Section        0  printf5.o(i.__0printf$5)
+    i.__scatterload_copy                     0x000024e0   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x000024ee   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x000024f0   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._printf_core                           0x00002500   Section        0  printf5.o(i._printf_core)
+    _printf_core                             0x00002501   Thumb Code   660  printf5.o(i._printf_core)
+    .constdata                               0x000027c0   Section       48  uart.o(.constdata)
+    .constdata                               0x000027f0   Section       32  timer.o(.constdata)
     .data                                    0x20000000   Section       44  system_m480.o(.data)
     .data                                    0x2000002c   Section        3  main.o(.data)
     .data                                    0x20000030   Section        8  main.o(.data)
     .data                                    0x20000038   Section      376  dependencies.o(.data)
-    .data                                    0x200001b0   Section     1019  mcu_display_control.o(.data)
-    .data                                    0x200005ac   Section        4  retarget.o(.data)
-    .data                                    0x200005b0   Section        4  clk.o(.data)
-    .bss                                     0x200005b4   Section      333  dependencies.o(.bss)
+    .data                                    0x200001b0   Section     1021  mcu_display_control.o(.data)
+    .data                                    0x200005b0   Section        4  retarget.o(.data)
+    .data                                    0x200005b4   Section        4  clk.o(.data)
+    .bss                                     0x200005b8   Section      333  dependencies.o(.bss)
     STACK                                    0x20000708   Section     2048  startup_m480.o(STACK)
 
     Global Symbols
@@ -855,67 +855,67 @@ Image Symbol Table
     read_resonance_frequency                 0x00000713   Thumb Code     6  dependencies.o(.text)
     read_broken_transducer                   0x00000719   Thumb Code     6  dependencies.o(.text)
     fpga_to_mcu                              0x0000071f   Thumb Code   340  dependencies.o(.text)
-    mcu_to_fpga                              0x00000873   Thumb Code   840  dependencies.o(.text)
-    UART0_TEST_HANDLE                        0x00000bbb   Thumb Code    82  dependencies.o(.text)
-    UART1_TEST_HANDLE                        0x00000c0d   Thumb Code   116  dependencies.o(.text)
-    UART1_interrrupt                         0x00000c81   Thumb Code    56  dependencies.o(.text)
-    UART0_interrrupt                         0x00000cb9   Thumb Code    80  dependencies.o(.text)
-    SYS_Init                                 0x00000d09   Thumb Code   208  dependencies.o(.text)
-    UART0_Init                               0x00000dd9   Thumb Code    10  dependencies.o(.text)
-    UART1_Init                               0x00000de3   Thumb Code    10  dependencies.o(.text)
-    UART1_IRQHandler                         0x00000ded   Thumb Code     2  dependencies.o(.text)
-    UART0_IRQHandler                         0x00000def   Thumb Code     2  dependencies.o(.text)
-    binary_to_bcd_array                      0x00000e1d   Thumb Code    94  mcu_display_control.o(.text)
-    print_page_lock_freq                     0x00000e7b   Thumb Code    10  mcu_display_control.o(.text)
-    print_page_overload                      0x00000e85   Thumb Code    12  mcu_display_control.o(.text)
-    print_page_timeout                       0x00000e91   Thumb Code    12  mcu_display_control.o(.text)
-    print_page_broken_transducer             0x00000e9d   Thumb Code    12  mcu_display_control.o(.text)
-    print_page_setting_1                     0x00000ea9   Thumb Code   428  mcu_display_control.o(.text)
-    print_page_setting_2                     0x00001055   Thumb Code    52  mcu_display_control.o(.text)
-    print_page_SectionVib                    0x00001089   Thumb Code   234  mcu_display_control.o(.text)
-    print_page_head_down                     0x00001173   Thumb Code   214  mcu_display_control.o(.text)
-    print_page_weld_record                   0x00001249   Thumb Code  1146  mcu_display_control.o(.text)
-    print_page_head_test                     0x000016c3   Thumb Code   128  mcu_display_control.o(.text)
-    print_page_early_after_trigger           0x00001743   Thumb Code   348  mcu_display_control.o(.text)
-    print_page_head_diagnosis                0x0000189f   Thumb Code   116  mcu_display_control.o(.text)
-    display_to_mcu                           0x00001913   Thumb Code   576  mcu_display_control.o(.text)
-    Hard_Fault_Handler                       0x00001b59   Thumb Code    16  retarget.o(.text)
-    fputc                                    0x00001b69   Thumb Code    12  retarget.o(.text)
-    CLK_SetModuleClock                       0x00001c55   Thumb Code   140  clk.o(.text)
-    CLK_EnableModuleClock                    0x00001ce1   Thumb Code    26  clk.o(.text)
-    CLK_GetPCLK0Freq                         0x00001cfb   Thumb Code    96  clk.o(.text)
-    CLK_GetPCLK1Freq                         0x00001d5b   Thumb Code    98  clk.o(.text)
-    CLK_WaitClockReady                       0x00001dbd   Thumb Code    52  clk.o(.text)
-    CLK_SetHCLK                              0x00001df1   Thumb Code    98  clk.o(.text)
-    CLK_GetPLLClockFreq                      0x00001e53   Thumb Code    66  clk.o(.text)
-    CLK_DisablePLL                           0x00001e95   Thumb Code    18  clk.o(.text)
-    CLK_EnablePLL                            0x00001ea7   Thumb Code   298  clk.o(.text)
-    CLK_SetCoreClock                         0x00001fd1   Thumb Code   188  clk.o(.text)
-    UART_Open                                0x0000208d   Thumb Code   316  uart.o(.text)
-    UART_SetTimeoutCnt                       0x000021c9   Thumb Code    20  uart.o(.text)
-    UART_Write                               0x000021dd   Thumb Code    46  uart.o(.text)
-    TIMER_GetModuleClock                     0x00002235   Thumb Code   102  timer.o(.text)
-    TIMER_Open                               0x0000229b   Thumb Code    54  timer.o(.text)
-    TIMER_Delay                              0x000022d1   Thumb Code   170  timer.o(.text)
-    GPIO_SetMode                             0x00002399   Thumb Code    44  gpio.o(.text)
-    __aeabi_memcpy                           0x000023c5   Thumb Code    36  memcpya.o(.text)
-    __aeabi_memcpy4                          0x000023c5   Thumb Code     0  memcpya.o(.text)
-    __aeabi_memcpy8                          0x000023c5   Thumb Code     0  memcpya.o(.text)
-    __aeabi_uldivmod                         0x000023e9   Thumb Code    98  uldiv.o(.text)
-    __scatterload                            0x0000244d   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x0000244d   Thumb Code     0  init.o(.text)
-    __aeabi_llsl                             0x00002471   Thumb Code    30  llshl.o(.text)
-    _ll_shift_l                              0x00002471   Thumb Code     0  llshl.o(.text)
-    __aeabi_llsr                             0x0000248f   Thumb Code    32  llushr.o(.text)
-    _ll_ushift_r                             0x0000248f   Thumb Code     0  llushr.o(.text)
-    __0printf$5                              0x000024b1   Thumb Code    22  printf5.o(i.__0printf$5)
-    __1printf$5                              0x000024b1   Thumb Code     0  printf5.o(i.__0printf$5)
-    __2printf                                0x000024b1   Thumb Code     0  printf5.o(i.__0printf$5)
-    __scatterload_copy                       0x000024d1   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x000024df   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x000024e1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    Region$$Table$$Base                      0x00002800   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00002820   Number         0  anon$$obj.o(Region$$Table)
+    mcu_to_fpga                              0x00000873   Thumb Code   854  dependencies.o(.text)
+    UART0_TEST_HANDLE                        0x00000bc9   Thumb Code    82  dependencies.o(.text)
+    UART1_TEST_HANDLE                        0x00000c1b   Thumb Code   116  dependencies.o(.text)
+    UART1_interrrupt                         0x00000c8f   Thumb Code    56  dependencies.o(.text)
+    UART0_interrrupt                         0x00000cc7   Thumb Code    82  dependencies.o(.text)
+    SYS_Init                                 0x00000d19   Thumb Code   208  dependencies.o(.text)
+    UART0_Init                               0x00000de9   Thumb Code    10  dependencies.o(.text)
+    UART1_Init                               0x00000df3   Thumb Code    10  dependencies.o(.text)
+    UART1_IRQHandler                         0x00000dfd   Thumb Code     2  dependencies.o(.text)
+    UART0_IRQHandler                         0x00000dff   Thumb Code     2  dependencies.o(.text)
+    binary_to_bcd_array                      0x00000e2d   Thumb Code    94  mcu_display_control.o(.text)
+    print_page_lock_freq                     0x00000e8b   Thumb Code    10  mcu_display_control.o(.text)
+    print_page_overload                      0x00000e95   Thumb Code    12  mcu_display_control.o(.text)
+    print_page_timeout                       0x00000ea1   Thumb Code    12  mcu_display_control.o(.text)
+    print_page_broken_transducer             0x00000ead   Thumb Code    12  mcu_display_control.o(.text)
+    print_page_setting_1                     0x00000eb9   Thumb Code   428  mcu_display_control.o(.text)
+    print_page_setting_2                     0x00001065   Thumb Code    52  mcu_display_control.o(.text)
+    print_page_SectionVib                    0x00001099   Thumb Code   234  mcu_display_control.o(.text)
+    print_page_head_down                     0x00001183   Thumb Code   214  mcu_display_control.o(.text)
+    print_page_weld_record                   0x00001259   Thumb Code  1146  mcu_display_control.o(.text)
+    print_page_head_test                     0x000016d3   Thumb Code   128  mcu_display_control.o(.text)
+    print_page_early_after_trigger           0x00001753   Thumb Code   348  mcu_display_control.o(.text)
+    print_page_head_diagnosis                0x000018af   Thumb Code   116  mcu_display_control.o(.text)
+    display_to_mcu                           0x00001923   Thumb Code   576  mcu_display_control.o(.text)
+    Hard_Fault_Handler                       0x00001b69   Thumb Code    16  retarget.o(.text)
+    fputc                                    0x00001b79   Thumb Code    12  retarget.o(.text)
+    CLK_SetModuleClock                       0x00001c65   Thumb Code   140  clk.o(.text)
+    CLK_EnableModuleClock                    0x00001cf1   Thumb Code    26  clk.o(.text)
+    CLK_GetPCLK0Freq                         0x00001d0b   Thumb Code    96  clk.o(.text)
+    CLK_GetPCLK1Freq                         0x00001d6b   Thumb Code    98  clk.o(.text)
+    CLK_WaitClockReady                       0x00001dcd   Thumb Code    52  clk.o(.text)
+    CLK_SetHCLK                              0x00001e01   Thumb Code    98  clk.o(.text)
+    CLK_GetPLLClockFreq                      0x00001e63   Thumb Code    66  clk.o(.text)
+    CLK_DisablePLL                           0x00001ea5   Thumb Code    18  clk.o(.text)
+    CLK_EnablePLL                            0x00001eb7   Thumb Code   298  clk.o(.text)
+    CLK_SetCoreClock                         0x00001fe1   Thumb Code   188  clk.o(.text)
+    UART_Open                                0x0000209d   Thumb Code   316  uart.o(.text)
+    UART_SetTimeoutCnt                       0x000021d9   Thumb Code    20  uart.o(.text)
+    UART_Write                               0x000021ed   Thumb Code    46  uart.o(.text)
+    TIMER_GetModuleClock                     0x00002245   Thumb Code   102  timer.o(.text)
+    TIMER_Open                               0x000022ab   Thumb Code    54  timer.o(.text)
+    TIMER_Delay                              0x000022e1   Thumb Code   170  timer.o(.text)
+    GPIO_SetMode                             0x000023a9   Thumb Code    44  gpio.o(.text)
+    __aeabi_memcpy                           0x000023d5   Thumb Code    36  memcpya.o(.text)
+    __aeabi_memcpy4                          0x000023d5   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memcpy8                          0x000023d5   Thumb Code     0  memcpya.o(.text)
+    __aeabi_uldivmod                         0x000023f9   Thumb Code    98  uldiv.o(.text)
+    __scatterload                            0x0000245d   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x0000245d   Thumb Code     0  init.o(.text)
+    __aeabi_llsl                             0x00002481   Thumb Code    30  llshl.o(.text)
+    _ll_shift_l                              0x00002481   Thumb Code     0  llshl.o(.text)
+    __aeabi_llsr                             0x0000249f   Thumb Code    32  llushr.o(.text)
+    _ll_ushift_r                             0x0000249f   Thumb Code     0  llushr.o(.text)
+    __0printf$5                              0x000024c1   Thumb Code    22  printf5.o(i.__0printf$5)
+    __1printf$5                              0x000024c1   Thumb Code     0  printf5.o(i.__0printf$5)
+    __2printf                                0x000024c1   Thumb Code     0  printf5.o(i.__0printf$5)
+    __scatterload_copy                       0x000024e1   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x000024ef   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x000024f1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    Region$$Table$$Base                      0x00002810   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00002830   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_m480.o(.data)
     CyclesPerUs                              0x20000004   Data           4  system_m480.o(.data)
     PllClock                                 0x20000008   Data           4  system_m480.o(.data)
@@ -1078,11 +1078,11 @@ Image Symbol Table
     display_page_early_after_ampli           0x20000560   Data          15  mcu_display_control.o(.data)
     display_page_after_time_on               0x2000056f   Data          18  mcu_display_control.o(.data)
     display_page_head_diagnosis_on           0x20000581   Data          21  mcu_display_control.o(.data)
-    display_page_head_diagnosis_off          0x20000596   Data          21  mcu_display_control.o(.data)
-    __stdout                                 0x200005ac   Data           4  retarget.o(.data)
-    g_CLK_i32ErrCode                         0x200005b0   Data           4  clk.o(.data)
-    g_u8RecData                              0x200005b4   Data         256  dependencies.o(.bss)
-    FPGA_input                               0x200006b4   Data          77  dependencies.o(.bss)
+    display_page_head_diagnosis_off          0x20000596   Data          23  mcu_display_control.o(.data)
+    __stdout                                 0x200005b0   Data           4  retarget.o(.data)
+    g_CLK_i32ErrCode                         0x200005b4   Data           4  clk.o(.data)
+    g_u8RecData                              0x200005b8   Data         256  dependencies.o(.bss)
+    FPGA_input                               0x200006b8   Data          77  dependencies.o(.bss)
     __initial_sp                             0x20000f08   Data           0  startup_m480.o(STACK)
 
 
@@ -1093,9 +1093,9 @@ Memory Map of the image
 
   Image Entry point : 0x000002e9
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00002dd4, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00002de8, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00002820, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00002830, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1114,52 +1114,52 @@ Memory Map of the image
     0x00000228   0x00000228   0x000000c0   Code   RO            4    .text               system_m480.o
     0x000002e8   0x000002e8   0x00000068   Code   RO          322  * .text               startup_m480.o
     0x00000350   0x00000350   0x0000014c   Code   RO          329    .text               main.o
-    0x0000049c   0x0000049c   0x00000980   Code   RO          376    .text               dependencies.o
-    0x00000e1c   0x00000e1c   0x00000d3c   Code   RO          455    .text               mcu_display_control.o
-    0x00001b58   0x00001b58   0x000000fc   Code   RO          498    .text               retarget.o
-    0x00001c54   0x00001c54   0x00000438   Code   RO          565    .text               clk.o
-    0x0000208c   0x0000208c   0x000001a8   Code   RO          810    .text               uart.o
-    0x00002234   0x00002234   0x00000164   Code   RO          895    .text               timer.o
-    0x00002398   0x00002398   0x0000002c   Code   RO          980    .text               gpio.o
-    0x000023c4   0x000023c4   0x00000024   Code   RO         1028    .text               mc_w.l(memcpya.o)
-    0x000023e8   0x000023e8   0x00000062   Code   RO         1311    .text               mc_w.l(uldiv.o)
-    0x0000244a   0x0000244a   0x00000002   PAD
-    0x0000244c   0x0000244c   0x00000024   Code   RO         1324    .text               mc_w.l(init.o)
-    0x00002470   0x00002470   0x0000001e   Code   RO         1326    .text               mc_w.l(llshl.o)
-    0x0000248e   0x0000248e   0x00000020   Code   RO         1328    .text               mc_w.l(llushr.o)
-    0x000024ae   0x000024ae   0x00000002   PAD
-    0x000024b0   0x000024b0   0x00000020   Code   RO         1165    i.__0printf$5       mc_w.l(printf5.o)
-    0x000024d0   0x000024d0   0x0000000e   Code   RO         1336    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x000024de   0x000024de   0x00000002   Code   RO         1337    i.__scatterload_null  mc_w.l(handlers.o)
-    0x000024e0   0x000024e0   0x0000000e   Code   RO         1338    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x000024ee   0x000024ee   0x00000002   PAD
-    0x000024f0   0x000024f0   0x000002c0   Code   RO         1172    i._printf_core      mc_w.l(printf5.o)
-    0x000027b0   0x000027b0   0x00000030   Data   RO          816    .constdata          uart.o
-    0x000027e0   0x000027e0   0x00000020   Data   RO          906    .constdata          timer.o
-    0x00002800   0x00002800   0x00000020   Data   RO         1334    Region$$Table       anon$$obj.o
+    0x0000049c   0x0000049c   0x00000990   Code   RO          376    .text               dependencies.o
+    0x00000e2c   0x00000e2c   0x00000d3c   Code   RO          455    .text               mcu_display_control.o
+    0x00001b68   0x00001b68   0x000000fc   Code   RO          498    .text               retarget.o
+    0x00001c64   0x00001c64   0x00000438   Code   RO          565    .text               clk.o
+    0x0000209c   0x0000209c   0x000001a8   Code   RO          810    .text               uart.o
+    0x00002244   0x00002244   0x00000164   Code   RO          895    .text               timer.o
+    0x000023a8   0x000023a8   0x0000002c   Code   RO          980    .text               gpio.o
+    0x000023d4   0x000023d4   0x00000024   Code   RO         1028    .text               mc_w.l(memcpya.o)
+    0x000023f8   0x000023f8   0x00000062   Code   RO         1311    .text               mc_w.l(uldiv.o)
+    0x0000245a   0x0000245a   0x00000002   PAD
+    0x0000245c   0x0000245c   0x00000024   Code   RO         1324    .text               mc_w.l(init.o)
+    0x00002480   0x00002480   0x0000001e   Code   RO         1326    .text               mc_w.l(llshl.o)
+    0x0000249e   0x0000249e   0x00000020   Code   RO         1328    .text               mc_w.l(llushr.o)
+    0x000024be   0x000024be   0x00000002   PAD
+    0x000024c0   0x000024c0   0x00000020   Code   RO         1165    i.__0printf$5       mc_w.l(printf5.o)
+    0x000024e0   0x000024e0   0x0000000e   Code   RO         1336    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x000024ee   0x000024ee   0x00000002   Code   RO         1337    i.__scatterload_null  mc_w.l(handlers.o)
+    0x000024f0   0x000024f0   0x0000000e   Code   RO         1338    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x000024fe   0x000024fe   0x00000002   PAD
+    0x00002500   0x00002500   0x000002c0   Code   RO         1172    i._printf_core      mc_w.l(printf5.o)
+    0x000027c0   0x000027c0   0x00000030   Data   RO          816    .constdata          uart.o
+    0x000027f0   0x000027f0   0x00000020   Data   RO          906    .constdata          timer.o
+    0x00002810   0x00002810   0x00000020   Data   RO         1334    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00002820, Size: 0x000005b4, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x20000000   0x00002820   0x0000002c   Data   RW            5    .data               system_m480.o
-    0x2000002c   0x0000284c   0x00000003   Data   RW          330    .data               main.o
-    0x2000002f   0x0000284f   0x00000001   PAD
-    0x20000030   0x00002850   0x00000008   Data   RW          331    .data               main.o
-    0x20000038   0x00002858   0x00000178   Data   RW          383    .data               dependencies.o
-    0x200001b0   0x000029d0   0x000003fb   Data   RW          456    .data               mcu_display_control.o
-    0x200005ab   0x00002dcb   0x00000001   PAD
-    0x200005ac   0x00002dcc   0x00000004   Data   RW          504    .data               retarget.o
-    0x200005b0   0x00002dd0   0x00000004   Data   RW          585    .data               clk.o
-
-
-    Execution Region ER_ZI (Exec base: 0x200005b4, Load base: 0x00002dd4, Size: 0x00000954, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00002830, Size: 0x000005b8, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x200005b4        -       0x0000014d   Zero   RW          382    .bss                dependencies.o
-    0x20000701   0x00002dd4   0x00000007   PAD
+    0x20000000   0x00002830   0x0000002c   Data   RW            5    .data               system_m480.o
+    0x2000002c   0x0000285c   0x00000003   Data   RW          330    .data               main.o
+    0x2000002f   0x0000285f   0x00000001   PAD
+    0x20000030   0x00002860   0x00000008   Data   RW          331    .data               main.o
+    0x20000038   0x00002868   0x00000178   Data   RW          383    .data               dependencies.o
+    0x200001b0   0x000029e0   0x000003fd   Data   RW          456    .data               mcu_display_control.o
+    0x200005ad   0x00002ddd   0x00000003   PAD
+    0x200005b0   0x00002de0   0x00000004   Data   RW          504    .data               retarget.o
+    0x200005b4   0x00002de4   0x00000004   Data   RW          585    .data               clk.o
+
+
+    Execution Region ER_ZI (Exec base: 0x200005b8, Load base: 0x00002de8, Size: 0x00000950, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x200005b8        -       0x0000014d   Zero   RW          382    .bss                dependencies.o
+    0x20000705   0x00002de8   0x00000003   PAD
     0x20000708        -       0x00000800   Zero   RW          319    STACK               startup_m480.o
 
 
@@ -1171,10 +1171,10 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
       1080         60          0          4          0       5670   clk.o
-      2432         58          0        376        333     132990   dependencies.o
+      2448         58          0        376        333     132982   dependencies.o
         44          0          0          0          0       1043   gpio.o
        332         32          0         11          0      43589   main.o
-      3388        100          0       1019          0      10611   mcu_display_control.o
+      3388        100          0       1021          0      10603   mcu_display_control.o
        280        130          0          4          0       3725   retarget.o
        104         20        500          0       2048        972   startup_m480.o
        192         20          0         44          0      50049   system_m480.o
@@ -1182,9 +1182,9 @@ Image component sizes
        424         42         48          0          0       2370   uart.o
 
     ----------------------------------------------------------------------
-      8632        492        612       1460       2388     253429   Object Totals
+      8648        492        612       1464       2384     253413   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         0          0          0          2          7          0   (incl. Padding)
+         0          0          0          4          3          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1227,15 +1227,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      9660        562        612       1460       2388     252373   Grand Totals
-      9660        562        612       1460       2388     252373   ELF Image Totals
-      9660        562        612       1460          0          0   ROM Totals
+      9676        562        612       1464       2384     252357   Grand Totals
+      9676        562        612       1464       2384     252357   ELF Image Totals
+      9676        562        612       1464          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                10272 (  10.03kB)
+    Total RO  Size (Code + RO Data)                10288 (  10.05kB)
     Total RW  Size (RW Data + ZI Data)              3848 (   3.76kB)
-    Total ROM Size (Code + RO Data + RW Data)      11732 (  11.46kB)
+    Total ROM Size (Code + RO Data + RW Data)      11752 (  11.48kB)
 
 ==============================================================================
 
