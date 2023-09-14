@@ -1329,6 +1329,9 @@ unsigned int read_overload_display(void);
 
 
 
+void write_button_test(unsigned int arg );
+unsigned int read_button_test_display(void);
+
 void write_head_sweep_set(unsigned int arg);
 unsigned int read_head_sweep_display(void);
 unsigned int read_resonance_frequency(void);
@@ -86025,7 +86028,7 @@ void display_to_mcu(){
 					case 0xc9:write_amplitude_head_test_set		(display_input_command[1]);break;
 					
 					case 0xcf:write_head_sweep_set						(display_input_command[1]);break;
-										
+					case 0xf0:write_button_test								(display_input_command[1]);break;
 					
 					case 0xca:write_force_set									((display_input_command[2]<<8)|(display_input_command[1]));break;
 					case 0xc8:write_hold_time_set							((display_input_command[2]<<8)|(display_input_command[1])*10);break;

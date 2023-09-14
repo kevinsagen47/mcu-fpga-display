@@ -1338,6 +1338,9 @@ unsigned int read_overload_display(void);
 
 
 
+void write_button_test(unsigned int arg );
+unsigned int read_button_test_display(void);
+
 void write_head_sweep_set(unsigned int arg);
 unsigned int read_head_sweep_display(void);
 unsigned int read_resonance_frequency(void);
@@ -85514,6 +85517,7 @@ void TMR0_IRQHandler(void)
 	
 	if(read_timeout_occured()==0)timeout_sent=0;
 	if(read_broken_transducer()==0)broken_sent=0;
+	if(display_page!=10 && read_button_test_display()==1) write_button_test(0);
   TIMER_ClearIntFlag(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10000UL)));
 	
 	

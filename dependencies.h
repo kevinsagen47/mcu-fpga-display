@@ -173,6 +173,9 @@ unsigned int read_overload_display(void);
 ///////////////////////////////////////////////////////////////////////
 
 //////////////////////////////DIAGNOSIS////////////////////////////////
+void write_button_test(unsigned int arg );
+unsigned int read_button_test_display(void);
+
 void write_head_sweep_set(unsigned int arg);
 unsigned int read_head_sweep_display(void);
 unsigned int read_resonance_frequency(void);

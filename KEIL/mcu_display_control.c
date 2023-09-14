@@ -559,7 +559,7 @@ void display_to_mcu(){//display HMI => MCU
 					case 0xc9:write_amplitude_head_test_set		(display_input_command[1]);break;
 					
 					case 0xcf:write_head_sweep_set						(display_input_command[1]);break;
-										
+					case 0xf0:write_button_test								(display_input_command[1]);break;
 					//main setting
 					case 0xca:write_force_set									((display_input_command[2]<<8)|(display_input_command[1]));break;
 					case 0xc8:write_hold_time_set							((display_input_command[2]<<8)|(display_input_command[1])*10);break;

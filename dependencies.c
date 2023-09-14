@@ -41,7 +41,7 @@ uint8_t display_page_1_trigger [7] 	= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
 
 ///////////////////////////////MAIN SETTINGS//////////////////////////////////////////////////////////////
 unsigned int amplitude_set=20,freq,time_set, force_set=22,timeout_set=5000;
-unsigned int amplitude_set_display,freq_display,timeout_set_display, force_set_display,standby,hold_time_display,hold_time_set=10,amplitude_head_test_set=10;
+unsigned int amplitude_set_display,freq_display,timeout_set_display, force_set_display,standby,hold_time_display,hold_time_set=10,amplitude_head_test_set=20;
 
 void write_amplitude_head_test_set (unsigned int arg){amplitude_head_test_set=arg;}
 void write_amplitude_set (unsigned int arg){amplitude_set=arg;}
@@ -102,7 +102,7 @@ unsigned int read_stage2_mode_address_set() {return stage2_mode_address_set;}
 /////////////////////////////////EARLY STAGE///////////////////////////////////////////
 //early stage
 unsigned int power_early_stage_display,mode_early_stage_display,value_early_stage_display;
-unsigned int power_early_stage_set=10,mode_early_stage_set,time_early_trigger_set=500,distance_early_trigger_set=2500;
+unsigned int power_early_stage_set=20,mode_early_stage_set,time_early_trigger_set=500,distance_early_trigger_set=2500;
 
 void write_power_early_stage_set(unsigned int arg) {power_early_stage_set=arg;}
 void write_mode_early_stage_set(unsigned int arg) {mode_early_stage_set=arg;}
@@ -118,7 +118,7 @@ unsigned int read_distance_early_trigger_display(void) {if (mode_early_stage_dis
 /////////////////////////////////AFTER STAGE///////////////////////////////////////////
 //after stage
 unsigned int power_after_stage_display,mode_after_stage_display,value_after_stage_display,time_on_after_stage_display;
-unsigned int power_after_stage_set=10,mode_after_stage_set,time_after_trigger_set=500,distance_after_trigger_set=500,time_on_after_stage_set=500;
+unsigned int power_after_stage_set=20,mode_after_stage_set,time_after_trigger_set=500,distance_after_trigger_set=500,time_on_after_stage_set=500;
 void write_power_after_stage_set(unsigned int arg) {power_after_stage_set=arg;}
 void write_mode_after_stage_set(unsigned int arg) {mode_after_stage_set=arg;}
 void write_time_after_trigger_set(unsigned int arg){time_after_trigger_set=arg;}
@@ -171,13 +171,16 @@ int8_t read_theta_display(void) {return theta;}
 
 //unsigned int read_(){return ;}
 
-unsigned int head_sweep_display,head_sweep_set,anti_resonance_frequency,resonance_frequency,broken_transducer=0;
+unsigned int head_sweep_display,head_sweep_set,anti_resonance_frequency,resonance_frequency,broken_transducer=0,button_test_set,button_test_display;
 //////////////////////////////////////////HEAD DIAGNOSIS/////////////////////////////////////////
 void write_head_sweep_set(unsigned int arg){head_sweep_set=arg;}
 unsigned int read_head_sweep_display(){return head_sweep_display;}
 unsigned int read_anti_resonance_frequency(){return anti_resonance_frequency;}
 unsigned int read_resonance_frequency(){return resonance_frequency;}
 unsigned int read_broken_transducer(){return broken_transducer;}
+
+void write_button_test(unsigned int arg) {button_test_set=arg;}
+unsigned int read_button_test_display(){return button_test_display;}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 unsigned int temp_time_picker;
 
@@ -207,6 +210,7 @@ void fpga_to_mcu(void){//FPGA => MCU
 		energy_display								=(FPGA_input[25]<<8)|(FPGA_input[26]);
 		pressure_display							=FPGA_input[27];
 		
+		button_test_display						=(FPGA_input[28]>>0)& 1;
 		broken_transducer							=(FPGA_input[28]>>1)& 1;
 		sweep_on_rx										=(FPGA_input[28]>>2)& 1;
 		head_sweep_display						=(FPGA_input[28]>>3)& 1;
@@ -289,7 +293,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 	
 	if (display_page==9)temp_timeout_set=0;
 	else if (display_page==10){
-		temp_timeout_set=0;//2000;
+		temp_timeout_set=2000;
 		temp_amplitude_set=amplitude_head_test_set;
 	}else if (display_page==7){
 		temp_timeout_set=2000;
@@ -370,7 +374,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 		temp_after_stage_address=0xE5;}
 	else temp_value_after_stage_set=0;
 	
-	if(Freq_init==1 && standby==1 && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[76]==0x68){
+	if(Freq_init==1 && (standby==1 || display_page==10) && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[76]==0x68){
 		if(amplitude_set_display!=temp_amplitude_set){
 			UART_WRITE(UART0,0xC0);
 			UART_WRITE(UART0,temp_amplitude_set);
@@ -512,6 +516,12 @@ void mcu_to_fpga(void){//MCU => FPGA
 			UART_WRITE(UART0,0xE7);
 			UART_WRITE(UART0,time_on_after_stage_set& ~(~0U << 8));
 			UART_WRITE(UART0,time_on_after_stage_set>>8);
+			UART_WRITE(UART0,0xFF);
+			PC6 = 1;
+	}
+		else if (button_test_display!=button_test_set){
+			UART_WRITE(UART0,0xF0);
+			UART_WRITE(UART0,button_test_set);
 			UART_WRITE(UART0,0xFF);
 			PC6 = 1;
 	}
