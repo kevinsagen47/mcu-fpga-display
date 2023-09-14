@@ -1347,6 +1347,9 @@ unsigned int read_resonance_frequency(void);
 unsigned int read_anti_resonance_frequency(void);
 unsigned int read_broken_transducer(void);
 
+unsigned int read_entered_main_page(void);
+void write_entered_main_page(unsigned int arg);
+
 #line 12 "..\\main.c"
 #line 1 "..\\..\\..\\nuvoton_ws\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
  
@@ -85488,13 +85491,15 @@ void HSUSBD_SetVendorRequest(HSUSBD_VENDOR_REQ pfnVendorReq);
 uint8_t header [3]={0xFF,0xFF,0xFF};
 
 int timeout_sent=0,broken_sent=0;
+int broken_count=0;
 char led_test = 0;
 
 void TMR0_IRQHandler(void)
 {
     
 	if (read_broken_transducer()==1 && broken_sent==0){
-		broken_sent=1;
+		if(read_entered_main_page()==1)broken_count++;
+		if(broken_count>10 && read_entered_main_page()==1)broken_sent=1;
 		print_page_broken_transducer();
 	}
 	else if (read_overload_display()==1&&display_page!=7) print_page_overload();
@@ -85516,7 +85521,7 @@ void TMR0_IRQHandler(void)
 	else TIMER_Delay(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10100UL)), 5);
 	
 	if(read_timeout_occured()==0)timeout_sent=0;
-	if(read_broken_transducer()==0)broken_sent=0;
+	if(read_broken_transducer()==0){broken_sent=0;broken_count=0;}
 	if(display_page!=10 && read_button_test_display()==1) write_button_test(0);
   TIMER_ClearIntFlag(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x10000UL)));
 	

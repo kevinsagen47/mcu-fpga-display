@@ -438,6 +438,9 @@ unsigned int read_resonance_frequency(void);
 unsigned int read_anti_resonance_frequency(void);
 unsigned int read_broken_transducer(void);
 
+unsigned int read_entered_main_page(void);
+void write_entered_main_page(unsigned int arg);
+
 #line 2 "..\\dependencies.c"
 #line 1 "C:\\Keil_v5\\ARM\\ARM_Compiler_5.06u7\\Bin\\..\\include\\stdio.h"
  
@@ -85653,7 +85656,9 @@ unsigned int read_button_test_display(){return button_test_display;}
 
 unsigned int temp_time_picker;
 
-
+unsigned int entered_main=0;
+void write_entered_main_page(unsigned arg){entered_main=arg;}
+unsigned int read_entered_main_page(){return entered_main;}
 
 volatile int32_t g_i32pointer_0 = 0;
 uint16_t FPGA_length=77;

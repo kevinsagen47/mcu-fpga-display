@@ -181,5 +181,8 @@ unsigned int read_head_sweep_display(void);
 unsigned int read_resonance_frequency(void);
 unsigned int read_anti_resonance_frequency(void);
 unsigned int read_broken_transducer(void);
+
+unsigned int read_entered_main_page(void);
+void write_entered_main_page(unsigned int arg);
 ///////////////////////////////////////////////////////////////////////
 #endif

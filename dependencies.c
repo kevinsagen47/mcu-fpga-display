@@ -184,7 +184,9 @@ unsigned int read_button_test_display(){return button_test_display;}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 unsigned int temp_time_picker;
 
-
+unsigned int entered_main=0;
+void write_entered_main_page(unsigned arg){entered_main=arg;}
+unsigned int read_entered_main_page(){return entered_main;}
 
 volatile int32_t g_i32pointer_0 = 0;
 uint16_t FPGA_length=77;
