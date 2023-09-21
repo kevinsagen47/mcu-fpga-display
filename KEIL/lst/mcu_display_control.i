@@ -1327,6 +1327,8 @@ unsigned int read_timeout_occured(void);
 unsigned int read_total_time_display(void);
 unsigned int read_overload_display(void);
 
+unsigned int read_encoder_speed_display(void);
+
 
 
 void write_button_test(unsigned int arg );
@@ -1341,6 +1343,7 @@ unsigned int read_broken_transducer(void);
 unsigned int read_entered_main_page(void);
 void write_entered_main_page(unsigned int arg);
 
+void write_head_up_set(unsigned int arg);
 #line 3 "mcu_display_control.c"
 #line 1 "..\\..\\..\\nuvoton_ws\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
  
@@ -85693,6 +85696,7 @@ void print_page_SectionVib(){
 uint8_t display_page_head_down_pressure [9] ={0x62,0x5B,0x38,0x5D,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_head_down_force_read [9] ={0x62,0x5B,0x39,0x5D,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_head_down_distance_read [14] ={0x6E,0X41,0X42,0X53,0X50,0X6F,0X73,0X69,0x2E,0x74,0x78,0x74,0x3D,0x22};
+uint8_t display_page_head_down_speed [11] ={0x66,0X73,0X70,0X65,0X65,0X64,0X2E,0X76,0X61,0X6C,0X3D};
 uint8_t one_array_temp[1]={0};
 void print_page_head_down(){
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_down_pressure,9);
@@ -85702,6 +85706,11 @@ void print_page_head_down(){
 		
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_down_force_read,9);
 		binary_to_bcd_array( read_force_display() );
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_head_down_speed,11);
+		binary_to_bcd_array(read_encoder_speed_display());
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 	
@@ -86037,6 +86046,7 @@ void display_to_mcu(){
 					
 					case 0xca:write_force_set									((display_input_command[2]<<8)|(display_input_command[1]));break;
 					case 0xc8:write_hold_time_set							((display_input_command[2]<<8)|(display_input_command[1])*10);break;
+					case 0xce:write_head_up_set								(display_input_command[1]);break;
 					case 0xcd:write_timeout_set								(((display_input_command[2]<<8)|(display_input_command[1]))*10);break;
 					
 					

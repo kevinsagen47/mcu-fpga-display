@@ -217,10 +217,11 @@ void print_page_SectionVib(){
 			UART_Write(UART1,header,3);
 		}
 	}
-
+//fspeed.txt= 66 73 70 65 65 64 2E 76 61 6C 3D
 uint8_t display_page_head_down_pressure [9] ={0x62,0x5B,0x38,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[8].val=
 uint8_t display_page_head_down_force_read [9] ={0x62,0x5B,0x39,0x5D,0x2E,0x76,0x61,0x6C,0x3D};//b[9].val=
 uint8_t display_page_head_down_distance_read [14] ={0x6E,0X41,0X42,0X53,0X50,0X6F,0X73,0X69,0x2E,0x74,0x78,0x74,0x3D,0x22};//b[13].txt="
+uint8_t display_page_head_down_speed [11] ={0x66,0X73,0X70,0X65,0X65,0X64,0X2E,0X76,0X61,0X6C,0X3D};
 uint8_t one_array_temp[1]={0};
 void print_page_head_down(){
 		UART_Write(UART1,display_page_head_down_pressure,9);
@@ -230,6 +231,11 @@ void print_page_head_down(){
 		
 		UART_Write(UART1,display_page_head_down_force_read,9);
 		binary_to_bcd_array( read_force_display() );
+		UART_Write(UART1,bcd_array,5);
+		UART_Write(UART1,header,3);
+
+		UART_Write(UART1,display_page_head_down_speed,11);
+		binary_to_bcd_array(read_encoder_speed_display());
 		UART_Write(UART1,bcd_array,5);
 		UART_Write(UART1,header,3);
 	
@@ -565,6 +571,7 @@ void display_to_mcu(){//display HMI => MCU
 					//main setting
 					case 0xca:write_force_set									((display_input_command[2]<<8)|(display_input_command[1]));break;
 					case 0xc8:write_hold_time_set							((display_input_command[2]<<8)|(display_input_command[1])*10);break;
+					case 0xce:write_head_up_set								(display_input_command[1]);break;
 					case 0xcd:write_timeout_set								(((display_input_command[2]<<8)|(display_input_command[1]))*10);break;
 					
 					//second stage

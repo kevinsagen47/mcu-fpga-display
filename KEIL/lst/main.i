@@ -1336,6 +1336,8 @@ unsigned int read_timeout_occured(void);
 unsigned int read_total_time_display(void);
 unsigned int read_overload_display(void);
 
+unsigned int read_encoder_speed_display(void);
+
 
 
 void write_button_test(unsigned int arg );
@@ -1350,6 +1352,7 @@ unsigned int read_broken_transducer(void);
 unsigned int read_entered_main_page(void);
 void write_entered_main_page(unsigned int arg);
 
+void write_head_up_set(unsigned int arg);
 #line 12 "..\\main.c"
 #line 1 "..\\..\\..\\nuvoton_ws\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
  
@@ -85505,7 +85508,7 @@ void TMR0_IRQHandler(void)
 	else if (read_overload_display()==1&&display_page!=7) print_page_overload();
 	else if (timeout_sent==0 && read_timeout_occured()){
 		timeout_sent=1;
-		if (display_page!=10 && display_page!=7)print_page_timeout();
+		if (display_page!=10 && display_page!=7 && display_page!=9)print_page_timeout();
 	}
 	else if (display_page==2){
 		if (Freq_init==1)print_page_setting_1();

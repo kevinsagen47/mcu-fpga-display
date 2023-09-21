@@ -427,6 +427,8 @@ unsigned int read_timeout_occured(void);
 unsigned int read_total_time_display(void);
 unsigned int read_overload_display(void);
 
+unsigned int read_encoder_speed_display(void);
+
 
 
 void write_button_test(unsigned int arg );
@@ -441,6 +443,7 @@ unsigned int read_broken_transducer(void);
 unsigned int read_entered_main_page(void);
 void write_entered_main_page(unsigned int arg);
 
+void write_head_up_set(unsigned int arg);
 #line 2 "..\\dependencies.c"
 #line 1 "C:\\Keil_v5\\ARM\\ARM_Compiler_5.06u7\\Bin\\..\\include\\stdio.h"
  
@@ -85611,7 +85614,7 @@ unsigned int read_time_on_after_stage_display(void){return time_on_after_stage_d
 
 
 unsigned int current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,total_time_display;
-unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold,timeout_occured=0;
+unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold,timeout_occured=0,encoder_speed_display;
 int8_t theta;
 unsigned int read_overload_display() {return overload_display;}
 unsigned int read_power_read_display() {return power_read_display;}
@@ -85640,6 +85643,8 @@ unsigned int read_pressure_display(void){return pressure_display;}
 unsigned int read_total_time_display(void){return total_time_display;}
 int8_t read_theta_display(void) {return theta;}
 
+unsigned int read_encoder_speed_display(void){return encoder_speed_display;}
+
 
 
 
@@ -85654,6 +85659,9 @@ unsigned int read_broken_transducer(){return broken_transducer;}
 void write_button_test(unsigned int arg) {button_test_set=arg;}
 unsigned int read_button_test_display(){return button_test_display;}
 
+int head_up_set;
+void write_head_up_set(unsigned int arg) {head_up_set=arg;}
+
 unsigned int temp_time_picker;
 
 unsigned int entered_main=0;
@@ -85661,14 +85669,14 @@ void write_entered_main_page(unsigned arg){entered_main=arg;}
 unsigned int read_entered_main_page(){return entered_main;}
 
 volatile int32_t g_i32pointer_0 = 0;
-uint16_t FPGA_length=77;
-uint8_t FPGA_input[77] = {0};
+uint16_t FPGA_length=79;
+uint8_t FPGA_input[79] = {0};
 uint16_t FPGA_address=0;
 uint8_t sweep_on_rx;
 
 void fpga_to_mcu(void){
 
-	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[76]==0x68){
+	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[78]==0x68){
 		amplitude_set_display							=FPGA_input[4];
 		timeout_set_display 							=(FPGA_input[5]<<8)|(FPGA_input[6]);
 		distance_relative_set_display	=(FPGA_input[7]<<8)|(FPGA_input[8]);
@@ -85731,7 +85739,9 @@ void fpga_to_mcu(void){
 		resonance_frequency						= (FPGA_input[71]<<8)|(FPGA_input[72]);
 		anti_resonance_frequency			= (FPGA_input[73]<<8)|(FPGA_input[74]);
 		
-		distance_hold= FPGA_input[75];
+		encoder_speed_display					= (FPGA_input[75]<<8)|(FPGA_input[76]);
+		
+		distance_hold= FPGA_input[77];
 	}
 }
 
@@ -85765,7 +85775,15 @@ unsigned int temp_stage2_address,temp_early_stage_address,temp_after_stage_addre
 unsigned int sweep_status;
 void mcu_to_fpga(void){
 	
-	if (display_page==9)temp_timeout_set=0;
+	if (display_page==9){
+		if(head_up_set==1 && timeout_set_display==0)temp_timeout_set=500;
+		else if (head_up_set==1 && timeout_set_display==500){
+			head_up_set=0;
+			temp_timeout_set=0;
+		}
+		else temp_timeout_set=0;
+		
+	}
 	else if (display_page==10){
 		temp_timeout_set=2000;
 		temp_amplitude_set=amplitude_head_test_set;
@@ -85848,7 +85866,7 @@ void mcu_to_fpga(void){
 		temp_after_stage_address=0xE5;}
 	else temp_value_after_stage_set=0;
 	
-	if(Freq_init==1 && (standby==1 || display_page==10) && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[76]==0x68){
+	if(Freq_init==1 && (standby==1 || display_page==10) && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[78]==0x68){
 		if(amplitude_set_display!=temp_amplitude_set){
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (0xC0));
 			((((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x30000UL)))->DAT = (temp_amplitude_set));

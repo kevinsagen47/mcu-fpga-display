@@ -170,6 +170,8 @@ unsigned int read_collapse_hold(void);
 unsigned int read_timeout_occured(void);
 unsigned int read_total_time_display(void);
 unsigned int read_overload_display(void);
+
+unsigned int read_encoder_speed_display(void);
 ///////////////////////////////////////////////////////////////////////
 
 //////////////////////////////DIAGNOSIS////////////////////////////////
@@ -185,4 +187,5 @@ unsigned int read_broken_transducer(void);
 unsigned int read_entered_main_page(void);
 void write_entered_main_page(unsigned int arg);
 ///////////////////////////////////////////////////////////////////////
+void write_head_up_set(unsigned int arg);
 #endif
