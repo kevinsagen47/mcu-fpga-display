@@ -68,6 +68,7 @@ void write_mode_set (unsigned int arg);
 void write_distance_absolute_set (unsigned int arg);
 void write_distance_relative_set (unsigned int arg);
 void write_energy_set (unsigned int arg);
+void write_gnd_set (unsigned int arg);
 void write_time_set_stage_one_set (unsigned int arg);
 void write_power_stage_one_set (unsigned int arg);
 unsigned int read_mode_set(void) ;
@@ -76,12 +77,14 @@ unsigned int read_mode_set(void) ;
 //MODE 3 DOSTANCE ABSOLUTE
 //MODE 4 POWER
 //MODE 5 ENERGY
+//MODE 6 GND
 unsigned int read_timeout_set_display(void);
 unsigned int read_distance_absolute_set_display(void);
 unsigned int read_distance_relative_set_display(void);
 unsigned int read_energy_set_display(void);
 unsigned int read_time_set_stage_one_display(void);
 unsigned int read_power_stage_one_display(void);
+unsigned int read_gnd_display(void);
 //////////////////////////////////////////////////////////////////
 
 ////////////////////////STAGE TWO/////////////////////////////////
@@ -188,4 +191,5 @@ unsigned int read_entered_main_page(void);
 void write_entered_main_page(unsigned int arg);
 ///////////////////////////////////////////////////////////////////////
 void write_head_up_set(unsigned int arg);
+unsigned int read_avg_power(void);
 #endif

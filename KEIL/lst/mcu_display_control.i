@@ -1224,9 +1224,11 @@ void write_mode_set (unsigned int arg);
 void write_distance_absolute_set (unsigned int arg);
 void write_distance_relative_set (unsigned int arg);
 void write_energy_set (unsigned int arg);
+void write_gnd_set (unsigned int arg);
 void write_time_set_stage_one_set (unsigned int arg);
 void write_power_stage_one_set (unsigned int arg);
 unsigned int read_mode_set(void) ;
+
 
 
 
@@ -1238,6 +1240,7 @@ unsigned int read_distance_relative_set_display(void);
 unsigned int read_energy_set_display(void);
 unsigned int read_time_set_stage_one_display(void);
 unsigned int read_power_stage_one_display(void);
+unsigned int read_gnd_display(void);
 
 
 
@@ -1344,6 +1347,7 @@ unsigned int read_entered_main_page(void);
 void write_entered_main_page(unsigned int arg);
 
 void write_head_up_set(unsigned int arg);
+unsigned int read_avg_power(void);
 #line 3 "mcu_display_control.c"
 #line 1 "..\\..\\..\\nuvoton_ws\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
  
@@ -85498,7 +85502,11 @@ void binary_to_bcd_array(int variable){
 uint8_t display_page_setting_1_time [60] 			= {0x63,0X62,0X4D,0X6F,0X64,0X65,0X53,0X65,0X6C,0X65,0X63,0X74,0x2E,0x76,0x61,0x6C,0x3D,0x30,0xff,0xff,0xff
 																								,0x74,0x4D,0x6F,0x64,0x65,0x2E,0x74,0x78,0x74,0x3D,0x22,0xAE,0xC9,0xB6,0xA1,0x22,0xff,0xff,0xff
 																								,0x74,0x4D,0x6F,0x64,0x65,0x55,0x6E,0x69,0x74,0x2E,0x74,0x78,0x74,0x3D,0x22,0x53,0x22,0xff,0xff,0xff};
-
+	
+uint8_t display_page_setting_1_gnd [60]	= {0x63,0X62,0X4D,0X6F,0X64,0X65,0X53,0X65,0X6C,0X65,0X63,0X74,0x2E,0x76,0x61,0x6C,0x3D,0x35,0xff,0xff,0xff
+																								,0x74,0x4D,0x6F,0x64,0x65,0x2E,0x74,0x78,0x74,0x3D,0x22,0xAE,0xC9,0xB6,0xA1,0x22,0xff,0xff,0xff
+																								,0x74,0x4D,0x6F,0x64,0x65,0x55,0x6E,0x69,0x74,0x2E,0x74,0x78,0x74,0x3D,0x22,0x53,0x22,0xff,0xff,0xff};
+	
 uint8_t display_page_setting_1_dist_rel [61] = {0x63,0X62,0X4D,0X6F,0X64,0X65,0X53,0X65,0X6C,0X65,0X63,0X74,0x2E,0x76,0x61,0x6C,0x3D,0x31,0xff,0xff,0xff
 																										,0x74,0x4D,0x6F,0x64,0x65,0x2E,0x74,0x78,0x74,0x3D,0x22,0xB6,0x5A,0xC2,0xF7,0x22,0xff,0xff,0xff
 																										,0x74,0x4D,0x6F,0x64,0x65,0x55,0x6E,0x69,0x74,0x2E,0x74,0x78,0x74,0x3D,0x22,0x6D,0x6D,0x22,0xff,0xff,0xff};
@@ -85575,6 +85583,13 @@ void print_page_setting_1(){
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		}
+		else if (read_mode_set()==4){
+			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_power,81);
+			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_trigger_val ,10);
+			binary_to_bcd_array(read_power_stage_one_display()/40);
+			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+		}
 		else if (read_mode_set()==5){
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_dist_energy,60);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_trigger_val ,10);
@@ -85582,10 +85597,10 @@ void print_page_setting_1(){
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		}
-		else if (read_mode_set()==4){
-			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_power,81);
+		else if (read_mode_set()==6){
+			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_gnd,60);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_setting_1_trigger_val ,10);
-			binary_to_bcd_array(read_power_stage_one_display()/40);
+			binary_to_bcd_array(read_gnd_display()/10);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 			UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		}
@@ -85735,6 +85750,7 @@ uint8_t display_page_2_freq_end [7] 					= { 0x6E, 0x32,0x2E,0x76,0x61,0x6C,0x3D
 uint8_t display_page_2_freq_max[7] 						= { 0x6E, 0x33,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_freq_min [7] 					= { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_P_max [7] 							= { 0x6E, 0x35,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_P_avg [7] 							= { 0x6E, 0x30,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_energy [7] 						= { 0x6E, 0x36,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_time_on [9] 						= {0x74,0X33,0X34,0x2E,0x74,0x78,0x74,0x3D,0x22};
 uint8_t display_page_2_distance_travelled[9]	= {0x74,0X32,0X34,0x2E,0x74,0x78,0x74,0x3D,0x22};
@@ -85743,6 +85759,7 @@ uint8_t display_page_2_F_max [8] 							= { 0x6E, 0x31,0x30,0x2E,0x76,0x61,0x6C,
 uint8_t display_page_2_F_set [7] 						= { 0x6E, 0x38,0x2E,0x76,0x61,0x6C,0x3D};
 
 uint8_t display_page_2_total_time [7] 						= { 0x78, 0x30,0x2E,0x76,0x61,0x6C,0x3D};
+uint8_t display_page_2_encoder_speed [7] 						= { 0x78, 0x31,0x2E,0x76,0x61,0x6C,0x3D};
 uint8_t display_page_2_distance_absolute [9] ={0x74,0X32,0X35,0x2E,0x74,0x78,0x74,0x3D,0x22};
 uint8_t display_page_2_absolute_hold [9] ={0x74,0X33,0X33,0x2E,0x74,0x78,0x74,0x3D,0x22};
 uint8_t display_page_2_collapse_hold [9] ={0x74,0X33,0X30,0x2E,0x74,0x78,0x74,0x3D,0x22};
@@ -85811,6 +85828,11 @@ void print_page_weld_record(){
 		binary_to_bcd_array(read_P_max());
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+		
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_P_avg,7);
+		binary_to_bcd_array(read_avg_power());
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 	
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_energy,7);
 		binary_to_bcd_array(read_energy_display());
@@ -85819,6 +85841,11 @@ void print_page_weld_record(){
 		
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_total_time,7);
 		binary_to_bcd_array(read_total_time_display());
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
+		
+		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),display_page_2_encoder_speed,7);
+		binary_to_bcd_array(read_encoder_speed_display());
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),bcd_array,5);
 		UART_Write(((UART_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x31000UL)),header,3);
 		
@@ -86029,6 +86056,8 @@ void display_to_mcu(){
 											write_stage2_mode_address_set(0);
 										if (display_input_command[1]==5 && read_stage2_mode_address_display()!=6)
 											write_stage2_mode_address_set(0);
+										if (display_input_command[1]==6)
+											write_stage2_mode_address_set(0);
 										break;
 					case 0xc3:write_time_set_stage_one_set		(((display_input_command[2]<<8)|(display_input_command[1]))*10);
 										if(read_stage2_mode_address_display()!=3)write_stage2_mode_address_set(0);break;
@@ -86039,6 +86068,9 @@ void display_to_mcu(){
 										if(read_stage2_mode_address_display()!=5)write_stage2_mode_address_set(0);break;
 					case 0xc7:write_energy_set								((display_input_command[2]<<8)|(display_input_command[1]));
 										if(read_stage2_mode_address_display()!=6)write_stage2_mode_address_set(0);break;
+										
+					case 0xc1:write_gnd_set			(((display_input_command[2]<<8)|(display_input_command[1]))*10);break;
+										
 					case 0xc9:write_amplitude_head_test_set		(display_input_command[1]);break;
 					
 					case 0xcf:write_head_sweep_set						(display_input_command[1]);break;
