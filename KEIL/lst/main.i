@@ -1342,6 +1342,15 @@ unsigned int read_overload_display(void);
 unsigned int read_encoder_speed_display(void);
 
 
+unsigned int read_encoder_speed_history(void);
+unsigned int read_F_set_history(void);
+int read_freq_delta(void);
+
+void write_history_point_set(unsigned int arg);
+unsigned int read_history_point_display();
+unsigned int read_history_point_set();
+
+
 
 void write_button_test(unsigned int arg );
 unsigned int read_button_test_display(void);

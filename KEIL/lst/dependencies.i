@@ -433,6 +433,15 @@ unsigned int read_overload_display(void);
 unsigned int read_encoder_speed_display(void);
 
 
+unsigned int read_encoder_speed_history(void);
+unsigned int read_F_set_history(void);
+int read_freq_delta(void);
+
+void write_history_point_set(unsigned int arg);
+unsigned int read_history_point_display();
+unsigned int read_history_point_set();
+
+
 
 void write_button_test(unsigned int arg );
 unsigned int read_button_test_display(void);
@@ -85620,35 +85629,96 @@ unsigned int read_time_on_after_stage_display(void){return time_on_after_stage_d
 
 unsigned int current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,total_time_display;
 unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold,timeout_occured=0,encoder_speed_display;
+unsigned int history_point_display=0,history_point_set;
+int history_record_array[255][18]={0};
 int8_t theta;
-unsigned int read_overload_display() {return overload_display;}
+int avg_power;
+
+void write_history_point_set(unsigned int arg){if(history_point_display>=arg && 255>=arg && arg>0)history_point_set=arg;}
+unsigned int read_history_point_display(){return history_point_display;}
+unsigned int read_history_point_set(){return history_point_set;}
+
+int read_freq_delta()													{return history_record_array[history_point_set][0];}
+unsigned int read_freq_start()								{return history_record_array[history_point_set][1];}
+unsigned int read_freq_end()									{return history_record_array[history_point_set][2];}
+unsigned int read_freq_max()									{return history_record_array[history_point_set][3];}
+unsigned int read_freq_min()									{return history_record_array[history_point_set][4];}
+unsigned int read_P_max()											{return history_record_array[history_point_set][5];}
+unsigned int read_avg_power(void)							{return history_record_array[history_point_set][6];}
+unsigned int read_energy_display(void)				{return history_record_array[history_point_set][7];}
+unsigned int read_time_on()										{return history_record_array[history_point_set][8];}
+
+unsigned int read_F_set_history()							{return history_record_array[history_point_set][9];}
+unsigned int read_F_start()										{return history_record_array[history_point_set][10];}
+unsigned int read_F_max()											{return history_record_array[history_point_set][11];}
+unsigned int read_encoder_speed_history(void)	{return history_record_array[history_point_set][12];}
+unsigned int read_distance_reached()					{return history_record_array[history_point_set][13];}
+unsigned int read_absolute_hold() 						{return history_record_array[history_point_set][14];}
+unsigned int read_distance_travelled()				{return history_record_array[history_point_set][15];}
+unsigned int read_collapse_hold() 						{return history_record_array[history_point_set][16];}
+unsigned int read_total_time_display(void)		{return history_record_array[history_point_set][17];}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+int8_t read_theta_display(void) {return theta;}
+unsigned int read_pressure_display(void){return pressure_display;}
 unsigned int read_power_read_display() {return power_read_display;}
-unsigned int read_freq_min(){return freq_min;}
-unsigned int read_freq_max(){return freq_max;}
-unsigned int read_freq_start(){return freq_start;}
-unsigned int read_freq_end(){return freq_end;}
-unsigned int read_F_start(){return F_start;}
-unsigned int read_F_max(){return F_max;}
-unsigned int read_P_max(){return P_max;}
-unsigned int read_distance_travelled(){return distance_travelled;}
-unsigned int read_distance_reached(){return distance_reached;}
-unsigned int read_time_on(){return time_on;}
 unsigned int read_timeout_occured() {return timeout_occured;}
-
+unsigned int read_overload_display() {return overload_display;}
+unsigned int read_encoder_speed_display(void){return encoder_speed_display;}
 unsigned int read_distance_hold() {return distance_hold;}
-unsigned int read_collapse_hold() {return (distance_travelled+distance_hold);}
-unsigned int read_absolute_hold() {return (distance_reached+distance_hold);}
-
 unsigned int read_freq_display(void){return freq_display;}
 unsigned int read_current_display(void){return current_display;}
 unsigned int read_force_display(void){return force_display;}
 unsigned int read_distance_display(void){return distance_display;}
-unsigned int read_energy_display(void){return energy_display;}
-unsigned int read_pressure_display(void){return pressure_display;}
-unsigned int read_total_time_display(void){return total_time_display;}
-int8_t read_theta_display(void) {return theta;}
 
-unsigned int read_encoder_speed_display(void){return encoder_speed_display;}
 
 
 
@@ -85667,8 +85737,6 @@ unsigned int read_button_test_display(){return button_test_display;}
 int head_up_set;
 void write_head_up_set(unsigned int arg) {head_up_set=arg;}
 
-int avg_power;
-unsigned int read_avg_power(void){return avg_power;}
 
 unsigned int temp_time_picker;
 
@@ -85685,7 +85753,8 @@ uint8_t sweep_on_rx;
 
 int power_points,power_avg_state=0;
 long power_accum;
-
+int prev_history_point;
+int temp_point;
 
 void fpga_to_mcu(void){
 
@@ -85753,7 +85822,7 @@ void fpga_to_mcu(void){
 		anti_resonance_frequency			= (FPGA_input[73]<<8)|(FPGA_input[74]);
 		
 		encoder_speed_display					= (FPGA_input[75]<<8)|(FPGA_input[76]);
-		
+		history_point_display					= FPGA_input[77];
 		gnd_display										=(FPGA_input[78]<<8)|(FPGA_input[79]);
 		distance_hold= FPGA_input[80];
 		
@@ -85765,6 +85834,34 @@ void fpga_to_mcu(void){
 		else if (standby==0){
 			power_accum=power_accum+power_read_display;
 			power_points++;
+		}
+		temp_point=prev_history_point+1;
+		if(standby==1){
+			
+			if(temp_point==history_point_display){
+				prev_history_point=history_point_display;
+				history_point_set=history_point_display;
+			
+			
+			history_record_array[history_point_display][0]=freq_end-freq_start;
+			history_record_array[history_point_display][1]=freq_start;
+			history_record_array[history_point_display][2]=freq_end;
+			history_record_array[history_point_display][3]=freq_max;
+			history_record_array[history_point_display][4]=freq_min;
+			history_record_array[history_point_display][5]=P_max;
+			history_record_array[history_point_display][6]=avg_power;
+			history_record_array[history_point_display][7]=energy_display;
+			history_record_array[history_point_display][8]=time_on;
+			history_record_array[history_point_display][9]=force_set_display;
+			history_record_array[history_point_display][10]=F_start;
+			history_record_array[history_point_display][11]=F_max;
+			history_record_array[history_point_display][12]=encoder_speed_display;
+			history_record_array[history_point_display][13]=distance_reached;
+			history_record_array[history_point_display][14]=distance_reached+distance_hold;
+			history_record_array[history_point_display][15]=distance_travelled;
+			history_record_array[history_point_display][16]=distance_travelled+distance_hold;;
+			history_record_array[history_point_display][17]=total_time_display;
+		}
 		}
 	}
 }
