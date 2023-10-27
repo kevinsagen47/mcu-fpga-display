@@ -40,7 +40,7 @@ void print_page_broken_transducer(void);
 //////////////////////////////////////////////////////////////////////////
 
 extern uint8_t header[3];
-extern uint8_t display_input_command[4];
+extern uint8_t display_input_command[5];
 extern uint8_t display_page;
 void print_page_lock_freq(void);
 extern uint8_t Freq_init;
@@ -182,8 +182,8 @@ unsigned int read_F_set_history(void);
 int read_freq_delta(void);
 
 void write_history_point_set(unsigned int arg);
-unsigned int read_history_point_display();
-unsigned int read_history_point_set();
+unsigned int read_history_point_display(void);
+unsigned int read_history_point_set(void);
 ///////////////////////////////////////////////////////////////////////
 
 //////////////////////////////DIAGNOSIS////////////////////////////////

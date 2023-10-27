@@ -23,7 +23,7 @@ volatile int32_t g_i32pointer = 0;
 void UART_TEST_HANDLE(void);
 void AutoFlow_FunctionTest(void);
 
-uint8_t display_input_command[4] = {0};
+uint8_t display_input_command[5] = {0};
 uint8_t input_address=0;
 uint8_t display_page=0;
 uint8_t Freq_init=0;
@@ -68,7 +68,7 @@ void write_gnd_set(unsigned int arg){gnd_set=arg;}
 unsigned int read_mode_set(void) {return mode_set;}
 unsigned int read_distance_absolute_set_display(void){return distance_absolute_set_display;}
 unsigned int read_distance_relative_set_display(void){return distance_relative_set_display;}
-unsigned int read_energy_set_display(void){return energy_set_display;}
+unsigned int read_energy_set_display(void){return energy_set;}//{return energy_set_display*2;}
 unsigned int read_time_set_stage_one_display(void){return time_set_stage_one_display;}
 unsigned int read_power_stage_one_display(void){return power_stage_one_display;}
 unsigned int read_gnd_display(void){return gnd_display;}
@@ -96,7 +96,8 @@ unsigned int read_amplitudeB_set_stage2_display(){return amplitudeB_set_stage2_d
 unsigned int read_time_set_stage2_display(){if(stage2_mode_address_display==3)return stage2_mode_value_display;else return 0;}
 unsigned int read_distance_set_stage2_display(){if(stage2_mode_address_display==4)return stage2_mode_value_display;else return 0;}
 unsigned int read_power_set_stage2_display(){if(stage2_mode_address_display==5)return stage2_mode_value_display;else return 0;}
-unsigned int read_energy_set_stage2_display(){if(stage2_mode_address_display==6)return stage2_mode_value_display;else return 0;}
+unsigned int read_energy_set_stage2_display(){if(stage2_mode_address_display==6)return energy_set_stage2;else return 0;}
+//{if(stage2_mode_address_display==6)return stage2_mode_value_display*2;else return 0;}
 unsigned int read_stage2_mode_address_set() {return stage2_mode_address_set;}
 ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -224,7 +225,10 @@ unsigned int read_pressure_display(void){return pressure_display;}
 unsigned int read_power_read_display() {return power_read_display;}
 unsigned int read_timeout_occured() {return timeout_occured;}
 unsigned int read_overload_display() {return overload_display;}
-unsigned int read_encoder_speed_display(void){return encoder_speed_display;}
+unsigned int read_encoder_speed_display(void){
+	if(timeout_set_display==0 && force_display==0) return 0;
+	else return encoder_speed_display;
+}
 unsigned int read_distance_hold() {return distance_hold;}
 unsigned int read_freq_display(void){return freq_display;}
 unsigned int read_current_display(void){return current_display;}
@@ -257,8 +261,8 @@ void write_entered_main_page(unsigned arg){entered_main=arg;}
 unsigned int read_entered_main_page(){return entered_main;}
 
 volatile int32_t g_i32pointer_0 = 0;
-uint16_t FPGA_length=82;
-uint8_t FPGA_input[82] = {0};
+uint16_t FPGA_length=84;
+uint8_t FPGA_input[84] = {0};
 uint16_t FPGA_address=0;
 uint8_t sweep_on_rx;
 
@@ -266,11 +270,11 @@ uint8_t sweep_on_rx;
 int power_points,power_avg_state=0;
 long power_accum;
 int prev_history_point;
-int temp_point;
+int temp_point,relay_display;
 //fpga_to_mcu
 void fpga_to_mcu(void){//FPGA => MCU
 
-	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[81]==0x68){
+	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[83]==0x68){
 		amplitude_set_display							=FPGA_input[4];
 		timeout_set_display 							=(FPGA_input[5]<<8)|(FPGA_input[6]);
 		distance_relative_set_display	=(FPGA_input[7]<<8)|(FPGA_input[8]);
@@ -284,7 +288,9 @@ void fpga_to_mcu(void){//FPGA => MCU
 		force_display									=(FPGA_input[21]<<8)|(FPGA_input[22]);
 		distance_display							=(FPGA_input[23]<<8)|(FPGA_input[24]);
 		energy_display								=(FPGA_input[25]<<8)|(FPGA_input[26]);
-		pressure_display							=FPGA_input[27];
+		//pressure_display							=FPGA_input[27];
+		
+		relay_display									=(FPGA_input[27]>>0)& 1;
 		
 		button_test_display						=(FPGA_input[28]>>0)& 1;
 		broken_transducer							=(FPGA_input[28]>>1)& 1;
@@ -336,14 +342,15 @@ void fpga_to_mcu(void){//FPGA => MCU
 		encoder_speed_display					= (FPGA_input[75]<<8)|(FPGA_input[76]);
 		history_point_display					= FPGA_input[77];
 		gnd_display										=(FPGA_input[78]<<8)|(FPGA_input[79]);
-		distance_hold= FPGA_input[80];
+		pressure_display							=(FPGA_input[80]<<8)|(FPGA_input[81]);
+		distance_hold= FPGA_input[82];
 		
 		if(standby==1 && power_points!=0){
 				avg_power=power_accum/power_points;
 				power_accum=0;
 				power_points=0;
 		}
-		else if (standby==0){
+		else if (standby==0 && relay_display==1){
 			power_accum=power_accum+power_read_display;
 			power_points++;
 		}
@@ -456,7 +463,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 	else if (mode_set==5){
 		temp_distance_relative_set=0;
 		temp_distance_absolute_set=0;
-		temp_energy_set=energy_set;
+		temp_energy_set=energy_set/2;
 		temp_time_set_stage_one_set=0;
 		temp_power_stage_one_set=0;
 		temp_gnd_set=0;
@@ -492,7 +499,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 		temp_stage2_address=0xD5;
 	}
 	else if (stage2_mode_address_set==6){
-		temp_value_mode_stage2=energy_set_stage2;	
+		temp_value_mode_stage2=energy_set_stage2/2;	
 		temp_stage2_address=0xD6;
 	}
 	else temp_value_mode_stage2=0;	
@@ -513,7 +520,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 		temp_after_stage_address=0xE5;}
 	else temp_value_after_stage_set=0;
 	
-	if(Freq_init==1 && (standby==1 || display_page==10) && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[81]==0x68){
+	if(Freq_init==1 && (standby==1 || display_page==10) && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[83]==0x68){
 		if(amplitude_set_display!=temp_amplitude_set){
 			UART_WRITE(UART0,0xC0);
 			UART_WRITE(UART0,temp_amplitude_set);
@@ -764,14 +771,11 @@ void UART1_TEST_HANDLE(void)
         //printf("\nInput:");
 				input_address=0;
 				i=0;
-				for(i = 0; i < 4; i++){display_input_command[i]=0; }
+				for(i = 0; i < 5; i++){display_input_command[i]=0; }//empty Rx array
         while( (!UART_GET_RX_EMPTY(UART1)) )
         {
-					//TIMER_Delay(TIMER1, 80);
 					u8InChar = UART_READ(UART1);    /* Rx trigger level is 1 byte*/
-          //g_i32pointer++;
-          //printf("%x ", u8InChar);
-					if(input_address<4)display_input_command[input_address] = u8InChar;
+					if(input_address<5)display_input_command[input_address] = u8InChar;//assign Rx to array
 					input_address++;
 					while(UART_GET_RX_EMPTY(UART1) && time_wait<5){
 						TIMER_Delay(TIMER1, 30);

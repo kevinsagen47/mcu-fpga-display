@@ -1196,7 +1196,7 @@ void print_page_broken_transducer(void);
 
 
 extern uint8_t header[3];
-extern uint8_t display_input_command[4];
+extern uint8_t display_input_command[5];
 extern uint8_t display_page;
 void print_page_lock_freq(void);
 extern uint8_t Freq_init;
@@ -1338,8 +1338,8 @@ unsigned int read_F_set_history(void);
 int read_freq_delta(void);
 
 void write_history_point_set(unsigned int arg);
-unsigned int read_history_point_display();
-unsigned int read_history_point_set();
+unsigned int read_history_point_display(void);
+unsigned int read_history_point_set(void);
 
 
 
@@ -86063,7 +86063,7 @@ void print_page_head_diagnosis(){
 int test,energy_set_temp,timer_mode_set,energy_set_stage2_temp;
 
 void display_to_mcu(){
-				if(display_input_command[2]==0xFF || display_input_command[3]==0xFF){
+				if(display_input_command[2]==0xFF || display_input_command[3]==0xFF ||display_input_command[4]==0xFF ){
 					switch(display_input_command[0]) {
 					case 0xAA:display_page 										=display_input_command[1];
 										write_entered_main_page(1);break;
@@ -86081,8 +86081,10 @@ void display_to_mcu(){
 											write_stage2_mode_address_set(0);
 										if (display_input_command[1]==5 && read_stage2_mode_address_display()!=6)
 											write_stage2_mode_address_set(0);
-										if (display_input_command[1]==6)
+										if (display_input_command[1]==6){
 											write_stage2_mode_address_set(0);
+											write_hold_time_set(0);
+										}
 										break;
 					case 0xc3:write_time_set_stage_one_set		(((display_input_command[2]<<8)|(display_input_command[1]))*10);
 										if(read_stage2_mode_address_display()!=3)write_stage2_mode_address_set(0);break;
@@ -86091,10 +86093,11 @@ void display_to_mcu(){
 					case 0xc5:write_distance_absolute_set			((display_input_command[2]<<8)|(display_input_command[1]));break;
 					case 0xc6:write_power_stage_one_set				(((display_input_command[2]<<8)|(display_input_command[1]))*40);
 										if(read_stage2_mode_address_display()!=5)write_stage2_mode_address_set(0);break;
-					case 0xc7:write_energy_set								((display_input_command[2]<<8)|(display_input_command[1]));
+					case 0xc7:write_energy_set								((display_input_command[3]<<16)|(display_input_command[2]<<8)|(display_input_command[1]));
 										if(read_stage2_mode_address_display()!=6)write_stage2_mode_address_set(0);break;
 										
 					case 0xc1:write_gnd_set			(((display_input_command[2]<<8)|(display_input_command[1]))*10);break;
+					
 										
 					case 0xc9:write_amplitude_head_test_set		(display_input_command[1]);break;
 					
@@ -86116,7 +86119,7 @@ void display_to_mcu(){
 										write_stage2_mode_address_set		(4);break;
 					case 0xd5:write_power_set_stage2					((display_input_command[2]<<8|display_input_command[1])*40);
 										write_stage2_mode_address_set		(5);break;
-					case 0xd6:write_energy_set_stage2					((display_input_command[2]<<8)|(display_input_command[1]));
+					case 0xd6:write_energy_set_stage2					((display_input_command[3]<<16)|(display_input_command[2]<<8)|(display_input_command[1]));
 										write_stage2_mode_address_set		(6);break;
 					
 					
@@ -86155,5 +86158,6 @@ void display_to_mcu(){
 				display_input_command[1]=0;
 				display_input_command[2]=0;
 				display_input_command[3]=0;
+				display_input_command[4]=0;
 }
 
