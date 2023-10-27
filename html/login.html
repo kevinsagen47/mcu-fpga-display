@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<style type='text/css'>
+.container{
+width:400px;height:50px;
+margin:0 auto;
+text-align:center;
+}
+.header {
+overflow: hidden;
+background-color: #f1f1f1;
+padding: 20px 10px;
+}
+.header a {
+float:left;
+color:gray;
+text-align:center;
+padding:12px;
+text-decoration:none;
+font-size:18px;
+line-height:25px;
+border-radius:4px;
+pointer-events:none
+}
+.header a.logo {
+font-size:40px;
+font-weight:bold;
+}
+.header-right {
+float: right;
+}
+@media screen and (max-width: 500px) {
+.header a {
+float: none;
+text-align: left;
+}
+.header-right {
+float: none;}
+}
+</style>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/common_css.css">
+</head>
+<body>
+<div class="header">
+<a href="#default" class="logo">Ultrasound Panel</a>
+<div class="header-right">
+<a href="#about">MMSL / E100</a>
+</div>
+</div>
+<form onsubmit="return false;">
+<p><center><font size="8">Login Page<br><br></font></center></p>
+<div class="container">
+<input id="password_input"; style="width:160px;height:40px;font-size:16pt;padding:4px;margin-right:5px;border-style:groove;border:2px black solid;-webkit-border-radius:5px;border-radius:5px;" type="password" placeholder="Password"" required autofocus />
+<input style="width:80px;height:40px;font-size:16pt;padding:4px;background:#0066A2;color:white;border-style:outset;border-color:#0066A2;font:bold15px arial;border:0 none;-webkit-border-radius:5px;border-radius:5px;" type='submit' value='Submit' onclick="onSubmit()"/>
+</div>
+</form>
+<script>
+function onSubmit() {  
+  var code = { "authentication" : btoa(document.getElementById("password_input").value) };  
+  fetch("http://192.168.0.2/authentication.html", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(code),
+  })
+  .then((response) => {
+    return response.text();
+  })
+  .then((html) => {
+    document.body.innerHTML = html;
+  });
+}
+</script>
+</body>
+</html>

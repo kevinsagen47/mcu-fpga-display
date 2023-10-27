@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/common_css.css">
+</head>
+<body>
+<h1 class="page-title"><center>目前參數設置 (2/5)</center></h1>
+<div class="container-observe">
+<div id="div_left" class="left-block-observe">
+</div>
+<div id="div_right" class="right-block-observe">
+</div>
+</div>
+<div class="change-page-block">
+<form action='/html/observe_current_parameter_1.html' method='get'>
+<input style="width:100px;margin-left:10px;line-height:29px;" type="submit" value="<<"/>
+</form>
+<form action='/html/main_page_1.html' method='get'>
+<input style="width:100px;margin-left:270px;" type="submit" value="退出"/>
+</form>
+<form action='/html/observe_current_parameter_3.html' method='get'>
+<input style="width:100px;margin-left:270px;line-height:29px;" type="submit" value=">>"/>
+</form>
+</div>
+<div class="footer-block">
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="熔接結果"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="設定熔接"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+var d1 = document.getElementById("div_left");
+var p1 = document.createElement("p");
+print_parameter_br(p1, "熔接循環中斷", "關機", "", 0);
+print_parameter_br(p1, "接地偵測中止", "關機", "", 6);
+print_br(p1);
+print_br(p1);
+print_br(p1);
+print_parameter_br(p1, "控制範圍", "關機", "", 0);
+print_parameter_br(p1, "崩陷距離切斷", "關機", "", 6);
+print_parameter_br(p1, "絕對距離切斷", "關機", "", 6);
+print_parameter_br(p1, "功率距離切斷", "關機", "", 6);
+print_br(p1);
+print_parameter_br(p1, "aed/aod 設定", "", "", 0);
+print_parameter_br(p1, "觸發壓力", "300", "牛頓", 0);
+p1.style.cssText = 'margin-right:80px';
+d1.appendChild(p1);
+
+var d2 = document.getElementById("div_right");
+var p2 = document.createElement("p");
+print_parameter_br(p2, "漏件", "關機", "", 0);
+print_parameter_br(p2, "漏件最低距離中斷", "關機", "", 6);
+print_parameter_br(p2, "漏件最高距離中斷", "關機", "", 6);
+print_br(p2);
+print_parameter_br(p2, "能量補償", "關機", "", 0);
+print_parameter_br(p2, "最大能量", "20000", "焦耳", 6);
+print_parameter_br(p2, "最小能量", "1.0", "焦耳", 6);
+print_br(p2);
+print_br(p2);
+print_parameter_br(p2, "驅動器空壓計值", "282", "kPa", 0);
+p2.style.cssText = 'margin-left:70px';
+d2.appendChild(p2);
+
+function print_br(p) {
+  var br = document.createElement("br");
+  p.appendChild(br);
+}
+
+function createTextNode_space(p, n) {
+  let loop_count = 0;
+  for (loop_count = 0; loop_count < n; loop_count++) {
+    p.appendChild(document.createTextNode('\u00A0'));
+  }
+}
+
+function print_parameter_br(p, name, value, unit, space_n) {
+  if (space_n > 0) {
+    createTextNode_space(p, space_n);
+  }
+  p.appendChild(document.createTextNode(name));
+  createTextNode_space(p, 4);  
+  p.appendChild(document.createTextNode("="));
+  createTextNode_space(p, 4);  
+  p.appendChild(document.createTextNode(value));
+  p.appendChild(document.createTextNode(unit)); 
+  print_br(p);
+}
+</script>
+</body>
+</html>

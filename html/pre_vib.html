@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<style type='text/css'>
+.hidden-block{
+visibility:hidden;
+}
+</style>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1 id="page_title" class="hidden-block page-title"><center>預振</center></h1>
+<div id="left_block" class="hidden-block left-block">
+<form style="margin-top:66px;margin-right:40px;">
+<label>模式選擇</label>
+</form>
+<form style="margin-top:52px;margin-right:40px;">
+<label>時間</label>
+</form>
+<form style="margin-top:48px;margin-right:40px;">
+<label>振幅</label>
+</form>
+</div>
+<div id="right_block" class="hidden-block right-block">
+<form>
+<select id="pre_vib_mode" style="margin-left:5px;margin-top:60px;margin-bottom:8px;padding:5px 5px;border:3px;border-style:outset;font-size:16pt;width:200px;hight:60px;text-align-last:center;" size="1" onchange="selectMode(this.value)">  
+    <option value="1">時間</option>  
+	<option value="2">距離</option>  
+</select> 
+</form>
+<form>
+<input id="pre_vib_value" style="margin-left:5px;margin-top:30px;" type="input" value="" onchange="changeVibModeValue(this.value)" onfocus="focusVibModeValue()" onfocusout="focusoutVibModeValue()"/>
+<label id="pre_vib_unit" style="margin-left:0px;">S</label>
+</form>
+<form>
+<input id="vib_amp" style="margin-left:5px;margin-top:30px;" type="input" value="" onchange="changeVibAmp(this.value)" onfocus="focusVibAmp()" onfocusout="focusoutVibAmp()"/>
+<label style="margin-left:0px;">%</label>
+</form>
+</div>
+<div id="change_page_block" class="hidden-block change-page-block" style="margin-top:60px">
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input style="width:100px;hight:60px;margin-left:770px;line-height:29px;" type="submit" value="返回"/>
+</form>
+</div>
+<div id="footer_block" class="hidden-block footer-block">
+<div>
+<form action='/html/welding_record.html' method='get'>
+<input type="submit" value="熔接記錄"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input type="submit" value="參數設定"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+
+<script>
+var refreshIntervalId;
+var refreshEnable = 0;
+var link = document.createElement('link');
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+link.setAttribute("href", '/css/common_css.css');
+link.onload = showBody;
+document.getElementsByTagName("head")[0].appendChild(link);
+//document.getElementById("left_block").style.visibility = "visible";
+//document.getElementById("right_block").style.visibility = "visible";
+//document.getElementById("change_page_block").style.visibility = "visible";
+//document.getElementById("footer_block").style.visibility = "visible";
+//refreshEnable = 1;
+//onInterval();  
+//refreshIntervalId = setInterval(onInterval, 3000);
+
+function fetch_parameter_setting_pre_vib(data) {
+  refreshEnable = 0;  
+  fetch("http://192.168.0.2/parameter/pre_vib.html", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+  refreshEnable = 1;
+}
+
+function onInterval() {  
+  console.log("onInterval(): ", refreshEnable); 
+  //var do_config_default_mode = 0;
+  if (refreshEnable == 1) {
+    fetch("http://192.168.0.2/parameter/pre_vib.html")
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {	  
+	  switch (json.pre_vib_mode) {
+	  case '1':	    	    
+	    document.getElementById("pre_vib_mode").value = 1;
+	    document.getElementById("pre_vib_unit").innerHTML = "S";
+	  	document.getElementById('pre_vib_unit').style = "margin-right:-10px;";		
+	  	if(!isNaN(parseInt(json.pre_vib_value))) {
+	        let num = parseFloat(json.pre_vib_value)/1000;
+            let text = num.toFixed(2).toString();
+	        document.getElementById("pre_vib_value").value = text;
+	      }
+	  	break;
+	  case '2':
+	    document.getElementById("pre_vib_mode").value = 2;
+	    document.getElementById("pre_vib_unit").innerHTML = "mm";
+	  	document.getElementById('pre_vib_unit').style = "margin-right:-10px;";		
+	  	if(!isNaN(parseInt(json.pre_vib_value))) {
+	        let num = parseFloat(json.pre_vib_value);
+            let text = num.toFixed(2).toString();
+	        document.getElementById("pre_vib_value").value = text;
+	      }
+	    break;
+	  default:	    
+	    document.getElementById("pre_vib_mode").value = 1;
+		//do_config_default_mode = 1;
+	    document.getElementById("pre_vib_unit").innerHTML = "S";
+	  	document.getElementById('pre_vib_unit').style = "margin-right:-10px;";
+	  	if(!isNaN(parseInt(json.pre_vib_value))) {
+	        let num = parseFloat(json.pre_vib_value)/1000;
+            let text = num.toFixed(2).toString();
+	        document.getElementById("pre_vib_value").value = text;
+	    }
+	    break;
+	  }
+	  document.getElementById("vib_amp").value = json.vib_amp;
+	  if(!isNaN(parseInt(json.vib_time))) {
+	    let num = parseFloat(json.vib_time)/1000;
+        let text = num.toFixed(2).toString();
+	    document.getElementById("vib_time").value = text;
+	  }	  		
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+	
+	//if (do_config_default_mode == 1)
+	//{
+	//  var data2 = { "post_vib_mode" : "4" };
+	//  fetch_parameter_setting_post_vib(data2);
+	//}
+  }
+}
+
+function showBody() {    
+  document.getElementById("page_title").style.visibility = "visible";
+  document.getElementById("left_block").style.visibility = "visible";
+  document.getElementById("right_block").style.visibility = "visible";
+  document.getElementById("change_page_block").style.visibility = "visible";
+  document.getElementById("footer_block").style.visibility = "visible";
+  var data = { "pre_vib_mode" : "1" };
+  fetch_parameter_setting_pre_vib(data);
+  refreshEnable = 1;
+  //onInterval();  
+  refreshIntervalId = setInterval(onInterval, 3000);
+}
+
+function selectMode(val) {
+  var data = { "pre_vib_mode" : "" };
+  let mode = document.getElementById("pre_vib_mode").value;  
+  if (mode == '1') {
+	data['pre_vib_mode'] = '1';
+  }
+  else if (mode == '2') {
+    data['pre_vib_mode'] = '2';
+  }
+  else {
+    data['pre_vib_mode'] = '0';
+  }
+  fetch_parameter_setting_pre_vib(data);
+}
+
+function changeVibModeValue(val) {
+  //console.log("changeModeValue(): ", val); 
+  var data = { "pre_vib_value" : "" };
+  let num = parseFloat(val);
+  num = num*1000;
+  data['pre_vib_value'] = num.toString();
+  fetch_parameter_setting_pre_vib(data);
+}
+
+function focusVibModeValue() {
+  refreshEnable = 0;
+}
+
+function focusoutVibModeValue() {
+  refreshEnable = 1;
+}
+
+function changeVibAmp(val) {
+  var data = { "pre_vib_amp" : "" };
+  let num = parseFloat(val);
+  data['pre_vib_amp'] = num.toString();
+  fetch_parameter_setting_pre_vib(data);
+}
+
+function focusVibAmp() {
+  refreshEnable = 0;
+}
+
+function focusoutVibAmp() {
+  refreshEnable = 1;
+}
+
+function changeVibTime(val) {
+  var data = { "pre_vib_time" : "" };
+  let num = parseFloat(val);
+  num = num*1000;
+  data['pre_vib_time'] = num.toString();
+  fetch_parameter_setting_pre_vib(data);
+}
+
+function focusVibTime() {
+  refreshEnable = 0;
+}
+
+function focusoutVibTime() {
+  refreshEnable = 1;
+}
+</script>
+</body>
+</html>

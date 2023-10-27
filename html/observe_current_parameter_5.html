@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/common_css.css">
+</head>
+<body>
+<h1 class="page-title"><center>目前參數設置 (5/5)</center></h1>
+<div id="div_left" class="left-block">
+</div>
+<div id="div_right" class="right-block">
+</div>
+<div class="change-page-block">
+<form action='/html/observe_current_parameter_4.html' method='get'>
+<input style="width:100px;margin-left:-370px;line-height:29px;" type="submit" value="<<"/>
+</form>
+<form action='/html/main_page_1.html' method='get'>
+<input style="width:100px;margin-left:10px;" type="submit" value="退出"/>
+</form>
+</div>
+<div class="footer-block">
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="熔接結果"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="設定熔接"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+var d1 = document.getElementById("div_left");
+var p1 = document.createElement("p");
+print_parameter(p1, "頻率上限之不良品", "20303", "赫茲");
+print_parameter(p1, "頻率下限之不良品", "19758", "赫茲");
+p1.style.cssText = 'margin-right:82px';
+d1.appendChild(p1);
+
+function print_parameter(p, name, value, unit) {
+  p.appendChild(document.createTextNode(name));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode("="));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode(value));
+  p.appendChild(document.createTextNode(unit));
+  var br = document.createElement("br");
+  p.appendChild(br);
+}
+</script>
+</body>
+</html>

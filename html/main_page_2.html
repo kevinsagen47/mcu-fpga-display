@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/common_css.css">
+</head>
+<body>
+<h1 class="page-title"><center>主目錄</center></h1>
+<div class="left-block">
+<form onsubmit="return false;">
+<input style="margin-right:40px;" type="button" value="參數儲存" onclick="onSaveParameter()"/>
+</form>
+<form action='/html/driver_correction.html' method='get'>
+<input style="margin-right:40px;" type="submit" value="校正"/>
+</form>
+</div>
+<div class="right-block">
+<form onsubmit="return false;">
+<input style="margin-left:40px;" type="submit" value="預設排列"/>
+</form>
+</div>
+<div class="change-page-block">
+<form action='/html/main_page_1.html' method='get'>
+<input style="width:100px;hight:60px;margin-right:770px;line-height:29px;" type="submit" value="<<"/>
+</form>
+</div>
+<div class="footer-block">
+<div>
+<form action='/html/welding_record.html' method='get'>
+<input type="submit" value="熔接記錄"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input type="submit" value="參數設定"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+function onSaveParameter() {
+fetch("http://192.168.0.2/fpga/save_parameter.html", {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/html",
+    },
+  })
+  .then((response) => {
+    console.log("Success:", response);
+	alert('Save Parameter to FPGA successfully.');
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+	alert('Save Parameter to FPGA in failure!');
+  });  
+}
+</script>
+</body>
+</html>

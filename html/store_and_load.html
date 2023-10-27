@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/store_and_load_css.css">
+</head>
+<body>
+<h1 class="page-title"><center>儲存/叫出 預設</center></h1>
+<div class="left-block">
+<div class="left-block-inner">
+<nav>
+    <ul>
+        <li id="item_1" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">01</a></li>
+        <li id="item_2" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">02</a></li>
+        <li id="item_3" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">03</a></li>
+        <li id="item_4" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">04</a></li>
+        <li id="item_5" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">05</a></li>
+        <li id="item_6" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">06</a></li>
+		<li id="item_7" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">07</a></li>
+        <li id="item_8" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">08</a></li>
+        <li id="item_9" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">09</a></li>
+        <li id="item_10" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">10</a></li>
+		<li id="item_11" onmouseover="changeTo(this)" onmouseout="changeBack(this)" onclick="onli(this)"><a href="#">11</a></li>
+    </ul>
+</nav>
+</div>
+</div>
+<div class="right-block">
+<div class="right-block-inner-1">
+<form onsubmit="return false;">
+<input style="font-size:18pt;" type="submit" value="儲存"/>
+</form>
+<form onsubmit="return false;">
+<input style="margin-left:50px;font-size:18pt;" type="submit" value="叫出記憶"/>
+</form>
+</div>
+<div class="right-block-inner-1">
+<form onsubmit="return false;">
+<input style="font-size:18pt;margin-top:30px;" type="submit" value="清除" onclick="onClear()"/>
+</form>
+<form onsubmit="return false;">
+<input style="margin-left:50px;font-size:18pt;margin-top:30px;" type="submit" value="確認" onclick="onConfirm()"/>
+</form>
+</div>
+<div class="right-block-inner-1">
+<form>
+<input style="width:80px;height:60px;margin-top:160px;" type="button" value="^" onclick="onUpButton()"/>
+</form>
+</div>
+<div class="right-block-inner-1">
+<form>
+<input style="width:80px;height:60px;margin-top:180px;" type="button" value="v" onclick="onDownButton()"/>
+</form>
+</div>
+<div id="message_box" class="text-block">
+</div>
+</div>
+<div class="footer-block">
+<div>
+<form action='/html/welding_record.html' method='get'>
+<input type="submit" value="熔接記錄"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input type="submit" value="參數設定"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+var selected_item = 0;
+var d = document.getElementById("message_box");
+var p = document.createElement("p");	
+p.appendChild(document.createTextNode("日期: 2022/12/01"));
+print_br(p);
+p.appendChild(document.createTextNode("時間: 14:56"));
+print_br(p);
+p.appendChild(document.createTextNode("熔接循環運行: 143"));
+print_br(p);
+p.appendChild(document.createTextNode("確認過之預設"));
+d.appendChild(p);
+
+function print_br(p) {
+  var br = document.createElement("br");
+  p.appendChild(br);
+}
+
+function onClear() {
+
+}
+
+function onConfirm() {
+
+}
+
+function onUpButton() {
+  if (selected_item == 0)
+    selected_item = 1;
+  else if (selected_item > 1) {
+    var selected_id_old = "item_" + selected_item.toString();
+    document.getElementById(selected_id_old).style.backgroundColor = "white"; 
+    selected_item = selected_item - 1;
+  }
+  var selected_id_new = "item_" + selected_item.toString();
+  document.getElementById(selected_id_new).style.backgroundColor = "rgb(" + 50 + "," + 205 + "," + 50 + ")";
+}
+
+function onDownButton() {
+  if (selected_item > 0) {
+    var selected_id_old = "item_" + selected_item.toString();
+    document.getElementById(selected_id_old).style.backgroundColor = "white"; 
+  }
+  
+  if (selected_item == 0)
+    selected_item = 1;
+  else if (selected_item > 0) {
+    if (selected_item < 11) {
+      selected_item = selected_item + 1;	
+	}  
+  }
+  var selected_id_new = "item_" + selected_item.toString();
+  document.getElementById(selected_id_new).style.backgroundColor = "rgb(" + 50 + "," + 205 + "," + 50 + ")";
+  console.log("onDownButton() selected_item: ", selected_item, " selected_id", selected_id_new);
+}
+
+function changeTo(x) {
+  document.getElementById("item_1").style.backgroundColor = "white"; 
+  document.getElementById("item_2").style.backgroundColor = "white"; 
+  document.getElementById("item_3").style.backgroundColor = "white"; 
+  document.getElementById("item_4").style.backgroundColor = "white"; 
+  document.getElementById("item_5").style.backgroundColor = "white"; 
+  document.getElementById("item_6").style.backgroundColor = "white"; 
+  document.getElementById("item_7").style.backgroundColor = "white"; 
+  document.getElementById("item_8").style.backgroundColor = "white"; 
+  document.getElementById("item_9").style.backgroundColor = "white"; 
+  document.getElementById("item_10").style.backgroundColor = "white"; 
+  document.getElementById("item_11").style.backgroundColor = "white"; 
+  x.style.backgroundColor = "rgb(" + 50 + "," + 205 + "," + 50 + ")";
+}
+
+function changeBack(x) {
+  x.style.backgroundColor = "white";
+}
+
+function onli(x) {
+  var clicked_item = x.id;
+  console.log(clicked_item);
+  clicked_item_no = clicked_item.split(/(\d+)/);
+  selected_item = parseInt(clicked_item_no[1]);
+  console.log(selected_item);
+  
+}
+</script>
+</body>
+</html>

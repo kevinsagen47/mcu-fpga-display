@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<style type='text/css'>
+.hidden-block{
+visibility:hidden;
+}
+</style>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1 id="page_title" class="hidden-block page-title"><center>分階振幅</center></h1>
+<div id="left_block" class="hidden-block left-block">
+<form style="margin-top:64px;margin-right:40px;">
+<label>振幅A</label>
+</form>
+<form style="margin-top:58px;margin-right:40px;">
+<label>振幅B</label>
+</form>
+<form style="margin-top:52px;margin-right:40px;">
+<label>分階 - 時間</label>
+</form>
+</div>
+<div id="right_block" class="hidden-block right-block">
+<form>
+<input id="vib_a" style="margin-top:60px;margin-right:5px;" type="input" value="" onchange="onVibAChange(this.value)"/>
+<label style="font-size:16pt;margin-right:0px;">%</label>
+</form>
+<form>
+<input id="vib_b" style="margin-top:30px;margin-right:5px;" type="input" value="" onchange="onVibBChange(this.value)"/>
+<label style="font-size:16pt;margin-right:0px;">%</label>
+</form>
+<form>
+<input id="vib_time" style="margin-top:30px;margin-right:5px;" type="input" value="" onchange="onVibTimeChange(this.value)"/>
+<label style="font-size:16pt;margin-right:0px;">S</label>
+</form>
+</div>
+<div id="change_page_block" class="hidden-block change-page-block">
+<form name='system_config' action='/html/parameter_setting_page_1.html' method='get'>
+<input style="width:100px;hight:60px;margin-left:770px;" type="submit" value="返回"/>
+</form>
+</div>
+<div id="footer_block" class="hidden-block footer-block">
+<div>
+<form action='/html/welding_record.html' method='get'>
+<input type="submit" value="熔接記錄"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input type="submit" value="參數設定"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+var link = document.createElement('link');
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+link.setAttribute("href", '/css/common_css.css');
+link.onload = showBody;
+document.getElementsByTagName("head")[0].appendChild(link);
+
+function fetch_parameter_setting_page_sec_vib(data) {
+  fetch("http://192.168.0.2/parameter/sec_vib.html", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+}
+   
+function onVibAChange(val) {
+  let num = parseInt(val);
+  if (num > 100) {
+    num = 100;
+	document.getElementById("vib_a").value = "100";
+  }
+  else if (num < 10) {
+    num = 10;
+	document.getElementById("vib_a").value = "10";
+  }  
+  var data = { "vib_a" : "" };  
+  data['vib_a'] = num.toString();
+  fetch_parameter_setting_page_sec_vib(data); 
+}
+
+function onVibBChange(val) {
+  let num = parseInt(val);
+  if (num > 100) {
+    num = 100;
+	document.getElementById("vib_b").value = "100";
+  }
+  else if (num < 10) {
+    num = 10;
+	document.getElementById("vib_b").value = "10";
+  }
+  var data = { "vib_b" : "" };  
+  data['vib_b'] = num.toString();
+  fetch_parameter_setting_page_sec_vib(data); 
+}
+
+function onVibTimeChange(val) {    
+  var data2 = { "sec_vib_value" : "" };
+  let num = parseFloat(val)*1000;
+  data2['sec_vib_value'] = num.toString();  
+  fetch_parameter_setting_page_sec_vib(data2); 
+}
+
+function onInterval() {  
+fetch("http://192.168.0.2/parameter/sec_vib.html")
+  .then((response) => {
+    return response.json();
+  })
+  .then((json) => {
+    console.log(json);
+	switch (json.sec_vib_mode) {
+	  case '3':	
+	    if(!isNaN(parseInt(json.sec_vib_value))) {
+		  let num = parseFloat(json.sec_vib_value)/1000;
+          let text = num.toFixed(2).toString();
+	      document.getElementById("vib_time").value = text;
+	    }
+	    break;
+	  default:
+	    document.getElementById("vib_time").value = "0.00";
+		break;
+	}
+
+	document.getElementById("vib_a").value = json.vib_a;
+	document.getElementById("vib_b").value = json.vib_b;	
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+}
+
+function showBody() {    
+  document.getElementById("page_title").style.visibility = "visible";
+  document.getElementById("left_block").style.visibility = "visible";
+  document.getElementById("right_block").style.visibility = "visible";
+  document.getElementById("change_page_block").style.visibility = "visible";
+  document.getElementById("footer_block").style.visibility = "visible";
+  
+  onInterval();
+  setInterval(onInterval, 3000);
+}
+</script>
+</body>
+</html>

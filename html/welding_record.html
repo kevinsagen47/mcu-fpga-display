@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<style type='text/css'>
+table,
+th {
+border: 1px solid #333;
+table-layout:auto;
+width:2000px;
+}
+.top-block{
+height:380px;
+text-align:center;
+}
+.hidden-block{
+visibility:hidden;
+}
+</style>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1 id="page_title" class="hidden-block page-title"><center>熔接記錄</center></h1>
+<div class="top-block">
+<table id="list_table" style="margin-left:auto;margin-right:auto;table-layout:auto;">
+    <thead>
+    </thead>
+    <tbody>
+        <tr>
+            <th>熔接循環</th>
+            <th>頻率變化(HZ)</th>
+			<th>起始頻率(HZ)</th>
+			<th>結束頻率(HZ)</th>
+			<th>最大頻率(HZ)</th>
+			<th>最小頻率(HZ)</th>
+			<th>最大功率(W)</th>
+			<th>平均功率(W)</th>
+			<th>最大能量(J)</th>
+			<th>焊接時間(ms)</th>
+			<th>觸發壓力(N)</th>
+			<th>實際觸發(N)</th>
+			<th>熔接施力(N)</th>
+			<th>下降速度(mm/s)</th>
+			<th>絕對距離(mm)</th>
+			<th>絕對距離總值(mm)</th>
+			<th>崩陷距離(mm)</th>
+			<th>崩陷距離總值(mm)</th>
+			<th>工作時間(ms)</th>
+        </tr>		
+    </tbody>
+</table>
+</div>
+<div id="change_page_block" class="hidden-block change-page-block">
+<form>
+<input style="width:100px;margin-top:12px;margin-left:770px;background-color:White;border-style:hidden;line-height:29px;" type="submit" value=""/>
+</form>
+</div>
+<div id="footer_block" class="hidden-block footer-block">
+<div>
+<form action='/html/welding_record.html' method='get'>
+<input type="submit" value="熔接記錄"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input type="submit" value="參數設定"/>
+</form>
+</div>
+<div>
+<form>
+<input type="button" onclick="downloadFunction()" value="下載檔案"/>
+</form>
+</div>
+</div>
+<script>
+var link = document.createElement('link');
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+link.setAttribute("href", '/css/common_css.css');
+link.onload = showBody;
+document.getElementsByTagName("head")[0].appendChild(link);
+
+function showBody() {
+  document.getElementById("page_title").style.visibility = "visible";
+  document.getElementById("change_page_block").style.visibility = "visible";
+  document.getElementById("footer_block").style.visibility = "visible";
+  queryTable();
+}
+
+function queryTable() {
+fetch("http://192.168.0.2/data/welding_record.html")
+  .then((response) => {
+    return response.json();
+  })
+  .then((json) => {
+    console.log(json);	
+	var tableRow = document.getElementById("list_table");
+	for (let i = 0; i < 10; i++) {
+		var row = tableRow.insertRow();
+		row.insertCell(0).innerHTML = i + 1;
+		for (let j = 1; j < 19; j++) {
+			row.insertCell(j).innerHTML = json[i][j-1];
+		}
+	}
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+}
+
+function downloadFunction() {
+  var table = document.getElementById("list_table");  
+  let rows = '';
+  
+  for (var i = 0; i < table.rows.length; i++) {       
+    for (var j = 0; j < table.rows[i].cells.length; j++) {
+      rows = rows + table.rows[i].cells[j].innerHTML + ', ';
+    }
+	rows = rows + '\r\n';	   
+  }
+
+  link = document.createElement('a')
+  link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(rows))
+  link.setAttribute('download', 'welding_record.csv')
+  link.style.display = 'none'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
+</script>
+</body>
+</html>

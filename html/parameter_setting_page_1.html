@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<style type='text/css'>
+.hidden-block{
+visibility:hidden;
+}
+</style>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1 id="page_title" class="hidden-block page-title"><center>參數設定</center></h1>
+<div id="left_block" class="hidden-block left-block">
+<label>模式選擇</label>
+<select id="mode_select" style="padding:5px 5px;border:3px;border-style:outset;margin:10px 10px;margin-right:60px;font-size:16pt;width:200px;hight:60px;text-align-last:center;" name="Modes" size="1" onchange="selectMode(this.value)">  
+    <option value="1">時間</option>  
+    <option value="2">崩陷距離</option>  
+    <option value="3">絕對距離</option>  
+    <option value="4">功率</option>  
+    <option value="5">能量</option>  
+</select>  
+<form>
+<label id="mode_label">時間</label>
+<input id="mode_value" style="margin-right:0px;" type="input" value="" onchange="changeModeValue(this.value)" onfocus="focusModeValue()" onfocusout="focusoutModeValue()"/>
+<label id="mode_unit" style="margin-right:44px;">S</label>
+</form>
+<form>
+<label>保壓時間</label>
+<input id="pressure_time" style="margin-right:0px;" type="input" value="" onchange="changePressureTime(this.value)" onfocus="focusPressureTime()" onfocusout="focusoutPressureTime()"/>
+<label style="margin-right:44px;">S</label>
+</form>
+<form>
+<label>後振</label>
+<input id="post_vib_btn" style="margin-right:62px;" type="button" value="" onclick="onPostVib(this.value)"/>
+</form>
+</div>
+<div id="right_block" class="hidden-block right-block">
+<form>
+<label style="margin-left:40px;">觸發壓力</label>
+<input id="trigger_pressure" type="input" value="" onchange="onTriggerPressure(this.value)" onfocus="focusTriggerPressure()" onfocusout="focusoutTriggerPressure()"/>
+<label style="margin-left:0px;">N</label>
+</form>
+<form>
+<label style="margin-left:40px;">分段振幅</label>
+<input id="vib_mode" type="button" value="" onclick="onVibMode(this.value)"/>
+</form>
+<form>
+<label style="margin-left:40px;">振幅</label>
+<input id="vib_amp" style="margin-left:52px;" type="input" value="" onchange="onVibAmp(this.value)"/>
+<label style="margin-left:0px;">%</label>
+</form>
+<form>
+<label style="margin-left:40px;">預振</label>
+<input id="pre_vib_btn" style="margin-left:52px;" type="button" value="" onclick="onPreVib(this.value)"/>
+</form>
+</div>
+<div id="change_page_block" class="hidden-block change-page-block">
+<form action='/html/parameter_setting_page_2.html' method='get'>
+<input style="width:100px;hight:60px;margin-left:770px;line-height:29px;" type="submit" value=">>"/>
+</form>
+</div>
+<div id="footer_block" class="hidden-block footer-block">
+<div>
+<form action='/html/welding_record.html' method='get'>
+<input type="submit" value="熔接記錄"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input type="submit" value="參數設定"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+
+<script>
+var refreshIntervalId;
+var refreshEnable = 0;
+var link = document.createElement('link');
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+link.setAttribute("href", '/css/common_css.css');
+link.onload = showBody;
+document.getElementsByTagName("head")[0].appendChild(link);
+
+function fetch_parameter_setting_page1(data) {
+  refreshEnable = 0;
+  fetch("http://192.168.0.2/parameter/page_1.html", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+  refreshEnable = 1;
+}
+  
+function selectMode(val) {
+  if (val == '1') {
+	document.getElementById('mode_label').innerHTML = '時間';
+	document.getElementById('mode_unit').innerHTML = 'S';
+	document.getElementById('mode_unit').style = "margin-right:44px;";
+  }
+  else if (val == '2') {
+    document.getElementById('mode_label').innerHTML = '距離';
+	document.getElementById('mode_unit').innerHTML = 'mm';
+	document.getElementById('mode_unit').style = "margin-right:24px;";
+  }
+  else if (val == '3') {
+    document.getElementById('mode_label').innerHTML = '距離';
+	document.getElementById('mode_unit').innerHTML = 'mm';
+	document.getElementById('mode_unit').style = "margin-right:24px;";
+  }
+  else if (val == '4') {
+    document.getElementById('mode_label').innerHTML = '功率';
+	document.getElementById('mode_unit').innerHTML = '%';
+	document.getElementById('mode_unit').style = "margin-right:38px;";
+  }
+  else if (val == '5') {
+    document.getElementById('mode_label').innerHTML = '焦耳';
+	document.getElementById('mode_unit').innerHTML = 'J';
+	document.getElementById('mode_unit').style = "margin-right:48px;";
+  }
+
+  var data = { "mode_select" : "" };
+  data['mode_select'] = val;
+  fetch_parameter_setting_page1(data);
+}
+
+function changeModeValue(val) {
+  var data = { "mode_value" : "" };
+  let mode = document.getElementById("mode_select").value;  
+  if (mode == '1') {
+    let num = parseFloat(val);
+    if (num > 30) {
+      num = 30;
+	  document.getElementById("mode_value").value = "30";
+    }
+    else if (num < 0.01) {
+      num = 0.01;
+	  document.getElementById("mode_value").value = "0.01";
+    }  
+	num = num*1000;
+    data['mode_value'] = num.toString();
+  }
+  else if (mode == '2') {
+    let num = parseFloat(val);
+    if (num > 25.4) {
+      num = 25.4;
+	  document.getElementById("mode_value").value = "25.4";
+    }
+    else if (num < 0.01) {
+      num = 0.01;
+	  document.getElementById("mode_value").value = "0.01";
+    }  
+	num = num*100;
+    data['mode_value'] = num.toString();
+  }
+  else if (mode == '3') {
+    let num = parseFloat(val);
+    if (num > 101.6) {
+      num = 101.6;
+	  document.getElementById("mode_value").value = "101.6";
+    }
+    else if (num < 3.18) {
+      num = 3.18;
+	  document.getElementById("mode_value").value = "3.18";
+    }  
+	num = num*100;
+    data['mode_value'] = num.toString();
+  }
+  else if (mode == '5') {
+    let num = parseInt(val);
+    if (num > 99000) {
+      num = 99000;
+	  document.getElementById("mode_value").value = "99000";
+    }
+    else if (num < 1) {
+      num = 1;
+	  document.getElementById("mode_value").value = "1";
+    }  	
+    data['mode_value'] = num.toString();
+  }
+  else {
+    data['mode_value'] = val;
+  }
+  fetch_parameter_setting_page1(data);
+}
+
+function focusModeValue() {
+  refreshEnable = 0;
+}
+
+function focusoutModeValue() {
+  refreshEnable = 1;
+}
+
+function changePressureTime(val) {
+  let num = parseFloat(val);
+  if (num > 30) {
+    num = 30;
+	document.getElementById("pressure_time").value = "30";
+  }
+  else if (num < 0.01) {
+    num = 0.01;
+	document.getElementById("pressure_time").value = "0.01";
+  }
+  
+  var data = { "pressure_time" : "" }; 
+  num = num*1000;
+  data['pressure_time'] = num.toString();  
+  fetch_parameter_setting_page1(data);  
+}
+
+function focusPressureTime() {
+  refreshEnable = 0;
+}
+
+function focusoutPressureTime() {
+  refreshEnable = 1;
+}
+
+function onTriggerPressure(val) {
+  var data = { "trigger_pressure" : "" };
+  data['trigger_pressure'] = document.getElementById("trigger_pressure").value;
+  fetch_parameter_setting_page1(data);  
+}
+
+function focusTriggerPressure() {
+  refreshEnable = 0;
+}
+
+function focusoutTriggerPressure() {
+  refreshEnable = 1;
+}
+
+function onVibAmp(val) {  
+  let num = parseInt(val);
+  if (num > 100) {
+    num = 100;
+	document.getElementById("vib_amp").value = "100";
+  }
+  else if (num < 10) {
+    num = 10;
+	document.getElementById("vib_amp").value = "10";
+  }
+  
+  var data = { "vib_amp" : "" };
+  data['vib_amp'] = num.toString();
+  fetch_parameter_setting_page1(data);  
+}
+
+function focusVibAmp() {
+  refreshEnable = 0;
+}
+
+function focusoutVibAmp() {
+  refreshEnable = 1;
+}
+
+function onPostVib(val) {
+  var data = { "post_vib" : "" };
+  if (val == '開啟') {
+	document.getElementById("post_vib_btn").value = "關閉";
+	data['post_vib'] = "0";
+	fetch_parameter_setting_page1(data);
+  }
+  else {
+	refreshEnable = 0;
+	clearInterval(refreshIntervalId);
+	window.location.replace("http://192.168.0.2/html/post_vib.html");
+  }     
+}
+
+function onPreVib(val) {
+  var data = { "pre_vib" : "" };  
+  if (val == '開啟') {
+	document.getElementById("pre_vib_btn").value = "關閉";
+	data['pre_vib'] = "0";
+	fetch_parameter_setting_page1(data);
+  }
+  else {
+	refreshEnable = 0;
+	clearInterval(refreshIntervalId);
+	window.location.replace("http://192.168.0.2/html/pre_vib.html");
+  }  
+}
+
+function onVibMode(val) {
+  var data = { "vib_mode" : "" };
+  if (val == '固定') {
+	clearInterval(refreshIntervalId);
+	window.location.replace("http://192.168.0.2/html/parameter_setting_page_sec_vib.html");
+  }
+  else {
+	document.getElementById("vib_mode").value = "固定";
+	data['vib_mode'] = "0";	
+	fetch_parameter_setting_page1(data); 
+  }  
+}
+
+function onInterval() {  
+  if (refreshEnable == 1) {
+  fetch("http://192.168.0.2/parameter/page_1.html")
+  .then((response) => {
+    return response.json();
+  })
+  .then((json) => {
+    document.getElementById("mode_select").value = json.mode_select;
+	switch (json.mode_select) {
+	  case '1':
+	    document.getElementById("mode_label").innerHTML = "時間";
+	    document.getElementById("mode_unit").innerHTML = "S";
+		document.getElementById('mode_unit').style = "margin-right:44px;";
+		
+		if(!isNaN(parseInt(json.mode_value))) {
+	      let num = parseFloat(json.mode_value)/1000;
+          let text = num.toFixed(2).toString();
+	      document.getElementById("mode_value").value = text;
+	    }
+		break;
+      case '2':
+	  case '3':
+	    document.getElementById("mode_label").innerHTML = "距離";
+	    document.getElementById("mode_unit").innerHTML = "mm";
+		document.getElementById('mode_unit').style = "margin-right:24px;";
+		if(!isNaN(parseInt(json.mode_value))) {
+	      let num = parseFloat(json.mode_value)/100;
+          let text = num.toFixed(2).toString();
+	      document.getElementById("mode_value").value = text;
+	    }
+		break;
+	  case '4':
+	    document.getElementById("mode_label").innerHTML = "功率";
+	    document.getElementById("mode_unit").innerHTML = "%";
+		document.getElementById('mode_unit').style = "margin-right:38px;";
+		document.getElementById("mode_value").value = json.mode_value;
+		break;
+	  case '5':
+	    document.getElementById("mode_label").innerHTML = "焦耳";
+	    document.getElementById("mode_unit").innerHTML = "J";
+		document.getElementById('mode_unit').style = "margin-right:48px;";
+		if(!isNaN(parseInt(json.mode_value))) {
+		  let num = parseInt(json.mode_value);
+          let text = num.toString();
+	      document.getElementById("mode_value").value = text;
+	    }
+		break;		
+	  default:
+	    document.getElementById("mode_label").innerHTML = "時間";
+	    document.getElementById("mode_unit").innerHTML = "S";
+		if(!isNaN(parseInt(json.mode_value))) {
+	      let num = parseFloat(json.mode_value)/1000;
+          let text = num.toFixed(2).toString();
+	      document.getElementById("mode_value").value = text;
+	    }
+	    break;
+	}
+	if (json.post_vib != "0") {
+	  document.getElementById("post_vib_btn").value = "開啟";
+	}
+	else {
+	  document.getElementById("post_vib_btn").value = "關閉";
+	}
+	if (json.pre_vib != "0") {
+	  document.getElementById("pre_vib_btn").value = "開啟";
+	}
+	else {
+	  document.getElementById("pre_vib_btn").value = "關閉";
+	}
+	if (json.vib_mode == "0") {
+	  document.getElementById("vib_mode").value = "固定";
+	  document.getElementById("vib_amp").value = json.vib_amp;
+	}
+	else {
+	  document.getElementById("vib_mode").value = "分階";
+	  document.getElementById("vib_amp").value = "****";
+	}
+	if(!isNaN(parseInt(json.pressure_time))) {
+	  let num = parseFloat(json.pressure_time)/1000;
+      let text = num.toFixed(2).toString();
+	  document.getElementById("pressure_time").value = text;
+	}
+	document.getElementById("trigger_pressure").value = json.trigger_pressure;		
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+  }
+}
+
+function showBody() {    
+  document.getElementById("page_title").style.visibility = "visible";
+  document.getElementById("left_block").style.visibility = "visible";
+  document.getElementById("right_block").style.visibility = "visible";
+  document.getElementById("change_page_block").style.visibility = "visible";
+  document.getElementById("footer_block").style.visibility = "visible";
+  
+  refreshEnable = 1;
+  onInterval();  
+  refreshIntervalId = setInterval(onInterval, 3000);
+}
+</script>
+</body>
+</html>

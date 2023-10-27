@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<style type='text/css'>
+input[type="input"]{
+width:184px;
+hight:60px;
+padding:5px 5px;
+border:3px;
+margin:10px 10px;
+font-size:16pt;
+border-style:outset;
+text-align:center;
+justify-content:center;
+}
+label{
+font-size:16pt;
+}
+.hidden-block{
+visibility:hidden;
+}
+</style>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1 id="page_title" class="hidden-block page-title"><center>參數設定</center></h1>
+<div id="left_block" class="hidden-block left-block">
+<form>
+<label>最大終止時間</label>
+<input id="abort_time" style="margin-right:0px;" type="input" value="" onchange="onAbortTime(this.value)"/>
+<label style="font-size:16pt;margin-right:24px;">S</label>
+</form>
+<form>
+<label>不良品界限設置</label>
+<input id="defect_boundary_btn" style="margin-right:40px;" type="button" value="" onclick="onDefectBoundary(this.value)"/>
+</form>
+<form>
+<label>起始頻率</label>
+<input id="start_freq" style="margin-right:0px;" type="input" value="" onchange="onStartFreq(this.value)"/>
+<label style="font-size:16pt;margin-right:11px;">Hz</label>
+</form>
+</div>
+<div class="right-block">
+</div>
+<div id="change_page_block" class="hidden-block change-page-block">
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input style="width:100px;hight:60px;margin-right:770px;line-height:29px;" type="submit" value="<<"/>
+</form>
+</div>
+<div id="footer_block" class="hidden-block footer-block">
+<div>
+<form action='/html/welding_record.html' method='get'>
+<input type="submit" value="熔接記錄"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input type="submit" value="參數設定"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+
+<script>
+var link = document.createElement('link');
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+link.setAttribute("href", '/css/common_css.css');
+link.onload = showBody;
+document.getElementsByTagName("head")[0].appendChild(link);
+  
+function fetch_parameter_setting_page_2(data) {
+  fetch("http://192.168.0.2/parameter/page_2.html", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+}
+
+function onAbortTime(val) {
+  var data = { "abort_time" : "" };  
+  let num = parseFloat(val)*1000;
+  data['abort_time'] = num.toString();  
+  fetch_parameter_setting_page_2(data);  
+}
+
+function onStartFreq(val) {
+  var data = { "start_freq" : "" };  
+  let num = parseFloat(val);
+  data['start_freq'] = num.toString();  
+  fetch_parameter_setting_page_2(data);  
+}
+
+function onDefectBoundary(val) {
+  var data = { "defect_boundary" : "" };
+  if (val == '開啟') {
+	document.getElementById("defect_boundary_btn").value = "關閉";
+	data['defect_boundary'] = "0";
+  }
+  else {
+	document.getElementById("defect_boundary_btn").value = "開啟";
+	data['defect_boundary'] = "1";
+  }
+  fetch_parameter_setting_page_2(data);
+}
+
+function onInterval() {  
+fetch("http://192.168.0.2/parameter/page_2.html")
+  .then((response) => {
+    return response.json();
+  })
+  .then((json) => {
+	if (json.ng_limit == '1') {
+	  document.getElementById("defect_boundary_btn").value = "開啟";	  
+	}
+	else {
+	  document.getElementById("defect_boundary_btn").value = "關閉";
+	}
+	if(!isNaN(parseInt(json.abort_time))) {
+	  let num = parseFloat(json.abort_time)/1000;
+	  let text = num.toFixed(2).toString();
+	  document.getElementById("abort_time").value = text;
+	}
+	document.getElementById("start_freq").value = json.start_freq;	
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+}
+
+function showBody() {    
+  document.getElementById("page_title").style.visibility = "visible";
+  document.getElementById("left_block").style.visibility = "visible";
+  document.getElementById("change_page_block").style.visibility = "visible";
+  document.getElementById("footer_block").style.visibility = "visible";
+  
+  onInterval();
+  setInterval(onInterval, 3000);
+}
+</script>
+</body>
+</html>

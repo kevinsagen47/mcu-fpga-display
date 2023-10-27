@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/common_css.css">
+</head>
+<body>
+<h1 class="page-title"><center>目前參數設置 (4/5)</center></h1>
+<div id="div_left" class="left-block">
+</div>
+<div id="div_right" class="right-block">
+</div>
+<div class="change-page-block">
+<form action='/html/observe_current_parameter_3.html' method='get'>
+<input style="width:100px;margin-left:10px;line-height:29px;" type="submit" value="<<"/>
+</form>
+<form action='/html/main_page_1.html' method='get'>
+<input style="width:100px;margin-left:270px;" type="submit" value="退出"/>
+</form>
+<form action='/html/observe_current_parameter_5.html' method='get'>
+<input style="width:100px;margin-left:270px;line-height:29px;" type="submit" value=">>"/>
+</form>
+</div>
+<div class="footer-block">
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="熔接結果"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="設定熔接"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+var d1 = document.getElementById("div_left");
+var p1 = document.createElement("p");
+var p2 = document.createElement("p");
+var p3 = document.createElement("p");
+var p4 = document.createElement("p");
+var p5 = document.createElement("p");
+print_parameter_br(p1, "能量上限之不良品", "關機");
+print_parameter(p1, "能量下限之不良品", "關機");
+p1.style.cssText = 'margin-right:88px;';
+d1.appendChild(p1);
+print_parameter_br(p2, "絕對距離上限之不良品", "關機");
+print_parameter(p2, "絕對距離下限之不良品", "關機");
+p2.style.cssText = 'margin-right:45px;margin-top:-20px;';
+d1.appendChild(p2);
+print_parameter_br(p3, "功率上限之不良品", "關機");
+print_parameter(p3, "功率下限之不良品", "關機");
+p3.style.cssText = 'margin-right:88px;margin-top:-20px;';
+d1.appendChild(p3);
+print_parameter_br(p4, "熔接壓力上限之不良品", "關機");
+print_parameter_br(p4, "熔接壓力下限之不良品", "關機");
+print_parameter_br(p4, "觸發距離上限之不良品", "關機");
+print_parameter(p4, "觸發距離下限之不良品", "關機");
+p4.style.cssText = 'margin-right:45px;margin-top:-20px;';
+d1.appendChild(p4);
+print_parameter_br(p5, "頻寬上限之不良品", "關機");
+print_parameter(p5, "頻寬下限之不良品", "關機");
+p5.style.cssText = 'margin-right:88px;margin-top:-20px;';
+d1.appendChild(p5);
+var d2 = document.getElementById("div_right");
+var p6 = document.createElement("p");
+print_parameter_br(p6, "能量上限之可疑品", "關機");
+print_parameter_br(p6, "能量下限之可疑品", "關機");
+print_parameter_br(p6, "絕對距離上限之可疑品", "關機");
+print_parameter_br(p6, "絕對距離下限之可疑品", "關機");
+print_parameter_br(p6, "功率上限之可疑品", "關機");
+print_parameter_br(p6, "功率下限之可疑品", "關機");
+print_parameter_br(p6, "熔接壓力上限之可疑品", "關機");
+print_parameter_br(p6, "熔接壓力下限之可疑品", "關機");
+print_parameter_br(p6, "觸發距離上限之可疑品", "關機");
+print_parameter_br(p6, "觸發距離下限之可疑品", "關機");
+p6.style.cssText = 'margin-left:40px';
+d2.appendChild(p6);
+
+function print_parameter(p, name, value) {
+  p.appendChild(document.createTextNode(name));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode("="));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode(value));
+}
+
+function print_parameter_br(p, name, value) {
+  p.appendChild(document.createTextNode(name));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode("="));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode(value));
+  var br = document.createElement("br");
+  p.appendChild(br);
+}
+</script>
+</body>
+</html>

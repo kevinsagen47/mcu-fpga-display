@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/common_css.css">
+</head>
+<body>
+<h1 class="page-title"><center>焊頭掃描</center></h1>
+<div class="left-block">
+<form onsubmit="return false;">
+<input style="margin-right:64px;margin-bottom:20px;font-size:18pt;" type="submit" value="數位調頻" onclick="onDigitalFreqEnable()"/>
+</form>
+<form onsubmit="return false;">
+<input style="margin-right:64px;margin-bottom:20px;font-size:18pt;" type="submit" value="列印掃描圖形"/>
+</form>
+<form action='/html/welding_scanning_graph.html' method='get'>
+<input style="margin-right:64px;font-size:18pt;" type="submit" value="顯示曲線圖"/>
+</form>
+<div id="digital_freq_enable" class="left-block-inner">
+= 關機
+</div>
+<div id="scanning_status" style="font-size:14pt;float:right;position:relative;taxt-align:right;margin-right:0px;margin-top:40px;">
+無啟動掃描
+</div>
+<div id="scanning_result_inline" style="font-size:14pt;float:right;position:relative;taxt-align:right;margin-right:-230px;margin-top:70px;">
+直列共振頻率 (Hz) = 19664
+</div>
+<div id="scanning_result_side_by_side" style="font-size:14pt;float:right;position:relative;taxt-align:right;margin-right:-630px;margin-top:70px;">
+並列共振頻率 (Hz) = 19964
+</div>
+</div>
+<div class="right-block">
+<form onsubmit="return false;">
+<input style="margin-left:80px;margin-bottom:20px;font-size:18pt;" type="submit" value="起始頻率"/>
+</form>
+<form onsubmit="return false;">
+<input style="margin-left:80px;margin-bottom:20px;font-size:18pt;" type="submit" value="開始掃描" onclick="onStartScanning()"/>
+</form>
+<form onsubmit="return false;">
+<input style="margin-left:80px;font-size:18pt;" type="submit" value="焊頭比較"/>
+</form>
+<div class="right-block-inner">
+= 19964Hz
+</div>
+</div>
+<div class="change-page-block">
+<form action='/html/main_page_1.html' method='get'>
+<input style="width:100px;hight:60px;" type="submit" value="退出"/>
+</form>
+</div>
+<div class="footer-block">
+<div>
+<form action='/html/welding_record.html' method='get'>
+<input type="submit" value="熔接記錄"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form action='/html/parameter_setting_page_1.html' method='get'>
+<input type="submit" value="參數設定"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+function onDigitalFreqEnable() {
+  var data = document.getElementById("digital_freq_enable");
+  console.log("onDigitalFreqEnable():", data.innerHTML);  
+  if (data.innerHTML == "= 關機")
+	data.innerHTML = "= 開機";
+  else
+    data.innerHTML = "= 關機";
+}
+
+function onStartScanning() {
+  var data = document.getElementById("scanning_status");
+  console.log("onStartScanning():", data.innerHTML);  
+  data.innerHTML = "= 掃描完成";
+}
+</script>
+</body>
+</html>

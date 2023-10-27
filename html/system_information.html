@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/system_information_css.css">
+</head>
+<body>
+<h1 style="font-size:36px;background-color:Green"><center>系統訊息</center></h1>
+<div class="main-container">
+<div id="div_left" class="left-block">
+</div>
+<div id="div_right" class="right-block">
+</div>
+</div>
+<div class="change-page-block">
+<form onsubmit="return false;">
+<input style="width:100px;margin-left:770px;line-height:29px;" type="submit" value=">>"/>
+</form>
+</div>
+<div class="footer-block">
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="熔接結果"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="設定熔接"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+var d1 = document.getElementById("div_left");
+var p1 = document.createElement("p");
+print_parameter_br(p1, "能量供應器壽命", "1215");
+print_parameter_br(p1, "一般報警", "317");
+print_parameter_br(p1, "校正", "原廠");
+print_parameter_br(p1, "P/S", "數位");
+print_parameter_br(p1, "驅動器", "aed/aod");
+print_parameter_br(p1, "軟體版本", "10.2");
+print_parameter_br(p1, "ActS/N", "XAH061154");
+print_parameter_br(p1, "汽缸直徑(英吋)", "3.01");
+print_parameter_br(p1, "SBC 版本", "10.2");
+d1.appendChild(p1);
+var d2 = document.getElementById("div_right");
+var p2 = document.createElement("p");
+print_parameter_br(p2, "過載", "6");
+p2.appendChild(document.createTextNode("20kHz"));
+p2.appendChild(document.createTextNode('\u00A0\u00A0'));
+p2.appendChild(document.createTextNode("4000W"));
+var br = document.createElement("br");
+p2.appendChild(br);
+print_parameter_br(p2, "運行日期", "2027/25/26");
+print_parameter_br(p2, "P/S 版本", "1.91");
+print_parameter_br(p2, "控制等級", "d");
+print_parameter_br(p2, "P/S S/N", "XHH07095862");
+print_parameter_br(p2, "熔接機地址", "關機");
+print_parameter_br(p2, "汽缸衝程(英吋)", "4.0");
+p2.style.cssText = 'margin-left:60px';
+d2.appendChild(p2);
+
+function print_parameter(p, name, value) {
+  p.appendChild(document.createTextNode(name));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode("="));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode(value));
+}
+
+function print_parameter_br(p, name, value) {
+  p.appendChild(document.createTextNode(name));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode("="));
+  p.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+  p.appendChild(document.createTextNode(value));
+  var br = document.createElement("br");
+  p.appendChild(br);
+}
+</script>
+</body>
+</html>

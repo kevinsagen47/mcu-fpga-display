@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<style type='text/css'>
+.main-container {
+float:left;
+position:relative;
+left:50%;
+height:380px;
+}
+.center-block{
+float:left;
+position:relative;
+left:-50%;
+height:300px;
+font-size:16pt;
+}
+</style>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/common_css.css">
+</head>
+<body>
+<h1 style="font-size:36px;background-color:Green"><center>驅動器校正</center></h1>
+<div class="main-container">
+<div id="div_center" class="center-block">
+<p id="status_info_line_1" style="text-align:center;">
+壓下起動開關
+</p>
+<p id="status_info_line_2" style="text-align:center;">
+</p>
+<form id="myform" action='/html/main_page_1.html' method='get'>
+</form>
+</div>
+</div>
+<div class="change-page-block">
+<form onsubmit="return false;">
+<input style="width:100px;margin-left:770px;" type="submit" value=">>"/>
+</form>
+</div>
+<div class="footer-block">
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="熔接結果"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="設定熔接"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+var delayInMilliseconds = 1000;
+
+setTimeout(function() {
+  var element_1 = document.getElementById("status_info_line_1");
+  element_1.innerHTML = "已儲存校正";
+  var element_2 = document.getElementById("status_info_line_2");
+  element_2.innerHTML = "放開啟動開關";
+  var d1 = document.getElementById("div_center");
+  var button = document.createElement('input');
+  button.setAttribute('type', 'submit');
+  button.setAttribute('value', '完成');
+  button.setAttribute('form', 'myform');
+  d1.appendChild(button);
+}, delayInMilliseconds);
+</script>
+</body>
+</html>

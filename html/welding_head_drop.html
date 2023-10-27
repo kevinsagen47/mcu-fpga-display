@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<style type='text/css'>
+.main-container{
+float:left;
+position:relative;
+left:50%;
+height:328px;
+}
+.left-block-welding{
+float:left; 
+position:relative;
+left:-50%;
+height:300px;
+width:200px;
+text-align:left;
+font-size:16pt;
+}
+.right-block-welding{
+float:right; 
+position:relative;
+right:50%;
+height:300px;
+width:300px;
+text-align:left;
+font-size:16pt;
+}
+.hidden-block{
+visibility:hidden;
+}
+</style>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1 id="page_title" class="hidden-block page-title"><center>焊頭下降</center></h1>
+<div style="height=30px">
+<p id="p_status_info" style="text-align:center;font-size:16pt;">
+請壓下雙手開關，逼一聲後放開
+</p>
+</div>
+<div id="main_block" class="hidden-block main-container">
+<div id="div_left" class="left-block-welding">
+</div>
+<div id="div_right" class="right-block-welding">
+</div>
+</div>
+<div id="change_page_block" class="hidden-block change-page-block">
+<form onsubmit="return false;">
+<input style="width:100px;margin-left:770px;" type="submit" value="回昇"/>
+</form>
+</div>
+<div id="footer_block" class="hidden-block footer-block">
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="熔接結果"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="設定熔接"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+var link = document.createElement('link');
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+link.setAttribute("href", '/css/common_css.css');
+link.onload = showBody;
+document.getElementsByTagName("head")[0].appendChild(link);
+  
+var delayInMilliseconds = 1000;
+
+setTimeout(function() {
+  document.getElementById("p_status_info").style.color = "White";
+  
+  var d1 = document.getElementById("div_left");
+  var p1 = document.getElementById("p1_id");
+  var br1 = document.createElement("br");
+  p1.appendChild(br1);
+  var br2 = document.createElement("br");
+  p1.appendChild(br2);    
+  p1.appendChild(document.createTextNode("實際壓力 (KG)  80"));  
+  
+  var d2 = document.getElementById("div_right");
+  var p2 = document.createElement("p");
+  p2.appendChild(document.createTextNode("絕對位址 (mm)  79.81"));
+  var br3 = document.createElement("br");
+  p2.appendChild(br3);
+  var br4 = document.createElement("br");
+  p2.appendChild(br4);
+  p2.appendChild(document.createTextNode("速率 (mm/s)  160"));
+  p2.style.cssText = 'margin-left:80px;';
+  d2.appendChild(p2);  
+}, delayInMilliseconds);
+
+function showBody() {    
+  var d1 = document.getElementById("div_left");
+  var p1 = document.createElement("p");
+  p1.setAttribute("id", "p1_id");
+  p1.appendChild(document.createTextNode("系通風壓 (PSI)  30"));
+  d1.appendChild(p1);
+
+  document.getElementById("page_title").style.visibility = "visible";
+  document.getElementById("main_block").style.visibility = "visible";
+  document.getElementById("change_page_block").style.visibility = "visible";
+  document.getElementById("footer_block").style.visibility = "visible";
+}
+</script>
+</body>
+</html>

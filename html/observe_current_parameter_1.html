@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+</head>
+<body>
+<h1 id="page_title" class="page-title"><center></center></h1>
+<div class="container-observe">
+<div id="div_left" class="left-block-observe">
+</div>
+<div id="div_right" class="right-block-observe">
+</div>
+</div>
+<div id="div_change" class="change-page-block">
+</div>
+<div class="footer-block">
+<div id="div_welding_result">
+</div>
+<div id="div_main_page">
+</div>
+<div id="div_setup_welding">
+</div>
+<div id="div_blank">
+</div>
+</div>
+<script>
+var link = document.createElement('link');
+link.setAttribute("rel", "stylesheet");
+link.setAttribute("type", "text/css");
+link.setAttribute("href", '/css/common_css.css');
+link.onload = showParameterPage;
+document.getElementsByTagName("head")[0].appendChild(link);
+
+function print_br(p) {
+  var br = document.createElement("br");
+  p.appendChild(br);
+}
+
+function createTextNode_space(p, n) {
+  let loop_count = 0;
+  for (loop_count = 0; loop_count < n; loop_count++) {
+    p.appendChild(document.createTextNode('\u00A0'));
+  }
+}
+
+function print_parameter(p, name, value, unit, space_n) {
+  if (space_n > 0) {
+    createTextNode_space(p, space_n);
+  }
+  p.appendChild(document.createTextNode(name));
+  createTextNode_space(p, 4);  
+  p.appendChild(document.createTextNode("="));
+  createTextNode_space(p, 4);  
+  p.appendChild(document.createTextNode(value));
+  p.appendChild(document.createTextNode(unit));
+  print_br(p);
+}
+ 
+function fetchRequest(url, params={}, timeout=1000) {
+    let isTimeout = false;
+    return new Promise(function(resolve, reject) {
+        const TO = setTimeout(function() {
+            isTimeout = true;
+            reject(new Error('Fetch timeout'));
+        }, timeout);
+
+        fetch(url, params)
+            .then(res => {
+                clearTimeout(TO)
+                if(!isTimeout) {
+                    resolve(res)
+                }
+            }).catch(e => {
+                if( isTimeout ){
+                    return
+                }
+                reject(e)
+            })
+    })
+}
+
+async function showParameterPage(){
+  var mode_text = "";
+  var mode_value = 0;
+  var mode_sub_text = "時間";
+  var mode_value_text = "";
+  var mode_unit_text = "";
+  var vib_value_text = "";
+  var pre_vib_text = '0';
+  var post_vib_text = '0'; 
+
+  await fetchRequest('http://192.168.0.2/parameter/page_1.html', null)
+  .then(res => {
+    return res.json();
+  })
+  .then(page1_data => {
+    switch (page1_data.mode_select) {
+    case '1':	  
+      mode_text = "時間";
+      mode_sub_text = "熔接時間";
+      if(!isNaN(parseInt(page1_data.mode_value))) {
+		mode_value = parseFloat(page1_data.mode_value)/100;
+		mode_value_text = mode_value.toFixed(2);
+      }
+      mode_unit_text = "秒";
+      break;
+    case '2':
+    case '3':
+	  console.log("page1_data: 23");
+      mode_text = "距離";
+      mode_sub_text = "熔接距離";
+      mode_value_text = page1_data.mode_value;
+      mode_unit_text = "mm";
+      break;
+    case '4':
+	  console.log("page1_data: 4");
+      mode_text = "功率";
+      mode_sub_text = "熔接功率";
+      mode_value_text = page1_data.mode_value;
+      mode_unit_text = "%";
+      break;
+    case '5':
+	  console.log("page1_data: 5");
+      mode_text = "焦耳";
+      mode_sub_text = "熔接焦耳";
+      mode_value_text = page1_data.mode_value;
+      mode_unit_text = "J";
+      break;
+    default:
+	  console.log("page1_data: default");
+      mode_text = "時間";
+      mode_sub_text = "熔接時間";
+      if(!isNaN(parseInt(page1_data.mode_value))) {
+		mode_value = parseFloat(page1_data.mode_value)/100;
+		mode_value_text = mode_value.toFixed(2);
+      }
+      mode_unit_text = "秒";
+      break;
+	}
+	
+	vib_value_text = page1_data.vib_value;
+	pre_vib_text = page1_data.pre_vib;
+	post_vib_text = page1_data.post_vib;
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+    
+  var h1 = document.getElementById("page_title").innerHTML = "目前參數設置 (1/5)";
+  var d1 = document.getElementById("div_left");
+  var p1 = document.createElement("p");	
+  print_parameter(p1, "熔接模式", mode_text, "", 0);		
+  print_parameter(p1, mode_sub_text, mode_value_text, mode_unit_text, 0);	
+  print_parameter(p1, "振幅", vib_value_text, "%", 0);
+  if (pre_vib_text == '1')
+  	print_parameter(p1, "預振", "開機", "", 0);
+  else
+  	print_parameter(p1, "預振", "關機", "", 0);
+  print_parameter(p1, "預振", "距離", "", 6);
+  print_parameter(p1, "在***距離預觸發", "48.00", "毫米", 6);
+  print_parameter(p1, "預振", "開機", "", 6);
+  print_parameter(p1, "外部觸發延遲", "開機", "", 0);
+  p1.style.cssText = 'margin-right:40px';
+  d1.appendChild(p1);
+  var d2 = document.getElementById("div_right");
+  var p2 = document.createElement("p");
+  print_parameter(p2, "保壓時間", "0.300", "秒", 0);
+  if (post_vib_text == '1')
+  	print_parameter(p2, "後振", "開機", "", 0);
+  else
+  	print_parameter(p2, "後振", "關機", "", 0);	  
+  print_parameter(p2, "後振延遲時間", "0.100", "秒", 8);
+  print_parameter(p2, "後振時間", "0.100", "秒", 8);
+  print_parameter(p2, "後振之振幅", "100", "%", 8);
+  print_parameter(p2, "能量制動", "關機", "", 0);
+  print_parameter(p2, "熔後尋頻", "關機", "", 0);
+  print_parameter(p2, "頻率抵銷", "關機", "", 0);
+  print_parameter(p2, "數位式調頻", "19964", "", 0);
+  print_parameter(p2, "測試振幅", "50", "%", 0);
+  print_parameter(p2, "驅動器清除輸出", "關機", "", 0);
+  print_parameter(p2, "距離", "3.18", "毫米", 8);	  
+  p2.style.cssText = 'margin-left:40px';
+  d2.appendChild(p2);
+  
+  var d_change = document.getElementById("div_change");
+  var f_return = document.createElement("FORM");	
+  f_return.method ='GET';
+  f_return.action ='/html/main_page_1.html';
+  var i_return = document.createElement('INPUT');
+  i_return.type ='SUBMIT';
+  i_return.value ='退出';
+  i_return.style.cssText = 'width : 100px; margin-left : 390px';
+  f_return.appendChild(i_return);
+  var f_next = document.createElement("FORM");	
+  f_next.method ='GET';
+  f_next.action ='/html/observe_current_parameter_2.html';
+  var i_next = document.createElement('INPUT');
+  i_next.type ='SUBMIT';
+  i_next.value ='>>';
+  i_next.style.cssText = 'width : 100px; margin-left : 270px; line-height : 29px;';
+  f_next.appendChild(i_next);
+  d_change.appendChild(f_return);
+  d_change.appendChild(f_next);
+  
+  var d_welding_result = document.getElementById("div_welding_result");
+  var f_welding_result = document.createElement("FORM");  
+  f_welding_result.onsumit = "return false;";
+  var i_welding_result = document.createElement('INPUT');
+  i_welding_result.type ='SUBMIT';
+  i_welding_result.value ='熔接結果';
+  f_welding_result.appendChild(i_welding_result);
+  d_welding_result.appendChild(f_welding_result);
+  
+  var d_main_page = document.getElementById("div_main_page");
+  var f_main_page = document.createElement("FORM");  
+  f_main_page.method ='GET';
+  f_main_page.action ='/html/main_page_1.html';
+  var i_main_page = document.createElement('INPUT');
+  i_main_page.type ='SUBMIT';
+  i_main_page.value ='主目錄';
+  f_main_page.appendChild(i_main_page);
+  d_main_page.appendChild(f_main_page);
+  
+  var d_setup_welding = document.getElementById("div_setup_welding");
+  var f_setup_welding = document.createElement("FORM");  
+  f_setup_welding.onsumit = "return false;";
+  var i_setup_welding = document.createElement('INPUT');
+  i_setup_welding.type ='SUBMIT';
+  i_setup_welding.value ='設定熔接';
+  f_setup_welding.appendChild(i_setup_welding);
+  d_setup_welding.appendChild(f_setup_welding);
+
+  var d_blank = document.getElementById("div_blank");
+  var f_blank = document.createElement("FORM");  
+  f_blank.onsumit = "return false;";
+  var i_blank = document.createElement('INPUT');
+  i_blank.type ='SUBMIT';
+  i_blank.value ='設定熔接';
+  f_blank.appendChild(i_blank);
+  d_blank.appendChild(f_blank);
+}
+</script>
+</body>
+</html>

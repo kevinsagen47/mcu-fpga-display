@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ultrasound Panel</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/common_css.css">
+</head>
+<body>
+<h1 class="page-title"><center>目前參數設置 (3/5)</center></h1>
+<div class="container-observe">
+<div id="div_left" class="left-block-observe">
+</div>
+<div id="div_right" class="right-block-observe">
+</div>
+</div>
+<div class="change-page-block">
+<form action='/html/observe_current_parameter_2.html' method='get'>
+<input style="width:100px;margin-left:10px;line-height:29px;" type="submit" value="<<"/>
+</form>
+<form action='/html/main_page_1.html' method='get'>
+<input style="width:100px;margin-left:270px;" type="submit" value="退出"/>
+</form>
+<form action='/html/observe_current_parameter_4.html' method='get'>
+<input style="width:100px;margin-left:270px;line-height:29px;" type="submit" value=">>"/>
+</form>
+</div>
+<div class="footer-block">
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="熔接結果"/>
+</form>
+</div>
+<div>
+<form action='/html/main_page_1.html' method='get'>
+<input type="submit" value="主目錄"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" value="設定熔接"/>
+</form>
+</div>
+<div>
+<form onsubmit="return false;">
+<input type="submit" style="color:LightGray" value="空白"/>
+</form>
+</div>
+</div>
+<script>
+var d1 = document.getElementById("div_left");
+var p1 = document.createElement("p");
+p1.appendChild(document.createTextNode("數位式超音波能量供應器"));
+print_br(p1);
+print_parameter_br(p1, "斜線爬升時間", "0.080", "秒", 6);
+print_parameter_br(p1, "記憶", "開機", "", 6);
+print_parameter_br(p1, "熔接狀態", "開機", "", 6);
+print_parameter_br(p1, "寫入場區1", "", "", 0);
+print_br(p1);
+p1.appendChild(document.createTextNode(" 上下限"));
+print_parameter_br(p1, "不良品界限", "開機", "", 0);
+print_parameter_br(p1, "需重設不良品界限", "關機", "", 0);
+print_parameter_br(p1, "崩陷距離上限之不良品", "關機", "", 0);
+print_parameter_br(p1, "崩陷距離下限之不良品", "關機", "", 0);
+p1.style.cssText = 'margin-right:80px';
+d1.appendChild(p1);
+
+var d2 = document.getElementById("div_right");
+var p2 = document.createElement("p");
+print_br(p2);
+print_parameter_br(p2, "預設名稱", "default", "", 0);
+print_parameter_br(p2, "尋頻時間", "0.500", "秒", 0);
+print_parameter_br(p2, "定時尋頻", "關機", "", 0);
+print_parameter_br(p2, "寫入場區2", "", "", 0);
+print_br(p2);
+print_br(p2);
+print_parameter_br(p2, "可疑不良品界限", "關機", "", 0);
+print_parameter_br(p2, "需重設可疑不良品", "關機", "", 0);
+print_parameter_br(p2, "崩陷距離上限之可疑品", "關機", "", 0);
+print_parameter(p2, "崩陷距離下限之可疑品", "關機");
+p2.style.cssText = 'margin-left:70px';
+d2.appendChild(p2);
+
+function createTextNode_space(p, n) {
+  let loop_count = 0;
+  for (loop_count = 0; loop_count < n; loop_count++) {
+    p.appendChild(document.createTextNode('\u00A0'));
+  }
+}
+
+function print_br(p) {
+  var br = document.createElement("br");
+  p.appendChild(br);
+}
+
+function print_parameter(p, name, value) {
+  p.appendChild(document.createTextNode(name));
+  createTextNode_space(p, 4);  
+  p.appendChild(document.createTextNode("="));
+  createTextNode_space(p, 4);  
+  p.appendChild(document.createTextNode(value));
+}
+
+function print_parameter_br(p, name, value, unit, space_n) {
+  if (space_n > 0) {
+    createTextNode_space(p, space_n);
+  }
+  print_parameter(p, name, value);  
+  p.appendChild(document.createTextNode(unit));  
+  print_br(p);
+}
+</script>
+</body>
+</html>
