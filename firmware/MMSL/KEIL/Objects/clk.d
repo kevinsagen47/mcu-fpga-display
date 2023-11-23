@@ -2,7 +2,7 @@
 .\objects\clk.o: ..\..\Library\Device\Nuvoton\M480\Include\NuMicro.h
 .\objects\clk.o: ..\..\Library\Device\Nuvoton\M480\Include\M480.h
 .\objects\clk.o: ..\..\Library\CMSIS\Include\core_cm4.h
-.\objects\clk.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\clk.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
 .\objects\clk.o: ..\..\Library\CMSIS\Include\core_cmInstr.h
 .\objects\clk.o: ..\..\Library\CMSIS\Include\cmsis_armcc.h
 .\objects\clk.o: ..\..\Library\CMSIS\Include\core_cmFunc.h
@@ -86,7 +86,7 @@
 .\objects\clk.o: ..\..\Library\StdDriver\inc\rtc.h
 .\objects\clk.o: ..\..\Library\StdDriver\inc\usci_uart.h
 .\objects\clk.o: ..\..\Library\StdDriver\inc\sdh.h
-.\objects\clk.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\clk.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
 .\objects\clk.o: ..\..\Library\StdDriver\inc\usbd.h
 .\objects\clk.o: ..\..\Library\StdDriver\inc\hsusbd.h
 .\objects\clk.o: ..\..\Library\StdDriver\inc\otg.h

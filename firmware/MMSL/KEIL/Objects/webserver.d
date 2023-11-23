@@ -1,11 +1,11 @@
 .\objects\webserver.o: ..\webserver.c
-.\objects\webserver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\webserver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\webserver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\webserver.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
+.\objects\webserver.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdlib.h
+.\objects\webserver.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
 .\objects\webserver.o: ..\..\Library\Device\Nuvoton\M480\Include\NuMicro.h
 .\objects\webserver.o: ..\..\Library\Device\Nuvoton\M480\Include\M480.h
 .\objects\webserver.o: ..\..\Library\CMSIS\Include\core_cm4.h
-.\objects\webserver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\webserver.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
 .\objects\webserver.o: ..\..\Library\CMSIS\Include\core_cmInstr.h
 .\objects\webserver.o: ..\..\Library\CMSIS\Include\cmsis_armcc.h
 .\objects\webserver.o: ..\..\Library\CMSIS\Include\core_cmFunc.h

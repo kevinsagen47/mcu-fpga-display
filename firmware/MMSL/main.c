@@ -30,6 +30,7 @@ extern uint32_t volatile curTime;
 int timeout_sent=0,broken_sent=0;
 int broken_count=0;
 char led_test = 0;
+int prev_overload,prev2_overload,prev3_overload;
 ///*
 void TMR0_IRQHandler(void)
 {
@@ -62,6 +63,13 @@ void TMR0_IRQHandler(void)
 	if(read_timeout_occured()==0)timeout_sent=0;
 	if(read_broken_transducer()==0){broken_sent=0;broken_count=0;}
 	if(display_page!=10 && read_button_test_display()==1) write_button_test(0);
+	
+	prev3_overload=prev2_overload;
+	prev2_overload=prev_overload;
+	prev_overload=read_overload_display();
+	if(prev3_overload==1 && prev2_overload==1 && prev_overload==1 && read_overload_display()==0)print_back_to_main_page();
+	if(prev3_overload==1 && prev2_overload==1 && prev_overload==0 && read_overload_display()==0)print_back_to_main_page();
+	
   TIMER_ClearIntFlag(TIMER0);
 	//printf("+--------------------------+\n");
 	/*

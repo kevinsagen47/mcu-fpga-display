@@ -749,11 +749,11 @@ ARM Macro Assembler    Page 12
               40007000 
               00000000 
               00000000 
-Command Line: --16 --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apc
-s=interwork --depend=.\objects\startup_m480.d -o.\objects\startup_m480.o -IC:\K
-eil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB SETA
- 1" --predefine="__UVISION_VERSION SETA 526" --list=.\listings\startup_m480.lst
- ..\..\Library\Device\Nuvoton\M480\Source\ARM\startup_M480.s
+Command Line: --16 --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --
+apcs=interwork --depend=.\objects\startup_m480.d -o.\objects\startup_m480.o -IC
+:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB S
+ETA 1" --predefine="__UVISION_VERSION SETA 538" --list=.\listings\startup_m480.
+lst ..\..\Library\Device\Nuvoton\M480\Source\ARM\startup_M480.s
 
 
 

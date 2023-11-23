@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp
+--cpu=Cortex-M4.fp.sp
 ".\objects\system_m480.o"
 ".\objects\startup_m480.o"
 ".\objects\main.o"

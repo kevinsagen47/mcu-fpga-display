@@ -37,10 +37,11 @@ void print_page_overload(void);
 void print_page_timeout(void);
 void print_page_head_diagnosis(void);
 void print_page_broken_transducer(void);
+void print_back_to_main_page(void);
 //////////////////////////////////////////////////////////////////////////
 
 extern uint8_t header[3];
-extern uint8_t display_input_command[4];
+extern uint8_t display_input_command[5];
 extern uint8_t display_page;
 void print_page_lock_freq(void);
 extern uint8_t Freq_init;
@@ -182,8 +183,8 @@ unsigned int read_F_set_history(void);
 int read_freq_delta(void);
 
 void write_history_point_set(unsigned int arg);
-unsigned int read_history_point_display();
-unsigned int read_history_point_set();
+unsigned int read_history_point_display(void);
+unsigned int read_history_point_set(void);
 
 //for welding_record.html
 int read_freq_delta_html(unsigned int arg);

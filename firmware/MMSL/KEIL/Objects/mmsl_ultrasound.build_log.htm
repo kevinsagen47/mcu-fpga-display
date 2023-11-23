@@ -3,73 +3,38 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: £gVision V5.26.2.0
-Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: E100 MMSL, ITRI, LIC=KRMW3-A5LTK-LQ30Q-N2RHN-FP81J-H8Z6G
+IDE-Version: µVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: kevin kevinsagen47@Gmail.com, itri, LIC=CUUS7-YFINV-XZPWZ-X29F4-T85HB-IVFEL
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.26.2.0
-Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 6 (build 750)
-Assembler:       Armasm.exe V5.06 update 6 (build 750)
-Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
-Library Manager: ArmAr.exe V5.06 update 6 (build 750)
-Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
-CPU DLL:         SARMCM3.DLL V5.26.2.0
-Dialog DLL:      DARMCM1.DLL V1.19.1.0
-Target DLL:      Nu_Link.dll V3.09
-Dialog DLL:      TARMCM1.DLL V1.14.0.0
+Toolchain:       MDK-ARM Community  Version: 5.38.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.38.0.0
+Dialog DLL:      DARMCM1.DLL V1.19.6.0
+Target DLL:      Nu_Link.dll V3.12
+Dialog DLL:      TARMCM1.DLL V1.14.6.0
  
 <h2>Project:</h2>
-D:\work\FY112Project\ultrasound\firmware\MMSL\KEIL\mmsl_ultrasound.uvproj
-Project File Date:  09/11/2023
+C:\Users\kevin\Documents\Github\mcu-fpga-display\firmware\MMSL\KEIL\mmsl_ultrasound.uvproj
+Project File Date:  10/27/2023
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Rebuild target 'ultrasound'
-assembling startup_M480.s...
-compiling sys.c...
-compiling gpio.c...
-compiling mcu_display_control.c...
-..\..\MMSL\dependencies.h(185): warning:  #1295-D: Deprecated declaration read_history_point_display - give arg types
-  unsigned int read_history_point_display();
-..\..\MMSL\dependencies.h(186): warning:  #1295-D: Deprecated declaration read_history_point_set - give arg types
-  unsigned int read_history_point_set();
-mcu_display_control.c: 2 warnings, 0 errors
-compiling timer.c...
-compiling system_M480.c...
-compiling emac.c...
-compiling uart.c...
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin'
+Build target 'ultrasound'
 compiling main.c...
-..\dependencies.h(185): warning:  #1295-D: Deprecated declaration read_history_point_display - give arg types
-  unsigned int read_history_point_display();
-..\dependencies.h(186): warning:  #1295-D: Deprecated declaration read_history_point_set - give arg types
-  unsigned int read_history_point_set();
-..\main.c: 2 warnings, 0 errors
-compiling clk.c...
-compiling dependencies.c...
-..\dependencies.h(185): warning:  #1295-D: Deprecated declaration read_history_point_display - give arg types
-  unsigned int read_history_point_display();
-..\dependencies.h(186): warning:  #1295-D: Deprecated declaration read_history_point_set - give arg types
-  unsigned int read_history_point_set();
-..\dependencies.c: 2 warnings, 0 errors
-compiling uip_arch.c...
-compiling uip_arp.c...
-compiling webserver.c...
-..\dependencies.h(185): warning:  #1295-D: Deprecated declaration read_history_point_display - give arg types
-  unsigned int read_history_point_display();
-..\dependencies.h(186): warning:  #1295-D: Deprecated declaration read_history_point_set - give arg types
-  unsigned int read_history_point_set();
-..\webserver.c: 2 warnings, 0 errors
-compiling uip.c...
-compiling retarget.c...
 linking...
-Program Size: Code=22628 RO-data=34284 RW-data=2028 ZI-data=42556  
+Program Size: Code=22784 RO-data=34284 RW-data=2060 ZI-data=42556  
 FromELF: creating hex file...
 After Build - User command #1: fromelf --bin ".\Objects\mmsl_ultrasound.axf" --output ".\Objects\mmsl_ultrasound.bin"
 After Build - User command #2: fromelf --text -c ".\Objects\mmsl_ultrasound.axf" --output ".\Objects\mmsl_ultrasound.txt"
-".\Objects\mmsl_ultrasound.axf" - 0 Error(s), 8 Warning(s).
-Build Time Elapsed:  00:00:09
+".\Objects\mmsl_ultrasound.axf" - 0 Error(s), 0 Warning(s).
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

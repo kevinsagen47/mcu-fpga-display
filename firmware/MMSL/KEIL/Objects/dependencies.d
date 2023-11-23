@@ -1,7 +1,7 @@
 .\objects\dependencies.o: ..\dependencies.c
 .\objects\dependencies.o: ..\dependencies.h
-.\objects\dependencies.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\dependencies.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\dependencies.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\dependencies.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
 .\objects\dependencies.o: ..\..\Library\Device\Nuvoton\M480\Include\NuMicro.h
 .\objects\dependencies.o: ..\..\Library\Device\Nuvoton\M480\Include\M480.h
 .\objects\dependencies.o: ..\..\Library\CMSIS\Include\core_cm4.h

@@ -1,9 +1,9 @@
 .\objects\uart.o: ..\..\Library\StdDriver\src\uart.c
-.\objects\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\uart.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
 .\objects\uart.o: ..\..\Library\Device\Nuvoton\M480\Include\NuMicro.h
 .\objects\uart.o: ..\..\Library\Device\Nuvoton\M480\Include\M480.h
 .\objects\uart.o: ..\..\Library\CMSIS\Include\core_cm4.h
-.\objects\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\uart.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
 .\objects\uart.o: ..\..\Library\CMSIS\Include\core_cmInstr.h
 .\objects\uart.o: ..\..\Library\CMSIS\Include\cmsis_armcc.h
 .\objects\uart.o: ..\..\Library\CMSIS\Include\core_cmFunc.h
