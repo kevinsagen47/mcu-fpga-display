@@ -484,7 +484,10 @@ void mcu_to_fpga(void){//MCU => FPGA
 	else if (mode_set==5){
 		temp_distance_relative_set=0;
 		temp_distance_absolute_set=0;
-		temp_energy_set=energy_set/2;
+		
+		if(energy_set!=1)temp_energy_set=energy_set/2;
+		else temp_energy_set=1;
+		
 		temp_time_set_stage_one_set=0;
 		temp_power_stage_one_set=0;
 		temp_gnd_set=0;
@@ -520,7 +523,8 @@ void mcu_to_fpga(void){//MCU => FPGA
 		temp_stage2_address=0xD5;
 	}
 	else if (stage2_mode_address_set==6){
-		temp_value_mode_stage2=energy_set_stage2/2;	
+		if(energy_set_stage2!=1)temp_value_mode_stage2=energy_set_stage2/2;	
+		else temp_value_mode_stage2=1;	
 		temp_stage2_address=0xD6;
 	}
 	else temp_value_mode_stage2=0;	
