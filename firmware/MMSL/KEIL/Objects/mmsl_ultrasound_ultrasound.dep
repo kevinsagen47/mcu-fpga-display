@@ -313,7 +313,7 @@ I (..\common_css.h)(0x653B27AE)
 I (..\store_and_load_css.h)(0x653B27AE)
 I (..\system_information_css.h)(0x653B27AE)
 I (..\dependencies.h)(0x655DBF6A)
-F (..\dependencies.c)(0x65643633)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\..\Library\Device\Nuvoton\M480\Include -I ..\..\ThirdParty\uip-0.9\uip -I ..\..\Library\CMSIS\Include -I ..\..\Library\Device\Nuvoton\M480\Include -I ..\..\Library\StdDriver\inc -I ..\..\ThirdParty\uip-0.9\uip -I ..\..\ThirdParty\uip-0.9\unix -I ..\..\ThirdParty\uip-0.9\apps\httpd -I ..\..\MMSL --diag_suppress=177-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\objects\dependencies.o --omf_browse .\objects\dependencies.crf --depend .\objects\dependencies.d)
+F (..\dependencies.c)(0x6566CF8D)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\..\Library\Device\Nuvoton\M480\Include -I ..\..\ThirdParty\uip-0.9\uip -I ..\..\Library\CMSIS\Include -I ..\..\Library\Device\Nuvoton\M480\Include -I ..\..\Library\StdDriver\inc -I ..\..\ThirdParty\uip-0.9\uip -I ..\..\ThirdParty\uip-0.9\unix -I ..\..\ThirdParty\uip-0.9\apps\httpd -I ..\..\MMSL --diag_suppress=177-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="538"-o .\objects\dependencies.o --omf_browse .\objects\dependencies.crf --depend .\objects\dependencies.d)
 I (..\dependencies.h)(0x655DBF6A)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)

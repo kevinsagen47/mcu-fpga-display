@@ -4946,7 +4946,7 @@
         0x00002e9e:    6a50        Pj      LDR      r0,[r2,#0x24]
         0x00002ea0:    e78d        ..      B        0x2dbe ; mcu_to_fpga + 50
         0x00002ea2:    6088        .`      STR      r0,[r1,#8]
-        0x00002ea4:    2014        .       MOVS     r0,#0x14
+        0x00002ea4:    200f        .       MOVS     r0,#0xf
         0x00002ea6:    e78a        ..      B        0x2dbe ; mcu_to_fpga + 50
         0x00002ea8:    6a97        .j      LDR      r7,[r2,#0x28]
         0x00002eaa:    e9c5741e    ...t    STRD     r7,r4,[r5,#0x78]
