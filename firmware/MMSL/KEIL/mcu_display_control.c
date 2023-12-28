@@ -95,6 +95,11 @@ void print_page_broken_transducer(){
 	UART_Write(UART1,page_broken ,14);
 }
 
+//70 61 67 65 20 74 77 6F 5F 68 61 6E 64 ff ff ff
+uint8_t page_two_hand_alarm[16]={0x70,0x61,0x67,0x65,0x20,0x74,0x77,0x6F,0x5F,0x68,0x61,0x6E,0x64,0xff,0xff,0xff};
+void print_page_two_hand_alarm(){
+	UART_Write(UART1,page_two_hand_alarm ,16);
+}
 
 void print_page_setting_1(){
 		if (read_mode_set()==2 ){

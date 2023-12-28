@@ -38,6 +38,7 @@ void print_page_timeout(void);
 void print_page_head_diagnosis(void);
 void print_page_broken_transducer(void);
 void print_back_to_main_page(void);
+void print_page_two_hand_alarm(void);
 //////////////////////////////////////////////////////////////////////////
 
 extern uint8_t header[3];
@@ -174,7 +175,7 @@ unsigned int read_collapse_hold(void);
 unsigned int read_timeout_occured(void);
 unsigned int read_total_time_display(void);
 unsigned int read_overload_display(void);
-
+unsigned int read_two_hand_alarm(void);
 unsigned int read_encoder_speed_display(void);
 
 

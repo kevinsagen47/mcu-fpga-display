@@ -241,11 +241,13 @@ unsigned int read_energy_display(void){return energy_display;}
 unsigned int read_pressure_display(void){return pressure_display;}
 unsigned int read_total_time_display(void){return total_time_display;}
 */
+unsigned int two_hand_alarm;
 int8_t read_theta_display(void) {return theta;}
 unsigned int read_pressure_display(void){return pressure_display;}
 unsigned int read_power_read_display() {return power_read_display;}
 unsigned int read_timeout_occured() {return timeout_occured;}
 unsigned int read_overload_display() {return overload_display;}
+unsigned int read_two_hand_alarm() {return two_hand_alarm;}
 unsigned int read_encoder_speed_display(void){
 	if(timeout_set_display==0 && force_display==0) return 0;
 	else return encoder_speed_display;
@@ -282,8 +284,8 @@ void write_entered_main_page(unsigned arg){entered_main=arg;}
 unsigned int read_entered_main_page(){return entered_main;}
 
 volatile int32_t g_i32pointer_0 = 0;
-uint16_t FPGA_length=84;
-uint8_t FPGA_input[84] = {0};
+uint16_t FPGA_length=85;
+uint8_t FPGA_input[85] = {0};
 uint16_t FPGA_address=0;
 uint8_t sweep_on_rx;
 
@@ -292,10 +294,16 @@ int power_points,power_avg_state=0;
 long power_accum;
 int prev_history_point;
 int temp_point,relay_display;
+uint8_t crc_check,crc_display;
 //fpga_to_mcu
 void fpga_to_mcu(void){//FPGA => MCU
 
-	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[83]==0x68){
+	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[84]==0x68){
+		
+		crc_check = (((FPGA_input[27]>>0)& 1)^((FPGA_input[28]>>0)& 1)^((FPGA_input[77]>>0)& 1));
+		crc_display = (FPGA_input[83]>>0)& 1;
+		if(crc_check == crc_display){
+		
 		amplitude_set_display							=FPGA_input[4];
 		timeout_set_display 							=(FPGA_input[5]<<8)|(FPGA_input[6]);
 		distance_relative_set_display	=(FPGA_input[7]<<8)|(FPGA_input[8]);
@@ -312,6 +320,7 @@ void fpga_to_mcu(void){//FPGA => MCU
 		//pressure_display							=FPGA_input[27];
 		
 		relay_display									=(FPGA_input[27]>>0)& 1;
+		two_hand_alarm								=(FPGA_input[27]>>1)& 1;
 		
 		button_test_display						=(FPGA_input[28]>>0)& 1;
 		broken_transducer							=(FPGA_input[28]>>1)& 1;
@@ -403,7 +412,7 @@ void fpga_to_mcu(void){//FPGA => MCU
 			history_record_array[history_point_display][17]=total_time_display;//total time
 		}
 		}
-	}
+	}}
 }
 
 
@@ -545,7 +554,10 @@ void mcu_to_fpga(void){//MCU => FPGA
 		temp_after_stage_address=0xE5;}
 	else temp_value_after_stage_set=0;
 	
-	if(Freq_init==1 && (standby==1 || display_page==10) && FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[83]==0x68){
+		
+	if(Freq_init==1 && (standby==1 || display_page==10) 
+		&& FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[84]==0x68 
+		&& crc_check == crc_display){
 		if(amplitude_set_display!=temp_amplitude_set){
 			UART_WRITE(UART0,0xC0);
 			UART_WRITE(UART0,temp_amplitude_set);

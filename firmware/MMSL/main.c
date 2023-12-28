@@ -47,6 +47,7 @@ void TMR0_IRQHandler(void)
 		timeout_sent=1;
 		if (display_page!=10 && display_page!=7 && display_page!=9)print_page_timeout();
 	}
+	else if (read_two_hand_alarm()==1)print_page_two_hand_alarm();
 	else if (display_page==2){
 		if (Freq_init==1)print_page_setting_1();
 		else print_page_lock_freq();
