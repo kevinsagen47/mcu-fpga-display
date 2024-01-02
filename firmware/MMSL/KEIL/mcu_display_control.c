@@ -4,6 +4,9 @@
 #define RXBUFSIZE 256
 
 
+// external function declaration
+void save_welding_record(void);
+
 uint8_t bcd_array[5]={0};
 void binary_to_bcd_array(int variable){
 	bcd_array[0]=0x30+((variable/10000)%10);

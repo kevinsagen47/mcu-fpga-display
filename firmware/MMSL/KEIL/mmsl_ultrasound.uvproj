@@ -527,6 +527,11 @@
               <FileType>1</FileType>
               <FilePath>.\mcu_display_control.c</FilePath>
             </File>
+            <File>
+              <FileName>external_flash_api.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\external_flash_api.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -635,6 +640,21 @@
               <FileName>retarget.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Library\StdDriver\src\retarget.c</FilePath>
+            </File>
+            <File>
+              <FileName>fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\StdDriver\src\fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\StdDriver\src\spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>spim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Library\StdDriver\src\spim.c</FilePath>
             </File>
           </Files>
         </Group>

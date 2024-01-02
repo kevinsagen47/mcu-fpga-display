@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include "NuMicro.h"
 
+// external function declaration
+void save_welding_record(void);
+extern unsigned int history_point_flash;
 
 #define RXBUFSIZE 256
 int i=0;
@@ -142,12 +145,12 @@ unsigned int read_time_on_after_stage_display(void){return time_on_after_stage_d
 //history
 unsigned int current_display,power_read_display,force_display,distance_display, energy_display,pressure_display, overload_display,total_time_display;
 unsigned int freq_min,freq_max,freq_start,freq_end,F_start,F_max,P_max,distance_travelled,time_on,distance_reached,distance_hold,timeout_occured=0,encoder_speed_display;
-unsigned int history_point_display=0,history_point_set;
-int history_record_array[255][18]={0};
+unsigned int history_point_display=0,history_point_set,history_point_fpga=0;
+int history_record_array[511][18]={0};
 int8_t theta;
 int avg_power;
 
-void write_history_point_set(unsigned int arg){if(history_point_display>=arg && 255>=arg && arg>0)history_point_set=arg;}
+void write_history_point_set(unsigned int arg){if(history_point_display>=arg && 511>=arg && arg>0)history_point_set=arg;}
 unsigned int read_history_point_display(){return history_point_display;}
 unsigned int read_history_point_set(){return history_point_set;}
 
@@ -299,11 +302,9 @@ uint8_t crc_check,crc_display;
 void fpga_to_mcu(void){//FPGA => MCU
 
 	if(FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[84]==0x68){
-		
 		crc_check = (((FPGA_input[27]>>0)& 1)^((FPGA_input[28]>>0)& 1)^((FPGA_input[77]>>0)& 1));
 		crc_display = (FPGA_input[83]>>0)& 1;
 		if(crc_check == crc_display){
-		
 		amplitude_set_display							=FPGA_input[4];
 		timeout_set_display 							=(FPGA_input[5]<<8)|(FPGA_input[6]);
 		distance_relative_set_display	=(FPGA_input[7]<<8)|(FPGA_input[8]);
@@ -321,7 +322,7 @@ void fpga_to_mcu(void){//FPGA => MCU
 		
 		relay_display									=(FPGA_input[27]>>0)& 1;
 		two_hand_alarm								=(FPGA_input[27]>>1)& 1;
-		
+			
 		button_test_display						=(FPGA_input[28]>>0)& 1;
 		broken_transducer							=(FPGA_input[28]>>1)& 1;
 		sweep_on_rx										=(FPGA_input[28]>>2)& 1;
@@ -348,7 +349,7 @@ void fpga_to_mcu(void){//FPGA => MCU
 		amplitudeB_set_stage2_display	= FPGA_input[51];
 		stage2_mode_address_display		= FPGA_input[52];
 		stage2_mode_value_display 		= (FPGA_input[53]<<8)|(FPGA_input[54]);
-		hold_time_display 						= (FPGA_input[55]<<8)|(FPGA_input[56]);
+		hold_time_display               = (FPGA_input[55]<<8)|(FPGA_input[56]);
 		
 		power_stage_one_display				=	(FPGA_input[57]<<8)|(FPGA_input[58]);
 		
@@ -370,7 +371,8 @@ void fpga_to_mcu(void){//FPGA => MCU
 		anti_resonance_frequency			= (FPGA_input[73]<<8)|(FPGA_input[74]);
 		
 		encoder_speed_display					= (FPGA_input[75]<<8)|(FPGA_input[76]);
-		history_point_display					= FPGA_input[77];
+		//history_point_display					= FPGA_input[77];
+		history_point_fpga						= FPGA_input[77];
 		gnd_display										=(FPGA_input[78]<<8)|(FPGA_input[79]);
 		pressure_display							=(FPGA_input[80]<<8)|(FPGA_input[81]);
 		distance_hold= FPGA_input[82];
@@ -385,13 +387,53 @@ void fpga_to_mcu(void){//FPGA => MCU
 			power_points++;
 		}
 		temp_point=prev_history_point+1;
+		//if(history_point_display <= 510)
+			history_point_display=history_point_flash+history_point_fpga; //history_point_display=10+history_point_fpga;
+		if(temp_point > 510) //else
+			temp_point=510;
+		if(history_point_display > 510) //else
+			history_point_display=510;
+		
+		if(history_point_fpga == 255)
+			history_point_flash=history_point_display;
+		
 		if(standby==1){
 			
-			if(temp_point==history_point_display){//if new data exists, display newest data
+			if(temp_point==history_point_display && history_point_display<511){//if new data exists, display newest data
+			//if(temp_point==history_point_display){//if new data exists, display newest data
 				prev_history_point=history_point_display;
 				history_point_set=history_point_display;
 			
 			
+//			history_record_array[history_point_display][0]=freq_end-freq_start;//delta
+//			history_record_array[history_point_display][1]=freq_start;//freq start
+//			history_record_array[history_point_display][2]=freq_end;//freq end
+//			history_record_array[history_point_display][3]=freq_max;//freq max
+//			history_record_array[history_point_display][4]=freq_min;//freq min
+//			history_record_array[history_point_display][5]=P_max;//max power
+//			history_record_array[history_point_display][6]=avg_power;//avg power
+//			history_record_array[history_point_display][7]=energy_display;//joule
+//			history_record_array[history_point_display][8]=time_on;//ultra on time
+//			history_record_array[history_point_display][9]=force_set_display;//set force
+//			history_record_array[history_point_display][10]=F_start;//trigger force
+//			history_record_array[history_point_display][11]=F_max;//max force
+//			history_record_array[history_point_display][12]=encoder_speed_display;//speed
+//			history_record_array[history_point_display][13]=distance_reached;//absolute
+//			history_record_array[history_point_display][14]=distance_reached+distance_hold;//absolute hold
+//			history_record_array[history_point_display][15]=distance_travelled;//relative
+//			history_record_array[history_point_display][16]=distance_travelled+distance_hold;;//relative hold
+//			history_record_array[history_point_display][17]=total_time_display;//total time
+//			
+//			save_welding_record(); //save welding record history in flash
+//		}
+//		else if(temp_point==history_point_display && history_point_display==511){//if new data exists, display newest data
+//				prev_history_point=history_point_display;
+//				history_point_set=history_point_display;
+//			
+//			for(uint32_t i=1; i<510; i++){
+//				for (uint32_t j=0; j<18; j++)				
+//				history_record_array[i][j]=history_record_array[i+1][j];
+//			}
 			history_record_array[history_point_display][0]=freq_end-freq_start;//delta
 			history_record_array[history_point_display][1]=freq_start;//freq start
 			history_record_array[history_point_display][2]=freq_end;//freq end
@@ -410,7 +452,11 @@ void fpga_to_mcu(void){//FPGA => MCU
 			history_record_array[history_point_display][15]=distance_travelled;//relative
 			history_record_array[history_point_display][16]=distance_travelled+distance_hold;;//relative hold
 			history_record_array[history_point_display][17]=total_time_display;//total time
+			
+			save_welding_record(); //save welding record history in flash
 		}
+		
+		//save_welding_record(); //save welding record history in flash
 		}
 	}}
 }
@@ -494,7 +540,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 		temp_distance_relative_set=0;
 		temp_distance_absolute_set=0;
 		
-		if(energy_set!=1)temp_energy_set=energy_set/2;
+		if(energy_set!=1)temp_energy_set=energy_set/2; //energy_set;
 		else temp_energy_set=1;
 		
 		temp_time_set_stage_one_set=0;
@@ -532,7 +578,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 		temp_stage2_address=0xD5;
 	}
 	else if (stage2_mode_address_set==6){
-		if(energy_set_stage2!=1)temp_value_mode_stage2=energy_set_stage2/2;	
+		if(energy_set_stage2!=1)temp_value_mode_stage2=energy_set_stage2/2;	//energy_set_stage2;
 		else temp_value_mode_stage2=1;	
 		temp_stage2_address=0xD6;
 	}
@@ -554,7 +600,6 @@ void mcu_to_fpga(void){//MCU => FPGA
 		temp_after_stage_address=0xE5;}
 	else temp_value_after_stage_set=0;
 	
-		
 	if(Freq_init==1 && (standby==1 || display_page==10) 
 		&& FPGA_input[0]==0xFF && FPGA_input[1]==0xFF && FPGA_input[2]==0xFF && FPGA_input[3]==0xFF && FPGA_input[84]==0x68 
 		&& crc_check == crc_display){
@@ -591,7 +636,6 @@ void mcu_to_fpga(void){//MCU => FPGA
 			UART_WRITE(UART0,temp_distance_relative_set& ~(~0U << 8));
 			UART_WRITE(UART0,temp_distance_relative_set>>8);
 			UART_WRITE(UART0,0xFF);
-			
 			PC6 = 1;
 	}	
 		else if (distance_absolute_set_display!=temp_distance_absolute_set){
@@ -680,7 +724,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 			UART_WRITE(UART0,0xFF);
 			PC6 = 1;
 	}
-		///////////////////////////////EARLY STAGE/////////////////////////////////////////////////////////////////////////
+		///////////////////////////////AFTER STAGE/////////////////////////////////////////////////////////////////////////
 		else if (power_after_stage_set!=power_after_stage_display){
 			UART_WRITE(UART0,0xE6);
 			UART_WRITE(UART0,power_after_stage_set);
@@ -756,7 +800,7 @@ void mcu_to_fpga(void){//MCU => FPGA
 //23 24 distance read
 //25 26 energy read
 //27 pressure
-//28 overloadq
+//28 overload
 //end header
 int time_wait_uart0;
 void UART0_TEST_HANDLE(void)
@@ -811,7 +855,10 @@ void UART1_TEST_HANDLE(void)
 				for(i = 0; i < 5; i++){display_input_command[i]=0; }//empty Rx array
         while( (!UART_GET_RX_EMPTY(UART1)) )
         {
+					//TIMER_Delay(TIMER1, 80);
 					u8InChar = UART_READ(UART1);    /* Rx trigger level is 1 byte*/
+          //g_i32pointer++;
+          //printf("%x ", u8InChar);
 					if(input_address<5)display_input_command[input_address] = u8InChar;//assign Rx to array
 					input_address++;
 					while(UART_GET_RX_EMPTY(UART1) && time_wait<5){

@@ -34,7 +34,7 @@ int32_t Data_Flash_Init(void)
     /* Read User Configuration 0 & 1 */
     if (FMC_ReadConfig(au32Config, 2) < 0)
     {
-        printf("\nRead User Config failed!\n");       /* Error message */
+        //printf("\nRead User Config failed!\n");       /* Error message */
 		FMC_Close();
         return -1;                     /* failed to read User Configuration */
     }
@@ -42,7 +42,7 @@ int32_t Data_Flash_Init(void)
     /* Check if Data Flash is enabled and is expected address. */
     if ((!(au32Config[0] & 0x1)) && (au32Config[1] == DATA_FLASH_START_ADDR))
 	{
-		printf("\nno need to modify User Configuration!\n"); 
+		//printf("\nno need to modify User Configuration!\n"); 
 		FMC_Close();
         return 0;                      /* no need to modify User Configuration */
 	}
@@ -55,36 +55,36 @@ int32_t Data_Flash_Init(void)
     /* Update User Configuration settings. */
     if (FMC_WriteConfig(au32Config, 2) < 0)
 	{
-		printf("\nfailed to write user configuration!\n"); 
+		//printf("\nfailed to write user configuration!\n"); 
 		FMC_Close();
         return -1;                     /* failed to write user configuration */
 	}
 
-    printf("\nSet Data Flash base as 0x%x.\n", DATA_FLASH_START_ADDR);  /* debug message */
+    //printf("\nSet Data Flash base as 0x%x.\n", DATA_FLASH_START_ADDR);  /* debug message */
 
     /* Perform chip reset to make new User Config take effect. */
     SYS->IPRST0 = SYS_IPRST0_CHIPRST_Msk;
 	
 	/* Read User Configuration CONFIG0 */
-    printf("  User Config 0 ......................... [0x%08x]\n", FMC_Read(FMC_CONFIG_BASE));
+    FMC_Read(FMC_CONFIG_BASE); //printf("  User Config 0 ......................... [0x%08x]\n", FMC_Read(FMC_CONFIG_BASE));
     if (g_FMC_i32ErrCode != 0)
     {
-        printf("FMC_Read(FMC_CONFIG_BASE) failed!\n");
+        //printf("FMC_Read(FMC_CONFIG_BASE) failed!\n");
 		FMC_Close();
         return -1;
     }
 
     /* Read User Configuration CONFIG1 */
-    printf("  User Config 1 ......................... [0x%08x]\n", FMC_Read(FMC_CONFIG_BASE+4));
+    FMC_Read(FMC_CONFIG_BASE+4); //printf("  User Config 1 ......................... [0x%08x]\n", FMC_Read(FMC_CONFIG_BASE+4));
     if (g_FMC_i32ErrCode != 0)
     {
-        printf("FMC_Read(FMC_CONFIG_BASE+4) failed!\n");
+        //printf("FMC_Read(FMC_CONFIG_BASE+4) failed!\n");
 		FMC_Close();
         return -1;
     }
 
     /* Read Data Flash base address */
-    printf("  Data Flash Base Address ............... [0x%08x]\n", FMC_ReadDataFlashBaseAddr());   /* information message */
+    FMC_ReadDataFlashBaseAddr(); //printf("  Data Flash Base Address ............... [0x%08x]\n", FMC_ReadDataFlashBaseAddr());   /* information message */
 	FMC_Close();
 	
     return 0;

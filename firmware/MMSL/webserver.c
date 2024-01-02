@@ -61,8 +61,10 @@
 
 // external function declaration
 void mcu_to_fpga(void);
+void save_welding_record(void);
 
-extern int history_record_array[255][18];
+//extern int history_record_array[255][18];
+extern int history_record_array[511][18];
 extern unsigned int history_point_set;
 int read_freq_delta(void);
 unsigned int read_freq_start(void);
@@ -636,6 +638,8 @@ void httpd_appcall(void)
 							transfer_ptr = (u8_t *)http_output_buf;
 							
 							transfer_header_flag = 0;							
+						  
+							save_welding_record(); //save welding record history in flash
 						}
 						else  // by default, return 200 OK 
 						{

@@ -8,6 +8,7 @@
  ******************************************************************************/
 
 #include <stdio.h>
+#include <string.h>
 #include "dependencies.h"
 #include "NuMicro.h"
 
@@ -15,6 +16,34 @@
 #define RXBUFSIZE 256
 //uint8_t display_page_0_frequency [12] = { 0x6E, 0x34,0x2E,0x76,0x61,0x6C,0x3D,0x33,0x35,0x33,0x30,0x33};
 //uint8_t display_page_1_power [7] = { 0x6E, 0x37,0x2E,0x76,0x61,0x6C,0x3D};
+
+// external flash
+#define FLASH_BLOCK_SIZE            (64*1024)    /* Flash block size. Depend on the physical flash. */
+#define TEST_BLOCK_ADDR             0x10000      /* Test block address on SPI flash. */
+#define BUFFER_SIZE                 36864
+
+#ifdef __ICCARM__
+#pragma data_alignment=4
+uint8_t  g_buff[BUFFER_SIZE];
+#else
+static uint8_t  g_buff[BUFFER_SIZE] __attribute__((aligned(4)));
+#endif
+
+// external function declaration
+void SYS_Init_External_Flash(void);
+void SPIM_Init_MMSL(void);
+void SPIM_EraseBlock_MMSL(uint32_t u32Addr);
+void SPIM_Write_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[]);
+void SPIM_Read_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[]);
+void external_flash_init(void);  // Read flash history data
+void save_welding_record(void);
+
+extern int history_record_array[511][18];
+extern unsigned int history_point_set;
+extern unsigned int history_point_fpga;
+extern unsigned int history_point_display;
+extern unsigned int history_point_flash;
+extern int prev_history_point;
 
 uint8_t header [3]={0xFF,0xFF,0xFF};
 
@@ -129,6 +158,50 @@ int main(void)
 		UART1_interrrupt();
 		UART0_interrrupt();
 
+    external_flash_init();
+		//save_welding_record();
+
+
+		// external flash test (Access SPI flash)
+/*    uint32_t    i, j, offset;
+    uint32_t    *pData;
+    //uint8_t     idBuf[3];
+	int test_loop = 1;
+	uint32_t test_addr = 0;
+
+    SYS_Init_External_Flash();
+
+    SYS_UnlockReg();
+
+	SPIM_Init_MMSL();
+
+	test_addr = TEST_BLOCK_ADDR*test_loop;
+
+	//SPIM_EraseBlock_MMSL(test_addr);
+
+    // Read flash data
+//		for (offset = 0; offset < FLASH_BLOCK_SIZE; offset += BUFFER_SIZE)
+//    {
+        memset(g_buff, 0, BUFFER_SIZE);
+        SPIM_Read_MMSL(test_addr+offset, BUFFER_SIZE, g_buff);
+
+        pData = (uint32_t *)g_buff;
+			  history_point_flash = *pData; pData++;
+				if(history_point_flash == 0xFFFFFFFF) history_point_flash = 0;
+				for (i = 0; i < 511; i ++) //for (i = 0; i < 255; i ++)
+			  {
+					for (j = 0; j < 18; j ++)
+					{
+						history_record_array[i][j] = *pData; //welding_record_flash[i][j] = *pData;
+						pData++;
+					}
+				}        
+//    }
+		//history_point_display = history_point_flash+history_point_fpga;
+		history_point_set = history_point_flash;
+		prev_history_point = history_point_flash;
+*/
+				
 #ifdef __ENABLE_EMAC_FUNCTION_
     webserver_init();
 #endif

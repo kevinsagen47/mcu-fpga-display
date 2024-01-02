@@ -14,19 +14,42 @@
 
 #define FLASH_BLOCK_SIZE            (64*1024)    /* Flash block size. Depend on the physical flash. */
 #define TEST_BLOCK_ADDR             0x10000      /* Test block address on SPI flash. */
-#define BUFFER_SIZE                 2048
+#define BUFFER_SIZE                 36864
 
 #ifdef __ICCARM__
 #pragma data_alignment=4
 uint8_t  g_buff[BUFFER_SIZE];
 #else
-uint8_t  g_buff[BUFFER_SIZE] __attribute__((aligned(4)));
+static uint8_t  g_buff[BUFFER_SIZE] __attribute__((aligned(4)));
 #endif
 
 void SPIM_Init_MMSL(void);
 void SPIM_EraseBlock_MMSL(uint32_t u32Addr);  // Block size is 64KB
 void SPIM_Write_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[]);   // u32Addr is 4-byte alignment
 void SPIM_Read_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[]);   // u32Addr is 4-byte alignment
+void external_flash_init(void);  // Read flash history data
+void save_welding_record(void);
+
+//extern int history_record_array[255][18];
+extern int history_record_array[511][18];
+extern unsigned int history_point_set;
+extern unsigned int history_point_fpga;
+extern unsigned int history_point_display;
+extern int prev_history_point;
+unsigned int history_point_flash;
+const uint32_t pseudo_welding_record[10][18] = {
+  {12, 19900, 20000, 20900, 19510, 81, 60, 31, 500, 50, 210, 451, 155, 900, 900, 5, 5, 1500},
+  {21, 19910, 20100, 20800, 19520, 82, 61, 32, 499, 50, 220, 452, 160, 850, 850, 4, 4, 1499},
+  {32, 19920, 20200, 20700, 19530, 83, 62, 33, 498, 50, 230, 453, 170, 860, 860, 3, 3, 1498},
+  {45, 19930, 20300, 20600, 19540, 84, 63, 34, 499, 50, 240, 454, 165, 850, 850, 2, 2, 1497},
+  {51, 19940, 20400, 20500, 19550, 85, 64, 35, 498, 50, 250, 455, 170, 850, 850, 3, 3, 1496},
+  {46, 19950, 20500, 20600, 19560, 86, 65, 36, 500, 50, 240, 456, 165, 860, 860, 4, 4, 1495},
+  {37, 19960, 20600, 21700, 19570, 87, 66, 37, 499, 50, 230, 457, 160, 860, 850, 5, 5, 1496},
+  {28, 19970, 20700, 20800, 19580, 88, 67, 38, 498, 50, 220, 458, 165, 850, 850, 4, 4, 1497},
+  {15, 19980, 20800, 20900, 19590, 89, 68, 39, 499, 50, 210, 459, 165, 860, 860, 3, 3, 1498},
+  {21, 19990, 20900, 21000, 19600, 90, 69, 40, 500, 50, 200, 460, 165, 850, 850, 2, 2, 1499},	
+};
+uint32_t welding_record_flash[255][18] = {0};
 
 void SYS_Init_External_Flash(void)
 {
@@ -104,20 +127,17 @@ void SPIM_Init_MMSL(void)
 
     if (SPIM_InitFlash(1) != 0)        /* Initialized SPI flash */
     {
-        printf("SPIM flash initialize failed!\n");
         return;
     }
 
     SPIM_ReadJedecId(idBuf, sizeof (idBuf), 1);
-    printf("SPIM get JEDEC ID=0x%02X, 0x%02X, 0x%02X\n", idBuf[0], idBuf[1], idBuf[2]);
-
+    
     SPIM_WinbondUnlock(1);
 
 	if (USE_4_BYTES_MODE)
 	{
 		if (SPIM_Enable_4Bytes_Mode(USE_4_BYTES_MODE, 1) != 0)
 		{
-			printf("SPIM_Enable_4Bytes_Mode failed!\n");
 			return;
 		}
 	}
@@ -138,15 +158,114 @@ void SPIM_Read_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[])
 	SPIM_IO_Read(u32Addr, USE_4_BYTES_MODE, u32ByteCount, pu8Buf, OPCODE_FAST_READ, 1, 1, 1, 1);
 }
 
-void external_flash_test()
+void external_flash_init(void)
 {
-    uint32_t    i, offset;             /* variables */
+    uint32_t    i, j, offset;
     uint32_t    *pData;
     //uint8_t     idBuf[3];
 	int test_loop = 1;
 	uint32_t test_addr = 0;
 
-    SYS_Init_External_Flash();                        /* Init System, IP clock and multi-function I/O */
+    SYS_Init_External_Flash();
+
+    SYS_UnlockReg();
+
+	SPIM_Init_MMSL();
+
+	test_addr = TEST_BLOCK_ADDR*test_loop;
+
+	//SPIM_EraseBlock_MMSL(test_addr);
+
+    // Read flash data
+//    for (offset = 0; offset < FLASH_BLOCK_SIZE; offset += BUFFER_SIZE)
+//    {
+        memset(g_buff, 0, BUFFER_SIZE);
+        //SPIM_IO_Read(test_addr+offset, USE_4_BYTES_MODE, BUFFER_SIZE, g_buff, OPCODE_FAST_READ, 1, 1, 1, 1);
+		    SPIM_Read_MMSL(test_addr+offset, BUFFER_SIZE, g_buff);
+
+        pData = (uint32_t *)g_buff;
+			  history_point_flash = *pData; pData++;
+				if(history_point_flash == 0xFFFFFFFF) history_point_flash = 0;
+				for (i = 0; i < 511; i ++) //for (i = 0; i < 255; i ++)
+			  {
+					for (j = 0; j < 18; j ++)
+					{
+						history_record_array[i][j] = *pData; //welding_record_flash[i][j] = *pData;
+						pData++;
+					}
+				}
+//    }
+		//history_point_display = history_point_flash+history_point_fpga;
+		history_point_set = history_point_flash;
+		prev_history_point = history_point_flash;
+}
+
+void save_welding_record(void)
+{
+    uint32_t    i, j, offset;
+    uint32_t    *pData;
+    //uint8_t     idBuf[3];
+	int test_loop = 1;
+	uint32_t test_addr = 0;
+	
+	test_addr = TEST_BLOCK_ADDR*test_loop;
+    // Verify flash page be erased
+	  //SPIM_EraseBlock(test_addr, USE_4_BYTES_MODE, OPCODE_BE_64K, 1, 1);
+	  SPIM_EraseBlock_MMSL(test_addr);
+    
+    for (offset = 0; offset < FLASH_BLOCK_SIZE; offset += BUFFER_SIZE)
+    {
+        memset(g_buff, 0, BUFFER_SIZE);
+        //SPIM_IO_Read(test_addr+offset, USE_4_BYTES_MODE, BUFFER_SIZE, g_buff, OPCODE_FAST_READ, 1, 1, 1, 1);
+		    SPIM_Read_MMSL(test_addr+offset, BUFFER_SIZE, g_buff);
+
+        pData = (uint32_t *)g_buff;
+        for (i = 0; i < BUFFER_SIZE; i += 4, pData++)
+        {
+            if (*pData != 0xFFFFFFFF)
+            {
+                SYS_LockReg();
+            }
+        }
+    }
+
+    // Program data to flash block
+    
+    for (offset = 0; offset < FLASH_BLOCK_SIZE; offset += BUFFER_SIZE)
+    {
+        pData = (uint32_t *)g_buff;
+      *pData = history_point_display; pData++;
+			for (i = 0; i < 511; i ++) //for (i = 0; i < 255; i ++)
+			{
+			  if (i<1){
+				for (j = 0; j < 18; j ++)
+				{
+					  *pData = pseudo_welding_record[i][j]; // *pData = history_record_array[i][j];
+					  pData++;
+				}}
+				else
+				{
+					for (j = 0; j < 18; j ++)
+					{
+						*pData = history_record_array[i][j]; // *pData = pseudo_welding_record[i][j];
+					  pData++;
+					}
+				}
+			}
+        //SPIM_IO_Write(test_addr+offset, USE_4_BYTES_MODE, BUFFER_SIZE, g_buff, OPCODE_PP, 1, 1, 1);
+		    SPIM_Write_MMSL(test_addr+offset, BUFFER_SIZE, g_buff);
+    }
+}
+/*
+void external_flash_test()
+{
+    uint32_t    i, offset;             // variables
+    uint32_t    *pData;
+    //uint8_t     idBuf[3];
+	int test_loop = 1;
+	uint32_t test_addr = 0;
+
+    SYS_Init_External_Flash();                        // Init System, IP clock and multi-function I/O
 
     UART_Open(UART0, 115200);
 
@@ -154,9 +273,9 @@ void external_flash_test()
     printf("|    M480 SPIM I/O mode read/write sample   |\n");
     printf("+-------------------------------------------+\n");
 
-    SYS_UnlockReg();                   /* Unlock register lock protect */
+    SYS_UnlockReg();                   // Unlock register lock protect
 
-	SPIM_Init_MMSL();
+	SPIM_Init_MMSL();*/
 #if 0	
     SPIM_SET_CLOCK_DIVIDER(1);        /* Set SPIM clock as HCLK divided by 2 */
 
@@ -276,11 +395,9 @@ void external_flash_test()
     }
     printf("done.\n");
 #endif
-
+/*
 //goto_test_loop:
-	/*
-     *  Erase flash page
-     */
+	// Erase flash page
 
 	test_addr = TEST_BLOCK_ADDR*test_loop;
     printf("Erase SPI flash block 0x%x...", test_addr);
@@ -288,9 +405,7 @@ void external_flash_test()
 	SPIM_EraseBlock_MMSL(test_addr);
     printf("done.\n");
 
-    /*
-     *  Verify flash page be erased
-     */
+    // Verify flash page be erased
     printf("Verify SPI flash block 0x%x be erased...", test_addr);
     for (offset = 0; offset < FLASH_BLOCK_SIZE; offset += BUFFER_SIZE)
     {
@@ -311,9 +426,7 @@ void external_flash_test()
     }
     printf("done.\n");
 
-    /*
-     *  Program data to flash block
-     */
+    // Program data to flash block
     printf("Program sequential data to flash block 0x%x...", test_addr);
     for (offset = 0; offset < FLASH_BLOCK_SIZE; offset += BUFFER_SIZE)
     {
@@ -326,9 +439,7 @@ void external_flash_test()
     }
     printf("done.\n");
 
-    /*
-     *  Read and compare flash data
-     */
+    // Read and compare flash data
     printf("Verify SPI flash block 0x%x data with Fast Read command...", test_addr);
     for (offset = 0; offset < FLASH_BLOCK_SIZE; offset += BUFFER_SIZE)
     {
@@ -356,6 +467,6 @@ void external_flash_test()
 
 lexit:
 
-    SYS_LockReg();                     /* Lock protected registers */
+    SYS_LockReg();                     // Lock protected registers
     //while (1);
-}
+}*/
