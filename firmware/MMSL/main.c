@@ -35,15 +35,58 @@ void SPIM_Init_MMSL(void);
 void SPIM_EraseBlock_MMSL(uint32_t u32Addr);
 void SPIM_Write_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[]);
 void SPIM_Read_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[]);
-void external_flash_init(void);  // Read flash history data
+//void external_flash_init(void);  // Read flash history data
 void save_welding_record(void);
+void read_welding_record(void);  // Read flash history data
 
-extern int history_record_array[511][18];
-extern unsigned int history_point_set;
-extern unsigned int history_point_fpga;
-extern unsigned int history_point_display;
-extern unsigned int history_point_flash;
-extern int prev_history_point;
+//extern int history_record_array[511][18];
+//extern unsigned int history_point_set;
+//extern unsigned int history_point_fpga;
+//extern unsigned int history_point_display;
+//extern unsigned int history_point_flash;
+//extern int prev_history_point;
+
+//void external_flash_init(void)
+//{
+//    uint32_t    i, j, offset;
+//    uint32_t    *pData;
+//    //uint8_t     idBuf[3];
+//	int test_loop = 3;
+//	uint32_t test_addr = 0;
+
+//    SYS_Init_External_Flash();
+
+//    SYS_UnlockReg();
+
+//	SPIM_Init_MMSL();
+
+//	test_addr = TEST_BLOCK_ADDR*test_loop;
+
+//	//SPIM_EraseBlock_MMSL(test_addr);
+
+//    // Read flash data
+////    for (offset = 0; offset < FLASH_BLOCK_SIZE; offset += BUFFER_SIZE)
+////    {
+//        memset(g_buff, 0, BUFFER_SIZE);
+//        //SPIM_IO_Read(test_addr+offset, USE_4_BYTES_MODE, BUFFER_SIZE, g_buff, OPCODE_FAST_READ, 1, 1, 1, 1);
+//		    SPIM_Read_MMSL(test_addr+offset, BUFFER_SIZE, g_buff);
+
+//        pData = (uint32_t *)g_buff;
+//			  history_point_flash = *pData; pData++;
+//				if(history_point_flash == 0xFFFFFFFF) history_point_flash = 0;
+//				for (i = 0; i < 511; i ++) //for (i = 0; i < 255; i ++)
+//			  {
+//					for (j = 0; j < 18; j ++)
+//					{
+//						history_record_array[i][j] = *pData; //welding_record_flash[i][j] = *pData;
+//						pData++;
+//					}
+//				}
+////    }
+//		//history_point_display = history_point_flash+history_point_fpga;
+//		history_point_set = history_point_flash;
+//		prev_history_point = history_point_flash;
+//}
 
 uint8_t header [3]={0xFF,0xFF,0xFF};
 
@@ -158,16 +201,16 @@ int main(void)
 		UART1_interrrupt();
 		UART0_interrrupt();
 
-    external_flash_init();
+    //external_flash_init();
 		//save_welding_record();
 
 
 		// external flash test (Access SPI flash)
-/*    uint32_t    i, j, offset;
-    uint32_t    *pData;
-    //uint8_t     idBuf[3];
-	int test_loop = 1;
-	uint32_t test_addr = 0;
+//    uint32_t    i, j, offset;
+//    uint32_t    *pData;
+//    //uint8_t     idBuf[3];
+//	int test_loop = 3;
+//	uint32_t test_addr = 0;
 
     SYS_Init_External_Flash();
 
@@ -175,10 +218,12 @@ int main(void)
 
 	SPIM_Init_MMSL();
 
-	test_addr = TEST_BLOCK_ADDR*test_loop;
+	//test_addr = TEST_BLOCK_ADDR*test_loop;
 
 	//SPIM_EraseBlock_MMSL(test_addr);
 
+	read_welding_record();
+/*
     // Read flash data
 //		for (offset = 0; offset < FLASH_BLOCK_SIZE; offset += BUFFER_SIZE)
 //    {

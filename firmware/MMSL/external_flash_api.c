@@ -27,8 +27,9 @@ void SPIM_Init_MMSL(void);
 void SPIM_EraseBlock_MMSL(uint32_t u32Addr);  // Block size is 64KB
 void SPIM_Write_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[]);   // u32Addr is 4-byte alignment
 void SPIM_Read_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[]);   // u32Addr is 4-byte alignment
-void external_flash_init(void);  // Read flash history data
+//void external_flash_init(void);  // Read flash history data
 void save_welding_record(void);
+void read_welding_record(void);  // Read flash history data
 
 //extern int history_record_array[255][18];
 extern int history_record_array[511][18];
@@ -158,19 +159,20 @@ void SPIM_Read_MMSL(uint32_t u32Addr, uint32_t u32ByteCount, uint8_t pu8Buf[])
 	SPIM_IO_Read(u32Addr, USE_4_BYTES_MODE, u32ByteCount, pu8Buf, OPCODE_FAST_READ, 1, 1, 1, 1);
 }
 
-void external_flash_init(void)
+//void external_flash_init(void)
+void read_welding_record(void)
 {
     uint32_t    i, j, offset;
     uint32_t    *pData;
     //uint8_t     idBuf[3];
-	int test_loop = 1;
+	int test_loop = 3;
 	uint32_t test_addr = 0;
 
-    SYS_Init_External_Flash();
+//    SYS_Init_External_Flash();
 
-    SYS_UnlockReg();
+//    SYS_UnlockReg();
 
-	SPIM_Init_MMSL();
+//	SPIM_Init_MMSL();
 
 	test_addr = TEST_BLOCK_ADDR*test_loop;
 
@@ -205,7 +207,7 @@ void save_welding_record(void)
     uint32_t    i, j, offset;
     uint32_t    *pData;
     //uint8_t     idBuf[3];
-	int test_loop = 1;
+	int test_loop = 3;
 	uint32_t test_addr = 0;
 	
 	test_addr = TEST_BLOCK_ADDR*test_loop;
